@@ -84,7 +84,7 @@ function getdownloadlink($url){
     $filedata = wp_remote_head( $url );
     if(isset($filedata['headers']['content-length']))
     $filesize = human_filesize($filedata['headers']['content-length']);
-    echo '<p class="embed_download"><a href="'.$url.'" download>Download ['.$filesize.']</a></p>';     
+    echo '<p class="embed_download"><a href="'.$url.'" download>'.__('Download','ead'). ' ['.$filesize.']</a></p>';     
     }
 }
 /**
@@ -94,54 +94,30 @@ function getdownloadlink($url){
  * @return  string Download link 
  */
 function validateurl($url){
-    $types = array(
-    // ext      =>  mime_type
-    "ai"        =>  "application/postscript",
-    "doc"       =>  "application/msword",
-    "docx"      =>  "application/vnd.openxmlformats-officedocument.wordprocessingml",
-    "dxf"       =>  "application/dxf",
-    "eps"       =>  "application/postscript",
-    "otf"       =>  "font/opentype",
-    "pages"     =>  "application/x-iwork-pages-sffpages",
-    "pdf"       =>  "application/pdf",
-    "pps"       =>  "application/vnd.ms-powerpoint",
-    "ppt"       =>  "application/vnd.ms-powerpoint",
-    "pptx"      =>  "application/vnd.openxmlformats-officedocument.presentationml",
-    "ps"        =>  "application/postscript",
-    "psd"       =>  "image/photoshop",
-    "rar"       =>  "application/rar",
-    "svg"       =>  "image/svg+xml",
-    "tif"       =>  "image/tiff",
-    "tiff"      =>  "image/tiff",
-    "ttf"       =>  "application/x-font-ttf",
-    "xls"       =>  "application/vnd.ms-excel",
-    "xlsx"      =>  "application/vnd.openxmlformats-officedocument.spreadsheetml",
-    "xps"       =>  "application/vnd.ms-xpsdocument",
-    "zip"       =>  "application/zip"
-    );
+    $types =get_allowed_mime_types();
     $remote = wp_remote_head( $url );
     $json['status'] =false;
     $json['message'] = '';
     if ( is_array( $remote ) ) {
             if ( isset( $remote['headers']['content-length'] ) ) {
                 $json['response']['filesize'] = $remote['headers']['content-length'];
-                //if(in_array($remote['headers']['content-type'], $types)){
-                    $json['message'] = "Done";
+                if(in_array($remote['headers']['content-type'], $types)){
+                    $json['message'] = __("Done",'ead');
                     $json['status'] =true;
-               // }else{
-                    //$json['message'] = "Unsupported File Format";
-                    //$json['status'] = false;
-                //}
+                }else{
+                    $json['message'] = __("Unsupported File Format",'ead');
+                    $json['status'] = false;
+                }
                 
             } else {
-                $json['message'] = 'Null Content'; 
+                $json['message'] = __('Null Content','ead'); 
                 $json['status'] =false;
             }
     }elseif(is_wp_error( $result )){
         $json['message'] = $result->get_error_message(); 
         $json['status'] =false;
     }else{
-        $json['message'] = 'File Not Found'; 
+        $json['message'] = __('File Not Found','ead'); 
         $json['status'] =false;
     }
      return $json;
@@ -150,7 +126,7 @@ function validateurl($url){
  * Get Provider url
  *
  * @since   1.0
- * @return  string of service provider
+ * @return  string iframe embed html
  */
 function getprovider($atts){
 
@@ -167,7 +143,7 @@ function getprovider($atts){
             $embedsrc = '//docs.google.com/viewer?url=%1$s&embedded=true&hl=%2$s';
             $iframe = sprintf( $embedsrc, 
                 urlencode( $url ),
-                 esc_attr( $language )
+                esc_attr( $language )
             );
             break;
         case 'microsoft':
@@ -183,5 +159,26 @@ function getprovider($atts){
                 sanitize_dims($height) 
             );
     return '<iframe src="'.$iframe.'" '.$stylelink.'></iframe>';
+}
+/**
+ * Get Email node
+ *
+ * @since   1.0
+ * @return  string email html
+ */
+function getemailnode($emaildata,$postdata){
+    $emailhtml = "";
+    foreach ($emaildata as $key => $label) {
+    if($postdata[$key]){
+    $emailhtml .= '<tr bgcolor="#EAF2FA">
+        <td colspan="2"><font style="font-family:sans-serif;font-size:12px"><strong>'.$label.'</strong></font></td>
+        </tr>
+        <tr bgcolor="#FFFFFF">
+        <td width="20">&nbsp;</td>
+        <td><font style="font-family:sans-serif;font-size:12px">'.$postdata[$key] .'</font></td>
+        </tr>';
+    }
+    }
+    return $emailhtml; 
 }
 ?>

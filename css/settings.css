@@ -1,0 +1,6 @@
+.tabs{
+	display: none;
+}
+.tabs.visible{
+	display: block;
+}

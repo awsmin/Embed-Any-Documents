@@ -1,5 +1,6 @@
+<?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?>
 <div class="wrap">
-<h2>Embed Any Document Settings</h2>
+<h2><?php _e('Embed Any Document Settings',$this->text_domain);?></h2>
 <h2 class="nav-tab-wrapper">
     <a class="nav-tab nav-tab-active" href="#" data-tab="general"><?php _e( 'General', $this->text_domain); ?></a>
     <a class="nav-tab " href="#" data-tab="support"><?php _e( 'Support', $this->text_domain); ?></a>
@@ -9,40 +10,40 @@
     <?php settings_fields( 'ead-settings-group' ); ?>
     <table class="form-table">
         <tr valign="top">
-        <th scope="row">Embed Using</th>
+        <th scope="row"><?php _e('Embed Using',$this->text_domain);?></th>
         <td>
            <?php 
-            $providers= array('google' => 'Google Docs Viewer','microsoft' => 'Microsoft Office Online');
+            $providers= array('google' => __('Google Docs Viewer',$this->text_domain),'microsoft' => __('Microsoft Office Online',$this->text_domain));
             selectbuilder('ead_provider', $providers,esc_attr( get_option('ead_provider'))); 
             ?> 
         </td>
         </tr>
         <tr valign="top">
-        <th scope="row">Embed Style</th>
+        <th scope="row"><?php _e('Embed Style',$this->text_domain);?></th>
         <td>
             <?php 
-            $themes= array('flat' => 'Flat','dark' => 'Dark','light' => 'Light');
+            $themes= array('flat' => __('Flat',$this->text_domain),'dark' => __('Dark',$this->text_domain),'light' => __('Light',$this->text_domain));
             selectbuilder('ead_theme', $themes,esc_attr( get_option('ead_theme') )); 
             ?>
         </td>
         </tr>
         <tr valign="top">
-            <th scope="row"><?php _e('Default Size', 'ead'); ?></th>
+            <th scope="row"><?php _e('Default Size', $this->text_domain); ?></th>
             <td> 
-             <?php _e('Width', 'ead'); ?>    
+             <?php _e('Width', $this->text_domain); ?>    
              <input type="text" name="ead_width"  value="<?php echo esc_attr( get_option('ead_width','100%') ); ?>" />   
              &nbsp;&nbsp;&nbsp;&nbsp;
-             <?php _e('Height', 'ead'); ?> 
+             <?php _e('Height', $this->text_domain); ?> 
              <input type="text" name="ead_height" value="<?php echo esc_attr( get_option('ead_height','100%') ); ?>" />
             <br/>
-            <span class="note"><?php _e('Enter values in pixels or percentage (example:248px or 100%)', 'ead'); ?></span>
+            <span class="note"><?php _e('Enter values in pixels or percentage (example:248px or 100%)', $this->text_domain); ?></span>
             </td>
         </tr>
         <tr valign="top">
-        <th scope="row">Show Download Link</th>
+        <th scope="row"><?php _e('Show Download Link',$this->text_domain);?></th>
         <td>
            <?php 
-            $downoptions= array('alluser' => 'For all users','logged' => 'For Logged-in users','none' => 'None');
+            $downoptions= array('alluser' => __('For all users',$this->text_domain),'logged' => __('For Logged-in users',$this->text_domain),'none' => __('None',$this->text_domain));
             selectbuilder('ead_download', $downoptions,esc_attr( get_option('ead_download'))); 
             ?> 
         </td>
@@ -52,35 +53,47 @@
 </form>
 </div>
 <div class="tabs" id="support">
-    <div id="supportmessage"></div>
+    <div id="supportmessage" class="alert"></div>
     <form id="supportform" action="">
     <table class="form-table">
-            <tr valign="top">
-            <th scope="row"><?php _e('Name', 'ead'); ?></th>
+        <tr valign="top">
+            <th scope="row"><?php _e('Name', $this->text_domain); ?><span class="required">*</span></th>
             <td>
-              <input type="text" name="site_name" value="<?php echo get_option('blogname'); ?>"/>
+                <input type="text" name="site_name"  value="<?php echo get_option('blogname'); ?>"/>
             </td>
-            </tr>
-            <tr valign="top">
-            <th scope="row"><?php _e('Email ID', 'ead'); ?></th>
+        </tr>
+        <tr valign="top">
+            <th scope="row"><?php _e('Email ID', $this->text_domain); ?><span class="required">*</span></th>
             <td>
                 <?php  $current_user = wp_get_current_user(); ?>
-               <input type="email" name="email_id" value="<?php echo  $current_user->user_email; ?>"/>
+                <input type="email" name="email_id" value="<?php echo  $current_user->user_email; ?>"/>
             </td>
-            </tr>
-            <tr valign="top">
-               <th scope="row"><?php _e('Problem', 'ead'); ?></th> 
-               <td>
-                <textarea name="problem"></textarea>
+        </tr>
+        <tr valign="top">
+            <th scope="row"><?php _e('Shortcode', $this->text_domain); ?></th>
+            <td>
+                <input type="text" name="sc" placeholder="[embedall url=&quot;...&quot;]" value=""/>
             </td>
-            </tr>
-            <tr valign="top">
+        </tr>
+        <tr valign="top">
+            <th scope="row"><?php _e('Embed Url', $this->text_domain); ?></th>
+            <td>
+                <input type="text" name="eurl" placeholder="http://.." value=""/>
+            </td>
+        </tr>
+        <tr valign="top">
+            <th scope="row"><?php _e('Problem', $this->text_domain); ?><span class="required">*</span></th> 
+            <td>
+            <textarea name="problem"></textarea>
+        </td>
+        </tr>
+        <tr valign="top">
             <td>
             <p class="submit">
-                <input type="submit" name="submit" id="submit" class="button button-primary" value="Submit">
+                <input type="submit" name="submit" id="submit" class="button button-primary" value="<?php _e('Submit', $this->text_domain); ?>">
             </p>
             </td>
-            </tr>
+        </tr>
     </table>
     </form>
 </div>

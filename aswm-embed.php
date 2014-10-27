@@ -46,20 +46,20 @@ class Awsm_embed {
 		//Admin Settings menu
 		add_action('admin_menu', array($this, 'admin_menu'));
 		add_action( 'admin_init', array($this, 'register_eadsettings'));
+		//Add easy settings link
 		add_filter( "plugin_action_links_" . plugin_basename( __FILE__ ),array($this, 'settingslink'));
 		//ajax validate file url
 		add_action( 'wp_ajax_validateurl',array( $this, 'validateurl' ));
 		//ajax Contact Form
  		add_action( 'wp_ajax_supportform',array( $this, 'supportform' ));
-		//add_action( 'admin_enqueue_scripts', array( $this, 'register_scripts' ) );
-		//add_action( 'admin_enqueue_scripts', array( $this, 'register_styles' ) );
-
-		//add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ) );
-		//add_action( 'wp_enqueue_scripts', array( $this, 'register_styles' ) );
-
-		$this->run_plugin();
 	}
-
+	/**
+	 * Register admin Settings style
+	 */
+	function setting_styles(){
+		wp_register_style( 'embed-settings', plugins_url( 'css/settings.css', $this->plugin_file ), false, '1.0', 'all' );
+		wp_enqueue_style('embed-settings');
+	}
 	/**
 	 * Embed any Docs Button
 	 */
@@ -104,7 +104,10 @@ class Awsm_embed {
 	 * Embed Form popup
 	 */ 
 	function embedpopup(){
-		include('inc/popup.php');
+		if (!current_user_can('manage_options')) {
+            wp_die(__('You do not have sufficient permissions to access this page.'));
+        }
+		include($this->plugin_path.'inc/popup.php');
 	}
 	/**
      * Register admin scripts
@@ -114,14 +117,6 @@ class Awsm_embed {
 		wp_register_style( 'embed-css', plugins_url( 'css/embed.css', $this->plugin_file ), false, '1.0', 'all' );
 		wp_register_script( 'magnific-popup', plugins_url( 'js/magnific-popup.js', $this->plugin_file ), array( 'jquery' ), '0.9.9', true );
 		wp_register_script( 'embed', plugins_url( 'js/embed.js', $this->plugin_file ), array( 'jquery' ), '0.9.9', true );
-		wp_localize_script( 'magnific-popup', 'magnific_popup', array(
-				'close'   => __( 'Close (Esc)', $this->text_domain ),
-				'loading' => __( 'Loading...',$this->text_domain ),
-				'prev'    => __( 'Previous (Left arrow key)', $this->text_domain),
-				'next'    => __( 'Next (Right arrow key)', $this->text_domain ),
-				'counter' => sprintf( __( '%s of %s', $this->text_domain ), '%curr%', '%total%' ),
-				'error'   => sprintf( __( 'Failed to load this link. %sOpen link%s.', $this->text_domain ), '<a href="%url%" target="_blank"><u>', '</u></a>' )
-			) );
 		wp_localize_script('embed','emebeder', array(
 				'mimeurl' => plugins_url('inc/mimes.php',$this->plugin_file),
 				'default_height'=> get_option('ead_height', '100%' ),
@@ -160,7 +155,8 @@ class Awsm_embed {
      * Admin menu setup
      */
 	public function admin_menu() {
-        add_options_page('EAD Settings', 'Ead Settings', 'manage_options',$this->settings_slug, array($this, 'settings_page'));
+        $eadsettings 	= 	add_options_page('EAD Settings', 'Ead Settings', 'manage_options',$this->settings_slug, array($this, 'settings_page'));
+ 		add_action( 'admin_print_styles-' . $eadsettings, array($this,'setting_styles'));
     }
     public function settings_page() {
         if (!current_user_can('manage_options')) {
@@ -172,16 +168,19 @@ class Awsm_embed {
      * Register Settings
      */
     function register_eadsettings() {
-   	register_setting( 'ead-settings-group', 'ead_theme');
-    register_setting( 'ead-settings-group', 'ead_width' );
-    register_setting( 'ead-settings-group', 'ead_height' );
-    register_setting( 'ead-settings-group', 'ead_download' );
-    register_setting( 'ead-settings-group', 'ead_provider' );
+	   	register_setting( 'ead-settings-group', 'ead_theme');
+	    register_setting( 'ead-settings-group', 'ead_width' ,'sanitize_dims');
+	    register_setting( 'ead-settings-group', 'ead_height','sanitize_dims' );
+	    register_setting( 'ead-settings-group', 'ead_download' );
+	    register_setting( 'ead-settings-group', 'ead_provider' );
 	}
 	/**
      * Ajax validate file url
     */
 	function validateurl(){
+		if (!current_user_can('manage_options')) {
+            wp_die(__('You do not have sufficient permissions to access this page.'));
+        }
 		$fileurl =  $_POST['furl'];
 		echo json_encode(validateurl($fileurl));
 		die(0);
@@ -195,19 +194,6 @@ class Awsm_embed {
         }
         include($this->plugin_path.'inc/support-mail.php');
     }
-	/**
-     * Place code for your plugin's functionality here.
-     */
-    function check_mime(){
-
-    }
-    /**
-     * Place code for your plugin's functionality here.
-     */
-    private function run_plugin() {
-
-	}
-
 }
 
 Awsm_embed::get_instance();
