@@ -155,7 +155,7 @@ class Awsm_embed {
      * Admin menu setup
      */
 	public function admin_menu() {
-        $eadsettings 	= 	add_options_page('EAD Settings', 'Ead Settings', 'manage_options',$this->settings_slug, array($this, 'settings_page'));
+        $eadsettings 	= 	add_options_page('Embed Any Document', 'Embed Any Document', 'manage_options',$this->settings_slug, array($this, 'settings_page'));
  		add_action( 'admin_print_styles-' . $eadsettings, array($this,'setting_styles'));
     }
     public function settings_page() {
@@ -168,7 +168,6 @@ class Awsm_embed {
      * Register Settings
      */
     function register_eadsettings() {
-	   	register_setting( 'ead-settings-group', 'ead_theme');
 	    register_setting( 'ead-settings-group', 'ead_width' ,'sanitize_dims');
 	    register_setting( 'ead-settings-group', 'ead_height','sanitize_dims' );
 	    register_setting( 'ead-settings-group', 'ead_download' );

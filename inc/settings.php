@@ -1,8 +1,8 @@
 <?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?>
 <div class="wrap">
-<h2><?php _e('Embed Any Document Settings',$this->text_domain);?></h2>
+<h2><?php _e('Embed Any Document by AWSM.in',$this->text_domain);?></h2>
 <h2 class="nav-tab-wrapper">
-    <a class="nav-tab nav-tab-active" href="#" data-tab="general"><?php _e( 'General', $this->text_domain); ?></a>
+    <a class="nav-tab nav-tab-active" href="#" data-tab="general"><?php _e( 'General Settings', $this->text_domain); ?></a>
     <a class="nav-tab " href="#" data-tab="support"><?php _e( 'Support', $this->text_domain); ?></a>
 </h2>
 <div class="tabs visible" id="general">
@@ -16,15 +16,6 @@
             $providers= array('google' => __('Google Docs Viewer',$this->text_domain),'microsoft' => __('Microsoft Office Online',$this->text_domain));
             selectbuilder('ead_provider', $providers,esc_attr( get_option('ead_provider'))); 
             ?> 
-        </td>
-        </tr>
-        <tr valign="top">
-        <th scope="row"><?php _e('Embed Style',$this->text_domain);?></th>
-        <td>
-            <?php 
-            $themes= array('flat' => __('Flat',$this->text_domain),'dark' => __('Dark',$this->text_domain),'light' => __('Light',$this->text_domain));
-            selectbuilder('ead_theme', $themes,esc_attr( get_option('ead_theme') )); 
-            ?>
         </td>
         </tr>
         <tr valign="top">
