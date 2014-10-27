@@ -1,7 +1,6 @@
 <?php
 /*
 
-Testing git :)   ;;;;;
 */
 class Embed_Admin {
 	private static $instance = null;

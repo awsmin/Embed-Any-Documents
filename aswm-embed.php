@@ -14,6 +14,7 @@ class Awsm_embed {
 	private $plugin_path;
 	private $plugin_url;
 	private $plugin_file;
+	private $settings_slug;
     private $text_domain = 'awsm';
 	/**
 	 * Creates or returns an instance of this class.
@@ -31,9 +32,10 @@ class Awsm_embed {
 	 */
 	private function __construct() {
 
-		$this->plugin_path 	= plugin_dir_path( __FILE__ );
-		$this->plugin_url  	= plugin_dir_url( __FILE__ );
-		$this->plugin_file  =  __FILE__  ;
+		$this->plugin_path 		=	plugin_dir_path( __FILE__ );
+		$this->plugin_url  		=	plugin_dir_url( __FILE__ );
+		$this->plugin_file  	=	__FILE__  ;
+		$this->settings_slug	=	'ead-settings';
 
 		load_plugin_textdomain( $this->text_domain, false, 'lang' );
 
@@ -44,9 +46,11 @@ class Awsm_embed {
 		//Admin Settings menu
 		add_action('admin_menu', array($this, 'admin_menu'));
 		add_action( 'admin_init', array($this, 'register_eadsettings'));
+		add_filter( "plugin_action_links_" . plugin_basename( __FILE__ ),array($this, 'settingslink'));
 		//ajax validate file url
 		add_action( 'wp_ajax_validateurl',array( $this, 'validateurl' ));
- 
+		//ajax Contact Form
+ 		add_action( 'wp_ajax_supportform',array( $this, 'supportform' ));
 		//add_action( 'admin_enqueue_scripts', array( $this, 'register_scripts' ) );
 		//add_action( 'admin_enqueue_scripts', array( $this, 'register_styles' ) );
 
@@ -87,6 +91,14 @@ class Awsm_embed {
 		// Print/return result
 		if ( $args['echo'] ) echo $button;
 		return $button;
+	}
+	/**
+	 * Admin Easy access settings link
+	 */ 
+	function settingslink( $links ) { 
+		$settings_link = '<a href="options-general.php?page='.$this->settings_slug.'">' . __('Settings', $this->text_domain) . '</a>'; 
+		array_unshift( $links, $settings_link ); 
+		return $links; 
 	}
 	/**
 	 * Embed Form popup
@@ -148,13 +160,13 @@ class Awsm_embed {
      * Admin menu setup
      */
 	public function admin_menu() {
-        add_options_page('EAD Settings', 'Ead Settings', 'manage_options', 'ead-settings', array($this, 'settings_page'));
+        add_options_page('EAD Settings', 'Ead Settings', 'manage_options',$this->settings_slug, array($this, 'settings_page'));
     }
     public function settings_page() {
         if (!current_user_can('manage_options')) {
             wp_die(__('You do not have sufficient permissions to access this page.'));
         }
-        include('inc/settings.php');
+        include($this->plugin_path.'inc/settings.php');
     }
     /**
      * Register Settings
@@ -174,6 +186,15 @@ class Awsm_embed {
 		echo json_encode(validateurl($fileurl));
 		die(0);
 	}
+	/**
+     * Ajax Contact Form
+    */
+    function supportform(){
+    	if (!current_user_can('manage_options')) {
+            wp_die(__('You do not have sufficient permissions to access this page.'));
+        }
+        include($this->plugin_path.'inc/support-mail.php');
+    }
 	/**
      * Place code for your plugin's functionality here.
      */
