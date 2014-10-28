@@ -17,6 +17,9 @@ img {
     background: none;
     border: none;
 }
+.nav-tab-wrapper a:hover{
+	border: none;
+}
 .nav-tab-wrapper a.nav-tab-active {
     background: #fff;
 }
