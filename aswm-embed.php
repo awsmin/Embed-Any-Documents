@@ -71,9 +71,9 @@ class Awsm_embed {
 		// Prepare args
 		$args = wp_parse_args( $args, array(
 				'target'    => $target,
-				'text'      => __( 'Embed Any Doc',  $this->text_domain),
+				'text'      => __( 'Add Document',  $this->text_domain),
 				'class'     => 'awsm-embed button',
-				'icon'      => plugins_url( 'images/ead-button.png', __FILE__ ),
+				'icon'      => plugins_url( 'images/ead-small.png', __FILE__ ),
 				'echo'      => true,
 				'shortcode' => false
 			) );

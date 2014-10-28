@@ -4,7 +4,7 @@
         <div id="embed_message">
         </div>
 		<div id="popup-header">
-		<h1><?php _e('Embed Any Docs','ead');?></h1>
+		<h1><?php _e('Embed Any Document by AWSM.in','ead');?></h1>
 		</div>
 		<div class="section">
         <ul class="tabs">
