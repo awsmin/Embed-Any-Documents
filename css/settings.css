@@ -1,3 +1,10 @@
+img{
+	max-width: 100%; 
+	height: auto;
+}
+.clear{
+	clear: both;
+}
 .tabs{
 	display: none;
 	background: #fff;
@@ -17,3 +24,52 @@
 h2.nav-tab-wrapper{
  	border: none;
 }
+h2.ead-title{
+	background: url(../images/icon-ead.png) no-repaet;
+	padding-left: 46px;
+}
+.ead-left-wrap{
+	float: left;
+	width: 70%;
+}
+.ead-right-wrap{
+	float: right;
+	width: 30%;
+	max-width: 300px;
+	background: #fff;
+	padding-bottom: 15px;
+	color: #372e2e;
+}
+.author-info{ 
+	padding:25px 15px; 
+	text-align: center;
+}
+.awsm-social{
+	text-align: center; 
+	list-style-type: none;
+	padding: 15px;
+	border-top: 1px solid #dadada;
+	border-bottom: 1px solid #dadada;
+}
+.awsm-social li{
+	display: inline;
+}
+.awsm-social a{ 
+	color: #a1a1a1; 
+	text-decoration: none;
+	display: block;
+	font-size: 22px;
+}
+
+ @media (max-width: 767px) {
+.ead-left-wrap{
+	float: none;
+	width: 100%;
+}
+.ead-right-wrap{
+	float: none;
+	width: 100%;
+	max-width: 100%;
+}
+
+ }
