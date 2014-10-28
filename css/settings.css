@@ -8,7 +8,7 @@ img{
 .tabs{
 	display: none;
 	background: #fff;
-	padding: 10px 20px;
+	padding: 10px 20px 10px 35px;
 }
 .tabs.visible{
 	display: block;
@@ -29,12 +29,13 @@ h2.nav-tab-wrapper{
  	border: none;
 }
 h2.ead-title{
-	background: url(../images/icon-ead.png) no-repaet;
+	background: url(../images/icon-ead.png) no-repeat 0 14px;
 	padding-left: 46px;
+	margin-bottom: 20px;
 }
 .ead-left-wrap{
 	float: left;
-	width: 70%;
+	width: 68%;
 }
 .ead-right-wrap{
 	float: right;
@@ -63,6 +64,13 @@ h2.ead-title{
 	text-decoration: none;
 	display: block;
 	font-size: 22px;
+}
+input.small{ 
+	width: 120px;
+}
+span.note{ 
+	font-size: 12px;
+	color: #ccc;
 }
 
  @media (max-width: 767px) {

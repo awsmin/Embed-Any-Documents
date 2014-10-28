@@ -23,10 +23,10 @@
                         <th scope="row"><?php _e('Default Size', $this->text_domain); ?></th>
                         <td> 
                          <?php _e('Width', $this->text_domain); ?>    
-                         <input type="text" name="ead_width"  value="<?php echo esc_attr( get_option('ead_width','100%') ); ?>" />   
+                         <input type="text" class="small" name="ead_width"  value="<?php echo esc_attr( get_option('ead_width','100%') ); ?>" />   
                          &nbsp;&nbsp;&nbsp;&nbsp;
                          <?php _e('Height', $this->text_domain); ?> 
-                         <input type="text" name="ead_height" value="<?php echo esc_attr( get_option('ead_height','100%') ); ?>" />
+                         <input type="text" class="small" name="ead_height" value="<?php echo esc_attr( get_option('ead_height','100%') ); ?>" />
                         <br/>
                         <span class="note"><?php _e('Enter values in pixels or percentage (example:248px or 100%)', $this->text_domain); ?></span>
                         </td>
