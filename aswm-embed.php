@@ -15,7 +15,7 @@ class Awsm_embed {
 	private $plugin_url;
 	private $plugin_file;
 	private $settings_slug;
-    private $text_domain = 'awsm';
+    private $text_domain = 'ead';
 	/**
 	 * Creates or returns an instance of this class.
 	 */
@@ -142,9 +142,8 @@ class Awsm_embed {
 		), $atts ) );
 
 		if ( $url ) {
-			$iframe = getprovider($atts);
-			$provider = getprovider(get_option('ead_provider','google'));
-			$durl = getdownloadlink($url);
+			$provider = ead_getprovider(get_option('ead_provider','google'));
+			$durl = ead_getdownloadlink($url);
 			$embedcode = $iframe.$durl;
 		}
 	
@@ -168,8 +167,8 @@ class Awsm_embed {
      * Register Settings
      */
     function register_eadsettings() {
-	    register_setting( 'ead-settings-group', 'ead_width' ,'sanitize_dims');
-	    register_setting( 'ead-settings-group', 'ead_height','sanitize_dims' );
+	    register_setting( 'ead-settings-group', 'ead_width' ,'ead_sanitize_dims');
+	    register_setting( 'ead-settings-group', 'ead_height','ead_sanitize_dims' );
 	    register_setting( 'ead-settings-group', 'ead_download' );
 	    register_setting( 'ead-settings-group', 'ead_provider' );
 	}
@@ -181,7 +180,7 @@ class Awsm_embed {
             wp_die(__('You do not have sufficient permissions to access this page.'));
         }
 		$fileurl =  $_POST['furl'];
-		echo json_encode(validateurl($fileurl));
+		echo json_encode(ead_validateurl($fileurl));
 		die(0);
 	}
 	/**

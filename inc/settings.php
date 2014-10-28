@@ -14,7 +14,7 @@
         <td>
            <?php 
             $providers= array('google' => __('Google Docs Viewer',$this->text_domain),'microsoft' => __('Microsoft Office Online',$this->text_domain));
-            selectbuilder('ead_provider', $providers,esc_attr( get_option('ead_provider'))); 
+            ead_selectbuilder('ead_provider', $providers,esc_attr( get_option('ead_provider'))); 
             ?> 
         </td>
         </tr>
@@ -35,7 +35,7 @@
         <td>
            <?php 
             $downoptions= array('alluser' => __('For all users',$this->text_domain),'logged' => __('For Logged-in users',$this->text_domain),'none' => __('None',$this->text_domain));
-            selectbuilder('ead_download', $downoptions,esc_attr( get_option('ead_download'))); 
+            ead_selectbuilder('ead_download', $downoptions,esc_attr( get_option('ead_download'))); 
             ?> 
         </td>
         </tr>

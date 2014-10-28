@@ -15,7 +15,7 @@ if ( 'POST' == $_SERVER['REQUEST_METHOD']) {
   <tbody>
     <tr>
       <td><table width="100%" cellspacing="0" cellpadding="5" border="0" bgcolor="#FFFFFF">
-        <tbody>'.getemailnode($emaildata,$postdata).'</tbody>
+        <tbody>'.ead_getemailnode($emaildata,$postdata).'</tbody>
         </table>
       </td>
     </tr>
