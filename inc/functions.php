@@ -5,7 +5,7 @@
  * @since   1.0
  * @return  String select html
  */
-function selectbuilder( $name, $options,$selected="",$class="") {
+function ead_selectbuilder( $name, $options,$selected="",$class="") {
     if(is_array($options)):
     echo "<select name=\"$name\" id=\"$name\" class=\"$class\">";
     foreach ($options as $key => $option) {
@@ -30,7 +30,7 @@ function selectbuilder( $name, $options,$selected="",$class="") {
  * @return  Human readable file size
  * @note    Replaces old gde_sanitizeOpts function
  */
-function human_filesize($bytes, $decimals = 2) {
+function ead_human_filesize($bytes, $decimals = 2) {
     $size = array('B','kB','MB','GB','TB','PB','EB','ZB','YB');
     $factor = floor((strlen($bytes) - 1) / 3);
     return sprintf("%.{$decimals}f ", $bytes / pow(1024, $factor)) . @$size[$factor];
@@ -43,7 +43,7 @@ function human_filesize($bytes, $decimals = 2) {
  * @return  string Sanitized dimensions, or false if value is invalid
  * @note    Replaces old gde_sanitizeOpts function
  */
-function sanitize_dims( $dim ) {
+function ead_sanitize_dims( $dim ) {
     // remove any spacing junk
     $dim = trim( str_replace( " ", "", $dim ) );
     
@@ -70,7 +70,7 @@ function sanitize_dims( $dim ) {
  * @since   1.0
  * @return  string Download link 
  */
-function getdownloadlink($url){
+function ead_getdownloadlink($url){
     $download = get_option('ead_download');
     $show =false;
     if($download=='alluser'){
@@ -83,7 +83,7 @@ function getdownloadlink($url){
     $durl = esc_url( $url, array( 'http', 'https' ));
     $filedata = wp_remote_head( $url );
     if(isset($filedata['headers']['content-length']))
-    $filesize = human_filesize($filedata['headers']['content-length']);
+    $filesize = ead_human_filesize($filedata['headers']['content-length']);
     echo '<p class="embed_download"><a href="'.$url.'" download>'.__('Download','ead'). ' ['.$filesize.']</a></p>';     
     }
 }
@@ -93,7 +93,7 @@ function getdownloadlink($url){
  * @since   1.0
  * @return  string Download link 
  */
-function validateurl($url){
+function ead_validateurl($url){
     $types =get_allowed_mime_types();
     $remote = wp_remote_head( $url );
     $json['status'] =false;
@@ -128,7 +128,7 @@ function validateurl($url){
  * @since   1.0
  * @return  string iframe embed html
  */
-function getprovider($atts){
+function ead_getprovider($atts){
 
     extract(shortcode_atts( array(
             'url' => '',
@@ -155,8 +155,8 @@ function getprovider($atts){
     }
     $style = 'style="width:%1$s; height:%2$s; border: none;"';
     $stylelink = sprintf($style, 
-                sanitize_dims($width)  ,
-                sanitize_dims($height) 
+                ead_sanitize_dims($width)  ,
+                ead_sanitize_dims($height) 
             );
     return '<iframe src="'.$iframe.'" '.$stylelink.'></iframe>';
 }
@@ -166,7 +166,7 @@ function getprovider($atts){
  * @since   1.0
  * @return  string email html
  */
-function getemailnode($emaildata,$postdata){
+function ead_getemailnode($emaildata,$postdata){
     $emailhtml = "";
     foreach ($emaildata as $key => $label) {
     if($postdata[$key]){
