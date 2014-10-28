@@ -1,11 +1,12 @@
 <?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?>
 <div class="wrap">
     <h2 class="ead-title"><?php _e('Embed Any Document by AWSM.in',$this->text_domain);?></h2>
-    <div class="ead-left-wrap">
-        <h2 class="nav-tab-wrapper">
+    <h2 class="nav-tab-wrapper">
             <a class="nav-tab nav-tab-active" href="#" data-tab="general"><?php _e( 'General Settings', $this->text_domain); ?></a>
             <a class="nav-tab " href="#" data-tab="support"><?php _e( 'Support', $this->text_domain); ?></a>
         </h2>
+    <div class="ead-left-wrap">
+        
         <div class="tabs visible" id="general">
             <form method="post" action="options.php">
                 <?php settings_fields( 'ead-settings-group' ); ?>
@@ -90,7 +91,7 @@
             </form>
         </div><!-- #support-->
     </div><!-- .ead-left-wrap -->
-    <div clss="ead-right-wrap">
+    <div class="ead-right-wrap">
         <img src="http://awsm.in/innovations/ead/logo.png" alt="AWSM!">
 <div class="author-info">
     This plugin is developed <br/>by <a href="http://awsm.in" target="_blank" title="AWSM Innovations">AWSM Innovations.</a>
