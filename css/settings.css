@@ -5,6 +5,12 @@ img {
 .clear {
     clear: both;
 }
+.f-left{
+    float: left;
+}
+.fl-right{
+    float: right;
+}
 .tabs {
     display: none;
     background: #fff;
@@ -33,15 +39,18 @@ h2.nav-tab-wrapper {
 h2.ead-title {
     background: url(../images/icon-ead.png) no-repeat 0 14px;
     padding-left: 46px;
-    margin-bottom: 20px;
 }
 .ead-left-wrap {
     float: left;
-    width: 68%;
+    width: 100%;
+    -moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+padding-right:340px;
+margin-right: -340px; 
 }
 .ead-right-wrap {
     float: right;
-    width: 30%;
     max-width: 300px;
     background: #fff;
     padding-bottom: 15px;
@@ -57,31 +66,64 @@ h2.ead-title {
     padding: 15px;
     border-top: 1px solid #dadada;
     border-bottom: 1px solid #dadada;
+    margin-bottom: 20px;
 }
 .awsm-social li {
-    display: inline;
+    display: inline-block;
+    margin: 0 6px;
 }
-.awsm-social a {
-    color: #a1a1a1;
-    text-decoration: none;
+.awsm-icon{ 
+    background: url(../images/ead-icon-sprite.jpg) no-repeat;
     display: block;
-    font-size: 22px;
+    width: 21px;
+    height: 21px;
+    text-indent: -999999px;
+    opacity: 0.46;
+}
+.awsm-icon:hover{
+    opacity: 1;
+}
+.awsm-icon-facebook{
+    
+}
+.awsm-icon-twitter{
+    background-position: -26px 0;
+}
+.awsm-icon-github{
+    background-position: -52px 0;
+}
+.awsm-icon-behance{
+    background-position: -78px 0;
+    width: 28px;
+}
+.awsm-icon-dribbble{
+    background-position: right 0;
 }
 input.small {
-    width: 120px;
+    max-width: 120px;
+}
+.ead-frame-width{
+    margin-right: 15px;
+    margin-bottom: 10px;
+}
+.ead-frame-height{
+    margin-bottom: 10px;
 }
 span.note {
     font-size: 12px;
     color: #ccc;
 }
-@media (max-width: 767px) {
+
+@media (max-width: 800px) {
     .ead-left-wrap {
         float: none;
         width: 100%;
+        margin-bottom: 30px;
+        padding-right: 0;
+        margin-right: 0;
    }
    .ead-right-wrap {
        float: none;
        width: 100%;
-       max-width: 100%;
   }
 }

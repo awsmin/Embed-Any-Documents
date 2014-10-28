@@ -23,12 +23,14 @@
                     <tr valign="top">
                         <th scope="row"><?php _e('Default Size', $this->text_domain); ?></th>
                         <td> 
-                         <?php _e('Width', $this->text_domain); ?>    
+                         <div class="f-left ead-frame-width"><?php _e('Width', $this->text_domain); ?>    
                          <input type="text" class="small" name="ead_width"  value="<?php echo esc_attr( get_option('ead_width','100%') ); ?>" />   
-                         &nbsp;&nbsp;&nbsp;&nbsp;
+                         </div>
+                         <div class="f-left ead-frame-height">
                          <?php _e('Height', $this->text_domain); ?> 
                          <input type="text" class="small" name="ead_height" value="<?php echo esc_attr( get_option('ead_height','100%') ); ?>" />
-                        <br/>
+                        </div>
+                        <div class="clear"></div>
                         <span class="note"><?php _e('Enter values in pixels or percentage (example:248px or 100%)', $this->text_domain); ?></span>
                         </td>
                     </tr>
@@ -97,10 +99,11 @@
     This plugin is developed <br/>by <a href="http://awsm.in" target="_blank" title="AWSM Innovations">AWSM Innovations.</a>
 </div><!-- .author-info -->
 <ul class="awsm-social">
-    <li><a href="#" title="AWSM Innovations"><span class="genericon genericon-facebook"></span></a></li>
-    <li><a href="#" title="AWSM Innovations"><span class="genericon genericon-twitter"></span></a></li>
-    <li><a href="#" title="AWSM Innovations"><span class="genericon genericon-github"></span></a></li>
-    <li><a href="#" title="AWSM Innovations"><span class="genericon genericon-dribbble"></span></span></a></li>
+    <li><a href="#" title="AWSM Innovations"><span class="awsm-icon awsm-icon-facebook">Facebook</span></a></li>
+    <li><a href="#" title="AWSM Innovations"><span class="awsm-icon awsm-icon-twitter">Twitter</span></a></li>
+    <li><a href="#" title="AWSM Innovations"><span class="awsm-icon awsm-icon-github">Github</span></a></li>
+    <li><a href="#" title="AWSM Innovations"><span class="awsm-icon awsm-icon-behance">Behance</span></a></li>
+    <li><a href="#" title="AWSM Innovations"><span class="awsm-icon awsm-icon-dribbble">Dribble</span></span></a></li>
 </ul>
 
     </div><!-- .ead-right-wrap -->
