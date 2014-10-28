@@ -118,7 +118,6 @@ class Awsm_embed {
 		wp_register_script( 'magnific-popup', plugins_url( 'js/magnific-popup.js', $this->plugin_file ), array( 'jquery' ), '0.9.9', true );
 		wp_register_script( 'embed', plugins_url( 'js/embed.js', $this->plugin_file ), array( 'jquery' ), '0.9.9', true );
 		wp_localize_script('embed','emebeder', array(
-				'mimeurl' => plugins_url('inc/mimes.php',$this->plugin_file),
 				'default_height'=> get_option('ead_height', '100%' ),
 				'default_width' =>  get_option('ead_width', '100%' ),
 				'download' =>  get_option('ead_download', 'none' ),

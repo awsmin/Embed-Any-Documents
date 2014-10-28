@@ -61,6 +61,9 @@ jQuery(document).ready(function ($) {
         this.window = wp.media({
                 title: 'Embed Any Documet',
                 multiple: false,
+                library: {
+					type: 'documents'
+				},
                 button: {text: 'Insert'}
             });
  
