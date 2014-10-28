@@ -1,6 +1,7 @@
 .tabs{
 	display: none;
 	background: #fff;
+	padding: 10px 20px;
 }
 .tabs.visible{
 	display: block;
