@@ -14,8 +14,12 @@ img{
 	display: block;
 }
 .nav-tab-wrapper a{
-	background: #fff;
+	background: none;
 	border: none;
+}
+.nav-tab-wrapper a.nav-tab-active{
+	background: #fff;
+
 }
 .form-table{
 	margin-top: 0;

@@ -89,7 +89,7 @@
                 </table>
             </form>
         </div><!-- #support-->
-    </dic><!-- .ead-left-wrap -->
+    </div><!-- .ead-left-wrap -->
     <div clss="ead-right-wrap">
         <img src="http://awsm.in/innovations/ead/logo.png" alt="AWSM!">
 <div class="author-info">
