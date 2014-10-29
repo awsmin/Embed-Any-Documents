@@ -62,7 +62,7 @@ jQuery(document).ready(function ($) {
                 title: 'Embed Any Documet',
                 multiple: false,
                 library: {
-					type: 'documents'
+					//type: 'documents'
 				},
                 button: {text: 'Insert'}
             });
@@ -72,7 +72,7 @@ jQuery(document).ready(function ($) {
                 var file = self.window.state().get('selection').first().toJSON();
                 fileurl=file.url;
                 $shortcode.text(getshortcode(file.url ));
-                 
+                uploaddetails(file);
             });
    		} 
 	    this.window.open();
@@ -86,6 +86,12 @@ jQuery(document).ready(function ($) {
     	if(download!=emebeder.download) { downloadstr = ' download="'+download+'"'; }
     	return '[embedall url="' + url + '"' + widthstr + heightstr + downloadstr +']';
 
+    }
+    //Print uploaded file details
+    function uploaddetails(file){
+    	$('#ead_filename').html(file.filename)
+		$('#ead_filesize').html(file.filesizeHumanReadable);
+		$('.upload-success').show();
     }
     //Add url
     $('#add_url').click(awsm_embded_url);

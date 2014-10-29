@@ -81,8 +81,8 @@ ul.tabs {
 	float: left; margin-right: 20px; 
 }
 .wp-core-ui .button#adv_options{ float: right; height: 40px; line-height: 38px; font-size: 16px; padding:0 20px; }
-.uploaded-doccument span{
-	display: block; font-weight: bold; font-size: 16px; margin-bottom: 3px;
+.uploaded-doccument p{
+ font-weight: bold; font-size: 16px; margin: 0 0 3px;
 }
 input.input-group-text{ padding:5px 8px; height: 40px; min-width: 60%; }
 .wp-core-ui .button-primary.input-group-btn{ padding:5px 10px; height: 40px; }
@@ -121,4 +121,7 @@ body.mfp-shown button.mfp-arrow { z-index: 101004 !important; }
 }
 .mfp-close{
 
+}
+.upload-success{
+	display: none;
 }

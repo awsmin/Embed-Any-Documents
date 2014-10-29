@@ -16,8 +16,8 @@
              <div class="text-center"><input type="button"  value="Upload Document" class="ead-btn button-primary button-large" id="upload_doc"/></div> 
              <div class="upload-success">
                 <div class="uploaded-doccument">
-                    <span>Doccument.pdf</span>
-                    230.6kb
+                    <p id="ead_filename"></p>
+                    <span id="ead_filesize"></span>
                 </div>
                 <a class="ead-btn button" id="adv_options"><?php _e('Show Advanced Options','ead');?></a>
                 <div class="clear"></div>
