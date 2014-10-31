@@ -133,19 +133,7 @@ class Awsm_embed {
      */
 	function embed_shortcode( $atts){
 		$embedcode ="";
-		extract(shortcode_atts( array(
-			'url' => '',
-			'width' => '100%',
-			'height' => '100%',
-			'language' => 'en'
-		), $atts ) );
-
-		if ( $url ) {
-			$provider = ead_getprovider(get_option('ead_provider','google'));
-			$durl = ead_getdownloadlink($url);
-			$embedcode = $iframe.$durl;
-		}
-	
+		$embedcode = ead_getprovider($atts);
 		return $embedcode;
 	}
  

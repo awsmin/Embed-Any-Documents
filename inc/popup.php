@@ -1,12 +1,11 @@
 <?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?>
 <div id="embed-popup-wrap">
 	<div id="embed-popup">
-        <div id="embed_message">
-        </div>
 		<div id="popup-header">
 		<h1><?php _e('Add Document','ead');?></h1>
 		</div>
 		<div class="section">
+        <div id="embed_message"></div>
         <ul class="tabs">
             <li class="current"><?php _e('Upload and Embed','ead');?></li>
             <li><?php _e('Add From URL','ead');?></li>
@@ -14,19 +13,19 @@
         <form action="" onSubmit="return false" method="post" enctype="multipart/form-data" id="Docuploader">
         <div class="box visible">
              <div class="text-center"><input type="button"  value="Upload Document" class="ead-btn button-primary button-large" id="upload_doc"/></div> 
-             <div class="upload-success">
-                <div class="uploaded-doccument">
-                    <p id="ead_filename"></p>
-                    <span id="ead_filesize"></span>
-                </div>
-                <a class="ead-btn button" id="adv_options"><?php _e('Show Advanced Options','ead');?></a>
-                <div class="clear"></div>
-             </div>
         </div>
         <div class="box">
          <label for="awsm_url"><?php _e('Enter document URL','ead');?></label>
             <input name="awsm_url" type="text" class="opt dwl input-group-text" id="awsm_url"/>
             <input type="button"  value="Add Url" class="ead-btn button-primary input-group-btn" id="add_url"/>  
+        </div>
+        <div class="upload-success">
+            <div class="uploaded-doccument">
+                <p id="ead_filename"></p>
+                <span id="ead_filesize"></span>
+            </div>
+            <a class="ead-btn button" id="adv_options"><?php _e('Show Advanced Options','ead');?></a>
+            <div class="clear"></div>
         </div>
         </div>
         <div class="advanced_options">

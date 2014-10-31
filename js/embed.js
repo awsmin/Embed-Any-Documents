@@ -62,7 +62,7 @@ jQuery(document).ready(function ($) {
                 title: 'Embed Any Documet',
                 multiple: false,
                 library: {
-					//type: 'documents'
+					type: 'Documents'
 				},
                 button: {text: 'Insert'}
             });
@@ -113,13 +113,15 @@ jQuery(document).ready(function ($) {
                 data: {  action: 'validateurl',
 						 furl:url },
                 success: function(data) {
-					  if(data.status){
+                	console.log(data);
+					if(data.status){
 					  	fileurl =url;
 						updateshortcode();
-						showmsg(''); 
+						uploaddetails(data.file);
+						showmsg(data.message); 
 					  }else{
 					  	showmsg(data.message); 
-					  } 
+					  }  
 					   
                 },
             });

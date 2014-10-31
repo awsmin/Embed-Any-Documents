@@ -80,7 +80,7 @@ function ead_getdownloadlink($url){
     }
     if($show){
     $filesize ="";
-    $durl = esc_url( $url, array( 'http', 'https' ));
+    $url = esc_url( $url, array( 'http', 'https' ));
     $filedata = wp_remote_head( $url );
     if(isset($filedata['headers']['content-length']))
     $filesize = ead_human_filesize($filedata['headers']['content-length']);
@@ -94,15 +94,22 @@ function ead_getdownloadlink($url){
  * @return  string Download link 
  */
 function ead_validateurl($url){
-    $types =get_allowed_mime_types();
-    $remote = wp_remote_head( $url );
-    $json['status'] =false;
-    $json['message'] = '';
+    $types  =   get_allowed_mime_types();
+    $url    =   esc_url( $url, array( 'http', 'https' ));
+    $remote =   wp_remote_head($url);
+    $json['status']  =  false;
+    $json['message'] =  '';
     if ( is_array( $remote ) ) {
             if ( isset( $remote['headers']['content-length'] ) ) {
-                $json['response']['filesize'] = $remote['headers']['content-length'];
                 if(in_array($remote['headers']['content-type'], $types)){
                     $json['message'] = __("Done",'ead');
+                    $filename = pathinfo($url);
+                    if(isset($filename)){
+                        $json['file']['filename'] = $filename['basename'];
+                    }else{
+                        $json['file']['filename'] =  __("Document",'ead');
+                    }  
+                    $json['file']['filesizeHumanReadable'] = ead_human_filesize($remote['headers']['content-length']);
                     $json['status'] =true;
                 }else{
                     $json['message'] = __("Unsupported File Format",'ead');
@@ -114,7 +121,7 @@ function ead_validateurl($url){
                 $json['status'] =false;
             }
     }elseif(is_wp_error( $result )){
-        $json['message'] = $result->get_error_message(); 
+        $json['message'] = $result->get_error_message();  
         $json['status'] =false;
     }else{
         $json['message'] = __('File Not Found','ead'); 
@@ -129,13 +136,14 @@ function ead_validateurl($url){
  * @return  string iframe embed html
  */
 function ead_getprovider($atts){
-
+    $embed = "";
     extract(shortcode_atts( array(
             'url' => '',
             'width' => '100%',
             'height' => '100%',
             'language' => 'en'
         ), $atts ) );
+    if($url):
     $provider=get_option('ead_provider','google');
     $url =  esc_url( $url, array( 'http', 'https' ));
     switch ($provider) {
@@ -158,7 +166,13 @@ function ead_getprovider($atts){
                 ead_sanitize_dims($width)  ,
                 ead_sanitize_dims($height) 
             );
-    return '<iframe src="'.$iframe.'" '.$stylelink.'></iframe>';
+    $durl   = ead_getdownloadlink($url);
+    $iframe = '<iframe src="'.$iframe.'" '.$stylelink.'></iframe>';
+    $embed = $iframe.$durl;
+    else:
+    $embed = __('No Url Found','ead');     
+    endif;
+    return $embed;
 }
 /**
  * Get Email node
