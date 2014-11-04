@@ -148,3 +148,19 @@ div.awsm-error p, div.awsm-updated p {
 	display:none;
 }
 .mceActionPanel{ margin:20px 0 0;}
+
+.option-fields{
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+.option-fields li{
+	padding-bottom: 15px;
+}
+.option-fields label{ display:block; margin-bottom: 5px; font-weight: bold;}
+.f-left{
+	float:left;
+	margin-right: 10px;
+}
+.clear{ clear:both;}
+.input-small{ width:60px;}
