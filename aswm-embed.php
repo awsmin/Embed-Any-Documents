@@ -124,7 +124,9 @@ class Awsm_embed {
 				'download' =>  get_option('ead_download', 'none' ),
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
 				'validtypes' => ead_validembedtypes(),
-				'nocontent'=> __('Nothing to insert', $this->text_domain)
+				'nocontent'=> __('Nothing to insert', $this->text_domain),
+				'addurl'=> __('Add URL', $this->text_domain),
+				'verify'=> __('Verifying...', $this->text_domain),
 			) );
 		wp_enqueue_style('magnific-popup');
 		wp_enqueue_script( 'magnific-popup' );

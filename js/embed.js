@@ -3,10 +3,12 @@ jQuery(document).ready(function ($) {
 		$wrap = $('#embed-popup-wrap'),
 		$embedurl = $('#awsm_url'),
 		$shortcode= $('#shortcode');
-		$message= $('#embed_message');
+		$message= $('#embed_message p');
+        $container = $('.ead_container');
 	var fileurl="";
 	//Opens Embed popup
 	$('body').on('click', '.awsm-embed', function (e) {
+        ead_reset();
 		e.preventDefault();
 		$wrap.show();
 		window.embed_target = $(this).data('target');
@@ -91,6 +93,7 @@ jQuery(document).ready(function ($) {
     	$('#ead_filename').html(file.filename)
 		$('#ead_filesize').html(file.filesizeHumanReadable);
 		$('.upload-success').show();
+        $container.hide();
     }
     //Add url
     $('#add_url').click(awsm_embded_url);
@@ -105,6 +108,7 @@ jQuery(document).ready(function ($) {
     }
     //Validate file url
     function validateurl(url){
+        $('#add_url').val(emebeder.verify);
     	$.ajax({
                 type: 'POST',
                 url: emebeder.ajaxurl,
@@ -112,21 +116,21 @@ jQuery(document).ready(function ($) {
                 data: {  action: 'validateurl',
 						 furl:url },
                 success: function(data) {
-                	console.log(data);
 					if(data.status){
 					  	fileurl =url;
 						updateshortcode();
 						uploaddetails(data.file);
 						showmsg(data.message); 
-					  }else{
+					}else{
 					  	showmsg(data.message); 
-					  }  
-					   
+					}  
+					$('#add_url').val(emebeder.addurl);   
                 },
             });
     }
     //Show Message
     function showmsg(msg){
+        $('#embed_message').show();
     	$message.text(msg);
     }
     //insert Shortcode
@@ -154,4 +158,10 @@ jQuery(document).ready(function ($) {
 		// Prevent default action
 		e.preventDefault();
 	});
+    function ead_reset(){
+        $container.show();
+        $('.upload-success').hide();
+        $(".advanced_options").hide();
+        $('#embed_message').hide();
+    }
 });
