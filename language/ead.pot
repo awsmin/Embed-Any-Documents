@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Embed Any Documents\n"
 "POT-Creation-Date: 2014-11-04 12:00-0600\n"
-"PO-Revision-Date: 2014-11-04 11:54+0530\n"
+"PO-Revision-Date: 2014-11-04 11:50+0530\n"
 "Last-Translator: Adhun Anand <adhun@awsm.in>\n"
 "Language-Team: Awsm <hello@awsm.in>\n"
 "MIME-Version: 1.0\n"
@@ -116,6 +116,7 @@ msgstr ""
 
 #. Text in echo
 #: embed-any-docs/inc/settings.php:38
+#: embed-any-docs/inc/popup.php:45
 msgid "Show Download Link"
 msgstr ""
 
@@ -202,11 +203,6 @@ msgstr ""
 #. Text in echo
 #: embed-any-docs/inc/popup.php:27
 msgid "Show Advanced Options"
-msgstr ""
-
-#. Text in echo
-#: embed-any-docs/inc/popup.php:45
-msgid "Show Download Link"
 msgstr ""
 
 #. Text in function

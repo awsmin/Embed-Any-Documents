@@ -94,7 +94,7 @@ function ead_getdownloadlink($url){
  * @return  string Download link 
  */
 function ead_validateurl($url){
-    $types  =   get_allowed_mime_types();
+    $types  =   ead_validmimeTypes();
     $url    =   esc_url( $url, array( 'http', 'https' ));
     $remote =   wp_remote_head($url);
     $json['status']  =  false;
@@ -194,5 +194,31 @@ function ead_getemailnode($emaildata,$postdata){
     }
     }
     return $emailhtml; 
+}
+/**
+ * Validate Source mime type
+ *
+ * @since   1.0
+ * @return  boolean 
+ */
+function ead_validmimeTypes(){
+    include('mime_types.php');
+    return $mimetypes;
+}
+function ead_validType( $url ) {
+    $doctypes=ead_validmimeTypes();
+    if ( is_array( $doctypes ) ) {
+        $allowed_ext = implode( "|", array_keys( $doctypes ) );
+        if ( preg_match( "/\.($allowed_ext)$/i", $url ) ) {
+            return true;
+        }
+    } else {
+        return false;
+    }
+}
+function ead_validembedtypes(){
+    $doctypes=ead_validmimeTypes();
+    return $allowedtype = implode(',',$doctypes); 
+
 }
 ?>

@@ -52,6 +52,7 @@ class Awsm_embed {
 		add_action( 'wp_ajax_validateurl',array( $this, 'validateurl' ));
 		//ajax Contact Form
  		add_action( 'wp_ajax_supportform',array( $this, 'supportform' ));
+ 		$this->run_plugin();
 	}
 	/**
 	 * Register admin Settings style
@@ -122,6 +123,8 @@ class Awsm_embed {
 				'default_width' =>  get_option('ead_width', '100%' ),
 				'download' =>  get_option('ead_download', 'none' ),
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+				'validtypes' => ead_validembedtypes(),
+				'nocontent'=> __('Nothing to insert', $this->text_domain)
 			) );
 		wp_enqueue_style('magnific-popup');
 		wp_enqueue_script( 'magnific-popup' );
@@ -179,6 +182,22 @@ class Awsm_embed {
         }
         include($this->plugin_path.'inc/support-mail.php');
     }
+    function run_plugin(){
+    	$this->adminfunctions();
+    }
+    function adminfunctions(){
+    	if(is_admin()){
+    		add_filter( 'media_send_to_editor', array($this,'ead_media_insert'), 10, 3 );
+    	}
+    }
+    function ead_media_insert( $html, $id, $attachment ) {
+    	if ( ead_validType( $attachment['url'] )) {
+		return '[embedall url="' . $attachment['url'] . '"]';
+		} else {
+			return $html;
+		}
+	}
+
 }
 
 Awsm_embed::get_instance();

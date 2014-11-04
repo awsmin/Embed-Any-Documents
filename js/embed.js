@@ -62,7 +62,7 @@ jQuery(document).ready(function ($) {
                 title: 'Embed Any Documet',
                 multiple: false,
                 library: {
-					type: 'Documents'
+					type: 'application/pdf,application/msword'
 				},
                 button: {text: 'Insert'}
             });
@@ -136,6 +136,8 @@ jQuery(document).ready(function ($) {
     	if(fileurl){
     		wp.media.editor.insert($shortcode.text());
     		$.magnificPopup.close();	
+    	}else{
+    		showmsg(emebeder.nocontent);
     	}
     	
     }
