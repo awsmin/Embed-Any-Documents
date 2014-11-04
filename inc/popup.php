@@ -55,7 +55,7 @@
                 </tr>
             </table>
             </div>
-        <div class="mceActionPanel">
+        <div class="mceActionPanel" style="display:none;">
         <div style="float: left">
             <input type="button" id="insert_doc" name="insert" class="ead-btn button button-primary button-medium" value="<?php _e('Insert', 'ead'); ?>" />
         </div>

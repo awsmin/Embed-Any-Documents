@@ -1,10 +1,11 @@
 jQuery(document).ready(function ($) {
-	var $popup = $('#embed-popup'),
-		$wrap = $('#embed-popup-wrap'),
-		$embedurl = $('#awsm_url'),
-		$shortcode= $('#shortcode');
-		$message= $('#embed_message p');
-        $container = $('.ead_container');
+	var $popup        =   $('#embed-popup'),
+		$wrap         =   $('#embed-popup-wrap'),
+		$embedurl     =   $('#awsm_url'),
+		$shortcode    =   $('#shortcode');
+		$message      =   $('#embed_message p');
+        $ActionPanel  =   $('.mceActionPanel');
+        $container    =   $('.ead_container');
 	var fileurl="";
 	//Opens Embed popup
 	$('body').on('click', '.awsm-embed', function (e) {
@@ -90,9 +91,10 @@ jQuery(document).ready(function ($) {
     }
     //Print uploaded file details
     function uploaddetails(file){
+        $ActionPanel.show();
     	$('#ead_filename').html(file.filename)
 		$('#ead_filesize').html(file.filesizeHumanReadable);
-		$('.upload-success').show();
+		$('.upload-success').fadeIn();
         $container.hide();
     }
     //Add url
@@ -108,6 +110,7 @@ jQuery(document).ready(function ($) {
     }
     //Validate file url
     function validateurl(url){
+        $('#embed_message').hide();
         $('#add_url').val(emebeder.verify);
     	$.ajax({
                 type: 'POST',
@@ -120,7 +123,6 @@ jQuery(document).ready(function ($) {
 					  	fileurl =url;
 						updateshortcode();
 						uploaddetails(data.file);
-						showmsg(data.message); 
 					}else{
 					  	showmsg(data.message); 
 					}  
@@ -130,7 +132,7 @@ jQuery(document).ready(function ($) {
     }
     //Show Message
     function showmsg(msg){
-        $('#embed_message').show();
+        $('#embed_message').fadeIn();
     	$message.text(msg);
     }
     //insert Shortcode
@@ -160,8 +162,10 @@ jQuery(document).ready(function ($) {
 	});
     function ead_reset(){
         $container.show();
+        $embedurl.val('');
         $('.upload-success').hide();
         $(".advanced_options").hide();
         $('#embed_message').hide();
+        $ActionPanel.hide();
     }
 });
