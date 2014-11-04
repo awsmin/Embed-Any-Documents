@@ -36,8 +36,8 @@ class Awsm_embed {
 		$this->plugin_url  		=	plugin_dir_url( __FILE__ );
 		$this->plugin_file  	=	__FILE__  ;
 		$this->settings_slug	=	'ead-settings';
-
-		load_plugin_textdomain( $this->text_domain, false, 'lang' );
+		//echo  $this->plugin_path.'/language';
+		load_plugin_textdomain( $this->text_domain, false, $this->plugin_path.'language' );
 
 		add_action( 'media_buttons', array( $this, 'embedbutton' ),1000);
 
@@ -182,14 +182,23 @@ class Awsm_embed {
         }
         include($this->plugin_path.'inc/support-mail.php');
     }
+    /**
+     * Plugin function
+    */
     function run_plugin(){
     	$this->adminfunctions();
     }
+    /**
+     * Admin Functions init
+    */
     function adminfunctions(){
     	if(is_admin()){
     		add_filter( 'media_send_to_editor', array($this,'ead_media_insert'), 10, 3 );
     	}
     }
+    /**
+     * Adds shortcode for supported media
+    */
     function ead_media_insert( $html, $id, $attachment ) {
     	if ( ead_validType( $attachment['url'] )) {
 		return '[embedall url="' . $attachment['url'] . '"]';

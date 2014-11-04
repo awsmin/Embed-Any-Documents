@@ -31,7 +31,7 @@ function ead_selectbuilder( $name, $options,$selected="",$class="") {
  * @note    Replaces old gde_sanitizeOpts function
  */
 function ead_human_filesize($bytes, $decimals = 2) {
-    $size = array('B','kB','MB','GB','TB','PB','EB','ZB','YB');
+    $size = array('B','KB','MB','GB','TB','PB','EB','ZB','YB');
     $factor = floor((strlen($bytes) - 1) / 3);
     return sprintf("%.{$decimals}f ", $bytes / pow(1024, $factor)) . @$size[$factor];
 }
@@ -137,10 +137,12 @@ function ead_validateurl($url){
  */
 function ead_getprovider($atts){
     $embed = "";
+    $default_width      =       gde_sanitize_dims(  get_option('ead_width','100%') );
+    $default_height     =       gde_sanitize_dims(  get_option('ead_height','500px') ); 
     extract(shortcode_atts( array(
             'url' => '',
-            'width' => '100%',
-            'height' => '100%',
+            'width' =>  $default_width,
+            'height' => $default_height,
             'language' => 'en'
         ), $atts ) );
     if($url):

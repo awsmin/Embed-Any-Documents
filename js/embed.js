@@ -56,13 +56,12 @@ jQuery(document).ready(function ($) {
 
  	//Insert Media window
  	function open_media_window() {
-
  		if (this.window === undefined) {
         this.window = wp.media({
                 title: 'Embed Any Documet',
                 multiple: false,
                 library: {
-					type: 'application/pdf,application/msword'
+					type: emebeder.validtypes,
 				},
                 button: {text: 'Insert'}
             });
