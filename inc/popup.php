@@ -1,11 +1,11 @@
 <?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?>
 <div id="embed-popup-wrap">
-	<div id="embed-popup">
+    <div id="embed-popup">
         <button title="Close (Esc)" type="button" class="mfp-close">×</button>
-		<div id="popup-header">
-		<h1><?php _e('Add Document','ead');?></h1>
-		</div>
-		<div class="section">
+        <div id="popup-header">
+        <h1><?php _e('Add Document','ead');?></h1>
+        </div>
+        <div class="section">
             <div id="embed_message" class="awsm-error" style="display:none;"><p></p></div>
             <div class="ead_container">
             <ul class="tabs">
@@ -33,27 +33,24 @@
                 <div class="clear"></div>
             </div>
             <div class="advanced_options">
-            <table>
-                <tr>
-                <td colspan="2">
-                    <br />
-                    <strong><?php _e('Shortcode Preview', 'ead'); ?></strong><br/>
-                    <textarea name="shortcode" style="width:100%" id="shortcode" readonly="readonly"></textarea>
-                </td>
-            </tr> 
-                <tr>
-                <td><label>Width</label> <input name="width"  class="embedval" id="ead_width" value="<?php echo get_option('ead_width', '100%' );?>"></td>
-                <td><label>Height</label> <input name="height" class="embedval" id="ead_height"  value="<?php echo get_option('ead_height', '100%' );?>"></td>
-                </tr>
-                <tr>
-                <td><label><?php _e('Show Download Link','ead');?></label> 
+            <ul class="option-fields">
+              
+                <li>
+                    <div class="f-left"><label>Width</label> <input type="text" name="width"  class="embedval input-small" id="ead_width" value="<?php echo get_option('ead_width', '100%' );?>"></div>
+                    <div class="f-left"><label>Height</label> <input type="text" name="height" class="embedval input-small" id="ead_height"  value="<?php echo get_option('ead_height', '100%' );?>"></div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+               <label><?php _e('Show Download Link','ead');?></label> 
                 <?php 
                 $downoptions= array('alluser' => __('For all users',$this->text_domain),'logged' => __('For Logged-in users',$this->text_domain),'none' => __('None',$this->text_domain));
                 ead_selectbuilder('ead_download', $downoptions,esc_attr( get_option('ead_download')),'embed_download'); 
                 ?> 
-                </td>
-                </tr>
-            </table>
+                </li>
+                 <li>
+                    <label><?php _e('Shortcode Preview', 'ead'); ?></label>
+                    <textarea name="shortcode" style="width:100%" id="shortcode" readonly="readonly"></textarea>
+                </li>            </table>
             </div>
         <div class="mceActionPanel" style="display:none;">
         <div style="float: left">
@@ -65,6 +62,6 @@
         </div>
         <div class="clear"></div>
         </div>
-	</div>	
+    </div>  
     </div>
 </div>
