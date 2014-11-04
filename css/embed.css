@@ -140,6 +140,11 @@ div.awsm-error {
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
     padding: 1px 12px;
 }
+div.awsm-error p, div.awsm-updated p {
+    margin: 0.5em 0;
+    padding: 2px;
+}
 .hidden{
 	display:none;
 }
+.mceActionPanel{ margin:20px 0 0;}
