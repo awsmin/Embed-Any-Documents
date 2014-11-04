@@ -35,10 +35,12 @@ img {
 }
 h2.nav-tab-wrapper {
     border: none;
+    padding-left: 0;
 }
 h2.ead-title {
     background: url(../images/icon-ead.png) no-repeat 0 14px;
     padding-left: 46px;
+    padding-bottom: 25px;
 }
 .ead-left-wrap {
     float: left;

@@ -125,3 +125,21 @@ body.mfp-shown button.mfp-arrow { z-index: 101004 !important; }
 .upload-success{
 	display: none;
 }
+div.awsm-error, div.awsm-updated {
+    margin: 5px 15px 2px;
+}
+div.awsm-updated {
+    background-color: #fff;
+    border-left: 4px solid #7ad03a;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    padding: 1px 12px;
+}
+div.awsm-error {
+    background: none repeat scroll 0 0 #fff;
+    border-left: 4px solid #dd3d36;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    padding: 1px 12px;
+}
+.hidden{
+	display:none;
+}
