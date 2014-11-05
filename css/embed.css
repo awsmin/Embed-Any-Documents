@@ -57,6 +57,10 @@ ul.tabs {
 	border: 1px solid #D4D4D4;
 	border-bottom: 0 solid #EFEFEF;
 }
+.upload-success{border: 1px solid #D4D4D4;background: #EFEFEF;
+	
+	min-height: 70px;}
+.upload-success	.inner{padding: 30px;}
 .box {
 	display: none;
 	border: 1px solid #D4D4D4;
@@ -80,13 +84,13 @@ ul.tabs {
 	font-size: 13px;
 	float: left; margin-right: 20px; 
 }
-.wp-core-ui .button#adv_options{ float: right; height: 40px; line-height: 38px; font-size: 16px; padding:0 20px; }
+.wp-core-ui .button#adv_options{ float: right; height: 40px; line-height: 38px; font-size: 13px; padding:0 20px; }
 .uploaded-doccument p{
  font-weight: bold; font-size: 16px; margin: 0 0 3px;
 }
 input.input-group-text{ padding:5px 8px; height: 40px; min-width: 60%; }
 .wp-core-ui .button-primary.input-group-btn{ padding:5px 10px; height: 40px; }
-.advanced_options{display: none;}
+.advanced_options{display: none; border-top:1px solid #ccc; padding: 0 30px }
 body.mfp-shown .mfp-bg { z-index: 101000 !important; }
 body.mfp-shown .mfp-wrap { z-index: 101001 !important; }
 body.mfp-shown .mfp-preloader { z-index: 101002 !important; }
@@ -126,18 +130,20 @@ body.mfp-shown button.mfp-arrow { z-index: 101004 !important; }
 	display: none;
 }
 div.awsm-error, div.awsm-updated {
-    margin: 5px 15px 2px;
+    margin: 5px 0 2px;
+    border-width: 1px 1px 1px 4px;
+    border-style: solid;
+    -webkit-border-radius: 4px;
+border-radius: 4px;
 }
 div.awsm-updated {
     background-color: #fff;
-    border-left: 4px solid #7ad03a;
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    border-color: #eee #eee #eee #7ad03a;
     padding: 1px 12px;
 }
 div.awsm-error {
     background: none repeat scroll 0 0 #fff;
-    border-left: 4px solid #dd3d36;
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    border-color: #eee #eee #eee #dd3d36;
     padding: 1px 12px;
 }
 div.awsm-error p, div.awsm-updated p {
@@ -152,7 +158,7 @@ div.awsm-error p, div.awsm-updated p {
 .option-fields{
 	list-style-type: none;
 	margin:0;
-	padding:0;
+	padding:30px 0 0;
 }
 .option-fields li{
 	padding-bottom: 15px;
@@ -160,7 +166,7 @@ div.awsm-error p, div.awsm-updated p {
 .option-fields label{ display:block; margin-bottom: 5px; font-weight: bold;}
 .f-left{
 	float:left;
-	margin-right: 10px;
 }
+.f-left.middle{ margin:0 25px; }
 .clear{ clear:both;}
 .input-small{ width:60px;}

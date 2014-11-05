@@ -25,6 +25,7 @@
             </form>
             </div><!--ead_container-->
             <div class="upload-success">
+                <div class="inner">
                 <div class="uploaded-doccument">
                     <p id="ead_filename"></p>
                     <span id="ead_filesize"></span>
@@ -32,27 +33,30 @@
                 <a class="ead-btn button" id="adv_options"><?php _e('Show Advanced Options','ead');?></a>
                 <div class="clear"></div>
             </div>
-            <div class="advanced_options">
+                     <div class="advanced_options">
             <ul class="option-fields">
               
                 <li>
                     <div class="f-left"><label>Width</label> <input type="text" name="width"  class="embedval input-small" id="ead_width" value="<?php echo get_option('ead_width', '100%' );?>"></div>
-                    <div class="f-left"><label>Height</label> <input type="text" name="height" class="embedval input-small" id="ead_height"  value="<?php echo get_option('ead_height', '100%' );?>"></div>
-                    <div class="clear"></div>
-                </li>
-                <li>
-               <label><?php _e('Show Download Link','ead');?></label> 
+                    <div class="f-left middle"><label>Height</label> <input type="text" name="height" class="embedval input-small" id="ead_height"  value="<?php echo get_option('ead_height', '100%' );?>"></div>
+                    <div class="f-left">
+<label><?php _e('Show Download Link','ead');?></label> 
                 <?php 
                 $downoptions= array('alluser' => __('For all users',$this->text_domain),'logged' => __('For Logged-in users',$this->text_domain),'none' => __('None',$this->text_domain));
                 ead_selectbuilder('ead_download', $downoptions,esc_attr( get_option('ead_download')),'embed_download'); 
                 ?> 
+                    </div>
+                    <div class="clear"></div>
                 </li>
+              
                  <li>
                     <label><?php _e('Shortcode Preview', 'ead'); ?></label>
                     <textarea name="shortcode" style="width:100%" id="shortcode" readonly="readonly"></textarea>
                 </li>            
                 </ul>
             </div>
+            </div>
+       
         <div class="mceActionPanel" style="display:none;">
         <div style="float: left">
             <input type="button" id="insert_doc" name="insert" class="ead-btn button button-primary button-medium" value="<?php _e('Insert', 'ead'); ?>" />
