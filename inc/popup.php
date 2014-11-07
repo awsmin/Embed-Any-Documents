@@ -57,9 +57,9 @@
             </div>
             </div>
        
-        <div class="mceActionPanel" style="display:none;">
+        <div class="mceActionPanel">
         <div style="float: left">
-            <input type="button" id="insert_doc" name="insert" class="ead-btn button button-primary button-medium" value="<?php _e('Insert', 'ead'); ?>" />
+            <input type="button" id="insert_doc" name="insert" class="ead-btn button button-primary button-medium" value="<?php _e('Insert', 'ead'); ?>" disabled/>
         </div>
         
         <div style="float: right">

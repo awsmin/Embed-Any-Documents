@@ -115,7 +115,6 @@ span.note {
     font-size: 12px;
     color: #ccc;
 }
-
 @media (max-width: 800px) {
     .ead-left-wrap {
         float: none;

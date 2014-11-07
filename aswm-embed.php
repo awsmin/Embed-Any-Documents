@@ -13,6 +13,7 @@ class Awsm_embed {
 	private static $instance = null;
 	private $plugin_path;
 	private $plugin_url;
+	private $plugin_base;
 	private $plugin_file;
 	private $settings_slug;
     private $text_domain = 'ead';
@@ -34,14 +35,15 @@ class Awsm_embed {
 
 		$this->plugin_path 		=	plugin_dir_path( __FILE__ );
 		$this->plugin_url  		=	plugin_dir_url( __FILE__ );
+		$this->plugin_base  	=	dirname( plugin_basename( __FILE__ ) );
 		$this->plugin_file  	=	__FILE__  ;
 		$this->settings_slug	=	'ead-settings';
-		//echo  $this->plugin_path.'/language';
-		load_plugin_textdomain( $this->text_domain, false, $this->plugin_path.'language' );
+
+		load_plugin_textdomain($this->text_domain, false,$this->plugin_base . '/language' );
 
 		add_action( 'media_buttons', array( $this, 'embedbutton' ),1000);
 
-		add_shortcode( 'embedall', array( $this, 'embed_shortcode'));
+		add_shortcode( 'embeddoc', array( $this, 'embed_shortcode'));
 
 		//Admin Settings menu
 		add_action('admin_menu', array($this, 'admin_menu'));
@@ -203,7 +205,7 @@ class Awsm_embed {
     */
     function ead_media_insert( $html, $id, $attachment ) {
     	if ( ead_validType( $attachment['url'] )) {
-		return '[embedall url="' . $attachment['url'] . '"]';
+		return '[embeddoc url="' . $attachment['url'] . '"]';
 		} else {
 			return $html;
 		}

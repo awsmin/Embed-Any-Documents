@@ -112,19 +112,19 @@ function ead_validateurl($url){
                     $json['file']['filesizeHumanReadable'] = ead_human_filesize($remote['headers']['content-length']);
                     $json['status'] =true;
                 }else{
-                    $json['message'] = __("Unsupported File Format",'ead');
+                    $json['message'] = __("File format is not supported.",'ead');
                     $json['status'] = false;
                 }
                 
             } else {
-                $json['message'] = __('Null Content','ead'); 
+                $json['message'] = __('Not a valid URL. Please try again.','ead'); 
                 $json['status'] =false;
             }
     }elseif(is_wp_error( $result )){
         $json['message'] = $result->get_error_message();  
         $json['status'] =false;
     }else{
-        $json['message'] = __('File Not Found','ead'); 
+        $json['message'] = __('Sorry, the file URL is not valid.','ead'); 
         $json['status'] =false;
     }
      return $json;
@@ -207,6 +207,12 @@ function ead_validmimeTypes(){
     include('mime_types.php');
     return $mimetypes;
 }
+/**
+ * Checks Url Validity
+ *
+ * @since   1.0
+ * @return  boolean 
+ */
 function ead_validType( $url ) {
     $doctypes=ead_validmimeTypes();
     if ( is_array( $doctypes ) ) {
@@ -218,6 +224,12 @@ function ead_validType( $url ) {
         return false;
     }
 }
+/**
+ * Get allowed Mime Types
+ *
+ * @since   1.0
+ * @return  array Mimetypes 
+ */
 function ead_validembedtypes(){
     $doctypes=ead_validmimeTypes();
     return $allowedtype = implode(',',$doctypes); 

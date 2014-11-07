@@ -86,12 +86,12 @@ jQuery(document).ready(function ($) {
     	if(height!=emebeder.default_height) { heightstr = ' height="'+height+'"'; }
     	if(width!=emebeder.default_width) { widthstr = ' width="'+width+'"'; }
     	if(download!=emebeder.download) { downloadstr = ' download="'+download+'"'; }
-    	return '[embedall url="' + url + '"' + widthstr + heightstr + downloadstr +']';
+    	return '[embeddoc url="' + url + '"' + widthstr + heightstr + downloadstr +']';
 
     }
     //Print uploaded file details
     function uploaddetails(file){
-        $ActionPanel.show();
+        $('#insert_doc').removeAttr('disabled');
     	$('#ead_filename').html(file.filename)
 		$('#ead_filesize').html(file.filesizeHumanReadable);
 		$('.upload-success').fadeIn();
@@ -104,6 +104,7 @@ jQuery(document).ready(function ($) {
     	if (checkurl!='') {
 				 validateurl(checkurl);
 			} else {
+                $embedurl.addClass('urlerror');
 				updateshortcode();
 			}
     	
@@ -120,6 +121,7 @@ jQuery(document).ready(function ($) {
 						 furl:url },
                 success: function(data) {
 					if(data.status){
+                        $embedurl.removeClass('urlerror');
 					  	fileurl =url;
 						updateshortcode();
 						uploaddetails(data.file);
@@ -146,6 +148,7 @@ jQuery(document).ready(function ($) {
     	}
     	
     }
+    //Update ShortCode
     function updateshortcode(){
     	if(fileurl){
     		$shortcode.text(getshortcode(fileurl));
@@ -166,6 +169,6 @@ jQuery(document).ready(function ($) {
         $('.upload-success').hide();
         $(".advanced_options").hide();
         $('#embed_message').hide();
-        $ActionPanel.hide();
+        $('#insert_doc').attr('disabled','disabled');
     }
 });

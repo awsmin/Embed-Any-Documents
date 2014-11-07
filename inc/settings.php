@@ -31,7 +31,7 @@
                          <input type="text" class="small" name="ead_height" value="<?php echo esc_attr( get_option('ead_height','100%') ); ?>" />
                         </div>
                         <div class="clear"></div>
-                        <span class="note"><?php _e('Enter values in pixels or percentage (example:248px or 100%)', $this->text_domain); ?></span>
+                        <span class="note"><?php _e('Enter values in pixels or percentage (Example: 300px or 100%)', $this->text_domain); ?></span>
                         </td>
                     </tr>
                     <tr valign="top">
@@ -54,26 +54,15 @@
                     <tr valign="top">
                         <th scope="row"><?php _e('Name', $this->text_domain); ?><span class="required">*</span></th>
                         <td>
-                            <input type="text" name="site_name"  value="<?php echo get_option('blogname'); ?>"/>
+                             <?php  $current_user = wp_get_current_user();   ?>
+                            <input type="text" name="site_name"  value="<?php echo  $current_user->display_name; ?>"/>
                         </td>
                     </tr>
                     <tr valign="top">
                         <th scope="row"><?php _e('Email ID', $this->text_domain); ?><span class="required">*</span></th>
                         <td>
-                            <?php  $current_user = wp_get_current_user(); ?>
+                           
                             <input type="email" name="email_id" value="<?php echo  $current_user->user_email; ?>"/>
-                        </td>
-                    </tr>
-                    <tr valign="top">
-                        <th scope="row"><?php _e('Shortcode', $this->text_domain); ?></th>
-                        <td>
-                            <input type="text" name="sc" placeholder="[embedall url=&quot;...&quot;]" value=""/>
-                        </td>
-                    </tr>
-                    <tr valign="top">
-                        <th scope="row"><?php _e('Embed Url', $this->text_domain); ?></th>
-                        <td>
-                            <input type="text" name="eurl" placeholder="http://.." value=""/>
                         </td>
                     </tr>
                     <tr valign="top">
@@ -99,11 +88,11 @@
     This plugin is developed <br/>by <a href="http://awsm.in" target="_blank" title="AWSM Innovations">AWSM Innovations.</a>
 </div><!-- .author-info -->
 <ul class="awsm-social">
-    <li><a href="#" title="AWSM Innovations"><span class="awsm-icon awsm-icon-facebook">Facebook</span></a></li>
-    <li><a href="#" title="AWSM Innovations"><span class="awsm-icon awsm-icon-twitter">Twitter</span></a></li>
-    <li><a href="#" title="AWSM Innovations"><span class="awsm-icon awsm-icon-github">Github</span></a></li>
-    <li><a href="#" title="AWSM Innovations"><span class="awsm-icon awsm-icon-behance">Behance</span></a></li>
-    <li><a href="#" title="AWSM Innovations"><span class="awsm-icon awsm-icon-dribbble">Dribble</span></span></a></li>
+    <li><a href="https://www.facebook.com/awsminnovations" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-facebook">Facebook</span></a></li>
+    <li><a href="https://twitter.com/awsmin" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-twitter">Twitter</span></a></li>
+    <li><a href="https://github.com/awsmin" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-github">Github</span></a></li>
+    <li><a href="https://www.behance.net/awsmin" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-behance">Behance</span></a></li>
+    <li><a href="#" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-dribbble">Dribble</span></span></a></li>
 </ul>
 
     </div><!-- .ead-right-wrap -->
@@ -112,7 +101,8 @@
 </div><!-- .wrap -->
 <script type="text/javascript">
 jQuery(document).ready(function ($) {
-    jQuery( ".nav-tab" ).click(function() {
+    jQuery( ".nav-tab" ).click(function(event) {
+        event.preventDefault();
         $('.nav-tab').removeClass('nav-tab-active');
         $(this).addClass('nav-tab-active');
         var tab = '#'+ $(this).data('tab');

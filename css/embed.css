@@ -170,3 +170,8 @@ div.awsm-error p, div.awsm-updated p {
 .f-left.middle{ margin:0 25px; }
 .clear{ clear:both;}
 .input-small{ width:60px;}
+.box .urlerror{
+    border-color: #D95B5B;
+    -webkit-box-shadow: 0 0 2px rgba(190, 30, 30, 0.8);
+    box-shadow: 0 0 2px rgba(190, 30, 30, 0.8);
+}
