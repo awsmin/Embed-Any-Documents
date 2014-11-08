@@ -101,6 +101,10 @@ margin-right: -340px;
 .awsm-icon-dribbble{
     background-position: right 0;
 }
+
+.paypal{ text-align: center;}
+.paypal input.small{ vertical-align:top; margin-right: 20px;}
+.paypal .donate-btn{ vertical-align: top; padding:0; }
 input.small {
     max-width: 60px;
 }
@@ -111,9 +115,9 @@ input.small {
 .ead-frame-height{
     margin-bottom: 10px;
 }
-span.note {
+span.note, .ead_supported  {
     font-size: 12px;
-    color: #ccc;
+    color: #999;
 }
 
 div.awsm-error, div.awsm-updated {
@@ -137,6 +141,12 @@ div.awsm-error p, div.awsm-updated p {
     margin: 0.5em 0;
     padding: 2px;
 }
+.ead_supported span{ display:block; font-weight: bold; margin-top: 10px;}
+.supportedlist ul{ margin-top: 5px;}
+.supportedlist li{ padding-left:17px; }
+.supportedlist li span{ position:absolute; left:0; top:3px; width:11px; height:11px; margin: 0;}
+.supportedlist li span.ead-check{ background:url(../images/icon-yes.png) no-repeat;}
+.supportedlist li span.ead-close{ background:url(../images/icon-no.png) no-repeat;}
 @media (max-width: 800px) {
     .ead-left-wrap {
         float: none;
