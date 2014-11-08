@@ -101,6 +101,10 @@ margin-right: -340px;
 .awsm-icon-dribbble{
     background-position: right 0;
 }
+
+.paypal{ text-align: center;}
+.paypal input.small{ vertical-align:top; margin-right: 20px;}
+.paypal .donate-btn{ vertical-align: top; padding:0; }
 input.small {
     max-width: 60px;
 }

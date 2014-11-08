@@ -102,7 +102,7 @@
         </div><!-- #support-->
     </div><!-- .ead-left-wrap -->
     <div class="ead-right-wrap">
-        <img src="http://awsm.in/innovations/ead/logo.png" alt="AWSM!">
+        <a href="http://awsm.in" target="_blank" title="AWSM Innovations"><img src="http://awsm.in/innovations/ead/logo.png" alt="AWSM!"></a>
     <div class="author-info">
         This plugin is developed <br/>by <a href="http://awsm.in" target="_blank" title="AWSM Innovations">AWSM Innovations.</a>
     </div><!-- .author-info -->
@@ -117,9 +117,10 @@
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
     <input type="hidden" name="cmd" value="_s-xclick">
     <input type="hidden" name="hosted_button_id" value="YX8V3PJR65YRN">
-    <input type="text" name="amount" value="10">
+    <input type="text" name="amount" value="10" class="small">
     <input type="hidden" name="currency_code" value="USD">
-    <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+    <input type="image" class="donate-btn" src="<?php echo $this->plugin_url . 'images/donate.gif';?>" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+    <div class="clear"></div>
     <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
     </form>
     </div>
