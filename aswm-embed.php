@@ -125,6 +125,7 @@ class Awsm_embed {
 				'default_width' =>  get_option('ead_width', '100%' ),
 				'download' =>  get_option('ead_download', 'none' ),
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+				'micromimes'=>microsoft_mimes(),
 				'validtypes' => ead_validembedtypes(),
 				'nocontent'=> __('Nothing to insert', $this->text_domain),
 				'addurl'=> __('Add URL', $this->text_domain),

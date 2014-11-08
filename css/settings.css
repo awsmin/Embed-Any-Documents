@@ -115,6 +115,28 @@ span.note {
     font-size: 12px;
     color: #ccc;
 }
+
+div.awsm-error, div.awsm-updated {
+    margin: 5px 0 2px;
+    border-width: 1px 1px 1px 4px;
+    border-style: solid;
+    -webkit-border-radius: 4px;
+border-radius: 4px;
+}
+div.awsm-updated {
+    background-color: #fff;
+    border-color: #eee #eee #eee #7ad03a;
+    padding: 1px 12px;
+}
+div.awsm-error {
+    background: none repeat scroll 0 0 #fff;
+    border-color: #eee #eee #eee #dd3d36;
+    padding: 1px 12px;
+}
+div.awsm-error p, div.awsm-updated p {
+    margin: 0.5em 0;
+    padding: 2px;
+}
 @media (max-width: 800px) {
     .ead-left-wrap {
         float: none;

@@ -84,7 +84,7 @@ function ead_getdownloadlink($url){
     $filedata = wp_remote_head( $url );
     if(isset($filedata['headers']['content-length']))
     $filesize = ead_human_filesize($filedata['headers']['content-length']);
-    echo '<p class="embed_download"><a href="'.$url.'" download>'.__('Download','ead'). ' ['.$filesize.']</a></p>';     
+    return '<p class="embed_download"><a href="'.$url.'" download >'.__('Download','ead'). ' ['.$filesize.']</a></p>';     
     }
 }
 /**
@@ -168,8 +168,9 @@ function ead_getprovider($atts){
                 ead_sanitize_dims($width)  ,
                 ead_sanitize_dims($height) 
             );
-    $durl   = ead_getdownloadlink($url);
+    
     $iframe = '<iframe src="'.$iframe.'" '.$stylelink.'></iframe>';
+    $durl   = ead_getdownloadlink($url);
     $embed = $iframe.$durl;
     else:
     $embed = __('No Url Found','ead');     
@@ -234,5 +235,19 @@ function ead_validembedtypes(){
     $doctypes=ead_validmimeTypes();
     return $allowedtype = implode(',',$doctypes); 
 
+}
+function microsoft_mimes(){
+    $micro_mime=array(
+    'doc'                          => 'application/msword',
+    'pot|pps|ppt'                  => 'application/vnd.ms-powerpoint',
+    'xla|xls|xlt|xlw'              => 'application/vnd.ms-excel',
+    'docx'                         => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'dotx'                         => 'application/vnd.openxmlformats-officedocument.wordprocessingml.template',
+    'dotm'                         => 'application/vnd.ms-word.template.macroEnabled.12',
+    'xlsx'                         => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    'xlsm'                         => 'application/vnd.ms-excel.sheet.macroEnabled.12',
+    'pptx'                         => 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+    );
+    return $micro_types = implode(',',$micro_mime); 
 }
 ?>

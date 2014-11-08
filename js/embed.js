@@ -1,4 +1,5 @@
 jQuery(document).ready(function ($) {
+    alert(emebeder.micromimes);
 	var $popup        =   $('#embed-popup'),
 		$wrap         =   $('#embed-popup-wrap'),
 		$embedurl     =   $('#awsm_url'),
@@ -73,7 +74,7 @@ jQuery(document).ready(function ($) {
         this.window.on('select', function() {
                 var file = self.window.state().get('selection').first().toJSON();
                 fileurl=file.url;
-                $shortcode.text(getshortcode(file.url ));
+                $shortcode.text(getshortcode(file.url));
                 uploaddetails(file);
             });
    		} 
@@ -155,6 +156,10 @@ jQuery(document).ready(function ($) {
     	}else{
     		$shortcode.text('');
     	}
+    }
+    //Checks file mime
+    function validmime(){
+       
     }
     // Close Embed dialog
 	$('#embed-popup').on('click', '.cancel_embed', function (e) {
