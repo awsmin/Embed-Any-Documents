@@ -22,18 +22,20 @@
                         <span><?php _e('Supported file formats',$this->text_domain);?></span>
                         <div class="supportedlist hidden" id="ead_google">
                             <ul>
-                                <li>Microsoft Word (docx, docm, dotm, dotx)</li>
-                                <li>Microsoft Excel (xlsx, xlsb, xls, xlsm)</li>
-                                <li>Microsoft PowerPoint (pptx, ppsx, ppt, pps, pptm, potm, ppam, potx, ppsm)</li>
-                                <li>Adobe Portable Document Format (pdf)</li>
-                                <li>Text files (txt)</li>    
+                                <li><span class="ead-check"></span>Microsoft Word (docx, docm, dotm, dotx)</li>
+                                <li><span class="ead-check"></span>Microsoft Excel (xlsx, xlsb, xls, xlsm)</li>
+                                <li><span class="ead-check"></span>Microsoft PowerPoint (pptx, ppsx, ppt, pps, pptm, potm, ppam, potx, ppsm)</li>
+                                <li><span class="ead-check"></span>Adobe Portable Document Format (pdf)</li>
+                                <li><span class="ead-check"></span>Text files (txt)</li>    
                             </ul>
                         </div>
                         <div class="supportedlist hidden" id="ead_microsoft">
                             <ul>
-                                <li>Microsoft Word (docx, docm, dotm, dotx)</li>
-                                <li>Microsoft Excel (xlsx, xlsb, xls, xlsm)</li>
-                                <li>Microsoft PowerPoint (pptx, ppsx, ppt, pps, pptm, potm, ppam, potx, ppsm)</li>
+                                <li><span class="ead-check"></span>Microsoft Word (docx, docm, dotm, dotx)</li>
+                                <li><span class="ead-check"></span>Microsoft Excel (xlsx, xlsb, xls, xlsm)</li>
+                                <li><span class="ead-check"></span>Microsoft PowerPoint (pptx, ppsx, ppt, pps, pptm, potm, ppam, potx, ppsm)</li>
+                                <li><span class="ead-close"></span>Adobe Portable Document Format (pdf)</li>
+                                <li><span class="ead-close"></span>Text files (txt)</li>   
                             </ul>
                         </div>
                         </div>

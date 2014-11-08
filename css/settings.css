@@ -142,7 +142,11 @@ div.awsm-error p, div.awsm-updated p {
     padding: 2px;
 }
 .ead_supported span{ display:block; font-weight: bold; margin-top: 10px;}
-.supportedlist ul{ list-style: disc; padding-left: 12px; margin-top: 5px;}
+.supportedlist ul{ margin-top: 5px;}
+.supportedlist li{ padding-left:20px; }
+.supportedlist li span{ position:absolute; left:0; top:4px; width:11px; height:11px; margin: 0;}
+.supportedlist li span.ead-check{ background:url(../images/icon-yes.png) no-repeat;}
+.supportedlist li span.ead-close{ background:url(../images/icon-no.png) no-repeat;}
 @media (max-width: 800px) {
     .ead-left-wrap {
         float: none;
