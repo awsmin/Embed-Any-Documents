@@ -1,5 +1,4 @@
 jQuery(document).ready(function ($) {
-    alert(emebeder.micromimes);
 	var $popup        =   $('#embed-popup'),
 		$wrap         =   $('#embed-popup-wrap'),
 		$embedurl     =   $('#awsm_url'),
@@ -156,10 +155,6 @@ jQuery(document).ready(function ($) {
     	}else{
     		$shortcode.text('');
     	}
-    }
-    //Checks file mime
-    function validmime(){
-       
     }
     // Close Embed dialog
 	$('#embed-popup').on('click', '.cancel_embed', function (e) {

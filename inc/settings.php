@@ -47,10 +47,10 @@
                          </div>
                          <div class="f-left ead-frame-height">
                          <?php _e('Height', $this->text_domain); ?> 
-                         <input type="text" class="small" name="ead_height" value="<?php echo esc_attr( get_option('ead_height','300px') ); ?>" />
+                         <input type="text" class="small" name="ead_height" value="<?php echo esc_attr( get_option('ead_height','500px') ); ?>" />
                         </div>
                         <div class="clear"></div>
-                        <span class="note"><?php _e('Enter values in pixels or percentage (Example: 300px or 100%)', $this->text_domain); ?></span>
+                        <span class="note"><?php _e('Enter values in pixels or percentage (Example: 500px or 100%)', $this->text_domain); ?></span>
                         </td>
                     </tr>
                     <tr valign="top">
@@ -58,7 +58,7 @@
                     <td>
                        <?php 
                         $downoptions= array('alluser' => __('For all users',$this->text_domain),'logged' => __('For Logged-in users',$this->text_domain),'none' => __('None',$this->text_domain));
-                        ead_selectbuilder('ead_download', $downoptions,esc_attr( get_option('ead_download'))); 
+                        ead_selectbuilder('ead_download', $downoptions,esc_attr( get_option('ead_download','none'))); 
                         ?> 
                     </td>
                     </tr>

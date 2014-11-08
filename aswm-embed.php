@@ -121,15 +121,15 @@ class Awsm_embed {
 		wp_register_script( 'magnific-popup', plugins_url( 'js/magnific-popup.js', $this->plugin_file ), array( 'jquery' ), '0.9.9', true );
 		wp_register_script( 'embed', plugins_url( 'js/embed.js', $this->plugin_file ), array( 'jquery' ), '0.9.9', true );
 		wp_localize_script('embed','emebeder', array(
-				'default_height'=> get_option('ead_height', '100%' ),
-				'default_width' =>  get_option('ead_width', '100%' ),
-				'download' =>  get_option('ead_download', 'none' ),
-				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				'micromimes'=>microsoft_mimes(),
-				'validtypes' => ead_validembedtypes(),
-				'nocontent'=> __('Nothing to insert', $this->text_domain),
-				'addurl'=> __('Add URL', $this->text_domain),
-				'verify'=> __('Verifying...', $this->text_domain),
+				'default_height'	=>	get_option('ead_height', '500px' ),
+				'default_width' 	=>  get_option('ead_width', '100%' ),
+				'download' 			=>  get_option('ead_download', 'none' ),
+				'provider' 			=>  get_option('ead_provider', 'none' ),
+				'ajaxurl' 			=> 	admin_url( 'admin-ajax.php' ),
+				'validtypes' 		=> 	ead_validembedtypes(),
+				'nocontent'			=> 	__('Nothing to insert', $this->text_domain),
+				'addurl'			=> 	__('Add URL', $this->text_domain),
+				'verify'			=> 	__('Verifying...', $this->text_domain),
 			) );
 		wp_enqueue_style('magnific-popup');
 		wp_enqueue_script( 'magnific-popup' );
@@ -140,8 +140,8 @@ class Awsm_embed {
      * Shortcode Functionality
      */
 	function embed_shortcode( $atts){
-		$embedcode ="";
-		$embedcode = ead_getprovider($atts);
+		$embedcode 		=	"";
+		$embedcode 		=	ead_getprovider($atts);
 		return $embedcode;
 	}
  

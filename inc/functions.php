@@ -64,29 +64,7 @@ function ead_sanitize_dims( $dim ) {
         return false;
     }
 }
-/**
- * Creates Download link 
- *
- * @since   1.0
- * @return  string Download link 
- */
-function ead_getdownloadlink($url){
-    $download = get_option('ead_download');
-    $show =false;
-    if($download=='alluser'){
-        $show = true;
-    }elseif($download=='logged' AND is_user_logged_in()){
-        $show = true;
-    }
-    if($show){
-    $filesize ="";
-    $url = esc_url( $url, array( 'http', 'https' ));
-    $filedata = wp_remote_head( $url );
-    if(isset($filedata['headers']['content-length']))
-    $filesize = ead_human_filesize($filedata['headers']['content-length']);
-    return '<p class="embed_download"><a href="'.$url.'" download >'.__('Download','ead'). ' ['.$filesize.']</a></p>';     
-    }
-}
+ 
 /**
  * Validate File url
  *
@@ -136,17 +114,30 @@ function ead_validateurl($url){
  * @return  string iframe embed html
  */
 function ead_getprovider($atts){
-    $embed = "";
+    $embed  =   "";
+    $durl   =   "";
     $default_width      =       gde_sanitize_dims(  get_option('ead_width','100%') );
     $default_height     =       gde_sanitize_dims(  get_option('ead_height','500px') ); 
+    $default_provider   =       get_option('ead_provider','google'); 
+    $default_download   =       get_option('ead_download','none'); 
+
     extract(shortcode_atts( array(
-            'url' => '',
-            'width' =>  $default_width,
-            'height' => $default_height,
-            'language' => 'en'
+            'url'       =>  '',
+            'width'     =>  $default_width,
+            'height'    =>  $default_height,
+            'language'  =>  'en',
+            'provider'  =>  $default_provider,
+            'download'  =>  $default_download
         ), $atts ) );
     if($url):
-    $provider=get_option('ead_provider','google');
+    $filedata       =     wp_remote_head( $url );
+    if(isset($filedata['headers']['content-length'])){
+    if($provider    ==  'microsoft'){
+        $micromime  =   microsoft_mimes();
+        if(!in_array($filedata['headers']['content-type'], $micromime)){
+          $provider = 'google';  
+        }
+    }
     $url =  esc_url( $url, array( 'http', 'https' ));
     switch ($provider) {
         case 'google':
@@ -157,8 +148,8 @@ function ead_getprovider($atts){
             );
             break;
         case 'microsoft':
-            $embed ='//view.officeapps.live.com/op/embed.aspx?src=%1$s';
-            $iframe = sprintf( $embed, 
+            $embedsrc ='//view.officeapps.live.com/op/embed.aspx?src=%1$s';
+            $iframe = sprintf( $embedsrc, 
                 urlencode( $url )
             );
             break;
@@ -170,8 +161,24 @@ function ead_getprovider($atts){
             );
     
     $iframe = '<iframe src="'.$iframe.'" '.$stylelink.'></iframe>';
-    $durl   = ead_getdownloadlink($url);
+    $show         =     false;
+    if($download=='alluser'){
+        $show = true;
+    }elseif($download=='logged' AND is_user_logged_in()){
+        $show = true;
+    }
+    if($show){
+    $filesize ="";
+    $url = esc_url( $url, array( 'http', 'https' ));
+    if(isset($filedata['headers']['content-length']))
+    $filesize = ead_human_filesize($filedata['headers']['content-length']);
+    $durl   = '<p class="embed_download"><a href="'.$url.'" download >'.__('Download','ead'). ' ['.$filesize.']</a></p>';     
+    }   
+
     $embed = $iframe.$durl;
+    }else{
+    $embed = __('File Not Found','ead');            
+    }
     else:
     $embed = __('No Url Found','ead');     
     endif;
@@ -236,6 +243,12 @@ function ead_validembedtypes(){
     return $allowedtype = implode(',',$doctypes); 
 
 }
+/**
+ * Get allowed Mime Types for microsoft
+ *
+ * @since   1.0
+ * @return  array Mimetypes 
+ */
 function microsoft_mimes(){
     $micro_mime=array(
     'doc'                          => 'application/msword',
@@ -248,6 +261,6 @@ function microsoft_mimes(){
     'xlsm'                         => 'application/vnd.ms-excel.sheet.macroEnabled.12',
     'pptx'                         => 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
     );
-    return $micro_types = implode(',',$micro_mime); 
+    return $micro_mime; 
 }
 ?>
