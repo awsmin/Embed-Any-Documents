@@ -114,6 +114,7 @@
         <li><a href="#" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-dribbble">Dribble</span></span></a></li>
     </ul>
     <div class="paypal">
+        <p>Liked the plugin? You can support our Open Source projects with a donation</p>
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
     <input type="hidden" name="cmd" value="_s-xclick">
     <input type="hidden" name="hosted_button_id" value="YX8V3PJR65YRN">
