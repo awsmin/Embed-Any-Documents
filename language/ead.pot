@@ -186,3 +186,9 @@ msgstr ""
 #: inc/support-mail.php:38
 msgid "Cheating ?"
 msgstr ""
+
+#: inc/functions.php:180
+msgid "File Not Found"
+msgstr ""
+
+

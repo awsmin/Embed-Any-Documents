@@ -1,11 +1,11 @@
 <?php
 /*
-  Plugin Name: Embed Any Docs
-  Plugin URI: https://awsm.in/embed-any-documents
-  Description: An object oriented boilerplate for developing a WordPress plugin.
+  Plugin Name: Embed Any Document
+  Plugin URI: http://awsm.in/embed-any-documents
+  Description: Embed Any Document WordPress plugin lets you upload and embed your documents easily in your WordPress website without any additional browser plugins like Flash or Acrobat reader. The plugin lets you choose between Google Docs Viewer and Microsoft Office Online to display your documents. 
   Version: 1.0.0
-  Author: Adhun Anand 
-  Author URI: http://www.codelikeaboss.com
+  Author: Awsm Innovations
+  Author URI: http://awsm.in
   License: GPL V3
  */
 require_once( dirname( __FILE__ ) . '/inc/functions.php');
