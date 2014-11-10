@@ -18,6 +18,8 @@ Seamlessly embed and display PDF, Microsoft Word, Excel and PowerPoint documents
 
 Embed Any Document WordPress plugin lets you upload and embed your documents easily in your WordPress website without any additional browser plugins like Flash or Acrobat reader. The plugin lets you choose between Google Docs Viewer and Microsoft Office Online to display your documents. 
 
+<a href="http://dev.awsm.in/innovations/embed-any-document-plugin-demo/">Live Demo</a> 
+
 <h4>Supported file types</h4>
 
 * Microsoft Word (docx, docm, dotm, dotx)
@@ -35,7 +37,6 @@ Embed Any Document WordPress plugin lets you upload and embed your documents eas
 * XML Paper Specification (xps)
 * Archive Files (zip, rar)
 
-<a href="http://dev.awsm.in/innovations/embed-any-document-plugin-demo/">Demo Link</a>
 
 <h4>Key Benefits of Embed Any Document WordPress plugin </h4>
 
@@ -47,7 +48,11 @@ Embed Any Document WordPress plugin lets you upload and embed your documents eas
 
 4. <strong>Cross-browser compatibility.</strong> The viewers are mobile-ready and cross-browser compatible. 
 
-5. <strong>Clean and Minimal UI.</strong> Embed Any Document comes with a clean and minimal UI. 
+5. <strong>Clean and Minimal UI.</strong> Embed Any Document comes with a clean and minimal UI.
+
+<h4>Video Demo</h4> 
+
+[youtube https://www.youtube.com/watch?v=DUW_aEEcBrI]
 
 For more information and instructions visit <a href="http://awsm.in/embed-any-document/" target="_blank">our website.</a>.
 
