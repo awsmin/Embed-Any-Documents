@@ -28,5 +28,11 @@
 	'pptx'                         => 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
 	// iWork formats
 	'pages'                        => 'application/vnd.apple.pages',
+	//Additional Mime Types
+	'xps'						   =>  'application/vnd.ms-xpsdocument',
+	'dxf'						   =>  'application/dxf',
+	'eps'						   =>  'application/postscript',
+	'ps'						   =>  'application/postscript',
+
 );
 ?>
