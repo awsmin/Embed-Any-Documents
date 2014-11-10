@@ -116,8 +116,8 @@ function ead_validateurl($url){
 function ead_getprovider($atts){
     $embed  =   "";
     $durl   =   "";
-    $default_width      =       gde_sanitize_dims(  get_option('ead_width','100%') );
-    $default_height     =       gde_sanitize_dims(  get_option('ead_height','500px') ); 
+    $default_width      =       ead_sanitize_dims(  get_option('ead_width','100%') );
+    $default_height     =       ead_sanitize_dims(  get_option('ead_height','500px') ); 
     $default_provider   =       get_option('ead_provider','google'); 
     $default_download   =       get_option('ead_download','none'); 
 
