@@ -1,0 +1,185 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Embed Any Document\n"
+"POT-Creation-Date: 2014-11-07 14:45+0530\n"
+"PO-Revision-Date: 2014-11-10 11:22+0530\n"
+"Last-Translator: \n"
+"Language-Team: Awsm Innovations <hello@awsm.in>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: en_US\n"
+
+#: aswm-embed.php:77 inc/popup.php:6
+msgid "Add Document"
+msgstr ""
+
+#: aswm-embed.php:102
+msgid "Settings"
+msgstr ""
+
+#: aswm-embed.php:111 aswm-embed.php:156 aswm-embed.php:174 aswm-embed.php:185
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: aswm-embed.php:129
+msgid "Nothing to insert"
+msgstr ""
+
+#: aswm-embed.php:130
+msgid "Add URL"
+msgstr ""
+
+#: aswm-embed.php:131
+msgid "Verifying..."
+msgstr ""
+
+#: inc/functions.php:87
+msgid "Download"
+msgstr ""
+
+#: inc/functions.php:105
+msgid "Done"
+msgstr ""
+
+#: inc/functions.php:110
+msgid "Document"
+msgstr ""
+
+#: inc/functions.php:115
+msgid "File format is not supported."
+msgstr ""
+
+#: inc/functions.php:120
+msgid "Not a valid URL. Please try again."
+msgstr ""
+
+#: inc/functions.php:127
+msgid "Sorry, the file URL is not valid."
+msgstr ""
+
+#: inc/functions.php:175
+msgid "No Url Found"
+msgstr ""
+
+#: inc/popup.php:12
+msgid "Upload and Embed"
+msgstr ""
+
+#: inc/popup.php:13
+msgid "Add From URL"
+msgstr ""
+
+#: inc/popup.php:21
+msgid "Enter document URL"
+msgstr ""
+
+#: inc/popup.php:33
+msgid "Advanced Options"
+msgstr ""
+
+#: inc/popup.php:43 inc/settings.php:38
+msgid "Show Download Link"
+msgstr ""
+
+#: inc/popup.php:45 inc/settings.php:41
+msgid "For all users"
+msgstr ""
+
+#: inc/popup.php:45 inc/settings.php:41
+msgid "For Logged-in users"
+msgstr ""
+
+#: inc/popup.php:45 inc/settings.php:41
+msgid "None"
+msgstr ""
+
+#: inc/popup.php:53
+msgid "Shortcode Preview"
+msgstr ""
+
+#: inc/popup.php:62
+msgid "Insert"
+msgstr ""
+
+#: inc/popup.php:66
+msgid "Cancel"
+msgstr ""
+
+#: inc/settings.php:3
+msgid "Embed Any Document by AWSM.in"
+msgstr ""
+
+#: inc/settings.php:5
+msgid "General Settings"
+msgstr ""
+
+#: inc/settings.php:6
+msgid "Support"
+msgstr ""
+
+#: inc/settings.php:15
+msgid "Embed Using"
+msgstr ""
+
+#: inc/settings.php:18
+msgid "Google Docs Viewer"
+msgstr ""
+
+#: inc/settings.php:18
+msgid "Microsoft Office Online"
+msgstr ""
+
+#: inc/settings.php:24
+msgid "Default Size"
+msgstr ""
+
+#: inc/settings.php:26
+msgid "Width"
+msgstr ""
+
+#: inc/settings.php:30
+msgid "Height"
+msgstr ""
+
+#: inc/settings.php:34
+msgid "Enter values in pixels or percentage (Example: 300px or 100%)"
+msgstr ""
+
+#: inc/settings.php:55
+msgid "Name"
+msgstr ""
+
+#: inc/settings.php:62
+msgid "Email ID"
+msgstr ""
+
+#: inc/settings.php:69
+msgid "Problem"
+msgstr ""
+
+#: inc/settings.php:77
+msgid "Submit"
+msgstr ""
+
+#: inc/support-mail.php:8
+msgid "Please Fill Required Fields"
+msgstr ""
+
+#: inc/support-mail.php:30
+msgid "We will get back to you soon"
+msgstr ""
+
+#: inc/support-mail.php:33
+msgid "Something went wrong"
+msgstr ""
+
+#: inc/support-mail.php:38
+msgid "Cheating ?"
+msgstr ""
+
+#: inc/functions.php:180
+msgid "File Not Found"
+msgstr ""
