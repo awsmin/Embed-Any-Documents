@@ -141,6 +141,12 @@ div.awsm-error p, div.awsm-updated p {
     margin: 0.5em 0;
     padding: 2px;
 }
+.ead_doller{
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px 5px 0 0;
+    font-weight: bold;
+}
 .ead_supported span{ display:block; font-weight: bold; margin-top: 10px;}
 .supportedlist ul{ margin-top: 5px;}
 .supportedlist li{ padding-left:17px; position: relative; }

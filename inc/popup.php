@@ -30,7 +30,7 @@
                     <p id="ead_filename"></p>
                     <span id="ead_filesize"></span>
                 </div>
-                <a class="ead-btn button" id="adv_options"><?php _e('Show Advanced Options','ead');?></a>
+                <a class="ead-btn button" id="adv_options"><?php _e('Advanced Options','ead');?></a>
                 <div class="clear"></div>
             </div>
                      <div class="advanced_options">
@@ -58,11 +58,11 @@
             </div>
        
         <div class="mceActionPanel">
-        <div style="float: left">
+        <div style="float: right">
             <input type="button" id="insert_doc" name="insert" class="ead-btn button button-primary button-medium" value="<?php _e('Insert', 'ead'); ?>" disabled/>
         </div>
         
-        <div style="float: right">
+        <div style="float: left">
             <input type="button" name="cancel"  class="ead-btn button cancel_embed button-medium" value="<?php _e('Cancel', 'ead'); ?>" />
         </div>
         <div class="clear"></div>

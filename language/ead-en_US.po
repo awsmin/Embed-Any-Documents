@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Embed Any Document\n"
 "POT-Creation-Date: 2014-11-07 14:45+0530\n"
-"PO-Revision-Date: 2014-11-07 14:51+0530\n"
+"PO-Revision-Date: 2014-11-10 11:22+0530\n"
 "Last-Translator: \n"
 "Language-Team: Awsm Innovations <hello@awsm.in>\n"
 "MIME-Version: 1.0\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.6.10\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: en\n"
+"Language: en_US\n"
 
 #: aswm-embed.php:77 inc/popup.php:6
 msgid "Add Document"
@@ -77,7 +77,7 @@ msgid "Enter document URL"
 msgstr ""
 
 #: inc/popup.php:33
-msgid "Show Advanced Options"
+msgid "Advanced Options"
 msgstr ""
 
 #: inc/popup.php:43 inc/settings.php:38
@@ -165,17 +165,21 @@ msgid "Submit"
 msgstr ""
 
 #: inc/support-mail.php:8
-msgid "Please Fill Required Fileds"
+msgid "Please Fill Required Fields"
 msgstr ""
 
 #: inc/support-mail.php:30
-msgid "Succes Message"
+msgid "We will get back to you soon"
 msgstr ""
 
 #: inc/support-mail.php:33
-msgid "Failed Message"
+msgid "Something went wrong"
 msgstr ""
 
 #: inc/support-mail.php:38
 msgid "Cheating ?"
+msgstr ""
+
+#: inc/functions.php:180
+msgid "File Not Found"
 msgstr ""

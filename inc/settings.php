@@ -113,7 +113,6 @@
         <li><a href="https://twitter.com/awsmin" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-twitter">Twitter</span></a></li>
         <li><a href="https://github.com/awsmin" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-github">Github</span></a></li>
         <li><a href="https://www.behance.net/awsmin" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-behance">Behance</span></a></li>
-        <li><a href="#" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-dribbble">Dribble</span></span></a></li>
     </ul>
     <div class="paypal">
     <p>Liked the plugin? You can support our Open Source projects with a donation</p>

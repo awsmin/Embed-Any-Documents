@@ -80,7 +80,7 @@ msgid "Enter document URL"
 msgstr ""
 
 #: inc/popup.php:33
-msgid "Show Advanced Options"
+msgid "Advanced Options"
 msgstr ""
 
 #: inc/popup.php:43
