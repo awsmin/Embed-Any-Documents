@@ -82,11 +82,11 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 == Changelog ==
 
 = V1.0.1 - 2014-11-12 =
-* Removed unspported file types.
+* Removed unsupported file types.
 * Updated support tab.
 
 == Upgrade Notice ==
 
 = V1.0.1 =
-* Removed unspported file types.
+* Removed unsupported file types.
 * Updated support tab.
