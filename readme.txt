@@ -29,14 +29,7 @@ Embed Any Document WordPress plugin lets you upload and embed your documents eas
 * Text files (txt)
 * TIFF Images (tif, tiff)
 * Adobe Illustrator (ai)
-* Adobe Photoshop (psd)
-* Autodesk AutoCad (dxf)
 * Scalable Vector Graphics (svg)
-* PostScript (eps, ps)
-* OpenType/TrueType Fonts (ttf, otf)
-* XML Paper Specification (xps)
-* Archive Files (zip, rar)
-
 
 <h4>Key Benefits of Embed Any Document WordPress plugin </h4>
 
@@ -48,7 +41,7 @@ Embed Any Document WordPress plugin lets you upload and embed your documents eas
 
 4. <strong>Cross-browser compatibility.</strong> The viewers are mobile-ready and cross-browser compatible. 
 
-5. <strong>Clean and Minimal UI.</strong> Embed Any Document comes with a clean and minimal UI.
+5. <strong>Clean and Minimal UI.</strong> Embed Any Document comes with a clean and clutter-free UI.
 
 <h4>Video Demo</h4> 
 
@@ -78,19 +71,22 @@ Upload or link the documents to your site using the ‘Add Document’ button in
 == Frequently Asked Questions ==
 
 = How do I add documents? =
-Once the plugin is activated you would see a ‘Add Document’ button in your WordPress visual editor. Just click on that and you would know what you have to do.
+Once the plugin is activated you can find ‘Add Document’ button in your WordPress visual editor. Just click on that and follow your heart.
+
+= File not found error in my localhost site! =
+The viewers (Google Docs Viewer and Microsoft Office Online) do not support locally hosted files. Your document has to be available online for the viewers to access.
 
 = I have another question that you must add in your FAQ. =
 Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
-
-
 == Changelog ==
 
-= 1.0 =
-* First Release
+= V1.0.1 - 2014-11-12 =
+* Removed unspported file types.
+* Updated support tab.
 
 == Upgrade Notice ==
 
-= 1.0 =
-First Release
+= V1.0.1 =
+* Removed unspported file types.
+* Updated support tab.

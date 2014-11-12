@@ -26,7 +26,10 @@
                                 <li><span class="ead-check"></span>Microsoft Excel (xlsx, xlsb, xls, xlsm)</li>
                                 <li><span class="ead-check"></span>Microsoft PowerPoint (pptx, ppsx, ppt, pps, pptm, potm, ppam, potx, ppsm)</li>
                                 <li><span class="ead-check"></span>Adobe Portable Document Format (pdf)</li>
-                                <li><span class="ead-check"></span>Text files (txt)</li>    
+                                <li><span class="ead-check"></span>Text files (txt)</li>
+                                <li><span class="ead-check"></span>TIFF Images (tif, tiff)</li>
+                                <li><span class="ead-check"></span>Adobe Illustrator (ai)</li>
+                                <li><span class="ead-check"></span>Scalable Vector Graphics (svg)</li> 
                             </ul>
                         </div>
                         <div class="supportedlist hidden" id="ead_microsoft">
@@ -35,7 +38,10 @@
                                 <li><span class="ead-check"></span>Microsoft Excel (xlsx, xlsb, xls, xlsm)</li>
                                 <li><span class="ead-check"></span>Microsoft PowerPoint (pptx, ppsx, ppt, pps, pptm, potm, ppam, potx, ppsm)</li>
                                 <li><span class="ead-close"></span>Adobe Portable Document Format (pdf)</li>
-                                <li><span class="ead-close"></span>Text files (txt)</li>   
+                                <li><span class="ead-close"></span>Text files (txt)</li>
+                                <li><span class="ead-close"></span>TIFF Images (tif, tiff)</li>
+                                <li><span class="ead-close"></span>Adobe Illustrator (ai)</li>
+                                <li><span class="ead-close"></span>Scalable Vector Graphics (svg)</li> 
                             </ul>
                         </div>
                         </div>
@@ -70,37 +76,38 @@
         </div><!-- #general-->
         <div class="tabs" id="support">
             <div id="embed_message"><p></p></div>
+            <div class="col-left">
+            <?php  $current_user = wp_get_current_user();   ?>
             <form id="supportform" action="">
-                <table class="form-table">
-                    <tr valign="top">
-                        <th scope="row"><?php _e('Name', $this->text_domain); ?><span class="required">*</span></th>
-                        <td>
-                             <?php  $current_user = wp_get_current_user();   ?>
-                            <input type="text" name="site_name"  value="<?php echo  $current_user->display_name; ?>"/>
-                        </td>
-                    </tr>
-                    <tr valign="top">
-                        <th scope="row"><?php _e('Email ID', $this->text_domain); ?><span class="required">*</span></th>
-                        <td>
-                           
-                            <input type="email" name="email_id" value="<?php echo  $current_user->user_email; ?>"/>
-                        </td>
-                    </tr>
-                    <tr valign="top">
-                        <th scope="row"><?php _e('Problem', $this->text_domain); ?><span class="required">*</span></th> 
-                        <td>
-                        <textarea name="problem"></textarea>
-                    </td>
-                    </tr>
-                    <tr valign="top">
-                        <td>
-                        <p class="submit">
-                            <input type="submit" name="submit" id="submit" class="button button-primary" value="<?php _e('Submit', $this->text_domain); ?>">
-                        </p>
-                        </td>
-                    </tr>
-                </table>
+                <p>
+                    <label><?php _e('Name', $this->text_domain); ?><span class="required">*</span></label>
+                    <input type="text" name="site_name"  value="<?php echo  $current_user->display_name; ?>" class="text-input" />
+                </p>
+                <p>
+                    <label><?php _e('Email ID', $this->text_domain); ?><span class="required">*</span></label>
+                    <input type="email" name="email_id" value="<?php echo  $current_user->user_email; ?>" class="text-input"/>
+                </p>
+                <p>
+                    <label><?php _e('Problem', $this->text_domain); ?><span class="required">*</span></label>
+                    <textarea name="problem"></textarea>
+                </p>
+                <p class="submit">
+                    <input type="submit" name="submit" id="submit" class="button button-primary" value="<?php _e('Submit', $this->text_domain); ?>">
+                </p>
             </form>
+            </div>
+            <div class="col-right">
+                <p><strong>Frequently Reported Issues</strong></p>
+                <p>
+                    <strong>1. File not found error in my localhost site.</strong><br/>
+                    The viewers (Google Docs Viewer and Microsoft Office Online) do not support locally hosted files. <span style="border-bottom: 1px solid;">Your document has to be available online for the viewers to access.</span>
+                </p>
+                <p>
+                    <strong>2. Google Docs Viewer shows bandwidth exceeded error.</strong><br/>
+                    The issue is caused by Google Docs Viewer, not the plugin. Google Docs Viewer is a standalone documents viewer which doesn't limit bandwidth. When the problem occurs, usually reloading the page will result in the document loading properly. So it looks more like a bug from their side. Many developers reported the same issue in Google Developer Forums. Hope it will be fixed soon.
+                </p>
+            </div>
+            <div class="clear"></div>
         </div><!-- #support-->
     </div><!-- .ead-left-wrap -->
     <div class="ead-right-wrap">

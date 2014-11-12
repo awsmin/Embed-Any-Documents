@@ -147,12 +147,21 @@ div.awsm-error p, div.awsm-updated p {
     margin: 5px 5px 0 0;
     font-weight: bold;
 }
+#supportform label{ display: block; margin-bottom: 5px; font-weight: bold;}
+.text-input{ width: 100%; height: 40px;    -moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;}
+#supportform textarea{-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box; width:100%;}
 .ead_supported span{ display:block; font-weight: bold; margin-top: 10px;}
 .supportedlist ul{ margin-top: 5px;}
 .supportedlist li{ padding-left:17px; position: relative; }
 .supportedlist li span{ position:absolute; left:0; top:3px; width:11px; height:11px; margin: 0;}
 .supportedlist li span.ead-check{ background:url(../images/icon-yes.png) no-repeat;}
 .supportedlist li span.ead-close{ background:url(../images/icon-no.png) no-repeat;}
+.col-left{float: left;width: 47%;margin-right: 6%;}
+.col-right{float: right;width: 47%;}
 @media (max-width: 800px) {
     .ead-left-wrap {
         float: none;
@@ -165,4 +174,9 @@ div.awsm-error p, div.awsm-updated p {
        float: none;
        width: 100%;
   }
+  
+}
+@media (max-width: 980px) {
+.col-left,.col-right{float: none;width:100%;margin-right:0%;}
+
 }

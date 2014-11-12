@@ -38,7 +38,7 @@
               
                 <li>
                     <div class="f-left"><label>Width</label> <input type="text" name="width"  class="embedval input-small" id="ead_width" value="<?php echo get_option('ead_width', '100%' );?>"></div>
-                    <div class="f-left middle"><label>Height</label> <input type="text" name="height" class="embedval input-small" id="ead_height"  value="<?php echo get_option('ead_height', '100%' );?>"></div>
+                    <div class="f-left middle"><label>Height</label> <input type="text" name="height" class="embedval input-small" id="ead_height"  value="<?php echo get_option('ead_height', '500px' );?>"></div>
                     <div class="f-left">
                     <label><?php _e('Show Download Link','ead');?></label> 
                     <?php 
