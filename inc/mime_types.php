@@ -4,18 +4,12 @@
 	'txt|asc|c|cc|h'               => 'text/plain',
 	'rtx'                          => 'text/richtext',
 	'css'                          => 'text/css',
-	'htm|html'                     => 'text/html',
-	
 	// Misc application formats
 	'js'                           => 'application/javascript',
 	'pdf'                          => 'application/pdf',
-	'zip'                          => 'application/zip',
-	'gz|gzip'                      => 'application/x-gzip',
-	'rar'                          => 'application/rar',
 	'ai'						   => 'application/postscript',
 	'tif'						   => 'image/tiff',
 	'tiff'						   => 'image/tiff',
-	'ttf'						   => 'application/x-font-ttf',
 	// MS Office formats
 	'doc'                          => 'application/msword',
 	'pot|pps|ppt'                  => 'application/vnd.ms-powerpoint',
@@ -29,10 +23,6 @@
 	// iWork formats
 	'pages'                        => 'application/vnd.apple.pages',
 	//Additional Mime Types
-	'xps'						   =>  'application/vnd.ms-xpsdocument',
-	'dxf'						   =>  'application/dxf',
-	'eps'						   =>  'application/postscript',
-	'ps'						   =>  'application/postscript',
-
+	'svg'						   =>  'image/svg+xml',
 );
 ?>
