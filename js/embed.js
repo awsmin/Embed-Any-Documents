@@ -37,13 +37,12 @@ jQuery(document).ready(function ($) {
 		}).magnificPopup('open');
 	});	
 	//Update shortcode on change
- 	$( ".embed_download" ).change(function() {
+ 	$( ".ead_usc" ).change(function() {
  		updateshortcode();
 	});
-	$('.embedval').blur(function(){
+	$('.embedval').keyup(function(){
 		updateshortcode();
 	});
-
 	//Tabs Support
 	$('ul.tabs').delegate('li:not(.current)', 'click', function () {
             $(this).addClass('current').siblings().removeClass('current')
@@ -82,11 +81,12 @@ jQuery(document).ready(function ($) {
     }
     //to getshortcode
     function getshortcode(url){
-    	var height=$('#ead_height').val(),width=$('#ead_width').val(),download=$('#ead_download').val(),heightstr="",widthstr="",downloadstr="";
-    	if(height!=emebeder.default_height) { heightstr = ' height="'+height+'"'; }
-    	if(width!=emebeder.default_width) { widthstr = ' width="'+width+'"'; }
-    	if(download!=emebeder.download) { downloadstr = ' download="'+download+'"'; }
-    	return '[embeddoc url="' + url + '"' + widthstr + heightstr + downloadstr +']';
+    	var height=$('#ead_height').val(),width=$('#ead_width').val(),download=$('#ead_download').val(),provider=$('#ead_provider').val(),heightstr="",widthstr="",downloadstr="",providerstr="";
+        if(height!=emebeder.default_height) { heightstr = ' height="'+height+'"'; }
+        if(width!=emebeder.default_width) { widthstr = ' width="'+width+'"'; }
+        if(download!=emebeder.download) { downloadstr = ' download="'+download+'"'; }
+        if(provider!=emebeder.provider) { providerstr = ' provider="'+provider+'"'; }
+        return '[embeddoc url="' + url + '"' + widthstr + heightstr + downloadstr +  providerstr +']';
 
     }
     //Print uploaded file details

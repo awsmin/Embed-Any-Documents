@@ -38,12 +38,19 @@
               
                 <li>
                     <div class="f-left"><label>Width</label> <input type="text" name="width"  class="embedval input-small" id="ead_width" value="<?php echo get_option('ead_width', '100%' );?>"></div>
-                    <div class="f-left middle"><label>Height</label> <input type="text" name="height" class="embedval input-small" id="ead_height"  value="<?php echo get_option('ead_height', '500px' );?>"></div>
+                    <div class="f-left"><label>Height</label> <input type="text" name="height" class="embedval input-small" id="ead_height"  value="<?php echo get_option('ead_height', '500px' );?>"></div>
                     <div class="f-left">
                     <label><?php _e('Show Download Link','ead');?></label> 
                     <?php 
                     $downoptions= array('alluser' => __('For all users',$this->text_domain),'logged' => __('For Logged-in users',$this->text_domain),'none' => __('None',$this->text_domain));
-                    ead_selectbuilder('ead_download', $downoptions,esc_attr( get_option('ead_download')),'embed_download'); 
+                    ead_selectbuilder('ead_download', $downoptions,esc_attr( get_option('ead_download')),'embed_download ead_usc'); 
+                    ?> 
+                    </div>
+                   <div class="f-left last">
+                    <label><?php _e('Provider','ead');?></label> 
+                    <?php 
+                    $providers = array('google' => __('Google Docs Viewer',$this->text_domain),'microsoft' => __('Microsoft Office Online',$this->text_domain));
+                    ead_selectbuilder('ead_provider', $providers,esc_attr( get_option('ead_provider','google')),'ead_provider ead_usc'); 
                     ?> 
                     </div>
                     <div class="clear"></div>

@@ -167,7 +167,8 @@ div.awsm-error p, div.awsm-updated p {
 .f-left{
 	float:left;
 }
-.f-left.middle{ margin:0 25px; }
+.option-fields .f-left{ margin-right: 25px; }
+.f-left.last{ margin:0; }
 .clear{ clear:both;}
 .input-small{ width:60px;}
 .box .urlerror{
