@@ -107,9 +107,6 @@ class Awsm_embed {
 	 * Embed Form popup
 	 */ 
 	function embedpopup(){
-		if (!current_user_can('manage_options')) {
-            wp_die(__('You do not have sufficient permissions to access this page.'));
-        }
 		include($this->plugin_path.'inc/popup.php');
 	}
 	/**
@@ -164,16 +161,14 @@ class Awsm_embed {
     function register_eadsettings() {
 	    register_setting( 'ead-settings-group', 'ead_width' ,'ead_sanitize_dims');
 	    register_setting( 'ead-settings-group', 'ead_height','ead_sanitize_dims' );
+	    register_setting( 'ead-settings-group', 'ead_provider','ead_sanitize_provider' );
 	    register_setting( 'ead-settings-group', 'ead_download' );
-	    register_setting( 'ead-settings-group', 'ead_provider' );
+	    register_setting( 'ead-settings-group', 'ead_mediainsert' );
 	}
 	/**
      * Ajax validate file url
     */
 	function validateurl(){
-		if (!current_user_can('manage_options')) {
-            wp_die(__('You do not have sufficient permissions to access this page.'));
-        }
 		$fileurl =  $_POST['furl'];
 		echo json_encode(ead_validateurl($fileurl));
 		die(0);
@@ -206,11 +201,11 @@ class Awsm_embed {
      * Adds shortcode for supported media
     */
     function ead_media_insert( $html, $id, $attachment ) {
-    	if ( ead_validType( $attachment['url'] )) {
-		return '[embeddoc url="' . $attachment['url'] . '"]';
-		} else {
-			return $html;
-		}
+    	if(get_option( 'ead_mediainsert', 1 ))
+	    	if ( ead_validType( $attachment['url'] )) {
+			return '[embeddoc url="' . $attachment['url'] . '"]';
+			}
+		return $html;
 	}
 	/**
      * Adds additional mimetype for meadi uploader

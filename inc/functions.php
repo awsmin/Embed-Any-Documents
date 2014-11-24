@@ -64,7 +64,20 @@ function ead_sanitize_dims( $dim ) {
         return false;
     }
 }
- 
+/**
+ * Sanitize provider 
+ *
+ * @since   1.0.2
+ * @return  string Sanitized provider
+ */
+function ead_sanitize_provider( $provider ) {
+    $providerList   =   array('google','microsoft');
+    if (in_array($provider, $providerList) ) {
+        return $provider;
+    } else {
+        return 'google';
+    }
+} 
 /**
  * Validate File url
  *
@@ -118,7 +131,7 @@ function ead_getprovider($atts){
     $durl   =   "";
     $default_width      =       ead_sanitize_dims(  get_option('ead_width','100%') );
     $default_height     =       ead_sanitize_dims(  get_option('ead_height','500px') ); 
-    $default_provider   =       get_option('ead_provider','google'); 
+    $default_provider   =       get_option('ead_provider','google') ; 
     $default_download   =       get_option('ead_download','none'); 
 
     extract(shortcode_atts( array(
@@ -129,43 +142,45 @@ function ead_getprovider($atts){
             'provider'  =>  $default_provider,
             'download'  =>  $default_download
         ), $atts ) );
+    $provider           =   ead_sanitize_provider($provider);
     if($url):
-    $filedata       =     wp_remote_head( $url );
+    $filedata           =     wp_remote_head( $url );
     if(isset($filedata['headers']['content-length'])){
-    if($provider    ==  'microsoft'){
-        $micromime  =   microsoft_mimes();
+    if($provider        ==  'microsoft'){
+        $micromime      =   microsoft_mimes();
         if(!in_array($filedata['headers']['content-type'], $micromime)){
           $provider = 'google';  
         }
     }
+
     $url =  esc_url( $url, array( 'http', 'https' ));
     switch ($provider) {
         case 'google':
-            $embedsrc = '//docs.google.com/viewer?url=%1$s&embedded=true&hl=%2$s';
-            $iframe = sprintf( $embedsrc, 
+            $embedsrc   =   '//docs.google.com/viewer?url=%1$s&embedded=true&hl=%2$s';
+            $iframesrc  =   sprintf( $embedsrc, 
                 urlencode( $url ),
                 esc_attr( $language )
             );
             break;
         case 'microsoft':
-            $embedsrc ='//view.officeapps.live.com/op/embed.aspx?src=%1$s';
-            $iframe = sprintf( $embedsrc, 
+            $embedsrc  =    '//view.officeapps.live.com/op/embed.aspx?src=%1$s';
+            $iframesrc =     sprintf( $embedsrc, 
                 urlencode( $url )
             );
             break;
     }
-    $style = 'style="width:%1$s; height:%2$s; border: none;"';
-    $stylelink = sprintf($style, 
+    $style              = 'style="width:%1$s; height:%2$s; border: none;"';
+    $stylelink          = sprintf($style, 
                 ead_sanitize_dims($width)  ,
                 ead_sanitize_dims($height) 
             );
     
-    $iframe = '<iframe src="'.$iframe.'" '.$stylelink.'></iframe>';
-    $show         =     false;
+    $iframe             =   '<iframe src="'.$iframesrc.'" '.$stylelink.'></iframe>';
+    $show               =    false;
     if($download=='alluser'){
-        $show = true;
+        $show   =   true;
     }elseif($download=='logged' AND is_user_logged_in()){
-        $show = true;
+        $show    =  true;
     }
     if($show){
     $filesize ="";
