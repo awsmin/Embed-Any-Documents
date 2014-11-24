@@ -71,10 +71,10 @@
                     </td>
                     </tr>
                     <tr valign="top">
-                    <th scope="row"><?php _e('Media Insert',$this->text_domain);?></th>
+                    <th scope="row"><?php _e('Override Default Media Insert?',$this->text_domain);?></th>
                     <td>
                        <?php 
-                        $downoptions= array('1' => __('Yes',$this->text_domain),'0' => __('No',$this->text_domain));
+                        $downoptions= array('1' => __('Auto-embed supported documents',$this->text_domain),'0' => __('Insert as link (WordPress Default)',$this->text_domain));
                         ead_selectbuilder('ead_mediainsert', $downoptions,esc_attr( get_option('ead_mediainsert','1'))); 
                         ?> 
                     </td>
