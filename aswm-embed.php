@@ -15,6 +15,7 @@ class Awsm_embed {
 	private $plugin_url;
 	private $plugin_base;
 	private $plugin_file;
+	private $plugin_version;
 	private $settings_slug;
     private $text_domain = 'ead';
 	/**
@@ -38,6 +39,7 @@ class Awsm_embed {
 		$this->plugin_base  	=	dirname( plugin_basename( __FILE__ ) );
 		$this->plugin_file  	=	__FILE__  ;
 		$this->settings_slug	=	'ead-settings';
+		$this->plugin_version	=	'1.0.2';
 
 		load_plugin_textdomain($this->text_domain, false,$this->plugin_base . '/language' );
 
@@ -60,7 +62,7 @@ class Awsm_embed {
 	 * Register admin Settings style
 	 */
 	function setting_styles(){
-		wp_register_style( 'embed-settings', plugins_url( 'css/settings.css', $this->plugin_file ), false, '1.0', 'all' );
+		wp_register_style( 'embed-settings', plugins_url( 'css/settings.css', $this->plugin_file ), false,$this->plugin_version, 'all' );
 		wp_enqueue_style('embed-settings');
 	}
 	/**
@@ -114,9 +116,9 @@ class Awsm_embed {
      */
 	function embed_helper(){
 		wp_register_style( 'magnific-popup', plugins_url( 'css/magnific-popup.css', $this->plugin_file ), false, '0.9.9', 'all' );
-		wp_register_style( 'embed-css', plugins_url( 'css/embed.css', $this->plugin_file ), false, '1.0', 'all' );
+		wp_register_style( 'embed-css', plugins_url( 'css/embed.css', $this->plugin_file ), false, $this->plugin_version, 'all' );
 		wp_register_script( 'magnific-popup', plugins_url( 'js/magnific-popup.js', $this->plugin_file ), array( 'jquery' ), '0.9.9', true );
-		wp_register_script( 'embed', plugins_url( 'js/embed.js', $this->plugin_file ), array( 'jquery' ), '0.9.9', true );
+		wp_register_script( 'embed', plugins_url( 'js/embed.js', $this->plugin_file ), array( 'jquery' ),$this->plugin_version, true );
 		wp_localize_script('embed','emebeder', array(
 				'default_height'	=>	get_option('ead_height', '500px' ),
 				'default_width' 	=>  get_option('ead_width', '100%' ),
