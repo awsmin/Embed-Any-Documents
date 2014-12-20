@@ -92,8 +92,12 @@ jQuery(document).ready(function ($) {
     //Print uploaded file details
     function uploaddetails(file){
         $('#insert_doc').removeAttr('disabled');
-    	$('#ead_filename').html(file.filename)
-		$('#ead_filesize').html(file.filesizeHumanReadable);
+    	$('#ead_filename').html(file.filename);
+        if(file.filesizeHumanReadable){
+         $('#ead_filesize').html(file.filesizeHumanReadable);   
+        }else{
+         $('#ead_filesize').html('&nbsp;');       
+        }
 		$('.upload-success').fadeIn();
         $container.hide();
     }

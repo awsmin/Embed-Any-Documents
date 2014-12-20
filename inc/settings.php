@@ -65,17 +65,8 @@
                     <th scope="row"><?php _e('Show Download Link',$this->text_domain);?></th>
                     <td>
                        <?php 
-                        $downoptions= array('alluser' => __('For all users',$this->text_domain),'logged' => __('For Logged-in users',$this->text_domain),'none' => __('None',$this->text_domain));
+                        $downoptions= array('alluser' => __('For all users',$this->text_domain),'logged' => __('For Logged-in users',$this->text_domain),'none' => __('No Download',$this->text_domain));
                         ead_selectbuilder('ead_download', $downoptions,esc_attr( get_option('ead_download','none'))); 
-                        ?> 
-                    </td>
-                    </tr>
-                    <tr valign="top">
-                    <th scope="row"><?php _e('Override Default Media Insert?',$this->text_domain);?></th>
-                    <td>
-                       <?php 
-                        $downoptions= array('1' => __('Auto-embed supported documents',$this->text_domain),'0' => __('Insert as link (WordPress Default)',$this->text_domain));
-                        ead_selectbuilder('ead_mediainsert', $downoptions,esc_attr( get_option('ead_mediainsert','1'))); 
                         ?> 
                     </td>
                     </tr>

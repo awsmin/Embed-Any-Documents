@@ -85,34 +85,33 @@ function ead_sanitize_provider( $provider ) {
  * @return  string Download link 
  */
 function ead_validateurl($url){
-    $types  =   ead_validmimeTypes();
     $url    =   esc_url( $url, array( 'http', 'https' ));
     $remote =   wp_remote_head($url);
     $json['status']  =  false;
     $json['message'] =  '';
-    if ( is_array( $remote ) ) {
-            if ( isset( $remote['headers']['content-length'] ) ) {
-                if(in_array($remote['headers']['content-type'], $types)){
-                    $json['message'] = __("Done",'ead');
-                    $filename = pathinfo($url);
-                    if(isset($filename)){
-                        $json['file']['filename'] = $filename['basename'];
-                    }else{
-                        $json['file']['filename'] =  __("Document",'ead');
-                    }  
-                    $json['file']['filesizeHumanReadable'] = ead_human_filesize($remote['headers']['content-length']);
-                    $json['status'] =true;
+    if (wp_remote_retrieve_response_code($remote) ==200) {
+            //Gzip Support
+            $filename = pathinfo($url);
+            $doctypes   =   ead_validmimeTypes();
+            if(ead_validType($url,$doctypes)){
+                $json['status'] =true;
+                $json['message'] = __("Done",'ead');
+                if(isset($filename)){
+                    $json['file']['filename'] = $filename['basename'];
                 }else{
-                    $json['message'] = __("File format is not supported.",'ead');
-                    $json['status'] = false;
-                }
-                
-            } else {
-                $json['message'] = __('Not a valid URL. Please try again.','ead'); 
-                $json['status'] =false;
+                    $json['file']['filename'] =  __("Document",'ead');
+                }   
+                if(isset($remote['headers']['content-length'])){
+                $json['file']['filesizeHumanReadable'] = ead_human_filesize($remote['headers']['content-length']);     
+                }else{
+                $json['file']['filesizeHumanReadable'] =  0;
+                }       
+            }else{
+                $json['message'] = __("File format is not supported.",'ead');
+                $json['status'] = false;
             }
-    }elseif(is_wp_error( $result )){
-        $json['message'] = $result->get_error_message();  
+    }elseif(is_wp_error( $remote )){
+        $json['message'] = $remote->get_error_message();  
         $json['status'] =false;
     }else{
         $json['message'] = __('Sorry, the file URL is not valid.','ead'); 
@@ -131,73 +130,89 @@ function ead_getprovider($atts){
     $durl   =   "";
     $default_width      =       ead_sanitize_dims(  get_option('ead_width','100%') );
     $default_height     =       ead_sanitize_dims(  get_option('ead_height','500px') ); 
-    $default_provider   =       get_option('ead_provider','google') ; 
+    $default_provider   =       get_option('ead_provider','google'); 
     $default_download   =       get_option('ead_download','none'); 
-
+    $show               =       false;
     extract(shortcode_atts( array(
             'url'       =>  '',
             'width'     =>  $default_width,
             'height'    =>  $default_height,
             'language'  =>  'en',
-            'provider'  =>  $default_provider,
+            'viewer'    =>  $default_provider,
             'download'  =>  $default_download
         ), $atts ) );
-    $provider           =   ead_sanitize_provider($provider);
-    if($url):
-    $filedata           =     wp_remote_head( $url );
-    if(isset($filedata['headers']['content-length'])){
-    if($provider        ==  'microsoft'){
-        $micromime      =   microsoft_mimes();
-        if(!in_array($filedata['headers']['content-type'], $micromime)){
-          $provider = 'google';  
-        }
-    }
 
-    $url =  esc_url( $url, array( 'http', 'https' ));
-    switch ($provider) {
+    if($url):
+    $filedata       =     wp_remote_head( $url );
+    $durl           =     '';  
+
+    if($download=='alluser' or $download=='all'){
+        $show       = true;
+    }elseif($download=='logged' AND is_user_logged_in()){
+        $show       = true;
+    }
+    if($show){
+    $filesize       =   0;
+    $url            = esc_url( $url, array( 'http', 'https' ));
+
+    if (isset($filedata['headers']['content-length'])) {
+        $filesize   = ead_human_filesize($filedata['headers']['content-length']);
+    }else{
+        $filesize   = 0;
+    }    
+    $fileHtml   = '';
+    if($filesize)
+        $fileHtml   = ' ['.$filesize.']';
+        $durl       = '<p class="embed_download"><a href="'.$url.'" download >'.__('Download','ead'). $fileHtml .' </a></p>';     
+    }   
+    
+    $url            =   esc_url( $url, array( 'http', 'https' ));
+    $providerList   =   array('google','microsoft');
+    if(!in_array($viewer, $providerList)) $viewer = 'google';
+    $viewer         =   ead_autoviewer($url,$viewer) ;
+    switch ($viewer) {
         case 'google':
-            $embedsrc   =   '//docs.google.com/viewer?url=%1$s&embedded=true&hl=%2$s';
-            $iframesrc  =   sprintf( $embedsrc, 
+            $embedsrc = '//docs.google.com/viewer?url=%1$s&embedded=true&hl=%2$s';
+            $iframe = sprintf( $embedsrc, 
                 urlencode( $url ),
                 esc_attr( $language )
             );
             break;
         case 'microsoft':
-            $embedsrc  =    '//view.officeapps.live.com/op/embed.aspx?src=%1$s';
-            $iframesrc =     sprintf( $embedsrc, 
+            $embedsrc ='//view.officeapps.live.com/op/embed.aspx?src=%1$s';
+            $iframe = sprintf( $embedsrc, 
                 urlencode( $url )
             );
             break;
     }
-    $style              = 'style="width:%1$s; height:%2$s; border: none;"';
-    $stylelink          = sprintf($style, 
+    $style = 'style="width:%1$s; height:%2$s; border: none;"';
+    $stylelink = sprintf($style, 
                 ead_sanitize_dims($width)  ,
                 ead_sanitize_dims($height) 
             );
     
-    $iframe             =   '<iframe src="'.$iframesrc.'" '.$stylelink.'></iframe>';
-    $show               =    false;
-    if($download=='alluser'){
-        $show   =   true;
-    }elseif($download=='logged' AND is_user_logged_in()){
-        $show    =  true;
-    }
-    if($show){
-    $filesize ="";
-    $url = esc_url( $url, array( 'http', 'https' ));
-    if(isset($filedata['headers']['content-length']))
-    $filesize = ead_human_filesize($filedata['headers']['content-length']);
-    $durl   = '<p class="embed_download"><a href="'.$url.'" download >'.__('Download','ead'). ' ['.$filesize.']</a></p>';     
-    }   
-
+    $iframe = '<iframe src="'.$iframe.'" '.$stylelink.'></iframe>';
+    $show         =     false;
     $embed = $iframe.$durl;
-    }else{
-    $embed = __('File Not Found','ead');            
-    }
     else:
     $embed = __('No Url Found','ead');     
     endif;
     return $embed;
+}
+/**
+ * Select Supported Viewer
+ *
+ * @since   1.1
+ * @return  string email html
+ */
+function ead_autoviewer($url,$viewer){
+    $autoviewer     =   $viewer;
+    if($viewer      ==  'microsoft'){
+        $doctypes   =   ead_microsoft_mimes();
+        if(!ead_validType($url ,$doctypes))
+            $autoviewer     =  'google';
+    } 
+    return $autoviewer;
 }
 /**
  * Get Email node
@@ -236,8 +251,7 @@ function ead_validmimeTypes(){
  * @since   1.0
  * @return  boolean 
  */
-function ead_validType( $url ) {
-    $doctypes=ead_validmimeTypes();
+function ead_validType( $url ,$doctypes) {
     if ( is_array( $doctypes ) ) {
         $allowed_ext = implode( "|", array_keys( $doctypes ) );
         if ( preg_match( "/\.($allowed_ext)$/i", $url ) ) {
@@ -264,7 +278,7 @@ function ead_validembedtypes(){
  * @since   1.0
  * @return  array Mimetypes 
  */
-function microsoft_mimes(){
+function ead_microsoft_mimes(){
     $micro_mime=array(
     'doc'                          => 'application/msword',
     'pot|pps|ppt'                  => 'application/vnd.ms-powerpoint',

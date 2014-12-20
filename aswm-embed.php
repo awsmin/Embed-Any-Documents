@@ -3,7 +3,7 @@
   Plugin Name: Embed Any Document
   Plugin URI: http://awsm.in/embed-any-documents
   Description: Embed Any Document WordPress plugin lets you upload and embed your documents easily in your WordPress website without any additional browser plugins like Flash or Acrobat reader. The plugin lets you choose between Google Docs Viewer and Microsoft Office Online to display your documents. 
-  Version: 1.0.2
+  Version: 1.1.1
   Author: Awsm Innovations
   Author URI: http://awsm.in
   License: GPL V3
@@ -39,7 +39,7 @@ class Awsm_embed {
 		$this->plugin_base  	=	dirname( plugin_basename( __FILE__ ) );
 		$this->plugin_file  	=	__FILE__  ;
 		$this->settings_slug	=	'ead-settings';
-		$this->plugin_version	=	'1.0.2';
+		$this->plugin_version	=	'1.1.1';
 
 		load_plugin_textdomain($this->text_domain, false,$this->plugin_base . '/language' );
 
@@ -56,6 +56,8 @@ class Awsm_embed {
 		add_action( 'wp_ajax_validateurl',array( $this, 'validateurl' ));
 		//ajax Contact Form
  		add_action( 'wp_ajax_supportform',array( $this, 'supportform' ));
+ 		//default options
+ 		register_activation_hook($this->plugin_file, array( $this, 'ead_defaults' ));
  		$this->run_plugin();
 	}
 	/**
@@ -195,20 +197,9 @@ class Awsm_embed {
     */
     function adminfunctions(){
     	if(is_admin()){
-    		add_filter('media_send_to_editor', array($this,'ead_media_insert'), 10, 3 );
     		add_filter('upload_mimes', array($this,'additional_mimes'));
     	}
     }
-    /**
-     * Adds shortcode for supported media
-    */
-    function ead_media_insert( $html, $id, $attachment ) {
-    	if(get_option( 'ead_mediainsert', 1 ))
-	    	if ( ead_validType( $attachment['url'] )) {
-			return '[embeddoc url="' . $attachment['url'] . '"]';
-			}
-		return $html;
-	}
 	/**
      * Adds additional mimetype for meadi uploader
     */
@@ -218,6 +209,24 @@ class Awsm_embed {
             'ai'		=>		'application/postscript',
 		));
 	}
+	/**
+     * To initialize default options
+    */
+	function ead_defaults()
+		{
+	    $o = array(
+	        'ead_width'			=> '100%',
+	        'ead_height'    	=> '500px',
+	        'ead_download'  	=> 'none',
+	        'ead_provider'      => 'google',
+	        'ead_mediainsert'   => '1',
+	    );
+	    foreach ( $o as $k => $v )
+	    {
+	        if(!get_option($k)) update_option($k, $v);
+	    }
+	    return;
+		}
 }
 
 Awsm_embed::get_instance();

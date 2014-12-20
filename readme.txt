@@ -4,7 +4,7 @@ Donate link: http://awsm.in/donate
 Tags: embed documents, upload pdf, embed ppt, document viewer, pdf viewer, pdf viewer plugin, display pdf, embed pdf, embed pdf in wordpress, word, word viewer, word document, embed word, word plugin, doc, doc viewer, docx, docx viewer, excel, excel plugin, xls, xlsx, spreadsheet, embed spreadsheet, powerpoint, powerpoint viewer, ppt, ppt viewer, pptx, image viewer
 Author URI: http://awsm.in
 Requires at least: 3.5
-Tested up to: 4.0
+Tested up to: 4.1
 Stable tag: trunk
 License: GPLv2 
 
@@ -81,20 +81,30 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
 
-= V1.0.2 - 2014-11-24 =
+= V 1.0.2 - 2014-11-24 =
 * Added option in advanced option to choose viewer.
 * Added option in settings to enable and disable media library insert.
 * Fixed: Editor permission issue.
 
+= V 1.1.1- 2014-12-8 =
+* Removed media insert override option.
 
-= V1.0.1 - 2014-11-12 =
+= V 1.0.1 - 2014-11-12 =
 * Removed unsupported file types.
 * Updated support tab.
 
+= V 1.1 - 2014-11-12 =
+* File Not Found fix
 
 
 == Upgrade Notice ==
 
-= V1.0.1 =
+= V 1.1.1=
+* Removed media insert override option.
+
+= V 1.0.1 =
 * Removed unsupported file types.
 * Updated support tab.
+
+= V 1.1 =
+* File Not Found fix
