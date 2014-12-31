@@ -122,12 +122,14 @@ class Awsm_embed {
 		wp_register_script( 'magnific-popup', plugins_url( 'js/magnific-popup.js', $this->plugin_file ), array( 'jquery' ), '0.9.9', true );
 		wp_register_script( 'embed', plugins_url( 'js/embed.js', $this->plugin_file ), array( 'jquery' ),$this->plugin_version, true );
 		wp_localize_script('embed','emebeder', array(
-				'default_height'	=>	get_option('ead_height', '500px' ),
-				'default_width' 	=>  get_option('ead_width', '100%' ),
-				'download' 			=>  get_option('ead_download', 'none' ),
-				'provider' 			=>  get_option('ead_provider', 'google' ),
+				'height' 			=> 	get_option('ead_height', '500px'),
+        		'width' 			=> 	get_option('ead_width', '100%'), 
+        		'download' 			=> 	get_option('ead_download', 'none'), 
+        		'provider' 			=> 	get_option('ead_provider', 'google'), 
 				'ajaxurl' 			=> 	admin_url( 'admin-ajax.php' ),
 				'validtypes' 		=> 	ead_validembedtypes(),
+				'msextension' 		=> 	ead_validextensions('ms'), 
+        		'drextension'		=> 	ead_validextensions('all'),
 				'nocontent'			=> 	__('Nothing to insert', $this->text_domain),
 				'addurl'			=> 	__('Add URL', $this->text_domain),
 				'verify'			=> 	__('Verifying...', $this->text_domain),
@@ -140,11 +142,70 @@ class Awsm_embed {
 	/**
      * Shortcode Functionality
      */
-	function embed_shortcode( $atts){
-		$embedcode 		=	"";
-		$embedcode 		=	ead_getprovider($atts);
-		return $embedcode;
-	}
+    function embed_shortcode($atts) {
+        $embed 				= 		"";
+        $durl 				= 		"";
+        $default_width 		= 		ead_sanitize_dims(get_option('ead_width', '100%'));
+        $default_height 	= 		ead_sanitize_dims(get_option('ead_height', '500px'));
+        $default_provider 	= 		get_option('ead_provider', 'google');
+        $default_download 	= 		get_option('ead_download', 'none');
+        $show = false;
+        extract(shortcode_atts(array('url' 		=> '',
+        							 'drive' 	=> '', 
+        							 'width' 	=> $default_width,
+        							 'height' 	=> $default_height, 
+        							 'language' => 'en', 
+        							 'viewer' 	=> $default_provider, 
+        							 'download' => $default_download), $atts));
+	    if(isset($atts['provider']))	
+	    	$viewer		=	$atts['provider'];
+        if ($url):
+            $filedata = wp_remote_head($url);
+            $durl = '';
+            $privatefile = '';
+            if (ead_allowdownload($viewer)) if ($download == 'alluser' or $download == 'all') {
+                $show = true;
+            } elseif ($download == 'logged' AND is_user_logged_in()) {
+                $show = true;
+            }
+            if ($show) {
+                $filesize = 0;
+                $url = esc_url($url, array('http', 'https'));
+                
+                if (isset($filedata['headers']['content-length'])) {
+                    $filesize = ead_human_filesize($filedata['headers']['content-length']);
+                } else {
+                    $filesize = 0;
+                }
+                $fileHtml = '';
+                if ($filesize) $fileHtml = ' [' . $filesize . ']';
+                $durl = '<p class="embed_download"><a href="' . $url . '" download >' . __('Download', 'ead') . $fileHtml . ' </a></p>';
+            }
+            
+            $url = esc_url($url, array('http', 'https'));
+            $providerList = array('google', 'microsoft', 'drive', 'box');
+            if (!in_array($viewer, $providerList)) $viewer = 'google';
+            switch ($viewer) {
+                case 'google':
+                    $embedsrc = '//docs.google.com/viewer?url=%1$s&embedded=true&hl=%2$s';
+                    $iframe = sprintf($embedsrc, urlencode($url), esc_attr($language));
+                    break;
+
+                case 'microsoft':
+                    $embedsrc = '//view.officeapps.live.com/op/embed.aspx?src=%1$s';
+                    $iframe = sprintf($embedsrc, urlencode($url));
+                    break;
+            }
+            $style = 'style="width:%1$s; height:%2$s; border: none;"';
+            $stylelink = sprintf($style, ead_sanitize_dims($width), ead_sanitize_dims($height));
+            $iframe = '<iframe src="' . $iframe . '" ' . $stylelink . '></iframe>';
+            $show = false;
+            $embed = '<div class="ead-document">' . $iframe . $privatefile . $durl . '</div>';
+        else:
+            $embed = __('No Url Found', 'ead');
+        endif;
+        return $embed;
+    }
  
 	/**
      * Admin menu setup

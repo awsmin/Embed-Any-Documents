@@ -1,5 +1,4 @@
 <?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?> 
-
 <div id="embed-popup-wrap">
     <div id="embed-popup">
         <button title="Close (Esc)" type="button" class="mfp-close">×</button>
@@ -9,20 +8,19 @@
         <div class="section">
             <div id="embed_message" class="awsm-error" style="display:none;"><p></p></div>
             <div class="ead_container">
-            <ul class="tabs">
-                <li class="current"><?php _e('Upload and Embed','ead');?></li>
-                <li><?php _e('Add From URL','ead');?></li>
-            </ul>
             <form action="" onSubmit="return false" method="post" enctype="multipart/form-data" id="Docuploader">
-            <div class="box visible">
-                 <div class="text-center"><input type="button"  value="Upload Document" class="ead-btn button-primary button-large" id="upload_doc"/></div> 
-            
-            </div>
-            <div class="box">
+            <ul class="ead-options">
+                <li><a href="#" id="upload_doc"><span><img src="<?php echo $this->plugin_url;?>images/icon-upload.png" alt="Upload document" /><?php _e('Upload Document','ead');?></span></a></li>
+                <li><a href="#" id="addDocUrl"><span><img src="<?php echo $this->plugin_url;?>images/icon-link.png" alt="Add From URL" /><?php _e('Add from URL','ead');?></span></a></li>
+                <li><a href="#" id="ead_getpro"><span><img src="<?php echo $this->plugin_url;?>images/icon-link.png" alt="Get Embed Any Document Plus" /></span></a></li>
+            </ul>
+            <div class="box addurl_box">
              <label for="awsm_url"><?php _e('Enter document URL','ead');?></label>
                 <input name="awsm_url" type="text" class="opt dwl input-group-text" id="awsm_url"/>
                 <input type="button"  value="Add URL" class="ead-btn button-primary input-group-btn" id="add_url"/>  
-            </div>            
+                <div class="clear"></div>
+                <a href="#" class="go-back">back</a> 
+            </div>        
             </form>
             </div><!--ead_container-->
             <div class="upload-success">
@@ -31,43 +29,50 @@
                     <p id="ead_filename"></p>
                     <span id="ead_filesize"></span>
                 </div>
-                <a class="ead-btn button" id="adv_options"><?php _e('Advanced Options','ead');?></a>
+                <!-- <a class="ead-btn button" id="adv_options"><?php _e('Advanced Options','ead');?></a> -->
                 <div class="clear"></div>
-            </div>
-                     <div class="advanced_options">
-            <ul class="option-fields">
+                </div>
+                <div class="advanced_options">
+                    <h3>Advanced Options  <span>(Leave blank for default settings)</span></h3>
+                <ul class="option-fields">
+                    <li>
+                        <div class="f-left"><label>Width</label> <input type="text" name="width"  class="embedval input-small" id="ead_width" value="<?php echo get_option('ead_width', '100%' );?>"></div>
+                        <div class="f-left"><label>Height</label> <input type="text" name="height" class="embedval input-small" id="ead_height"  value="<?php echo get_option('ead_height', '500px' );?>"></div>
+                        <div class="f-left" id="ead_downloadc">
+                        <label><?php _e('Show Download Link','ead');?></label> 
+                        <?php 
+                        $downoptions= array('all' => __('For all users',$this->text_domain),'logged' => __('For Logged-in users',$this->text_domain),'none' => __('No Download',$this->text_domain));
+                        ead_selectbuilder('ead_download', $downoptions,esc_attr( get_option('ead_download')),'ead_usc'); 
+                        ?> 
+                        </div>
+                        <div class="f-left last" id="new_provider">
+                        <label><?php _e('Viewer','ead');?></label> 
+                        <?php 
+                        $providers = array('google' => __('Google Docs Viewer',$this->text_domain),'microsoft' => __('Microsoft Office Online',$this->text_domain));
+                        ead_selectbuilder('ead_provider', $providers,esc_attr( get_option('ead_provider','google')),'ead_usc'); 
+                        ?> 
+                        </div>
+                        <div class="f-left last" id="ead_pseudo" style="display:none">
+                        <label><?php _e('Viewer','ead');?></label> 
+                        <select name="ead_pseudo" disabled>
+                            <option value="box">Box</option>
+                            <option value="drive">Drive</option>
+                        </select> 
+                        </div>
+                        <div class="clear"></div>
+                    </li>
               
-                <li>
-                    <div class="f-left"><label>Width</label> <input type="text" name="width"  class="embedval input-small" id="ead_width" value="<?php echo get_option('ead_width', '100%' );?>"></div>
-                    <div class="f-left"><label>Height</label> <input type="text" name="height" class="embedval input-small" id="ead_height"  value="<?php echo get_option('ead_height', '500px' );?>"></div>
-                    <div class="f-left">
-                    <label><?php _e('Show Download Link','ead');?></label> 
-                    <?php 
-                    $downoptions= array('alluser' => __('For all users',$this->text_domain),'logged' => __('For Logged-in users',$this->text_domain),'none' => __('No Download',$this->text_domain));
-                    ead_selectbuilder('ead_download', $downoptions,esc_attr( get_option('ead_download')),'embed_download ead_usc'); 
-                    ?> 
-                    </div>
-                   <div class="f-left last">
-                    <label><?php _e('Provider','ead');?></label> 
-                    <?php 
-                    $providers = array('google' => __('Google Docs Viewer',$this->text_domain),'microsoft' => __('Microsoft Office Online',$this->text_domain));
-                    ead_selectbuilder('ead_provider', $providers,esc_attr( get_option('ead_provider','google')),'ead_provider ead_usc'); 
-                    ?> 
-                    </div>
-                    <div class="clear"></div>
-                </li>
-              
-                 <li>
-                    <label><?php _e('Shortcode Preview', 'ead'); ?></label>
-                    <textarea name="shortcode" style="width:100%" id="shortcode" readonly="readonly"></textarea>
-                </li>            
+                     <li>
+                        <label><?php _e('Shortcode Preview', 'ead'); ?></label>
+                        <textarea name="shortcode" style="width:100%" id="shortcode" readonly="readonly"></textarea>
+                    </li>            
                 </ul>
             </div>
-            </div>
+        </div>
        
         <div class="mceActionPanel">
         <div style="float: right">
-            <input type="button" id="insert_doc" name="insert" class="ead-btn button button-primary button-medium" value="<?php _e('Insert', 'ead'); ?>" disabled/>
+            <input type="button" id="insert_doc" name="insert" data-txt="<?php _e('Insert', 'ead'); ?>" data-loading="<?php _e('Loading...', 'ead'); ?>" class="ead-btn button button-primary button-medium" value="<?php _e('Insert', 'ead'); ?>" disabled/>
         </div>
         
         <div style="float: left">
@@ -77,4 +82,4 @@
         </div>
     </div>  
     </div>
-</div>
+</div> 
