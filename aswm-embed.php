@@ -159,6 +159,8 @@ class Awsm_embed {
         							 'download' => $default_download), $atts));
 	    if(isset($atts['provider']))	
 	    	$viewer		=	$atts['provider'];
+	    if(!isset($atts['provider']) AND !isset($atts['viewer']))
+	    	$viewer		= 	'google';
         if ($url):
             $filedata = wp_remote_head($url);
             $durl = '';
