@@ -77,6 +77,7 @@
     </div><!-- .ead-left-wrap -->
     <div class="ead-right-wrap">
         <a href="http://goo.gl/wJTQlc" target="_blank" title="Embed Any Document Plus"><img src="http://awsm.in/innovations/ead/ead-plus-banner.png" alt="AWSM!"></a>
+        <div class="ead-right-inner">
         <a href="http://awsm.in" target="_blank" title="AWSM Innovations"><img src="http://awsm.in/innovations/ead/logo.png" alt="AWSM!"></a>
     <div class="author-info">
         This plugin is developed <br/>by <a href="http://awsm.in" target="_blank" title="AWSM Innovations">AWSM Innovations.</a>
@@ -87,6 +88,7 @@
         <li><a href="https://github.com/awsmin" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-github">Github</span></a></li>
         <li><a href="https://www.behance.net/awsmin" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-behance">Behance</span></a></li>
     </ul>
+    </div>
     </div><!-- .ead-right-wrap -->
     <div class="clear"></div>
 </div><!-- .wrap -->
