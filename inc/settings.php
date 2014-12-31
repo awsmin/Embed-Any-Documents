@@ -76,6 +76,7 @@
         </div><!-- #support-->
     </div><!-- .ead-left-wrap -->
     <div class="ead-right-wrap">
+        <a href="http://goo.gl/wJTQlc" target="_blank" title="Embed Any Document Plus"><img src="http://awsm.in/innovations/ead/ead-plus-banner.png" alt="AWSM!"></a>
         <a href="http://awsm.in" target="_blank" title="AWSM Innovations"><img src="http://awsm.in/innovations/ead/logo.png" alt="AWSM!"></a>
     <div class="author-info">
         This plugin is developed <br/>by <a href="http://awsm.in" target="_blank" title="AWSM Innovations">AWSM Innovations.</a>
@@ -86,25 +87,6 @@
         <li><a href="https://github.com/awsmin" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-github">Github</span></a></li>
         <li><a href="https://www.behance.net/awsmin" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-behance">Behance</span></a></li>
     </ul>
-    <div class="paypal">
-    <p>Liked the plugin? You can support our Open Source projects with a donation</p>
-
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-    <input type="hidden" name="cmd" value="_xclick">
-    <input type="hidden" name="business" value="pay@fidiz.com">
-    <input type="hidden" name="lc" value="IN">
-    <input type="hidden" name="item_name" value="Donation For Embed Any Document">
-    <input type="hidden" name="currency_code" value="USD">
-    <input type="hidden" name="button_subtype" value="services">
-    <input type="hidden" name="no_note" value="0">
-    <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
-    <span class="ead_doller">$</span><input type="text" name="amount" value="10.00" class="small">
-    <input type='hidden' name='cancel_return' value='<?php echo admin_url('options-general.php?page='.$this->settings_slug);?>'>
-    <input type='hidden' name='return' value='http://awsm.in/paypal/thankyou'>
-    <input type="image" src="<?php echo $this->plugin_url . 'images/donate.gif';?>" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-    <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-    </form>
-    </div>
     </div><!-- .ead-right-wrap -->
     <div class="clear"></div>
 </div><!-- .wrap -->

@@ -3,7 +3,7 @@
   Plugin Name: Embed Any Document
   Plugin URI: http://awsm.in/embed-any-documents
   Description: Embed Any Document WordPress plugin lets you upload and embed your documents easily in your WordPress website without any additional browser plugins like Flash or Acrobat reader. The plugin lets you choose between Google Docs Viewer and Microsoft Office Online to display your documents. 
-  Version: 1.1.1
+  Version: 2.0
   Author: Awsm Innovations
   Author URI: http://awsm.in
   License: GPL V3
@@ -39,7 +39,7 @@ class Awsm_embed {
 		$this->plugin_base  	=	dirname( plugin_basename( __FILE__ ) );
 		$this->plugin_file  	=	__FILE__  ;
 		$this->settings_slug	=	'ead-settings';
-		$this->plugin_version	=	'1.1.1';
+		$this->plugin_version	=	'2.0';
 
 		load_plugin_textdomain($this->text_domain, false,$this->plugin_base . '/language' );
 
@@ -183,7 +183,7 @@ class Awsm_embed {
             }
             
             $url = esc_url($url, array('http', 'https'));
-            $providerList = array('google', 'microsoft', 'drive', 'box');
+            $providerList = array('google', 'microsoft');
             if (!in_array($viewer, $providerList)) $viewer = 'google';
             switch ($viewer) {
                 case 'google':
@@ -270,6 +270,16 @@ class Awsm_embed {
             'ai'		=>		'application/postscript',
 		));
 	}
+	/**
+     * To get Overlay link
+     */
+    function providerlink($keys, $id, $provider) {
+        $link = 'http://goo.gl/wJTQlc';
+        $id = "";
+        $configure = '<span class="overlay"><strong>' . __('Buy Pro Version', $this->text_domain) . '</strong><i></i></span>';
+        $target = 'target="_blank"';
+        echo '<a href="' . $link . '" id="' . $id . '" ' . $target . '><span><img src="' . $this->plugin_url . 'images/icon-' . strtolower($provider) . '.png" alt="Add From ' . $provider . '" />' . __('Add from ' . $provider, $this->text_domain) . $configure . '</span></a>';
+    }
 	/**
      * To initialize default options
     */

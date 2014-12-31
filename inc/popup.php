@@ -12,7 +12,9 @@
             <ul class="ead-options">
                 <li><a href="#" id="upload_doc"><span><img src="<?php echo $this->plugin_url;?>images/icon-upload.png" alt="Upload document" /><?php _e('Upload Document','ead');?></span></a></li>
                 <li><a href="#" id="addDocUrl"><span><img src="<?php echo $this->plugin_url;?>images/icon-link.png" alt="Add From URL" /><?php _e('Add from URL','ead');?></span></a></li>
-                <li><a href="#" id="ead_getpro"><span><img src="<?php echo $this->plugin_url;?>images/icon-link.png" alt="Get Embed Any Document Plus" /></span></a></li>
+                <li><?php echo $this->providerlink('ead_dropbox','DropBoxUpload','Dropbox') ;?></li>
+                <li><?php echo $this->providerlink(array('ead_drivekey','ead_driveClient'),'GooglePicker','Drive') ;?></li>
+                <li><?php echo $this->providerlink('ead_box','boxPicker','Box') ;?></li>
             </ul>
             <div class="box addurl_box">
              <label for="awsm_url"><?php _e('Enter document URL','ead');?></label>
