@@ -65,7 +65,7 @@ Upload or link the documents to your site using the ‘Add Document’ button in
 1. ‘Add Document’ button integrated into WordPress visual editor
 2. Add document popup
 3. Inserting Document
-4. Settings panel
+4. Add from URL
 
 
 == Frequently Asked Questions ==
@@ -80,6 +80,12 @@ The viewers (Google Docs Viewer and Microsoft Office Online) do not support loca
 Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
+
+= V 2.0 - 2014-12-31 =
+* UI Improvements
+* Various bug fixes
+* Performance improvements
+* Introduced plus version with cloud support
 
 = V 1.0.2 - 2014-11-24 =
 * Added option in advanced option to choose viewer.
@@ -98,6 +104,11 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 
 == Upgrade Notice ==
+
+= V 2.0 =
+* UI Improvements
+* Various bug fixes
+* Performance improvements
 
 = V 1.1.1=
 * Removed media insert override option.

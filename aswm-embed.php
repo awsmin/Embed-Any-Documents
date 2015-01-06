@@ -228,7 +228,7 @@ class Awsm_embed {
     function register_eadsettings() {
 	    register_setting( 'ead-settings-group', 'ead_width' ,'ead_sanitize_dims');
 	    register_setting( 'ead-settings-group', 'ead_height','ead_sanitize_dims' );
-	    register_setting( 'ead-settings-group', 'ead_provider','ead_sanitize_provider' );
+	    register_setting( 'ead-settings-group', 'ead_provider' );
 	    register_setting( 'ead-settings-group', 'ead_download' );
 	    register_setting( 'ead-settings-group', 'ead_mediainsert' );
 	}
