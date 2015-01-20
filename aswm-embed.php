@@ -173,12 +173,11 @@ class Awsm_embed {
             if ($show) {
                 $filesize = 0;
                 $url = esc_url($url, array('http', 'https'));
-                
-                if (isset($filedata['headers']['content-length'])) {
-                    $filesize = ead_human_filesize($filedata['headers']['content-length']);
-                } else {
-                    $filesize = 0;
-                }
+                if (!is_wp_error($filedata) && isset($filedata['headers']['content-length'])) {
+				    $filesize = ead_human_filesize($filedata['headers']['content-length']);
+				} else {
+				    $filesize = 0;
+				}
                 $fileHtml = '';
                 if ($filesize) $fileHtml = ' [' . $filesize . ']';
                 $durl = '<p class="embed_download"><a href="' . $url . '" download >' . __('Download', 'ead') . $fileHtml . ' </a></p>';
