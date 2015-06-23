@@ -93,7 +93,7 @@ function ead_validateurl($url) {
             } else {
                 $json['file']['filename'] = __("Document", 'ead');
             }
-            if (isset($remote['headers']['content-length'])) {
+            if (!is_wp_error($filedata) && isset($filedata['headers']['content-length'])) {
                 $json['file']['filesizeHumanReadable'] = ead_human_filesize($remote['headers']['content-length']);
             } else {
                 $json['file']['filesizeHumanReadable'] = 0;

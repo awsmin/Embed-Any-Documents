@@ -1,4 +1,7 @@
-<?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?> 
+<?php 
+if ( ! defined( 'ABSPATH' ) ) { exit; } 
+add_thickbox();
+?> 
 <div id="embed-popup-wrap">
     <div id="embed-popup">
         <button title="Close (Esc)" type="button" class="mfp-close">×</button>

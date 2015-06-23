@@ -81,6 +81,10 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
 
+= V 2.1 - 2015-01-25 =
+* Missing image fix.
+* Error handling.
+
 = V 2.0 - 2014-12-31 =
 * UI Improvements
 * Various bug fixes
@@ -104,6 +108,10 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 
 == Upgrade Notice ==
+
+= V 2.1 =
+* Missing image fix.
+* Error handling.
 
 = V 2.0 =
 * UI Improvements
