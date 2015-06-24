@@ -30,8 +30,9 @@ jQuery(document).ready(function($) {
     $('body').on('click', '.awsm-embed', function(e) {
         ead_reset();
         e.preventDefault();
-        $wrap.show();
-        tb_show("Embed Any Document", "#TB_inline?inlineId=embed-popup-wrap&amp;modal=true", null);
+        $('body').addClass('ead-popup-on');
+        tb_show("Embed Any Document", "#TB_inline?inlineId=embed-popup-wrap&amp;width=1030&amp;modal=true", null);
+        tb_position();
         return;
     });
     //sanitize width and height
@@ -45,6 +46,23 @@ jQuery(document).ready(function($) {
         }
         return dim;
     }
+    //Thickbox Handler
+    function tb_position() {
+            var tbWindow = $('#TB_window');
+            var width = $(window).width();
+            var H = $(window).height();
+            var W = ( 1080 < width ) ? 1080 : width;
+
+            if ( tbWindow.size() ) {
+                tbWindow.width( W - 50 ).height( H - 45 );
+                //$('#TB_iframeContent').width( W - 50 ).height( H - 75 );
+                $('#TB_ajaxContent').css({'width':'100%','height':'100%','padding':'0'});
+                tbWindow.css({'margin-left': '-' + parseInt((( W - 50 ) / 2),10) + 'px'});
+                if ( typeof document.body.style.maxWidth != 'undefined' )
+                    tbWindow.css({'top':'20px','margin-top':'0'});
+                $('#TB_title').css({'background-color':'#fff','color':'#cfcfcf'});
+            };
+    };
     //Update shortcode on change
     $(".ead_usc").change(function() {
         newprovider = "";
@@ -63,7 +81,7 @@ jQuery(document).ready(function($) {
             return;
         }
         frame = wp.media({
-            title: 'Embed Any Document Plus',
+            title: 'Embed Any Document',
             multiple: false,
             library: {
                 type: emebeder.validtypes,
@@ -184,7 +202,7 @@ jQuery(document).ready(function($) {
     function awsm_shortcode() {
         if (fileurl) {
             wp.media.editor.insert($shortcode.text());
-            $.magnificPopup.close();
+            remove_eadpop();
         } else {
             showmsg(emebeder.nocontent);
         }
@@ -212,15 +230,22 @@ jQuery(document).ready(function($) {
     }
     // Close embed dialog
     $('#embed-popup').on('click', '.cancel_embed,.mfp-close', function(e) {
-        // Close popup
-        tb_remove();
         // Prevent default action
         e.preventDefault();
+        remove_eadpop();
     });
     //UploadClass
     function UploadClass(uPclass) {
         $(".uploaded-doccument").removeClass("ead-link ead-upload ead-dropbox ead-drive ead-box");
         $('.uploaded-doccument').addClass('ead-' + uPclass);
+    }
+    //close popup
+    function remove_eadpop(){
+        // Close popup
+        tb_remove();
+        setTimeout(function() {
+           $('body').removeClass('ead-popup-on');
+        }, 800);
     }
     //Convert Filesize to human Readable filesize
     function humanFileSize(bytes) {

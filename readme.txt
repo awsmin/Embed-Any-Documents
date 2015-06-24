@@ -4,7 +4,7 @@ Donate link: http://awsm.in/donate
 Tags: embed documents, upload pdf, embed ppt, document viewer, pdf viewer, pdf viewer plugin, display pdf, embed pdf, embed pdf in wordpress, word, word viewer, word document, embed word, word plugin, doc, doc viewer, docx, docx viewer, excel, excel plugin, xls, xlsx, spreadsheet, embed spreadsheet, powerpoint, powerpoint viewer, ppt, ppt viewer, pptx, image viewer
 Author URI: http://awsm.in
 Requires at least: 3.5
-Tested up to: 4.1
+Tested up to: 4.2.2
 Stable tag: trunk
 License: GPLv2 
 
@@ -81,6 +81,10 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
 
+= V 2.2 - 2015-06-24 =
+* Replaced magnific popup with thickbox.
+* Fixed: Media library serach bug. 
+
 = V 2.1 - 2015-01-25 =
 * Missing image fix.
 * Error handling.
@@ -108,6 +112,10 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 
 == Upgrade Notice ==
+
+= V 2.2 =
+* Replaced magnific popup with thickbox.
+* Fixed: Media library serach bug. 
 
 = V 2.1 =
 * Missing image fix.

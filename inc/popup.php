@@ -1,10 +1,7 @@
-<?php 
-if ( ! defined( 'ABSPATH' ) ) { exit; } 
-add_thickbox();
-?> 
+<?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?> 
 <div id="embed-popup-wrap">
     <div id="embed-popup">
-        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+        <button title="Close" type="button" class="mfp-close">×</button>
         <div id="popup-header">
         <h1><?php _e('Add Document','ead');?></h1>
         </div>
