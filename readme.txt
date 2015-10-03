@@ -4,7 +4,7 @@ Donate link: http://awsm.in/donate
 Tags: embed documents, upload pdf, embed ppt, document viewer, pdf viewer, pdf viewer plugin, display pdf, embed pdf, embed pdf in wordpress, word, word viewer, word document, embed word, word plugin, doc, doc viewer, docx, docx viewer, excel, excel plugin, xls, xlsx, spreadsheet, embed spreadsheet, powerpoint, powerpoint viewer, ppt, ppt viewer, pptx, image viewer
 Author URI: http://awsm.in
 Requires at least: 3.5
-Tested up to: 4.0
+Tested up to: 4.3.1
 Stable tag: trunk
 License: GPLv2 
 
@@ -65,7 +65,7 @@ Upload or link the documents to your site using the ‘Add Document’ button in
 1. ‘Add Document’ button integrated into WordPress visual editor
 2. Add document popup
 3. Inserting Document
-4. Settings panel
+4. Add from URL
 
 
 == Frequently Asked Questions ==
@@ -81,20 +81,65 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
 
-= V1.0.2 - 2014-11-24 =
+= V 2.2.1 - 2015-10-03 =
+* New Language localization.
+
+= V 2.2 - 2015-06-24 =
+* Replaced magnific popup with thickbox.
+* Fixed: Media library serach bug. 
+* UI Improvements
+
+= V 2.1 - 2015-01-25 =
+* Missing image fix.
+* Error handling.
+
+= V 2.0 - 2014-12-31 =
+* UI Improvements
+* Various bug fixes
+* Performance improvements
+* Introduced plus version with cloud support
+
+= V 1.0.2 - 2014-11-24 =
 * Added option in advanced option to choose viewer.
 * Added option in settings to enable and disable media library insert.
 * Fixed: Editor permission issue.
 
+= V 1.1.1- 2014-12-8 =
+* Removed media insert override option.
 
-= V1.0.1 - 2014-11-12 =
+= V 1.0.1 - 2014-11-12 =
 * Removed unsupported file types.
 * Updated support tab.
 
+= V 1.1 - 2014-11-12 =
+* File Not Found fix
 
 
 == Upgrade Notice ==
 
-= V1.0.1 =
+= V 2.2.1 - 2015-10-03 =
+* New Language localization.
+
+= V 2.2 =
+* Replaced magnific popup with thickbox.
+* Fixed: Media library serach bug. 
+* UI Improvements
+
+= V 2.1 =
+* Missing image fix.
+* Error handling.
+
+= V 2.0 =
+* UI Improvements
+* Various bug fixes
+* Performance improvements
+
+= V 1.1.1=
+* Removed media insert override option.
+
+= V 1.0.1 =
 * Removed unsupported file types.
 * Updated support tab.
+
+= V 1.1 =
+* File Not Found fix

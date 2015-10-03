@@ -1,20 +1,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Embed Any Document\n"
-"POT-Creation-Date: 2014-11-24 13:11+0530\n"
-"PO-Revision-Date: 2014-11-24 13:13+0530\n"
+"POT-Creation-Date: 2014-11-07 14:45+0530\n"
+"PO-Revision-Date: 2014-11-10 11:22+0530\n"
 "Last-Translator: \n"
 "Language-Team: Awsm Innovations <hello@awsm.in>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.6.10\n"
-"X-Poedit-Basepath: ../\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;esc_attr_e\n"
 "Language: en_US\n"
-"X-Poedit-SearchPath-0: .\n"
 
 #: aswm-embed.php:77 inc/popup.php:6
 msgid "Add Document"
@@ -24,51 +20,47 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: aswm-embed.php:127
-msgid "Nothing to insert"
-msgstr ""
-
-#: aswm-embed.php:128
-msgid "Add URL"
-msgstr ""
-
-#: aswm-embed.php:129
-msgid "Verifying..."
-msgstr ""
-
-#: aswm-embed.php:154 aswm-embed.php:181
+#: aswm-embed.php:111 aswm-embed.php:156 aswm-embed.php:174 aswm-embed.php:185
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: inc/functions.php:96
-msgid "Done"
+#: aswm-embed.php:129
+msgid "Nothing to insert"
 msgstr ""
 
-#: inc/functions.php:101
-msgid "Document"
+#: aswm-embed.php:130
+msgid "Add URL"
 msgstr ""
 
-#: inc/functions.php:106
-msgid "File format is not supported."
+#: aswm-embed.php:131
+msgid "Verifying..."
 msgstr ""
 
-#: inc/functions.php:111
-msgid "Not a valid URL. Please try again."
-msgstr ""
-
-#: inc/functions.php:118
-msgid "Sorry, the file URL is not valid."
-msgstr ""
-
-#: inc/functions.php:190
+#: inc/functions.php:87
 msgid "Download"
 msgstr ""
 
-#: inc/functions.php:195
-msgid "File Not Found"
+#: inc/functions.php:105
+msgid "Done"
 msgstr ""
 
-#: inc/functions.php:198
+#: inc/functions.php:110
+msgid "Document"
+msgstr ""
+
+#: inc/functions.php:115
+msgid "File format is not supported."
+msgstr ""
+
+#: inc/functions.php:120
+msgid "Not a valid URL. Please try again."
+msgstr ""
+
+#: inc/functions.php:127
+msgid "Sorry, the file URL is not valid."
+msgstr ""
+
+#: inc/functions.php:175
 msgid "No Url Found"
 msgstr ""
 
@@ -88,43 +80,31 @@ msgstr ""
 msgid "Advanced Options"
 msgstr ""
 
-#: inc/popup.php:43 inc/settings.php:65
+#: inc/popup.php:43 inc/settings.php:38
 msgid "Show Download Link"
 msgstr ""
 
-#: inc/popup.php:45 inc/settings.php:68
+#: inc/popup.php:45 inc/settings.php:41
 msgid "For all users"
 msgstr ""
 
-#: inc/popup.php:45 inc/settings.php:68
+#: inc/popup.php:45 inc/settings.php:41
 msgid "For Logged-in users"
 msgstr ""
 
-#: inc/popup.php:45 inc/settings.php:68
+#: inc/popup.php:45 inc/settings.php:41
 msgid "None"
 msgstr ""
 
-#: inc/popup.php:50
-msgid "Provider"
-msgstr ""
-
-#: inc/popup.php:52 inc/settings.php:18
-msgid "Google Docs Viewer"
-msgstr ""
-
-#: inc/popup.php:52 inc/settings.php:18
-msgid "Microsoft Office Online"
-msgstr ""
-
-#: inc/popup.php:60
+#: inc/popup.php:53
 msgid "Shortcode Preview"
 msgstr ""
 
-#: inc/popup.php:69
+#: inc/popup.php:62
 msgid "Insert"
 msgstr ""
 
-#: inc/popup.php:73
+#: inc/popup.php:66
 msgid "Cancel"
 msgstr ""
 
@@ -144,51 +124,43 @@ msgstr ""
 msgid "Embed Using"
 msgstr ""
 
-#: inc/settings.php:22
-msgid "Supported file formats"
+#: inc/settings.php:18
+msgid "Google Docs Viewer"
 msgstr ""
 
-#: inc/settings.php:51
+#: inc/settings.php:18
+msgid "Microsoft Office Online"
+msgstr ""
+
+#: inc/settings.php:24
 msgid "Default Size"
 msgstr ""
 
-#: inc/settings.php:53
+#: inc/settings.php:26
 msgid "Width"
 msgstr ""
 
-#: inc/settings.php:57
+#: inc/settings.php:30
 msgid "Height"
 msgstr ""
 
-#: inc/settings.php:61
-msgid "Enter values in pixels or percentage (Example: 500px or 100%)"
+#: inc/settings.php:34
+msgid "Enter values in pixels or percentage (Example: 300px or 100%)"
 msgstr ""
 
-#: inc/settings.php:74
-msgid "Override Default Media Insert?"
-msgstr ""
-
-#: inc/settings.php:77
-msgid "Auto-embed supported documents"
-msgstr ""
-
-#: inc/settings.php:77
-msgid "Insert as link (WordPress Default)"
-msgstr ""
-
-#: inc/settings.php:92
+#: inc/settings.php:55
 msgid "Name"
 msgstr ""
 
-#: inc/settings.php:96
+#: inc/settings.php:62
 msgid "Email ID"
 msgstr ""
 
-#: inc/settings.php:100
+#: inc/settings.php:69
 msgid "Problem"
 msgstr ""
 
-#: inc/settings.php:104
+#: inc/settings.php:77
 msgid "Submit"
 msgstr ""
 
@@ -206,4 +178,8 @@ msgstr ""
 
 #: inc/support-mail.php:38
 msgid "Cheating ?"
+msgstr ""
+
+#: inc/functions.php:180
+msgid "File Not Found"
 msgstr ""

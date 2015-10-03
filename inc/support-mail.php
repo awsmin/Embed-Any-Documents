@@ -23,7 +23,7 @@ if ( 'POST' == $_SERVER['REQUEST_METHOD']) {
 </table>';
 add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
 $tomail='hello@awsm.in';
-$subject =  "[EAD] Support Request From ". get_option('blogname');
+$subject =  "[EAD-free] Support Request From ". get_option('blogname');
 $headers = "Reply-To: <" . $email_id . ">\n";
 if (wp_mail( $tomail, $subject, $mailmessage, $headers )) {
     $json['status'] = true;

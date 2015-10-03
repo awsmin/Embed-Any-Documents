@@ -1,52 +1,13 @@
 <?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?>
 <div class="wrap">
     <h2 class="ead-title"><?php _e('Embed Any Document by AWSM.in',$this->text_domain);?></h2>
-    <h2 class="nav-tab-wrapper">
-            <a class="nav-tab nav-tab-active" href="#" data-tab="general"><?php _e( 'General Settings', $this->text_domain); ?></a>
-            <a class="nav-tab " href="#" data-tab="support"><?php _e( 'Support', $this->text_domain); ?></a>
-        </h2>
     <div class="ead-left-wrap">
         
         <div class="tabs visible" id="general">
+            <h3>General Settings</h3>
             <form method="post" action="options.php">
                 <?php settings_fields( 'ead-settings-group' ); ?>
                 <table class="form-table">
-                    <tr valign="top">
-                    <th scope="row"><?php _e('Embed Using',$this->text_domain);?></th>
-                    <td>
-                       <?php 
-                        $providers= array('google' => __('Google Docs Viewer',$this->text_domain),'microsoft' => __('Microsoft Office Online',$this->text_domain));
-                        ead_selectbuilder('ead_provider', $providers,esc_attr( get_option('ead_provider','google'))); 
-                        ?> 
-                        <div class="ead_supported">
-                        <span><?php _e('Supported file formats',$this->text_domain);?></span>
-                        <div class="supportedlist hidden" id="ead_google">
-                            <ul>
-                                <li><span class="ead-check"></span>Microsoft Word (docx, docm, dotm, dotx)</li>
-                                <li><span class="ead-check"></span>Microsoft Excel (xlsx, xlsb, xls, xlsm)</li>
-                                <li><span class="ead-check"></span>Microsoft PowerPoint (pptx, ppsx, ppt, pps, pptm, potm, ppam, potx, ppsm)</li>
-                                <li><span class="ead-check"></span>Adobe Portable Document Format (pdf)</li>
-                                <li><span class="ead-check"></span>Text files (txt)</li>
-                                <li><span class="ead-check"></span>TIFF Images (tif, tiff)</li>
-                                <li><span class="ead-check"></span>Adobe Illustrator (ai)</li>
-                                <li><span class="ead-check"></span>Scalable Vector Graphics (svg)</li> 
-                            </ul>
-                        </div>
-                        <div class="supportedlist hidden" id="ead_microsoft">
-                            <ul>
-                                <li><span class="ead-check"></span>Microsoft Word (docx, docm, dotm, dotx)</li>
-                                <li><span class="ead-check"></span>Microsoft Excel (xlsx, xlsb, xls, xlsm)</li>
-                                <li><span class="ead-check"></span>Microsoft PowerPoint (pptx, ppsx, ppt, pps, pptm, potm, ppam, potx, ppsm)</li>
-                                <li><span class="ead-close"></span>Adobe Portable Document Format (pdf)</li>
-                                <li><span class="ead-close"></span>Text files (txt)</li>
-                                <li><span class="ead-close"></span>TIFF Images (tif, tiff)</li>
-                                <li><span class="ead-close"></span>Adobe Illustrator (ai)</li>
-                                <li><span class="ead-close"></span>Scalable Vector Graphics (svg)</li> 
-                            </ul>
-                        </div>
-                        </div>
-                    </td>
-                    </tr>
                     <tr valign="top">
                         <th scope="row"><?php _e('Default Size', $this->text_domain); ?></th>
                         <td> 
@@ -65,138 +26,52 @@
                     <th scope="row"><?php _e('Show Download Link',$this->text_domain);?></th>
                     <td>
                        <?php 
-                        $downoptions= array('alluser' => __('For all users',$this->text_domain),'logged' => __('For Logged-in users',$this->text_domain),'none' => __('None',$this->text_domain));
+                        $downoptions= array('alluser' => __('For all users',$this->text_domain),'logged' => __('For Logged-in users',$this->text_domain),'none' => __('No Download',$this->text_domain));
                         ead_selectbuilder('ead_download', $downoptions,esc_attr( get_option('ead_download','none'))); 
                         ?> 
                     </td>
                     </tr>
-                    <tr valign="top">
-                    <th scope="row"><?php _e('Override Default Media Insert?',$this->text_domain);?></th>
-                    <td>
-                       <?php 
-                        $downoptions= array('1' => __('Auto-embed supported documents',$this->text_domain),'0' => __('Insert as link (WordPress Default)',$this->text_domain));
-                        ead_selectbuilder('ead_mediainsert', $downoptions,esc_attr( get_option('ead_mediainsert','1'))); 
-                        ?> 
-                    </td>
-                    </tr>
                 </table>
+                <div class="ead-form-footer">
                 <?php submit_button(); ?>
+                </div>
             </form>
         </div><!-- #general-->
-        <div class="tabs" id="support">
-            <div id="embed_message"><p></p></div>
-            <div class="col-left">
-            <?php  $current_user = wp_get_current_user();   ?>
-            <form id="supportform" action="">
-                <p>
-                    <label><?php _e('Name', $this->text_domain); ?><span class="required">*</span></label>
-                    <input type="text" name="site_name"  value="<?php echo  $current_user->display_name; ?>" class="text-input" />
-                </p>
-                <p>
-                    <label><?php _e('Email ID', $this->text_domain); ?><span class="required">*</span></label>
-                    <input type="email" name="email_id" value="<?php echo  $current_user->user_email; ?>" class="text-input"/>
-                </p>
-                <p>
-                    <label><?php _e('Problem', $this->text_domain); ?><span class="required">*</span></label>
-                    <textarea name="problem"></textarea>
-                </p>
-                <p class="submit">
-                    <input type="submit" name="submit" id="submit" class="button button-primary" value="<?php _e('Submit', $this->text_domain); ?>">
-                </p>
-            </form>
-            </div>
-            <div class="col-right">
-                <p><strong>Frequently Reported Issues</strong></p>
-                <p>
-                    <strong>1. File not found error in my localhost site.</strong><br/>
-                    The viewers (Google Docs Viewer and Microsoft Office Online) do not support locally hosted files. <span style="border-bottom: 1px solid;">Your document has to be available online for the viewers to access.</span>
-                </p>
-                <p>
-                    <strong>2. Google Docs Viewer shows bandwidth exceeded error.</strong><br/>
-                    The issue is caused by Google Docs Viewer, not the plugin. Google Docs Viewer is a standalone documents viewer which doesn't limit bandwidth. When the problem occurs, usually reloading the page will result in the document loading properly. So it looks more like a bug from their side. Many developers reported the same issue in Google Developer Forums. Hope it will be fixed soon.
-                </p>
-            </div>
-            <div class="clear"></div>
-        </div><!-- #support-->
+        <div class="ead-banner">
+            <a href="http://goo.gl/wJTQlc" target="_blank"><img src="<?php echo $this->plugin_url;?>images/eadplus-banner.png"></a>
+        </div>
     </div><!-- .ead-left-wrap -->
     <div class="ead-right-wrap">
-        <a href="http://awsm.in" target="_blank" title="AWSM Innovations"><img src="http://awsm.in/innovations/ead/logo.png" alt="AWSM!"></a>
-    <div class="author-info">
-        This plugin is developed <br/>by <a href="http://awsm.in" target="_blank" title="AWSM Innovations">AWSM Innovations.</a>
-    </div><!-- .author-info -->
+        <div class="ead-right-inner">
+        <a href="http://awsm.in" target="_blank" title="AWSM Innovations"><img src="http://awsm.in/innovations/ead/logo2.jpg" alt="AWSM!"></a>
     <ul class="awsm-social">
         <li><a href="https://www.facebook.com/awsminnovations" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-facebook">Facebook</span></a></li>
         <li><a href="https://twitter.com/awsmin" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-twitter">Twitter</span></a></li>
         <li><a href="https://github.com/awsmin" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-github">Github</span></a></li>
         <li><a href="https://www.behance.net/awsmin" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-behance">Behance</span></a></li>
     </ul>
-    <div class="paypal">
-    <p>Liked the plugin? You can support our Open Source projects with a donation</p>
-
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-    <input type="hidden" name="cmd" value="_xclick">
-    <input type="hidden" name="business" value="pay@fidiz.com">
-    <input type="hidden" name="lc" value="IN">
-    <input type="hidden" name="item_name" value="Donation For Embed Any Document">
-    <input type="hidden" name="currency_code" value="USD">
-    <input type="hidden" name="button_subtype" value="services">
-    <input type="hidden" name="no_note" value="0">
-    <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
-    <span class="ead_doller">$</span><input type="text" name="amount" value="10.00" class="small">
-    <input type='hidden' name='cancel_return' value='<?php echo admin_url('options-general.php?page='.$this->settings_slug);?>'>
-    <input type='hidden' name='return' value='http://awsm.in/paypal/thankyou'>
-    <input type="image" src="<?php echo $this->plugin_url . 'images/donate.gif';?>" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-    <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-    </form>
+    </div>
+    <div class="clearfix row-col">
+        <div class="col-2">
+            <a href="https://wordpress.org/support/view/plugin-reviews/embed-any-document#postform" target="_blank">
+                <img src="<?php echo $this->plugin_url;?>images/star.gif"><?php _e('Like the plugin?', $this->text_domain);?><br/><?php _e('Rate Now!', $this->text_domain);?>
+            </a>
+        </div>
+        <div class="col-2">
+            <a href="http://awsm.in/support" target="_blank">
+                <img src="<?php echo $this->plugin_url;?>images/ticket.gif"><?php _e('Need Help?', $this->text_domain);?><br/><?php _e('Open a Ticket', $this->text_domain);?>
+            </a>
+        </div>
+    </div>
+    <div class="ead-right-inner">
+    <h3>More Links</h3>
+    <ol>
+            <li><a href="http://awsm.in/ead-plus-documentation/#embedding" target="_blank" title="How to Embed Documents?"><?php _e('How to Embed Documents?', $this->text_domain); ?></a></li>
+            <li><a href="http://awsm.in/ead-plus-documentation/#viewers" target="_blank" title="About Viewers"><?php _e('About Viewers', $this->text_domain); ?></a></li>
+            <li><a href="http://awsm.in/ead-plus-documentation/#shortcode" target="_blank" title="Shortcode & Attributes"><?php _e('Shortcode & Attributes', $this->text_domain); ?></a></li>
+            <li><a href="http://awsm.in/support" target="_blank" title="FAQs"><?php _e('FAQs', $this->text_domain); ?></a></li>
+    </ol>
     </div>
     </div><!-- .ead-right-wrap -->
     <div class="clear"></div>
 </div><!-- .wrap -->
-<script type="text/javascript">
-jQuery(document).ready(function ($) {
-
-    jQuery( ".nav-tab" ).click(function(event) {
-        event.preventDefault();
-        $('.nav-tab').removeClass('nav-tab-active');
-        $(this).addClass('nav-tab-active');
-        var tab = '#'+ $(this).data('tab');
-        $(".tabs").hide();
-        $(tab).show();
-    });
-    $( "#supportform" ).submit(function( event ) {
-        event.preventDefault();
-        $.ajax({
-            type: "POST",
-            url:"<?php echo get_option('home')?>/wp-admin/admin-ajax.php",
-            dataType: 'json',
-            data: {  action: 'supportform' , contact :   $("#supportform").serialize()},
-            success: function(data)
-            {
-                supportmessage(data.status,data.message);
-            },
-            error: function(jqXHR, textStatus, errorThrown)
-            {
-                supportmessage(false,'Request failed');
-            }
-        }); 
-    });
-    function supportmessage(status,message){
-        if(status){
-            $('#embed_message').removeClass('awsm-error').addClass('awsm-updated');
-            $('#embed_message p').html(message);
-        } else{
-            $('#embed_message').removeClass('awsm-updated').addClass('awsm-error');
-            $('#embed_message p').html(message);
-        }
-    }
-    suppportedlist();
-    function suppportedlist(){
-        var provider = '#ead_'+$('#ead_provider').val();
-        $('.supportedlist').hide();
-        $(provider).show();
-    }
-    $('#ead_provider').live('change', function(e) {
-         suppportedlist();
-    });
-});
-</script>
