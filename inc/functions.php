@@ -86,12 +86,12 @@ function ead_validateurl($url) {
         $doctypes = ead_validmimeTypes();
         if (ead_validType($url, $doctypes)) {
             $json['status'] = true;
-            $json['message'] = __("Done", 'ead');
+            $json['message'] = __("Done", 'embed-any-document');
             $json['file']['url'] = $url;
             if (isset($filename)) {
                 $json['file']['filename'] = $filename['basename'];
             } else {
-                $json['file']['filename'] = __("Document", 'ead');
+                $json['file']['filename'] = __("Document", 'embed-any-document');
             }
             if (!is_wp_error($filedata) && isset($filedata['headers']['content-length'])) {
                 $json['file']['filesizeHumanReadable'] = ead_human_filesize($remote['headers']['content-length']);
@@ -99,14 +99,14 @@ function ead_validateurl($url) {
                 $json['file']['filesizeHumanReadable'] = 0;
             }
         } else {
-            $json['message'] = __("File format is not supported.", 'ead');
+            $json['message'] = __("File format is not supported.", 'embed-any-document');
             $json['status'] = false;
         }
     } elseif (is_wp_error($remote)) {
         $json['message'] = $remote->get_error_message();
         $json['status'] = false;
     } else {
-        $json['message'] = __('Sorry, the file URL is not valid.', 'ead');
+        $json['message'] = __('Sorry, the file URL is not valid.', 'embed-any-document');
         $json['status'] = false;
     }
     return $json;
@@ -123,10 +123,10 @@ function ead_ValidateDriveUrl($url) {
     $json['status'] = false;
     $json['message'] = '';
     if (wp_remote_retrieve_response_code($remote) == 200) {
-        $json['message'] = __("Done", 'ead');
+        $json['message'] = __("Done", 'embed-any-document');
         $json['status'] = true;
     } else {
-        $json['message'] = __('The document you have chosen is a not public.', 'ead') . __(' Only the owner and explicitly shared collaborators will be able to view it.', 'ead');
+        $json['message'] = __('The document you have chosen is a not public.', 'embed-any-document') . __(' Only the owner and explicitly shared collaborators will be able to view it.', 'embed-any-document');
         $json['status'] = false;
     }
     return $json;

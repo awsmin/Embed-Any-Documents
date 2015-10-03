@@ -3,10 +3,12 @@
   Plugin Name: Embed Any Document
   Plugin URI: http://awsm.in/embed-any-documents
   Description: Embed Any Document WordPress plugin lets you upload and embed your documents easily in your WordPress website without any additional browser plugins like Flash or Acrobat reader. The plugin lets you choose between Google Docs Viewer and Microsoft Office Online to display your documents. 
-  Version: 2.2
+  Version: 2.2.1
   Author: Awsm Innovations
   Author URI: http://awsm.in
   License: GPL V3
+  Text Domain: embed-any-document
+  Domain Path: /language
  */
 require_once( dirname( __FILE__ ) . '/inc/functions.php');
 class Awsm_embed {
@@ -17,7 +19,7 @@ class Awsm_embed {
 	private $plugin_file;
 	private $plugin_version;
 	private $settings_slug;
-    private $text_domain = 'ead';
+    private $text_domain = 'embed-any-document';
 	/**
 	 * Creates or returns an instance of this class.
 	 */
@@ -39,7 +41,7 @@ class Awsm_embed {
 		$this->plugin_base  	=	dirname( plugin_basename( __FILE__ ) );
 		$this->plugin_file  	=	__FILE__  ;
 		$this->settings_slug	=	'ead-settings';
-		$this->plugin_version	=	'2.2';
+		$this->plugin_version	=	'2.2.1';
 
 		load_plugin_textdomain($this->text_domain, false,$this->plugin_base . '/language' );
 
@@ -119,7 +121,6 @@ class Awsm_embed {
      */
 	function embed_helper(){
 		wp_register_style( 'embed-css', plugins_url( 'css/embed.css', $this->plugin_file ), false, $this->plugin_version, 'all' );
-		wp_register_script( 'magnific-popup', plugins_url( 'js/magnific-popup.js', $this->plugin_file ), array( 'jquery' ), '0.9.9', true );
 		wp_register_script( 'embed', plugins_url( 'js/embed.js', $this->plugin_file ), array( 'jquery' ),$this->plugin_version, true );
 		wp_localize_script('embed','emebeder', array(
 				'height' 			=> 	get_option('ead_height', '500px'),
@@ -131,11 +132,10 @@ class Awsm_embed {
 				'msextension' 		=> 	ead_validextensions('ms'), 
         		'drextension'		=> 	ead_validextensions('all'),
 				'nocontent'			=> 	__('Nothing to insert', $this->text_domain),
+				'invalidurl'		=> 	__('Invalid URL', $this->text_domain),
 				'addurl'			=> 	__('Add URL', $this->text_domain),
 				'verify'			=> 	__('Verifying...', $this->text_domain),
 			) );
-		wp_enqueue_style('magnific-popup');
-		wp_enqueue_script( 'magnific-popup' );
 		wp_enqueue_style('embed-css');
 		wp_enqueue_script( 'embed' );
 	}
@@ -180,7 +180,7 @@ class Awsm_embed {
 				}
                 $fileHtml = '';
                 if ($filesize) $fileHtml = ' [' . $filesize . ']';
-                $durl = '<p class="embed_download"><a href="' . $url . '" download >' . __('Download', 'ead') . $fileHtml . ' </a></p>';
+                $durl = '<p class="embed_download"><a href="' . $url . '" download >' . __('Download', $this->text_domain) . $fileHtml . ' </a></p>';
             }
             
             $url = esc_url($url, array('http', 'https'));
@@ -203,7 +203,7 @@ class Awsm_embed {
             $show = false;
             $embed = '<div class="ead-document">' . $iframe . $privatefile . $durl . '</div>';
         else:
-            $embed = __('No Url Found', 'ead');
+            $embed = __('No Url Found', $this->text_domain);
         endif;
         return $embed;
     }

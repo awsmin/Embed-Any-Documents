@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Embed Any Document\n"
-"POT-Creation-Date: 2014-12-31 14:58+0530\n"
-"PO-Revision-Date: 2014-12-31 14:58+0530\n"
+"POT-Creation-Date: 2015-06-25 15:46+0530\n"
+"PO-Revision-Date: 2015-06-25 15:47+0530\n"
 "Last-Translator: \n"
 "Language-Team: Awsm Innovations <hello@awsm.in>\n"
 "Language: en\n"
@@ -25,8 +25,12 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: ../aswm-embed.php:133
+#: ../aswm-embed.php:132
 msgid "Nothing to insert"
+msgstr ""
+
+#: ../aswm-embed.php:133
+msgid "Invalid URL"
 msgstr ""
 
 #: ../aswm-embed.php:134
@@ -37,23 +41,23 @@ msgstr ""
 msgid "Verifying..."
 msgstr ""
 
-#: ../aswm-embed.php:184
+#: ../aswm-embed.php:181
 msgid "Download"
 msgstr ""
 
-#: ../aswm-embed.php:207
+#: ../aswm-embed.php:204
 msgid "No Url Found"
 msgstr ""
 
-#: ../aswm-embed.php:221 ../aswm-embed.php:248
+#: ../aswm-embed.php:218 ../aswm-embed.php:245
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: ../aswm-embed.php:281
+#: ../aswm-embed.php:278
 msgid "Buy Pro Version"
 msgstr ""
 
-#: ../aswm-embed.php:283
+#: ../aswm-embed.php:280
 msgid "Add from "
 msgstr ""
 
@@ -94,51 +98,51 @@ msgstr ""
 msgid "Enter document URL"
 msgstr ""
 
-#: ../inc/popup.php:34
+#: ../inc/popup.php:37
 msgid "Advanced Options"
 msgstr ""
 
-#: ../inc/popup.php:44 ../inc/settings.php:30
+#: ../inc/popup.php:43 ../inc/settings.php:26
 msgid "Show Download Link"
 msgstr ""
 
-#: ../inc/popup.php:46 ../inc/settings.php:33
+#: ../inc/popup.php:45 ../inc/settings.php:29
 msgid "For all users"
 msgstr ""
 
-#: ../inc/popup.php:46 ../inc/settings.php:33
+#: ../inc/popup.php:45 ../inc/settings.php:29
 msgid "For Logged-in users"
 msgstr ""
 
-#: ../inc/popup.php:46 ../inc/settings.php:33
+#: ../inc/popup.php:45 ../inc/settings.php:29
 msgid "No Download"
 msgstr ""
 
-#: ../inc/popup.php:51 ../inc/popup.php:58
+#: ../inc/popup.php:50 ../inc/popup.php:57
 msgid "Viewer"
 msgstr ""
 
-#: ../inc/popup.php:53
+#: ../inc/popup.php:52
 msgid "Google Docs Viewer"
 msgstr ""
 
-#: ../inc/popup.php:53
+#: ../inc/popup.php:52
 msgid "Microsoft Office Online"
 msgstr ""
 
-#: ../inc/popup.php:68
+#: ../inc/popup.php:67
 msgid "Shortcode Preview"
 msgstr ""
 
-#: ../inc/popup.php:77
+#: ../inc/popup.php:76
 msgid "Insert"
 msgstr ""
 
-#: ../inc/popup.php:77
+#: ../inc/popup.php:76
 msgid "Loading..."
 msgstr ""
 
-#: ../inc/popup.php:81
+#: ../inc/popup.php:80
 msgid "Cancel"
 msgstr ""
 
@@ -146,48 +150,52 @@ msgstr ""
 msgid "Embed Any Document by AWSM.in"
 msgstr ""
 
-#: ../inc/settings.php:5
-msgid "General Settings"
-msgstr ""
-
-#: ../inc/settings.php:6
-msgid "Support"
-msgstr ""
-
-#: ../inc/settings.php:7
-msgid "Get Plus Version"
-msgstr ""
-
-#: ../inc/settings.php:16
+#: ../inc/settings.php:12
 msgid "Default Size"
 msgstr ""
 
-#: ../inc/settings.php:18
+#: ../inc/settings.php:14
 msgid "Width"
 msgstr ""
 
-#: ../inc/settings.php:22
+#: ../inc/settings.php:18
 msgid "Height"
 msgstr ""
 
-#: ../inc/settings.php:26
+#: ../inc/settings.php:22
 msgid "Enter values in pixels or percentage (Example: 500px or 100%)"
 msgstr ""
 
-#: ../inc/settings.php:48
-msgid "Name"
+#: ../inc/settings.php:57
+msgid "Like the plugin?"
 msgstr ""
 
-#: ../inc/settings.php:52
-msgid "Email ID"
+#: ../inc/settings.php:57
+msgid "Rate Now!"
 msgstr ""
 
-#: ../inc/settings.php:56
-msgid "Problem"
+#: ../inc/settings.php:62
+msgid "Need Help?"
 msgstr ""
 
-#: ../inc/settings.php:60
-msgid "Submit"
+#: ../inc/settings.php:62
+msgid "Open a Ticket"
+msgstr ""
+
+#: ../inc/settings.php:69
+msgid "How to Embed Documents?"
+msgstr ""
+
+#: ../inc/settings.php:70
+msgid "About Viewers"
+msgstr ""
+
+#: ../inc/settings.php:71
+msgid "Shortcode & Attributes"
+msgstr ""
+
+#: ../inc/settings.php:72
+msgid "FAQs"
 msgstr ""
 
 #: ../inc/support-mail.php:8

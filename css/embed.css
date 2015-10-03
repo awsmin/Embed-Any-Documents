@@ -22,7 +22,6 @@
     position: relative;
     width: 99%;
     max-width: 1000px;
-    padding: 20px 30px;
     background: #fff;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -35,8 +34,21 @@
     text-align: left;
 
 }
-.section {
-    margin: 0 0 30px;
+.ead-popup-header{
+    padding: 20px 30px;
+}
+.ead-popup-header h1{
+    margin: 0;
+    line-height: 1.3;
+}
+.ead-section {
+    padding: 0 30px;
+    border-top: 1px solid #ebebeb;
+}
+.ead-action-panel{
+     padding: 20px 30px;
+    background: #f5f5f5;
+    border-top: 1px solid #ebebeb;
 }
 ul.ead-options {
     padding: 30px 0;
@@ -106,11 +118,7 @@ ul.ead-options {
     vertical-align: middle;
 }
 .upload-success {
-    border: 2px dotted #ccc;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
     min-height: 70px;
-    margin: 30px 0;
     overflow: hidden;
 }
 .upload-success .inner {
@@ -130,7 +138,7 @@ ul.ead-options {
     margin: 30px 0;
 }
 a.go-back {
-    display: block;
+    display: inline-block;
     margin-top: 20px;
     text-decoration: none;
 }
@@ -189,7 +197,7 @@ input.input-group-text {
     box-sizing: border-box;
     float: left;
     width: 70%;
-    border-left: 2px dotted #ccc;
+    border-left: 1px solid #ebebeb;
 }
 .advanced_options h3 {
     margin-top: 0px
@@ -238,8 +246,15 @@ body.mfp-shown button.mfp-close, body.mfp-shown button.mfp-arrow {
     height: 22px;
     display: block;
     text-indent: -9999999px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.65;
+    padding: 0;
 }
-.mfp-close {} .upload-success {
+.mfp-close:hover{
+    opacity: 1;
+}
+.mfp-close .upload-success {
     display: none;
 }
 div.awsm-error, div.awsm-updated {
