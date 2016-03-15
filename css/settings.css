@@ -40,8 +40,8 @@ h2.nav-tab-wrapper {
 }
 h2.ead-title {
     background: url(../images/icon-ead.png) no-repeat 0 14px;
-    padding-left: 46px;
-    padding-bottom: 25px;
+    padding-left: 46px !important;
+    padding-bottom: 25px !important;
 }
 .ead-left-wrap {
     float: left;
