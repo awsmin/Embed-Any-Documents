@@ -1,9 +1,9 @@
 jQuery(document).ready(function($) {
-    var $embedurl = $('#awsm_url'),
+    var $embedurl = $('#awsm-url'),
         $shortcode = $('#shortcode'),
-        $message = $('#embed_message p'),
+        $message = $('#embed-message p'),
         $ActionPanel = $('.mceActionPanel'),
-        $container = $('.ead_container'),
+        $container = $('.ead-container'),
         fileurl = "",
         newprovider = "",
         frame,
@@ -15,46 +15,47 @@ jQuery(document).ready(function($) {
         e.preventDefault();
         $('body').addClass('ead-popup-on');
         tb_show("Embed Any Document", "#TB_inline?inlineId=embed-popup-wrap&amp;width=1030&amp;modal=true", null);
-        tb_position();
+        ead_tb_position();
         return;
     });
     
     //Update shortcode on change
-    $(".ead_usc").change(function() {
+    $(".ead-usc").change(function() {
         newprovider = "";
-        updateshortcode($(this).attr('id'));
+        ead_updateshortcode($(this).attr('id'));
+        ead_customize_popup();
     });
     $('.embedval').keyup(function() {
-        updateshortcode($(this).attr('id'));
+        ead_updateshortcode($(this).attr('id'));
     });
     //Wordpress Uploader
-    $('#upload_doc').click(open_media_window);
+    $('#upload-doc').click(ead_open_media_window);
 
     //Add url
-    $('#add_url').click(awsm_embded_url);
+    $('#ead-add-url').click(ead_embded_url);
 
     //insert Shortcode
-    $('#insert_doc').click(awsm_shortcode);
+    $('#insert-doc').click(ead_shortcode);
     // Add from URL support
-    $('#addDocUrl').on('click', function(e) {
+    $('#add-ead-document').on('click', function(e) {
         e.preventDefault();
-        $('.addurl_box').fadeIn();
+        $('.addurl-box').fadeIn();
         $('.ead-options').hide();
     });
     //Add fromrom URL cancel handler
     $('.go-back').on('click', function(e) {
         e.preventDefault();
-        $('.addurl_box').hide();
+        $('.addurl-box').hide();
         $('.ead-options').fadeIn();
     });
      // Close embed dialog
-    $('#embed-popup').on('click', '.cancel_embed,.mfp-close', function(e) {
+    $('#embed-popup').on('click', '.cancel-embed,.mfp-close', function(e) {
         // Prevent default action
         e.preventDefault();
-        remove_eadpop();
+        ead_remove_pop();
     });
     //Insert Media window
-    function open_media_window() {
+    function ead_open_media_window() {
         var uClass = 'upload';
         if (frame) {
             frame.open();
@@ -72,21 +73,21 @@ jQuery(document).ready(function($) {
         });
         frame.on('select', function() {
             var file = frame.state().get('selection').first().toJSON();
-            updateprovider(file, uClass);
+            ead_updateprovider(file, uClass);
         });
         frame.open();
     }
     
 
     //update provider
-    function updateprovider(file, uClass) {
+    function ead_updateprovider(file, uClass) {
         fileurl = file.url;
-        validViewer(file, uClass);
-        updateshortcode();
-        uploaddetails(file, uClass);
+        ead_valid_viewer(file, uClass);
+        ead_updateshortcode();
+        ead_uploaddetails(file, uClass);
     }
     //sanitize width and height
-    function sanitize(dim) {
+    function ead_sanitize(dim) {
         if (dim.indexOf("%") == -1) {
             dim = dim.replace(/[^0-9]/g, '');
             dim += "px";
@@ -97,7 +98,7 @@ jQuery(document).ready(function($) {
         return dim;
     }
     //Thickbox Handler
-    function tb_position() {
+    function ead_tb_position() {
             var tbWindow = $('#TB_window');
             var width = $(window).width();
             var H = $(window).height();
@@ -113,36 +114,43 @@ jQuery(document).ready(function($) {
                 $('#TB_title').css({'background-color':'#fff','color':'#cfcfcf'});
             };
     };
-    $(window).resize( function() { tb_position() } );
+    $(window).resize( function() { ead_tb_position() } );
     //to getshortcode
     function getshortcode(url, item) {
-        var height = sanitize($('#ead_height').val()),
-            width = sanitize($('#ead_width').val()),
-            download = $('#ead_download').val(),
-            provider = $('#ead_provider').val(),
+        var height = ead_sanitize($('#ead-height').val()),
+            width = ead_sanitize($('#ead-width').val()),
+            download = $('#ead-download').val(),
+            provider = $('#ead-provider').val(),
+            text = $('#ead-text').val(),
             heightstr = "",
             widthstr = "",
             downloadstr = "",
             providerstr = "",
+            textstr="",
             drivestr = "";
-        if (itemcheck('height', item)) {
+        if (ead_itemcheck('height', item)) {
             heightstr = ' height="' + height + '"';
         }
-        if (itemcheck('width', item)) {
+        if (ead_itemcheck('width', item)) {
             widthstr = ' width="' + width + '"';
         }
-        if (itemcheck('download', item)) {
+        if (ead_itemcheck('download', item)) {
             downloadstr = ' download="' + download + '"';
+
         }
-        if (itemcheck('provider', item)) {
+        if (ead_itemcheck('provider', item)) {
             providerstr = ' viewer="' + provider + '"';
         }
-        return '[embeddoc url="' + url + '"' + widthstr + heightstr + downloadstr + providerstr + drivestr + ']';
+        if (ead_itemcheck('text', item) && download!='none' ) {
+            textstr = ' text="' + text + '"';
+        }
+        return '[embeddoc url="' + url + '"' + widthstr + heightstr + downloadstr + providerstr + drivestr + textstr +']';
     }
     // Checks with default setting value
-    function itemcheck(item, dataitem) {
-        var check = $('#ead_' + item).val();
-        var datacheck = 'ead_' + item;
+    function ead_itemcheck(item, dataitem) {
+        var check = $('#ead-' + item).val();
+        if(!check) return false;
+        var datacheck = 'ead-' + item;
         if (datacheck == dataitem) {
             return true;
         } else if (check != emebeder[item]) {
@@ -151,13 +159,13 @@ jQuery(document).ready(function($) {
         return false;
     }
     //Print uploaded file details
-    function uploaddetails(file, uClass) {
-        $('#insert_doc').removeAttr('disabled');
-        $('#ead_filename').html(file.filename);
+    function ead_uploaddetails(file, uClass) {
+        $('#insert-doc').removeAttr('disabled');
+        $('#ead-filename').html(file.filename);
         if (file.filesizeHumanReadable) {
-            $('#ead_filesize').html(file.filesizeHumanReadable);
+            $('#ead-filesize').html(file.filesizeHumanReadable);
         } else {
-            $('#ead_filesize').html('&nbsp;');
+            $('#ead-filesize').html('&nbsp;');
         }
         $('.upload-success').fadeIn();
         $container.hide();
@@ -165,7 +173,7 @@ jQuery(document).ready(function($) {
     }
    
 
-    function awsm_embded_url() {
+    function ead_embded_url() {
         var checkurl = $embedurl.val();
         if (checkurl !== '') {
             validateurl(checkurl);
@@ -174,37 +182,37 @@ jQuery(document).ready(function($) {
             updateshortcode();
         }
     }
-    function isUrlValid(url) {
+    function ead_is_valid_url(url) {
         if (!/^http:\/\//.test(url)) {
             url = "http://" + url;
         }
         return /^(https?|s?ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(url);
     }
     //Validate file url
-    function validateurl(url) {
+    function ead_validateurl(url) {
         var uClass = 'link';
-        $('#embed_message').hide();
+        $('#embed-message').hide();
         if(isUrlValid(url)){
             fileurl = url;
-            $('#insert_doc').removeAttr('disabled');
-            $('#ead_filename').html('From URL');
-            $('#ead_filesize').html('&nbsp;');
+            $('#insert-doc').removeAttr('disabled');
+            $('#ead-filename').html('From URL');
+            $('#ead-filesize').html('&nbsp;');
             $('.upload-success').fadeIn();
             $container.hide();
-            UploadClass(uClass);
-            updateshortcode();
+            ead_upload_class(uClass);
+            ead_updateshortcode();
         }else{
-            showmsg(emebeder.invalidurl);
+            ead_showmsg(emebeder.invalidurl);
         }
     }
     //Show Message
-    function showmsg(msg) {
-        $('#embed_message').fadeIn();
+    function ead_showmsg(msg) {
+        $('#embed-message').fadeIn();
         $message.text(msg);
     }
     
 
-    function awsm_shortcode() {
+    function ead_shortcode() {
         if (fileurl) {
             wp.media.editor.insert($shortcode.text());
             remove_eadpop();
@@ -214,7 +222,7 @@ jQuery(document).ready(function($) {
     }
     
     //Update ShortCode
-    function updateshortcode(item) {
+    function ead_updateshortcode(item) {
         item = typeof item !== 'undefined' ? item : false;
         if (fileurl) {
             $shortcode.text(getshortcode(fileurl, item));
@@ -224,12 +232,12 @@ jQuery(document).ready(function($) {
     }
    
     //UploadClass
-    function UploadClass(uPclass) {
+    function ead_upload_class(uPclass) {
         $(".uploaded-doccument").removeClass("ead-link ead-upload ead-dropbox ead-drive ead-box");
         $('.uploaded-doccument').addClass('ead-' + uPclass);
     }
     //close popup
-    function remove_eadpop(){
+    function ead_remove_pop(){
         // Close popup
         tb_remove();
         setTimeout(function() {
@@ -237,7 +245,7 @@ jQuery(document).ready(function($) {
         }, 800);
     }
     //Convert Filesize to human Readable filesize
-    function humanFileSize(bytes) {
+    function ead_human_file_size(bytes) {
         var thresh = 1024;
         if (bytes < thresh) return bytes + ' B';
         var units = ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
@@ -249,35 +257,45 @@ jQuery(document).ready(function($) {
         return bytes.toFixed(1) + ' ' + units[u];
     }
     // Viewer Check
-    function validViewer(file, provider) {
+    function ead_valid_viewer(file, provider) {
         var cprovider = ["link", "upload"];
         var validext = msextension.split(',');
         var ext = '.' + file.filename.split('.').pop();
-        $("#new_provider  option[value='microsoft']").attr('disabled', false);
+        $("#new-provider  option[value='microsoft']").attr('disabled', false);
         if ($.inArray(provider, cprovider) != -1) {
             if ($.inArray(ext, validext) == -1) {
                 newprovider = "google";
-                $("#new_provider option[value='google']").attr("selected", "selected");
-                $("#new_provider  option[value='microsoft']").attr('disabled', true);
+                $("#new-provider option[value='google']").attr("selected", "selected");
+                $("#new-provider  option[value='microsoft']").attr('disabled', true);
             } else {
                 newprovider = "microsoft";
-                $("#new_provider option[value='microsoft']").attr("selected", "selected");
+                $("#new-provider option[value='microsoft']").attr("selected", "selected");
             }
         }
     }
-     //Reset form data
+    //Download text show
+    function ead_customize_popup(){
+        if($('#ead-download').val()=="none"){
+            $('#ead-download-text').hide();    
+        }else{
+            $('#ead-download-text').show();  
+        }
+        
+    }
+    //Reset form data
     function ead_reset() {
         $container.show();
         $embedurl.val('');
         $('.ead-options').fadeIn();
-        $('.addurl_box').hide();
+        $('.addurl-box').hide();
         $('.upload-success').hide();
-        $('#embed_message').hide();
-        $('#insert_doc').attr('disabled', 'disabled');
-        $('#new_provider').show();
-        $('#ead_pseudo').hide();
+        $('#embed-message').hide();
+        $('#insert-doc').attr('disabled', 'disabled');
+        $('#new-provider').show();
+        $('#ead-pseudo').hide();
         newprovider = "";
-        $("#new_provider  option[value='microsoft']").attr('disabled', false);
-        $('#ead_downloadc').show();
-    }
+        $("#new-provider  option[value='microsoft']").attr('disabled', false);
+        $('#ead-downloadc').show();
+        ead_customize_popup();
+    }   
 });

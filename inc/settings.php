@@ -1,10 +1,10 @@
 <?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?>
 <div class="wrap">
-    <h2 class="ead-title"><?php _e('Embed Any Document by AWSM.in',$this->text_domain);?></h2>
+    <h2 class="ead-title">Embed Any Document by AWSM.in</h2>
     <div class="ead-left-wrap">
         
         <div class="tabs visible" id="general">
-            <h3>General Settings</h3>
+            <h3><?php _e('General Settings', $this->text_domain); ?></h3>
             <form method="post" action="options.php">
                 <?php settings_fields( 'ead-settings-group' ); ?>
                 <table class="form-table">
@@ -12,7 +12,7 @@
                         <th scope="row"><?php _e('Default Size', $this->text_domain); ?></th>
                         <td> 
                          <div class="f-left ead-frame-width"><?php _e('Width', $this->text_domain); ?>    
-                         <input type="text" class="small" name="ead_width"  value="<?php echo esc_attr( get_option('ead_width','100%') ); ?>" />   
+                         <input type="text" class="small" name="ead-width"  value="<?php echo esc_attr( get_option('ead-width','100%') ); ?>" />   
                          </div>
                          <div class="f-left ead-frame-height">
                          <?php _e('Height', $this->text_domain); ?> 
@@ -27,8 +27,14 @@
                     <td>
                        <?php 
                         $downoptions= array('alluser' => __('For all users',$this->text_domain),'logged' => __('For Logged-in users',$this->text_domain),'none' => __('No Download',$this->text_domain));
-                        ead_selectbuilder('ead_download', $downoptions,esc_attr( get_option('ead_download','none'))); 
+                        $this->selectbuilder('ead_download', $downoptions,esc_attr( get_option('ead_download','none'))); 
                         ?> 
+                    </td>
+                    </tr>
+                    <tr valign="top">
+                    <th scope="row"><?php _e('Download Text',$this->text_domain);?></th>
+                    <td>
+                       <input type="text" class="" name="ead_text" value="<?php echo esc_attr( get_option('ead_text','Download') ); ?>" />
                     </td>
                     </tr>
                 </table>
@@ -66,10 +72,10 @@
     <div class="ead-right-inner">
     <h3>More Links</h3>
     <ol>
-            <li><a href="http://awsm.in/ead-plus-documentation/#embedding" target="_blank" title="How to Embed Documents?"><?php _e('How to Embed Documents?', $this->text_domain); ?></a></li>
-            <li><a href="http://awsm.in/ead-plus-documentation/#viewers" target="_blank" title="About Viewers"><?php _e('About Viewers', $this->text_domain); ?></a></li>
-            <li><a href="http://awsm.in/ead-plus-documentation/#shortcode" target="_blank" title="Shortcode & Attributes"><?php _e('Shortcode & Attributes', $this->text_domain); ?></a></li>
-            <li><a href="http://awsm.in/support" target="_blank" title="FAQs"><?php _e('FAQs', $this->text_domain); ?></a></li>
+            <li><a href="http://awsm.in/ead-plus-documentation/#embedding" target="_blank" title="<?php _e('How to Embed Documents?', $this->text_domain); ?>"><?php _e('How to Embed Documents?', $this->text_domain); ?></a></li>
+            <li><a href="http://awsm.in/ead-plus-documentation/#viewers" target="_blank" title="<?php _e('About Viewers', $this->text_domain); ?>"><?php _e('About Viewers', $this->text_domain); ?></a></li>
+            <li><a href="http://awsm.in/ead-plus-documentation/#shortcode" target="_blank" title="<?php _e('Shortcode & Attributes', $this->text_domain); ?>"><?php _e('Shortcode & Attributes', $this->text_domain); ?></a></li>
+            <li><a href="http://awsm.in/support" target="_blank" title="<?php _e('FAQs', $this->text_domain); ?>"><?php _e('FAQs', $this->text_domain); ?></a></li>
     </ol>
     </div>
     </div><!-- .ead-right-wrap -->

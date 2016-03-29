@@ -10,7 +10,6 @@
   Text Domain: embed-any-document
   Domain Path: /language
  */
-require_once( dirname( __FILE__ ) . '/inc/functions.php');
 class Awsm_embed {
 	private static $instance = null;
 	private $plugin_path;
@@ -19,7 +18,7 @@ class Awsm_embed {
 	private $plugin_file;
 	private $plugin_version;
 	private $settings_slug;
-    private $text_domain = 'embed-any-document';
+    private $text_domain 		= 'embed-any-document';
 	/**
 	 * Creates or returns an instance of this class.
 	 */
@@ -41,32 +40,32 @@ class Awsm_embed {
 		$this->plugin_base  	=	dirname( plugin_basename( __FILE__ ) );
 		$this->plugin_file  	=	__FILE__  ;
 		$this->settings_slug	=	'ead-settings';
-		$this->plugin_version	=	'2.2.1';
+		$this->plugin_version	=	'2.2.2';
 
-		load_plugin_textdomain($this->text_domain, false,$this->plugin_base . '/language' );
+		load_plugin_textdomain( $this->text_domain, false, $this->plugin_base . '/language' );
 
 		add_action( 'media_buttons', array( $this, 'embedbutton' ),1000);
 
-		add_shortcode( 'embeddoc', array( $this, 'embed_shortcode'));
+		add_shortcode( 'embeddoc', array( $this, 'embed_shortcode' ));
 
 		//Admin Settings menu
-		add_action('admin_menu', array($this, 'admin_menu'));
-		add_action( 'admin_init', array($this, 'register_eadsettings'));
+		add_action( 'admin_menu', array( $this, 'admin_menu' ));
+		add_action( 'admin_init', array( $this, 'register_eadsettings' ));
 		//Add easy settings link
-		add_filter( "plugin_action_links_" . plugin_basename( __FILE__ ),array($this, 'settingslink'));
+		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ),array( $this, 'settingslink' ));
 		//ajax validate file url
 		add_action( 'wp_ajax_validateurl',array( $this, 'validateurl' ));
 		//ajax Contact Form
  		add_action( 'wp_ajax_supportform',array( $this, 'supportform' ));
  		//default options
- 		register_activation_hook($this->plugin_file, array( $this, 'ead_defaults' ));
+ 		register_activation_hook($this->plugin_file, array( $this, 'defaults' ));
  		$this->run_plugin();
 	}
 	/**
 	 * Register admin Settings style
 	 */
 	function setting_styles(){
-		wp_register_style( 'embed-settings', plugins_url( 'css/settings.css', $this->plugin_file ), false,$this->plugin_version, 'all' );
+		wp_register_style( 'embed-settings', plugins_url( 'css/settings.css', $this->plugin_file ), false, $this->plugin_version, 'all' );
 		wp_enqueue_style('embed-settings');
 	}
 	/**
@@ -114,23 +113,23 @@ class Awsm_embed {
 	 */ 
 	function embedpopup(){
 		add_thickbox();
-		include($this->plugin_path.'inc/popup.php');
+		include( $this->plugin_path.'inc/popup.php' );
 	}
 	/**
      * Register admin scripts
      */
 	function embed_helper(){
 		wp_register_style( 'embed-css', plugins_url( 'css/embed.css', $this->plugin_file ), false, $this->plugin_version, 'all' );
-		wp_register_script( 'embed', plugins_url( 'js/embed.js', $this->plugin_file ), array( 'jquery' ),$this->plugin_version, true );
+		wp_register_script( 'embed', plugins_url( 'js/embed.js', $this->plugin_file ), array( 'jquery' ), $this->plugin_version, true );
 		wp_localize_script('embed','emebeder', array(
 				'height' 			=> 	get_option('ead_height', '500px'),
         		'width' 			=> 	get_option('ead_width', '100%'), 
         		'download' 			=> 	get_option('ead_download', 'none'), 
         		'provider' 			=> 	get_option('ead_provider', 'google'), 
 				'ajaxurl' 			=> 	admin_url( 'admin-ajax.php' ),
-				'validtypes' 		=> 	ead_validembedtypes(),
-				'msextension' 		=> 	ead_validextensions('ms'), 
-        		'drextension'		=> 	ead_validextensions('all'),
+				'validtypes' 		=> 	$this->validembedtypes(),
+				'msextension' 		=> 	$this->validextensions('ms'), 
+        		'drextension'		=> 	$this->validextensions('all'),
 				'nocontent'			=> 	__('Nothing to insert', $this->text_domain),
 				'invalidurl'		=> 	__('Invalid URL', $this->text_domain),
 				'addurl'			=> 	__('Add URL', $this->text_domain),
@@ -145,16 +144,18 @@ class Awsm_embed {
     function embed_shortcode($atts) {
         $embed 				= 		"";
         $durl 				= 		"";
-        $default_width 		= 		ead_sanitize_dims(get_option('ead_width', '100%'));
-        $default_height 	= 		ead_sanitize_dims(get_option('ead_height', '500px'));
+        $default_width 		= 		$this->sanitize_dims(get_option('ead_width', '100%'));
+        $default_height 	= 		$this->sanitize_dims(get_option('ead_height', '500px'));
         $default_provider 	= 		get_option('ead_provider', 'google');
         $default_download 	= 		get_option('ead_download', 'none');
+        $default_text 		= 		get_option('ead_text', 'Download');
         $show = false;
         extract(shortcode_atts(array('url' 		=> '',
         							 'drive' 	=> '', 
         							 'width' 	=> $default_width,
         							 'height' 	=> $default_height, 
         							 'language' => 'en', 
+        							 'text'		=> $default_text,
         							 'viewer' 	=> $default_provider, 
         							 'download' => $default_download), $atts));
 	    if(isset($atts['provider']))	
@@ -165,7 +166,7 @@ class Awsm_embed {
             $filedata = wp_remote_head($url);
             $durl = '';
             $privatefile = '';
-            if (ead_allowdownload($viewer)) if ($download == 'alluser' or $download == 'all') {
+            if ($this->allowdownload($viewer)) if ($download == 'alluser' or $download == 'all') {
                 $show = true;
             } elseif ($download == 'logged' AND is_user_logged_in()) {
                 $show = true;
@@ -174,13 +175,13 @@ class Awsm_embed {
                 $filesize = 0;
                 $url = esc_url($url, array('http', 'https'));
                 if (!is_wp_error($filedata) && isset($filedata['headers']['content-length'])) {
-				    $filesize = ead_human_filesize($filedata['headers']['content-length']);
+				    $filesize = $this->human_filesize($filedata['headers']['content-length']);
 				} else {
 				    $filesize = 0;
 				}
                 $fileHtml = '';
                 if ($filesize) $fileHtml = ' [' . $filesize . ']';
-                $durl = '<p class="embed_download"><a href="' . $url . '" download >' . __('Download', $this->text_domain) . $fileHtml . ' </a></p>';
+                $durl = '<p class="embed_download"><a href="' . $url . '" download >' . __($default_text, $this->text_domain) . $fileHtml . ' </a></p>';
             }
             
             $url = esc_url($url, array('http', 'https'));
@@ -198,7 +199,7 @@ class Awsm_embed {
                     break;
             }
             $style = 'style="width:%1$s; height:%2$s; border: none;"';
-            $stylelink = sprintf($style, ead_sanitize_dims($width), ead_sanitize_dims($height));
+            $stylelink = sprintf($style, $this->sanitize_dims($width), $this->sanitize_dims($height));
             $iframe = '<iframe src="' . $iframe . '" ' . $stylelink . '></iframe>';
             $show = false;
             $embed = '<div class="ead-document">' . $iframe . $privatefile . $durl . '</div>';
@@ -213,7 +214,7 @@ class Awsm_embed {
      */
 	public function admin_menu() {
         $eadsettings 	= 	add_options_page('Embed Any Document', 'Embed Any Document', 'manage_options',$this->settings_slug, array($this, 'settings_page'));
- 		add_action( 'admin_print_styles-' . $eadsettings, array($this,'setting_styles'));
+ 		add_action( 'admin_print_styles-' . $eadsettings, array( $this,'setting_styles'));
     }
     public function settings_page() {
         if (!current_user_can('manage_options')) {
@@ -225,29 +226,14 @@ class Awsm_embed {
      * Register Settings
      */
     function register_eadsettings() {
-	    register_setting( 'ead-settings-group', 'ead_width' ,'ead_sanitize_dims');
-	    register_setting( 'ead-settings-group', 'ead_height','ead_sanitize_dims' );
+	    register_setting( 'ead-settings-group', 'ead_width' ,array( $this, 'sanitize_dims' ));
+	    register_setting( 'ead-settings-group', 'ead_height',array( $this, 'sanitize_dims' ));
 	    register_setting( 'ead-settings-group', 'ead_provider' );
 	    register_setting( 'ead-settings-group', 'ead_download' );
+	    register_setting( 'ead-settings-group', 'ead_text' );
 	    register_setting( 'ead-settings-group', 'ead_mediainsert' );
 	}
-	/**
-     * Ajax validate file url
-    */
-	function validateurl(){
-		$fileurl =  $_POST['furl'];
-		echo json_encode(ead_validateurl($fileurl));
-		die(0);
-	}
-	/**
-     * Ajax Contact Form
-    */
-    function supportform(){
-    	if (!current_user_can('manage_options')) {
-            wp_die(__('You do not have sufficient permissions to access this page.'));
-        }
-        include($this->plugin_path.'inc/support-mail.php');
-    }
+ 
     /**
      * Plugin function
     */
@@ -274,17 +260,17 @@ class Awsm_embed {
 	/**
      * To get Overlay link
      */
-    function providerlink($keys, $id, $provider) {
+    function providerlink( $provider) {
         $link = 'http://goo.gl/wJTQlc';
         $id = "";
         $configure = '<span class="overlay"><strong>' . __('Buy Pro Version', $this->text_domain) . '</strong><i></i></span>';
         $target = 'target="_blank"';
-        echo '<a href="' . $link . '" id="' . $id . '" ' . $target . '><span><img src="' . $this->plugin_url . 'images/icon-' . strtolower($provider) . '.png" alt="Add From ' . $provider . '" />' . __('Add from ' . $provider, $this->text_domain) . $configure . '</span></a>';
+        echo '<a href="' . $link . '" id="' . $id . '" ' . $target . '><span><img src="' . $this->plugin_url . 'images/icon-' . strtolower($provider) . '.png" alt="'.sprintf( esc_html__( 'Add From %1$s', $this->text_domain ), $provider). '" />' . sprintf( esc_html__( 'Add From %1$s', $this->text_domain ), $provider) . $configure . '</span></a>';
     }
 	/**
      * To initialize default options
     */
-	function ead_defaults()
+	function defaults()
 		{
 	    $o = array(
 	        'ead_width'			=> '100%',
@@ -299,6 +285,220 @@ class Awsm_embed {
 	    }
 	    return;
 		}
+	//Functions
+ 
+	/**
+	 * Dropdown Builder
+	 *
+	 * @since   1.0
+	 * @return  String select html
+	 */
+	function selectbuilder($name, $options, $selected = "", $class = "") {
+	    if (is_array($options)):
+	        echo "<select name=\"$name\" id=\"$name\" class=\"$class\">";
+	        foreach ($options as $key => $option) {
+	            echo "<option value=\"$key\"";
+	            if (!empty($helptext)) {
+	                echo " title=\"$helptext\"";
+	            }
+	            if ($key == $selected) {
+	                echo ' selected="selected"';
+	            }
+	            echo ">$option</option>\n";
+	        }
+	        echo '</select>';
+	    else:
+	    endif;
+	}
+
+	/**
+	 * Human Readable filesize
+	 *
+	 * @since   1.0
+	 * @return  Human readable file size
+	 * @note    Replaces old gde_sanitizeOpts function
+	 */
+	function human_filesize($bytes, $decimals = 2) {
+	    $size = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+	    $factor = floor((strlen($bytes) - 1) / 3);
+	    return sprintf("%.{$decimals}f ", $bytes / pow(1024, $factor)) . @$size[$factor];
+	}
+
+	/**
+	 * Sanitize dimensions (width, height)
+	 *
+	 * @since   1.0
+	 * @return  string Sanitized dimensions, or false if value is invalid
+	 * @note    Replaces old gde_sanitizeOpts function
+	 */
+	function sanitize_dims($dim) {
+	    
+	    // remove any spacing junk
+	    $dim = trim(str_replace(" ", "", $dim));
+	    
+	    if (!strstr($dim, '%')) {
+	        $type = "px";
+	        $dim = preg_replace("/[^0-9]*/", '', $dim);
+	    } else {
+	        $type = "%";
+	        $dim = preg_replace("/[^0-9]*/", '', $dim);
+	        if ((int)$dim > 100) {
+	            $dim = "100";
+	        }
+	    }
+	    
+	    if ($dim) {
+	        return $dim . $type;
+	    } else {
+	        return false;
+	    }
+	}
+
+	/**
+	 * Validate File url
+	 *
+	 * @since   1.0
+	 * @return  string Download link
+	 */
+	function validateurl() {
+	    $types = $this->validmime_types();
+	    $url = esc_url($_POST['furl'], array('http', 'https'));
+	    $remote = wp_remote_head($url);
+	    $json['status'] = false;
+	    $json['message'] = '';
+	    if (wp_remote_retrieve_response_code($remote) == 200) {
+	        //Gzip Support
+	        $filename = pathinfo($url);
+	        $doctypes = ead_validmimeTypes();
+	        if ($this->valid_type($url, $doctypes)) {
+	            $json['status'] = true;
+	            $json['message'] = __("Done", 'embed-any-document');
+	            $json['file']['url'] = $url;
+	            if (isset($filename)) {
+	                $json['file']['filename'] = $filename['basename'];
+	            } else {
+	                $json['file']['filename'] = __("Document", 'embed-any-document');
+	            }
+	            if (!is_wp_error($filedata) && isset($filedata['headers']['content-length'])) {
+	                $json['file']['filesizeHumanReadable'] = $this->human_filesize($remote['headers']['content-length']);
+	            } else {
+	                $json['file']['filesizeHumanReadable'] = 0;
+	            }
+	        } else {
+	            $json['message'] = __("File format is not supported.", 'embed-any-document');
+	            $json['status'] = false;
+	        }
+	    } elseif (is_wp_error($remote)) {
+	        $json['message'] = $remote->get_error_message();
+	        $json['status'] = false;
+	    } else {
+	        $json['message'] = __('Sorry, the file URL is not valid.', 'embed-any-document');
+	        $json['status'] = false;
+	    }
+	    
+		echo json_encode($json);
+		die(0);
+	     
+	}
+ 
+	/**
+	 * Validate Source mime type
+	 *
+	 * @since   1.0
+	 * @return  boolean
+	 */
+	function validmime_types() {
+	    include ('inc/mime_types.php');
+	    return $mimetypes;
+	}
+
+	/**
+	 * Checks Url Validity
+	 *
+	 * @since   1.0
+	 * @return  boolean
+	 */
+	function valid_type($url) {
+	    $doctypes = ead_validmimeTypes();
+	    if (is_array($doctypes)) {
+	        $allowed_ext = implode("|", array_keys($doctypes));
+	        if (preg_match("/\.($allowed_ext)$/i", $url)) {
+	            return true;
+	        }
+	    } else {
+	        return false;
+	    }
+	}
+
+	/**
+	 * Get allowed Mime Types
+	 *
+	 * @since   1.0
+	 * @return  string Mimetypes
+	 */
+	function validembedtypes() {
+	    $doctypes = $this->validmime_types();
+	    return $allowedtype = implode(',', $doctypes);
+	}
+
+	/**
+	 * Get allowed Extensions
+	 *
+	 * @since   1.0
+	 * @return  string Extenstion
+	 */
+	function validextensions($list = 'all') {
+	    include ('inc/mime_types.php');
+	    return $allowedtype = implode(',', $extensions[$list]);
+	}
+
+	/**
+	 * Get allowed Mime Types for microsoft
+	 *
+	 * @since   1.0
+	 * @return  array Mimetypes
+	 */
+	function microsoft_mimes() {
+	    $micro_mime = array(
+	                    'doc'               => 'application/msword',
+	                    'pot|pps|ppt'       => 'application/vnd.ms-powerpoint', 
+	                    'xla|xls|xlt|xlw'   => 'application/vnd.ms-excel', 
+	                    'docx'              => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 
+	                    'dotx'              => 'application/vnd.openxmlformats-officedocument.wordprocessingml.template', 
+	                    'dotm'              => 'application/vnd.ms-word.template.macroEnabled.12', 
+	                    'xlsx'              => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 
+	                    'xlsm'              => 'application/vnd.ms-excel.sheet.macroEnabled.12', 
+	                    'pptx'              => 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+	                );
+	    return $micro_mime;
+	}
+
+	/**
+	 * Check Allow Download
+	 *
+	 * @since   1.0
+	 * @return  Boolean
+	 */
+	function allowdownload($provider) {
+	    $blacklist = array('drive', 'box');
+	    if (in_array($provider, $blacklist)) {
+	        return false;
+	    } else {
+	        return true;
+	    }
+	}
+
+	/**
+	 * Get Active Menu Class
+	 *
+	 * @since   1.0
+	 * @return  string Class name
+	 */
+	function getactive_menu($tab, $needle) {
+	    if ($tab == $needle) {
+	        echo 'nav-tab-active';
+	    }
+	}
 }
 
 Awsm_embed::get_instance();

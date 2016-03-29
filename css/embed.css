@@ -169,7 +169,7 @@ a.go-back {
 .uploaded-doccument.ead-box {
     background: url(../images/icon-box.png) no-repeat center 5px / 54px 49px;
 }
-.wp-core-ui .button#adv_options {
+.wp-core-ui .button#adv-options {
     float: right;
     height: 40px;
     line-height: 38px;
@@ -190,7 +190,7 @@ input.input-group-text {
     padding: 5px 10px;
     height: 40px;
 }
-.advanced_options {
+.advanced-options {
     padding: 30px;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -199,10 +199,10 @@ input.input-group-text {
     width: 70%;
     border-left: 1px solid #ebebeb;
 }
-.advanced_options h3 {
+.advanced-options h3 {
     margin-top: 0px
 }
-.advanced_options h3 span {
+.advanced-options h3 span {
     color: #aaa;
     font-weight: normal;
 }
