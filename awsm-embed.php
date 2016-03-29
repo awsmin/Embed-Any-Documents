@@ -202,11 +202,11 @@ class Awsm_embed {
                     $iframe = sprintf($embedsrc, urlencode($url));
                     break;
             }
-            $style = 'style="width:%1$s; height:%2$s; border: none;"';
+            $style = 'style="width:100%; height:100%; border: none; position: absolute;"';
             $stylelink = sprintf($style, $this->sanitize_dims($width), $this->sanitize_dims($height));
             $iframe = '<iframe src="' . $iframe . '" ' . $stylelink . '></iframe>';
             $show = false;
-            $embed = '<div class="ead-document">' . $iframe . $privatefile . $durl . '</div>';
+            $embed = '<div class="ead-document" style="position:relative;">' . $iframe . $privatefile . $durl . '</div>';
         else:
             $embed = __('No Url Found', $this->text_domain);
         endif;
