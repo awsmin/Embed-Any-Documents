@@ -1,4 +1,4 @@
-<?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?>
+<?php if( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
 <div class="wrap">
     <h2 class="ead-title">Embed Any Document by AWSM.in</h2>
     <div class="ead-left-wrap">

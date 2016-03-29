@@ -10,6 +10,9 @@
   Text Domain: embed-any-document
   Domain Path: /language
  */
+
+if( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 class Awsm_embed {
 	private static $instance = null;
 	private $plugin_path;
@@ -59,6 +62,7 @@ class Awsm_embed {
  		add_action( 'wp_ajax_supportform',array( $this, 'supportform' ));
  		//default options
  		register_activation_hook($this->plugin_file, array( $this, 'defaults' ));
+
  		$this->run_plugin();
 	}
 	/**
@@ -500,5 +504,5 @@ class Awsm_embed {
 	    }
 	}
 }
-
 Awsm_embed::get_instance();
+

@@ -1,4 +1,6 @@
 <?php 
+if( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 	$mimetypes = array(
 	// Text formats
 	'txt|asc|c|cc|h'               => 'text/plain',

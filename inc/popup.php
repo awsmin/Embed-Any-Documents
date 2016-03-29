@@ -1,4 +1,4 @@
-<?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?> 
+<?php if( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?> 
 <div id="embed-popup-wrap">
     <div id="embed-popup">
         <button title="<?php _e('Close',$this->text_domain);?>" type="button" class="mfp-close">×</button>
