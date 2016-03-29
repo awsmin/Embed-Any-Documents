@@ -3,7 +3,7 @@
   Plugin Name: Embed Any Document
   Plugin URI: http://awsm.in/embed-any-documents
   Description: Embed Any Document WordPress plugin lets you upload and embed your documents easily in your WordPress website without any additional browser plugins like Flash or Acrobat reader. The plugin lets you choose between Google Docs Viewer and Microsoft Office Online to display your documents. 
-  Version: 2.2.2
+  Version: 2.2.3
   Author: Awsm Innovations
   Author URI: http://awsm.in
   License: GPL V3
@@ -94,7 +94,6 @@ class Awsm_embed {
 		// Print button in media column
 		$button = '<a href="javascript:void(0);" class="' . $args['class'] . '" title="' . $args['text'] . '" data-mfp-src="#embed-popup-wrap" data-target="' . $args['target'] . '" >' . $args['icon'] . $args['text'] . '</a>';
 		// Show generator popup
-		//add_action( 'wp_footer',    array( $this, 'embedpopup' ) );
 		add_action( 'admin_footer', array($this, 'embedpopup' ) );
 		// Request assets
 		wp_enqueue_media();
@@ -129,6 +128,7 @@ class Awsm_embed {
 				'height' 			=> 	get_option('ead_height', '500px'),
         		'width' 			=> 	get_option('ead_width', '100%'), 
         		'download' 			=> 	get_option('ead_download', 'none'), 
+        		'text' 				=> 	get_option('ead_text', 'Download'), 
         		'provider' 			=> 	get_option('ead_provider', 'google'), 
 				'ajaxurl' 			=> 	admin_url( 'admin-ajax.php' ),
 				'validtypes' 		=> 	$this->validembedtypes(),
@@ -472,7 +472,8 @@ class Awsm_embed {
 	                    'dotm'              => 'application/vnd.ms-word.template.macroEnabled.12', 
 	                    'xlsx'              => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 
 	                    'xlsm'              => 'application/vnd.ms-excel.sheet.macroEnabled.12', 
-	                    'pptx'              => 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+	                    'pptx'              => 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+	                    'ppsx'              => 'application/vnd.openxmlformats-officedocument.presentationml.slideshow',
 	                );
 	    return $micro_mime;
 	}
@@ -504,5 +505,6 @@ class Awsm_embed {
 	    }
 	}
 }
+
 Awsm_embed::get_instance();
 

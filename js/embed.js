@@ -169,14 +169,14 @@ jQuery(document).ready(function($) {
         }
         $('.upload-success').fadeIn();
         $container.hide();
-        UploadClass(uClass);
+        ead_upload_class(uClass);
     }
    
 
     function ead_embded_url() {
         var checkurl = $embedurl.val();
         if (checkurl !== '') {
-            validateurl(checkurl);
+            ead_validateurl(checkurl);
         } else {
             $embedurl.addClass('urlerror');
             updateshortcode();
@@ -192,7 +192,7 @@ jQuery(document).ready(function($) {
     function ead_validateurl(url) {
         var uClass = 'link';
         $('#embed-message').hide();
-        if(isUrlValid(url)){
+        if(ead_is_valid_url(url)){
             fileurl = url;
             $('#insert-doc').removeAttr('disabled');
             $('#ead-filename').html('From URL');

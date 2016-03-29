@@ -28,6 +28,6 @@ if( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	//Additional Mime Types
 	'svg'						   =>  'image/svg+xml',
 	);
-	$extensions['all']		=	array('.css','.js','.pdf','.ai','.tif','.tiff','.doc','.txt','.asc','.c','.cc','.h','.pot','.pps','.ppt','.xla','.xls','.xlt','.xlw','.docx','.dotx','.dotm','.xlsx','.xlsm','.pptx','.pages','.svg','ppsx');
-	$extensions['ms'] 		=	array('.doc','.pot','.pps','.ppt','.xla','.xls','.xlt','.xlw','.docx','.dotx','.dotm','.xlsx','.xlsm','.pptx','ppsx');
+	$extensions['all']		=	array('.css','.js','.pdf','.ai','.tif','.tiff','.doc','.txt','.asc','.c','.cc','.h','.pot','.pps','.ppt','.xla','.xls','.xlt','.xlw','.docx','.dotx','.dotm','.xlsx','.xlsm','.pptx','.pages','.svg','.ppsx');
+	$extensions['ms'] 		=	array('.doc','.pot','.pps','.ppt','.xla','.xls','.xlt','.xlw','.docx','.dotx','.dotm','.xlsx','.xlsm','.pptx','.ppsx');
 ?>	

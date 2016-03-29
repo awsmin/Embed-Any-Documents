@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Embed Any Document\n"
-"POT-Creation-Date: 2015-06-25 15:46+0530\n"
-"PO-Revision-Date: 2015-06-25 15:47+0530\n"
+"POT-Creation-Date: 2016-03-29 16:34+0530\n"
+"PO-Revision-Date: 2016-03-29 16:35+0530\n"
 "Last-Translator: \n"
 "Language-Team: Awsm Innovations <hello@awsm.in>\n"
 "Language: en\n"
@@ -17,73 +17,60 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
-#: ../aswm-embed.php:81 ../inc/popup.php:6
+#: ../awsm-embed.php:86 ../inc/popup.php:6
 msgid "Add Document"
 msgstr ""
 
-#: ../aswm-embed.php:106
+#: ../awsm-embed.php:111
 msgid "Settings"
 msgstr ""
 
-#: ../aswm-embed.php:132
+#: ../awsm-embed.php:137
 msgid "Nothing to insert"
 msgstr ""
 
-#: ../aswm-embed.php:133
+#: ../awsm-embed.php:138
 msgid "Invalid URL"
 msgstr ""
 
-#: ../aswm-embed.php:134
+#: ../awsm-embed.php:139 ../inc/popup.php:22
 msgid "Add URL"
 msgstr ""
 
-#: ../aswm-embed.php:135
+#: ../awsm-embed.php:140
 msgid "Verifying..."
 msgstr ""
 
-#: ../aswm-embed.php:181
-msgid "Download"
-msgstr ""
-
-#: ../aswm-embed.php:204
+#: ../awsm-embed.php:211
 msgid "No Url Found"
 msgstr ""
 
-#: ../aswm-embed.php:218 ../aswm-embed.php:245
+#: ../awsm-embed.php:225
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: ../aswm-embed.php:278
+#: ../awsm-embed.php:270
 msgid "Buy Pro Version"
 msgstr ""
 
-#: ../aswm-embed.php:280
-msgid "Add from "
-msgstr ""
-
-#: ../inc/functions.php:89 ../inc/functions.php:126
+#: ../awsm-embed.php:379
 msgid "Done"
 msgstr ""
 
-#: ../inc/functions.php:94
+#: ../awsm-embed.php:384
 msgid "Document"
 msgstr ""
 
-#: ../inc/functions.php:102
+#: ../awsm-embed.php:392
 msgid "File format is not supported."
 msgstr ""
 
-#: ../inc/functions.php:109
+#: ../awsm-embed.php:399
 msgid "Sorry, the file URL is not valid."
 msgstr ""
 
-#: ../inc/functions.php:129
-msgid "The document you have chosen is a not public."
-msgstr ""
-
-#: ../inc/functions.php:129
-msgid ""
-" Only the owner and explicitly shared collaborators will be able to view it."
+#: ../inc/popup.php:4
+msgid "Close"
 msgstr ""
 
 #: ../inc/popup.php:13
@@ -98,8 +85,20 @@ msgstr ""
 msgid "Enter document URL"
 msgstr ""
 
+#: ../inc/popup.php:24
+msgid "back"
+msgstr ""
+
 #: ../inc/popup.php:37
 msgid "Advanced Options"
+msgstr ""
+
+#: ../inc/popup.php:40 ../inc/settings.php:14
+msgid "Width"
+msgstr ""
+
+#: ../inc/popup.php:41 ../inc/settings.php:18
+msgid "Height"
 msgstr ""
 
 #: ../inc/popup.php:43 ../inc/settings.php:26
@@ -118,98 +117,86 @@ msgstr ""
 msgid "No Download"
 msgstr ""
 
-#: ../inc/popup.php:50 ../inc/popup.php:57
+#: ../inc/popup.php:50 ../inc/settings.php:35
+msgid "Download Text"
+msgstr ""
+
+#: ../inc/popup.php:54 ../inc/popup.php:61
 msgid "Viewer"
 msgstr ""
 
-#: ../inc/popup.php:52
+#: ../inc/popup.php:56
 msgid "Google Docs Viewer"
 msgstr ""
 
-#: ../inc/popup.php:52
+#: ../inc/popup.php:56
 msgid "Microsoft Office Online"
 msgstr ""
 
-#: ../inc/popup.php:67
+#: ../inc/popup.php:63
+msgid "Box"
+msgstr ""
+
+#: ../inc/popup.php:64
+msgid "Drive"
+msgstr ""
+
+#: ../inc/popup.php:71
 msgid "Shortcode Preview"
 msgstr ""
 
-#: ../inc/popup.php:76
+#: ../inc/popup.php:80
 msgid "Insert"
 msgstr ""
 
-#: ../inc/popup.php:76
+#: ../inc/popup.php:80
 msgid "Loading..."
 msgstr ""
 
-#: ../inc/popup.php:80
+#: ../inc/popup.php:84
 msgid "Cancel"
 msgstr ""
 
-#: ../inc/settings.php:3
-msgid "Embed Any Document by AWSM.in"
+#: ../inc/settings.php:7
+msgid "General Settings"
 msgstr ""
 
 #: ../inc/settings.php:12
 msgid "Default Size"
 msgstr ""
 
-#: ../inc/settings.php:14
-msgid "Width"
-msgstr ""
-
-#: ../inc/settings.php:18
-msgid "Height"
-msgstr ""
-
 #: ../inc/settings.php:22
 msgid "Enter values in pixels or percentage (Example: 500px or 100%)"
 msgstr ""
 
-#: ../inc/settings.php:57
+#: ../inc/settings.php:63
 msgid "Like the plugin?"
 msgstr ""
 
-#: ../inc/settings.php:57
+#: ../inc/settings.php:63
 msgid "Rate Now!"
 msgstr ""
 
-#: ../inc/settings.php:62
+#: ../inc/settings.php:68
 msgid "Need Help?"
 msgstr ""
 
-#: ../inc/settings.php:62
+#: ../inc/settings.php:68
 msgid "Open a Ticket"
 msgstr ""
 
-#: ../inc/settings.php:69
+#: ../inc/settings.php:75
 msgid "How to Embed Documents?"
 msgstr ""
 
-#: ../inc/settings.php:70
+#: ../inc/settings.php:76
 msgid "About Viewers"
 msgstr ""
 
-#: ../inc/settings.php:71
+#: ../inc/settings.php:77
 msgid "Shortcode & Attributes"
 msgstr ""
 
-#: ../inc/settings.php:72
+#: ../inc/settings.php:78
 msgid "FAQs"
-msgstr ""
-
-#: ../inc/support-mail.php:8
-msgid "Please Fill Required Fields"
-msgstr ""
-
-#: ../inc/support-mail.php:30
-msgid "We will get back to you soon"
-msgstr ""
-
-#: ../inc/support-mail.php:33
-msgid "Something went wrong"
-msgstr ""
-
-#: ../inc/support-mail.php:38
-msgid "Cheating ?"
 msgstr ""
