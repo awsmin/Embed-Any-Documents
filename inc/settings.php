@@ -16,7 +16,7 @@
                          </div>
                          <div class="f-left ead-frame-height">
                          <?php _e('Height', $this->text_domain); ?> 
-                         <input type="text" class="small" name="ead_height" value="<?php echo esc_attr( get_option('ead_height','500px') ); ?>" />
+                         <input type="text" class="small" name="ead_height" value="<?php echo esc_attr( get_option('ead_height','100%') ); ?>" />
                         </div>
                         <div class="clear"></div>
                         <span class="note"><?php _e('Enter values in pixels or percentage (Example: 500px or 100%)', $this->text_domain); ?></span>
