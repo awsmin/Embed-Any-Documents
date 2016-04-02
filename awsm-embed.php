@@ -62,7 +62,8 @@ class Awsm_embed {
  		add_action( 'wp_ajax_supportform',array( $this, 'supportform' ));
  		//default options
  		register_activation_hook($this->plugin_file, array( $this, 'defaults' ));
-
+ 		//Responsive Script
+ 		add_action( 'wp_footer', array( $this, 'responsive_script' ));
  		$this->run_plugin();
 	}
 	/**
@@ -71,6 +72,23 @@ class Awsm_embed {
 	function setting_styles(){
 		wp_register_style( 'embed-settings', plugins_url( 'css/settings.css', $this->plugin_file ), false, $this->plugin_version, 'all' );
 		wp_enqueue_style('embed-settings');
+	}
+	/**
+	 * Responsive Script
+	 */
+	function responsive_script(){?>
+ 		<script type="text/javascript">
+			var embeddoc = document.getElementsByClassName('ead-document');
+			for (var i = 0; i < embeddoc.length; ++i) {
+			    var ead_doc = embeddoc[i],ead_res = ead_doc.dataset.responsive;
+			    if(ead_res){
+			    	var ead_width=ead_doc.offsetWidth,ead_height=ead_doc.dataset.height,ead_padding = (ead_height/ead_width)*100;
+			    	ead_doc.style.paddingTop = ead_padding+"%";
+			    }
+			   
+			}	 
+		</script>
+	<?php  
 	}
 	/**
 	 * Embed any Docs Button
@@ -128,7 +146,7 @@ class Awsm_embed {
 				'height' 			=> 	get_option('ead_height', '500px'),
         		'width' 			=> 	get_option('ead_width', '100%'), 
         		'download' 			=> 	get_option('ead_download', 'none'), 
-        		'text' 				=> 	get_option('ead_text', 'Download'), 
+        		'text' 				=> 	get_option('ead_text', __('Download',$this->text_domain)), 
         		'provider' 			=> 	get_option('ead_provider', 'google'), 
 				'ajaxurl' 			=> 	admin_url( 'admin-ajax.php' ),
 				'validtypes' 		=> 	$this->validembedtypes(),
@@ -152,7 +170,7 @@ class Awsm_embed {
         $default_height 	= 		$this->sanitize_dims(get_option('ead_height', '500px'));
         $default_provider 	= 		get_option('ead_provider', 'google');
         $default_download 	= 		get_option('ead_download', 'none');
-        $default_text 		= 		get_option('ead_text', 'Download');
+        $default_text 		= 		get_option('ead_text', __('Download',$this->text_domain));
         $show = false;
         extract(shortcode_atts(array('url' 		=> '',
         							 'drive' 	=> '', 
@@ -185,7 +203,7 @@ class Awsm_embed {
 				}
                 $fileHtml = '';
                 if ($filesize) $fileHtml = ' [' . $filesize . ']';
-                $durl = '<p class="embed_download"><a href="' . $url . '" download >' . __($default_text, $this->text_domain) . $fileHtml . ' </a></p>';
+                $durl = '<p class="embed_download"><a href="' . $url . '" download >' . __($text, $this->text_domain) . $fileHtml . ' </a></p>';
             }
             
             $url = esc_url($url, array('http', 'https'));
@@ -202,11 +220,19 @@ class Awsm_embed {
                     $iframe = sprintf($embedsrc, urlencode($url));
                     break;
             }
-            $style = 'style="width:100%; height:100%; border: none; position: absolute;"';
-            $stylelink = sprintf($style, $this->sanitize_dims($width), $this->sanitize_dims($height));
-            $iframe = '<iframe src="' . $iframe . '" ' . $stylelink . '></iframe>';
+            $iframe_style = 'style="width:100%; height:100%; border: none; position: absolute;left:0;top:0;"';
+            if($this->check_responsive($width)){
+            	$doc_style	 	= 'style="width:100%; height:100%; position:relative;padding-top:55%;"';
+            	$responsive   	= 'data-responsive="true"';
+            }else{
+            	$doc_style 		=  sprintf('style="width:%s; height:%s; position:relative;padding-top:55%;"',esc_html($width),esc_html($height));
+            	$responsive   	= 'data-responsive="false"';
+            }
+            $dim_data     		= sprintf('data-width="%s" data-height="%s"',esc_html($width),esc_html($height));
+
+            $iframe = '<iframe src="' . $iframe . '" ' . $iframe_style . '></iframe>';
             $show = false;
-            $embed = '<div class="ead-document" style="position:relative;">' . $iframe . $privatefile . $durl . '</div>';
+            $embed = '<div class="ead-preview"><div class="ead-document" '. $dim_data . $responsive .' style="position:relative;padding-top:55%;">' . $iframe . $privatefile . $durl . '</div></div>';
         else:
             $embed = __('No Url Found', $this->text_domain);
         endif;
@@ -357,7 +383,34 @@ class Awsm_embed {
 	        return false;
 	    }
 	}
-
+	/**
+	 * Get dimenstion value
+	 *
+	 * @since   2.2.3
+	 * @return  Int Dimenesion
+	 */
+	function get_dim_value($dim){
+		$dim = preg_replace("/[^0-9]*/", '', $dim);
+		if ($dim) {
+			return $dim;
+		}else{
+			 return false;
+		}
+	}
+	/**
+	 * Enable Resposive
+	 *
+	 * @since   2.2.3
+	 * @return  Boolean
+	 */
+	function check_responsive($dim){
+		if (strstr($dim, '%')) {
+			$dim = preg_replace("/[^0-9]*/", '', $dim);
+			if ((int)$dim == 100) {
+				return true;
+			}
+		}
+	}
 	/**
 	 * Validate File url
 	 *
