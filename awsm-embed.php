@@ -72,7 +72,7 @@ class Awsm_embed {
 		wp_register_style( 'embed-settings', plugins_url( 'css/settings.css', $this->plugin_file ), false, $this->plugin_version, 'all' );
 		wp_enqueue_style('embed-settings');
 	}
-	
+
 	/**
 	 * Embed any Docs Button
 	 */
@@ -160,7 +160,7 @@ class Awsm_embed {
         							 'width' 	=> $default_width,
         							 'height' 	=> $default_height, 
         							 'language' => 'en', 
-        							 'text'		=> $default_text,
+        							 'text'		=> __($default_text,$this->text_domain),
         							 'viewer' 	=> $default_provider, 
         							 'download' => $default_download), $atts));
 	    if(isset($atts['provider']))	
@@ -203,16 +203,18 @@ class Awsm_embed {
                     $iframe = sprintf($embedsrc, urlencode($url));
                     break;
             }
-           
-
+           	$min_height   =   '';
+            if($this->in_percentage($height)){
+            	$min_height   =   'min-height:500px;';
+            }
             if($this->check_responsive($height) AND $this->check_responsive($width)){
             	$iframe_style = 'style="width:100%; height:100%; border: none; position: absolute;left:0;top:0;"';
             	$doc_style	 	= 'style="position:relative;padding-top:90%;"';
             }else{
-            	$iframe_style 		=  sprintf('style="width:%s; height:%s; border: none;"',esc_html($width),esc_html($height));
+            	$iframe_style 		=  sprintf('style="width:%s; height:%s; border: none;'.$min_height.'"',esc_html($width),esc_html($height));
             	$doc_style	 	= 'style="position:relative;"';
             }
-             
+            
             $iframe = '<iframe src="' . $iframe . '" ' . $iframe_style . '></iframe>';
             $show = false;
             $embed = '<div class="ead-preview"><div class="ead-document" '.  $doc_style.'>' . $iframe . $privatefile . '</div>'.$durl.'</div>';
@@ -367,18 +369,16 @@ class Awsm_embed {
 	    }
 	}
 	/**
-	 * Get dimenstion value
+	 * Check value in percentage
 	 *
 	 * @since   2.2.3
 	 * @return  Int Dimenesion
 	 */
-	function get_dim_value($dim){
-		$dim = preg_replace("/[^0-9]*/", '', $dim);
-		if ($dim) {
-			return $dim;
-		}else{
-			 return false;
+	function in_percentage($dim){
+		if (strstr($dim, '%')) {
+			return true;
 		}
+		return false;
 	}
 	/**
 	 * Enable Resposive
@@ -393,6 +393,7 @@ class Awsm_embed {
 				return true;
 			}
 		}
+		return false;
 	}
 	/**
 	 * Validate File url
