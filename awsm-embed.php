@@ -84,6 +84,7 @@ class Awsm_embed {
 			    if(ead_res){
 			    	var ead_width=ead_doc.offsetWidth,ead_height=ead_doc.dataset.height,ead_padding = (ead_height/ead_width)*100;
 			    	ead_doc.style.paddingTop = ead_padding+"%";
+			    	console.log(ead_padding);
 			    }
 			   
 			}	 
@@ -221,18 +222,19 @@ class Awsm_embed {
                     break;
             }
             $iframe_style = 'style="width:100%; height:100%; border: none; position: absolute;left:0;top:0;"';
+
             if($this->check_responsive($width)){
-            	$doc_style	 	= 'style="width:100%; height:100%; position:relative;padding-top:55%;"';
+            	$doc_style	 	= 'style="width:100%; height:100%; position:relative;padding-top:55%%;"';
             	$responsive   	= 'data-responsive="true"';
             }else{
-            	$doc_style 		=  sprintf('style="width:%s; height:%s; position:relative;padding-top:55%;"',esc_html($width),esc_html($height));
+            	$doc_style 		=  sprintf('style="width:%s; height:%s; position:relative;padding-top:55%%;"',esc_html($width),esc_html($height));
             	$responsive   	= 'data-responsive="false"';
             }
-            $dim_data     		= sprintf('data-width="%s" data-height="%s"',esc_html($width),esc_html($height));
+            $dim_data     		= sprintf('data-height="%s"',$this->get_dim_value($height));
 
             $iframe = '<iframe src="' . $iframe . '" ' . $iframe_style . '></iframe>';
             $show = false;
-            $embed = '<div class="ead-preview"><div class="ead-document" '. $dim_data . $responsive .' style="position:relative;padding-top:55%;">' . $iframe . $privatefile . $durl . '</div></div>';
+            $embed = '<div class="ead-preview"><div class="ead-document" '. $dim_data . $responsive .$doc_style.'>' . $iframe . $privatefile . $durl . '</div></div>';
         else:
             $embed = __('No Url Found', $this->text_domain);
         endif;

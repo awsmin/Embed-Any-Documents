@@ -12,7 +12,7 @@
                         <th scope="row"><?php _e('Default Size', $this->text_domain); ?></th>
                         <td> 
                          <div class="f-left ead-frame-width"><?php _e('Width', $this->text_domain); ?>    
-                         <input type="text" class="small" name="ead-width"  value="<?php echo esc_attr( get_option('ead-width','100%') ); ?>" />   
+                         <input type="text" class="small" name="ead_width"  value="<?php echo esc_attr( get_option('ead_width','100%') ); ?>" />   
                          </div>
                          <div class="f-left ead-frame-height">
                          <?php _e('Height', $this->text_domain); ?> 
