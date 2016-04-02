@@ -45,8 +45,6 @@ class Awsm_embed {
 		$this->settings_slug	=	'ead-settings';
 		$this->plugin_version	=	'2.2.2';
 
-		load_plugin_textdomain( $this->text_domain, false, $this->plugin_base . '/language' );
-
 		add_action( 'media_buttons', array( $this, 'embedbutton' ),1000);
 
 		add_shortcode( 'embeddoc', array( $this, 'embed_shortcode' ));
@@ -62,6 +60,8 @@ class Awsm_embed {
  		add_action( 'wp_ajax_supportform',array( $this, 'supportform' ));
  		//default options
  		register_activation_hook($this->plugin_file, array( $this, 'defaults' ));
+ 		//Load plugin textdomain.
+ 		add_action( 'plugins_loaded',array( $this, 'load_textdomain' ) );
 
  		$this->run_plugin();
 	}
@@ -72,7 +72,14 @@ class Awsm_embed {
 		wp_register_style( 'embed-settings', plugins_url( 'css/settings.css', $this->plugin_file ), false, $this->plugin_version, 'all' );
 		wp_enqueue_style('embed-settings');
 	}
-
+	/**
+	 * Load plugin textdomain.
+	 *
+	 * @since 2.2.3
+	 */
+	function load_textdomain() {
+	  load_plugin_textdomain( $this->text_domain, false, $this->plugin_base. '/language/' );
+	}
 	/**
 	 * Embed any Docs Button
 	 */

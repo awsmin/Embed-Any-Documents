@@ -81,6 +81,12 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
 
+= V 2.2.3 - 2016-04-02 =
+
+* Added option to change download link text
+* Responsive height support for embeds
+* Language compatibility fixes
+
 = V 2.2.2 - 2016-03-10 =
 * Added ppsx support.
 
@@ -119,6 +125,12 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 
 == Upgrade Notice ==
+
+= V 2.2.3 - 2016-04-02 =
+
+* Added option to change download link text
+* Responsive height support for embeds
+* Language compatibility fixes
 
 = V 2.2.2 - 2016-03-10 =
 * Added ppsx support.
