@@ -169,7 +169,7 @@ a.go-back {
 .uploaded-doccument.ead-box {
     background: url(../images/icon-box.png) no-repeat center 5px / 54px 49px;
 }
-.wp-core-ui .button#adv_options {
+.wp-core-ui .button#adv-options {
     float: right;
     height: 40px;
     line-height: 38px;
@@ -190,19 +190,19 @@ input.input-group-text {
     padding: 5px 10px;
     height: 40px;
 }
-.advanced_options {
+.advanced-options {
     padding: 30px;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     float: left;
-    width: 70%;
+    width: 80%;
     border-left: 1px solid #ebebeb;
 }
-.advanced_options h3 {
+.advanced-options h3 {
     margin-top: 0px
 }
-.advanced_options h3 span {
+.advanced-options h3 span {
     color: #aaa;
     font-weight: normal;
 }
@@ -305,6 +305,18 @@ div.awsm-error p, div.awsm-updated p {
 }
 .option-fields .f-left {
     margin-right: 25px;
+    max-width: 160px;
+    margin-bottom: 6px;
+}
+#ead-download-text input{
+    width: 100px;
+}
+.option-fields .f-left select, .option-fields .f-left input{
+    height: 32px;
+    padding: 6px;
+}
+.option-fields .f-left select{
+    width: 100%;
 }
 .option-fields .f-left.last {
     margin: 0;
@@ -340,14 +352,25 @@ div.awsm-error p, div.awsm-updated p {
         -webkit-box-shadow: 0 2px 25px #000;
     -moz-box-shadow: 0 2px 25px #000;
     box-shadow: 0 2px 25px #000;
-
-    
+    }
+    #embed-popup {
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }
 }
-
-#embed-popup {
-    box-shadow: none;
-    -webkit-box-shadow: none;
-}
+@media (max-width: 700px){
+    .upload-success .inner{
+        width: 100%;
+        padding: 30px 0;
+        float: none;
+    }
+    .advanced-options{
+        width: 100%;
+        padding: 30px 0;
+        float: none;
+        border-left: none;
+        border-top: 1px solid #ebebeb;
+    }
 }
 @media (max-width: 600px) {
     .ead-options li {
