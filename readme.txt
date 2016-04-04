@@ -81,7 +81,7 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
 
-= V 2.2.3 - 2016-04-02 =
+= V 2.2.3 - 2016-04-04 =
 
 * Added option to change download link text
 * Responsive height support for embeds
@@ -126,7 +126,7 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Upgrade Notice ==
 
-= V 2.2.3 - 2016-04-02 =
+= V 2.2.3 - 2016-04-04 =
 
 * Added option to change download link text
 * Responsive height support for embeds

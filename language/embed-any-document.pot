@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Embed Any Document\n"
-"POT-Creation-Date: 2016-04-02 15:30+0530\n"
-"PO-Revision-Date: 2016-04-02 15:30+0530\n"
+"POT-Creation-Date: 2016-04-04 14:12+0530\n"
+"PO-Revision-Date: 2016-04-04 14:13+0530\n"
 "Last-Translator: \n"
 "Language-Team: Awsm Innovations <hello@awsm.in>\n"
 "Language: en\n"
@@ -17,60 +17,48 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
-#: ../awsm-embed.php:87 ../inc/popup.php:6
+#: ../awsm-embed.php:92 ../inc/popup.php:6
 msgid "Add Document"
 msgstr ""
 
-#: ../awsm-embed.php:111
+#: ../awsm-embed.php:116
 msgid "Settings"
 msgstr ""
 
-#: ../awsm-embed.php:132 ../awsm-embed.php:156
+#: ../awsm-embed.php:137 ../awsm-embed.php:163
 msgid "Download"
 msgstr ""
 
-#: ../awsm-embed.php:138
+#: ../awsm-embed.php:143
 msgid "Nothing to insert"
 msgstr ""
 
-#: ../awsm-embed.php:139
+#: ../awsm-embed.php:144
 msgid "Invalid URL"
 msgstr ""
 
-#: ../awsm-embed.php:140 ../inc/popup.php:22
+#: ../awsm-embed.php:145 ../inc/popup.php:22
 msgid "Add URL"
 msgstr ""
 
-#: ../awsm-embed.php:141
+#: ../awsm-embed.php:146
 msgid "Verifying..."
 msgstr ""
 
-#: ../awsm-embed.php:222
+#: ../awsm-embed.php:147
+msgid "From URL"
+msgstr ""
+
+#: ../awsm-embed.php:229
 msgid "No Url Found"
 msgstr ""
 
-#: ../awsm-embed.php:236
+#: ../awsm-embed.php:243
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: ../awsm-embed.php:281
+#: ../awsm-embed.php:288
 msgid "Buy Pro Version"
-msgstr ""
-
-#: ../awsm-embed.php:416
-msgid "Done"
-msgstr ""
-
-#: ../awsm-embed.php:421
-msgid "Document"
-msgstr ""
-
-#: ../awsm-embed.php:429
-msgid "File format is not supported."
-msgstr ""
-
-#: ../awsm-embed.php:436
-msgid "Sorry, the file URL is not valid."
 msgstr ""
 
 #: ../inc/popup.php:4
