@@ -68,7 +68,7 @@ jQuery(document).ready(function($) {
                 type: emebeder.validtypes,
             },
             button: {
-                text: 'Insert'
+                text: emebeder.select_button
             }
         });
         frame.on('select', function() {
@@ -212,7 +212,7 @@ jQuery(document).ready(function($) {
     function ead_shortcode() {
         if (fileurl) {
             wp.media.editor.insert($shortcode.text());
-            remove_eadpop();
+            ead_remove_pop();
         } else {
             showmsg(emebeder.nocontent);
         }
