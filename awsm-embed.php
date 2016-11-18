@@ -515,6 +515,6 @@ function embed_doc_disable_self(){
 		deactivate_plugins( plugin_basename( __FILE__ ) );
 	}
 }
-// Main WPtouch Pro activation hook
+// plugin activation hook
 add_action( 'plugins_loaded', 'embed_doc_activation' );
 add_action( 'admin_init', 'embed_doc_disable_self' );

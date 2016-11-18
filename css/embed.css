@@ -3,21 +3,34 @@
     width: 85%;
     margin: 0 auto;
 }
-.ead-popup-on #TB_window{
+
+.ead-popup-on #TB_window {
     background: none;
     box-shadow: none;
     -webkit-box-shadow: none;
+    z-index: 200001 !important;
 }
-.ead-popup-on #TB_ajaxContent{
+
+.ead-popup-on #TB_overlay {
+    z-index: 200000 !important;
+}
+
+.ead-popup-on .media-modal {
+    z-index: 200003 !important;
+}
+
+.ead-popup-on #TB_ajaxContent {
     text-align: center;
 }
-.ead-popup-on #TB_ajaxContent:after{
+
+.ead-popup-on #TB_ajaxContent:after {
     content: "";
     display: inline-block;
     width: 1px;
     height: 100%;
     vertical-align: middle;
 }
+
 #embed-popup {
     position: relative;
     width: 99%;
@@ -32,29 +45,34 @@
     -moz-box-shadow: 0 2px 25px #000;
     box-shadow: 0 2px 25px #000;
     text-align: left;
-
 }
-.ead-popup-header{
+
+.ead-popup-header {
     padding: 20px 30px;
 }
-.ead-popup-header h1{
+
+.ead-popup-header h1 {
     margin: 0;
     line-height: 1.3;
 }
+
 .ead-section {
     padding: 0 30px;
     border-top: 1px solid #ebebeb;
 }
-.ead-action-panel{
-     padding: 20px 30px;
+
+.ead-action-panel {
+    padding: 20px 30px;
     background: #f5f5f5;
     border-top: 1px solid #ebebeb;
 }
+
 ul.ead-options {
     padding: 30px 0;
     overflow: hidden;
     margin: 0px;
 }
+
 .ead-options li {
     float: left;
     width: 20%;
@@ -63,11 +81,13 @@ ul.ead-options {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+
 .ead-options li a {
     display: block;
     text-decoration: none;
     color: rgb(33, 33, 33);
 }
+
 .ead-options li span {
     border: 2px dotted #ccc;
     -webkit-border-radius: 4px;
@@ -77,10 +97,12 @@ ul.ead-options {
     text-align: center;
     position: relative;
 }
+
 .ead-options li img {
     display: block;
     margin: 0 auto 10px;
 }
+
 .ead-options li span span.overlay {
     border: none;
     -webkit-border-radius: 0;
@@ -93,6 +115,7 @@ ul.ead-options {
     top: 0;
     background: rgba(255, 255, 255, 0.7);
 }
+
 .ead-options .overlay strong {
     display: inline-block;
     max-width: 97%;
@@ -104,23 +127,28 @@ ul.ead-options {
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
+
 .ead-options li span:hover {
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
+
 .ead-options li:hover .overlay strong {
     opacity: 1;
 }
+
 .ead-options .overlay i {
     display: inline-block;
     height: 100%;
     width: 1px;
     vertical-align: middle;
 }
+
 .upload-success {
     min-height: 70px;
     overflow: hidden;
 }
+
 .upload-success .inner {
     padding: 30px 10px;
     -moz-box-sizing: border-box;
@@ -129,6 +157,7 @@ ul.ead-options {
     float: left;
     width: 20%;
 }
+
 .box {
     display: none;
     border: 2px dotted #ccc;
@@ -137,16 +166,19 @@ ul.ead-options {
     padding: 20px;
     margin: 30px 0;
 }
+
 a.go-back {
     display: inline-block;
     margin-top: 20px;
     text-decoration: none;
 }
+
 .box label {
     display: block;
     font-size: 12px;
     margin-bottom: 5px;
 }
+
 .uploaded-doccument {
     padding: 75px 0 5px;
     color: #454545;
@@ -154,21 +186,27 @@ a.go-back {
     word-wrap: break-word;
     text-align: center;
 }
+
 .uploaded-doccument.ead-link {
     background: url(../images/icon-link.png) no-repeat center 5px / 36px 49px;
 }
+
 .uploaded-doccument.ead-upload {
     background: url(../images/icon-upload.png) no-repeat center 5px / 54px 49px;
 }
+
 .uploaded-doccument.ead-dropbox {
     background: url(../images/icon-dropbox.png) no-repeat center 5px / 51px 49px;
 }
+
 .uploaded-doccument.ead-drive {
     background: url(../images/icon-drive.png) no-repeat center 5px / 48px 49px;
 }
+
 .uploaded-doccument.ead-box {
     background: url(../images/icon-box.png) no-repeat center 5px / 54px 49px;
 }
+
 .wp-core-ui .button#adv-options {
     float: right;
     height: 40px;
@@ -176,20 +214,24 @@ a.go-back {
     font-size: 13px;
     padding: 0 20px;
 }
+
 .uploaded-doccument p {
     font-weight: bold;
     font-size: 16px;
     margin: 0 0 3px;
 }
+
 input.input-group-text {
     padding: 5px 8px;
     height: 40px;
     min-width: 88%;
 }
+
 .wp-core-ui .button-primary.input-group-btn {
     padding: 5px 10px;
     height: 40px;
 }
+
 .advanced-options {
     padding: 30px;
     -moz-box-sizing: border-box;
@@ -199,43 +241,55 @@ input.input-group-text {
     width: 80%;
     border-left: 1px solid #ebebeb;
 }
+
 .advanced-options h3 {
     margin-top: 0px
 }
+
 .advanced-options h3 span {
     color: #aaa;
     font-weight: normal;
 }
+
 body.mfp-shown .mfp-bg {
     z-index: 1010;
 }
+
 body.mfp-shown .mfp-wrap {
     z-index: 1011;
 }
+
 body.mfp-shown .mfp-preloader {
     z-index: 1012;
 }
+
 body.mfp-shown .mfp-content {
     z-index: 1013;
 }
-body.mfp-shown button.mfp-close, body.mfp-shown button.mfp-arrow {
+
+body.mfp-shown button.mfp-close,
+body.mfp-shown button.mfp-arrow {
     z-index: 1014;
 }
+
 .wp-core-ui .ead-btn.button-large {
     padding: 0 30px;
     height: 54px;
     line-height: 52px;
     font-size: 16px;
 }
+
 .wp-core-ui .ead-btn.button-medium {
     padding: 0 15px;
     height: 36px;
     line-height: 34px;
     font-size: 14px;
 }
+
 .text-center {
     text-align: center;
 }
+
 .mfp-close {
     position: absolute;
     right: 30px;
@@ -251,120 +305,157 @@ body.mfp-shown button.mfp-close, body.mfp-shown button.mfp-arrow {
     opacity: 0.65;
     padding: 0;
 }
-.mfp-close:hover{
+
+.mfp-close:hover {
     opacity: 1;
 }
+
 .mfp-close .upload-success {
     display: none;
 }
-div.awsm-error, div.awsm-updated {
+
+div.awsm-error,
+div.awsm-updated {
     margin: 5px 0 2px;
     border-width: 1px 1px 1px 4px;
     border-style: solid;
     -webkit-border-radius: 4px;
     border-radius: 4px;
 }
+
 div.awsm-updated {
     background-color: #fff;
     border-color: #eee #eee #eee #7ad03a;
     padding: 1px 12px;
 }
+
 div.awsm-error {
     background: none repeat scroll 0 0 #fff;
     border-color: #eee #eee #eee #dd3d36;
     padding: 1px 12px;
 }
-div.awsm-error p, div.awsm-updated p {
+
+div.awsm-error p,
+div.awsm-updated p {
     margin: 0.5em 0;
     padding: 2px;
 }
+
 .hidden {
     display: none;
 }
+
 .mceActionPanel {
     margin: 0;
 }
+
 .option-fields {
     list-style-type: none;
     margin: 0;
     padding: 20px 0 0;
 }
+
 .option-fields li {
     padding-bottom: 15px;
     overflow: hidden;
 }
+
 .option-fields label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
 }
-.option-fields li.checkbox input{ float: left; margin: 2px 10px 0 0;}
-.option-fields li.checkbox label{ float: left; margin: 0 0 0; font-weight: normal;}
+
+.option-fields li.checkbox input {
+    float: left;
+    margin: 2px 10px 0 0;
+}
+
+.option-fields li.checkbox label {
+    float: left;
+    margin: 0 0 0;
+    font-weight: normal;
+}
+
 .f-left {
     float: left;
 }
+
 .option-fields .f-left {
     margin-right: 25px;
     max-width: 160px;
     margin-bottom: 6px;
 }
-#ead-download-text input{
+
+#ead-download-text input {
     width: 100px;
 }
-.option-fields .f-left select, .option-fields .f-left input{
+
+.option-fields .f-left select,
+.option-fields .f-left input {
     height: 32px;
     padding: 6px;
 }
-.option-fields .f-left select{
+
+.option-fields .f-left select {
     width: 100%;
 }
+
 .option-fields .f-left.last {
     margin: 0;
 }
+
 .clear {
     clear: both;
 }
+
 .input-small {
     width: 60px;
 }
+
 .box .urlerror {
     border-color: #D95B5B;
     -webkit-box-shadow: 0 0 2px rgba(190, 30, 30, 0.8);
     box-shadow: 0 0 2px rgba(190, 30, 30, 0.8);
 }
+
 .picker-dialog {
     z-index: 100091;
 }
+
 .picker-dialog-bg {
     z-index: 100090;
 }
-.ead-popon #adminmenuwrap{
+
+.ead-popon #adminmenuwrap {
     z-index: 999!important;
 }
+
 @media (max-width: 915px) {
     .ead-options li {
         width: 33.33%;
         padding-bottom: 20px;
         margin-bottom: 0;
     }
-    .ead-popup-on #TB_window{
-    background: #fff;
+    .ead-popup-on #TB_window {
+        background: #fff;
         -webkit-box-shadow: 0 2px 25px #000;
-    -moz-box-shadow: 0 2px 25px #000;
-    box-shadow: 0 2px 25px #000;
+        -moz-box-shadow: 0 2px 25px #000;
+        box-shadow: 0 2px 25px #000;
     }
     #embed-popup {
         box-shadow: none;
         -webkit-box-shadow: none;
     }
 }
-@media (max-width: 700px){
-    .upload-success .inner{
+
+@media (max-width: 700px) {
+    .upload-success .inner {
         width: 100%;
         padding: 30px 0;
         float: none;
     }
-    .advanced-options{
+    .advanced-options {
         width: 100%;
         padding: 30px 0;
         float: none;
@@ -372,11 +463,13 @@ div.awsm-error p, div.awsm-updated p {
         border-top: 1px solid #ebebeb;
     }
 }
+
 @media (max-width: 600px) {
     .ead-options li {
         width: 50%;
     }
 }
+
 @media (max-width: 440px) {
     .ead-options li {
         width: 100%;

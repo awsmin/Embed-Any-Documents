@@ -49,35 +49,35 @@
     </div><!-- .ead-left-wrap -->
     <div class="ead-right-wrap">
         <div class="ead-right-inner">
-        <a href="http://awsm.in" target="_blank" title="AWSM Innovations"><img src="http://awsm.in/innovations/ead/logo2.jpg" alt="AWSM!"></a>
-    <ul class="awsm-social">
-        <li><a href="https://www.facebook.com/awsminnovations" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-facebook">Facebook</span></a></li>
-        <li><a href="https://twitter.com/awsmin" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-twitter">Twitter</span></a></li>
-        <li><a href="https://github.com/awsmin" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-github">Github</span></a></li>
-        <li><a href="https://www.behance.net/awsmin" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-behance">Behance</span></a></li>
-    </ul>
-    </div>
-    <div class="clearfix row-col">
-        <div class="col-2">
-            <a href="https://wordpress.org/support/view/plugin-reviews/embed-any-document#postform" target="_blank">
-                <img src="<?php echo $this->plugin_url;?>images/star.gif"><?php _e('Like the plugin?', $this->text_domain);?><br/><?php _e('Rate Now!', $this->text_domain);?>
-            </a>
-        </div>
-        <div class="col-2">
-            <a href="http://awsm.in/support" target="_blank">
-                <img src="<?php echo $this->plugin_url;?>images/ticket.gif"><?php _e('Need Help?', $this->text_domain);?><br/><?php _e('Open a Ticket', $this->text_domain);?>
-            </a>
-        </div>
-    </div>
-    <div class="ead-right-inner">
-    <h3>More Links</h3>
-    <ol>
-            <li><a href="http://awsm.in/ead-plus-documentation/#embedding" target="_blank" title="<?php _e('How to Embed Documents?', $this->text_domain); ?>"><?php _e('How to Embed Documents?', $this->text_domain); ?></a></li>
-            <li><a href="http://awsm.in/ead-plus-documentation/#viewers" target="_blank" title="<?php _e('About Viewers', $this->text_domain); ?>"><?php _e('About Viewers', $this->text_domain); ?></a></li>
-            <li><a href="http://awsm.in/ead-plus-documentation/#shortcode" target="_blank" title="<?php _e('Shortcode & Attributes', $this->text_domain); ?>"><?php _e('Shortcode & Attributes', $this->text_domain); ?></a></li>
-            <li><a href="http://awsm.in/support" target="_blank" title="<?php _e('FAQs', $this->text_domain); ?>"><?php _e('FAQs', $this->text_domain); ?></a></li>
-    </ol>
-    </div>
+            <a href="http://awsm.in" target="_blank" title="AWSM Innovations"><img src="http://awsm.in/innovations/ead/logo2.jpg" alt="AWSM!"></a>
+            <ul class="awsm-social">
+                <li><a href="https://www.facebook.com/awsminnovations" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-facebook">Facebook</span></a></li>
+                <li><a href="https://twitter.com/awsmin" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-twitter">Twitter</span></a></li>
+                <li><a href="https://github.com/awsmin" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-github">Github</span></a></li>
+                <li><a href="https://www.behance.net/awsmin" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-behance">Behance</span></a></li>
+            </ul>
+        </div><!-- .ead-right-inner -->
+        <div class="clearfix row-col">
+            <div class="col-2">
+                <a href="https://wordpress.org/support/view/plugin-reviews/embed-any-document#postform" target="_blank">
+                    <img src="<?php echo $this->plugin_url;?>images/star.gif"><?php _e('Like the plugin?', $this->text_domain);?><br/><?php _e('Rate Now!', $this->text_domain);?>
+                </a>
+            </div><!-- .col -->
+            <div class="col-2">
+                <a href="http://awsm.in/support" target="_blank">
+                    <img src="<?php echo $this->plugin_url;?>images/ticket.gif"><?php _e('Need Help?', $this->text_domain);?><br/><?php _e('Open a Ticket', $this->text_domain);?>
+                </a>
+            </div><!-- .col -->
+        </div><!-- .row -->
+        <div class="ead-right-inner">
+            <h3>More Links</h3>
+            <ol>
+                    <li><a href="http://awsm.in/ead-plus-documentation/#embedding" target="_blank" title="<?php _e('How to Embed Documents?', $this->text_domain); ?>"><?php _e('How to Embed Documents?', $this->text_domain); ?></a></li>
+                    <li><a href="http://awsm.in/ead-plus-documentation/#viewers" target="_blank" title="<?php _e('About Viewers', $this->text_domain); ?>"><?php _e('About Viewers', $this->text_domain); ?></a></li>
+                    <li><a href="http://awsm.in/ead-plus-documentation/#shortcode" target="_blank" title="<?php _e('Shortcode & Attributes', $this->text_domain); ?>"><?php _e('Shortcode & Attributes', $this->text_domain); ?></a></li>
+                    <li><a href="http://awsm.in/support" target="_blank" title="<?php _e('FAQs', $this->text_domain); ?>"><?php _e('FAQs', $this->text_domain); ?></a></li>
+            </ol>
+        </div><!-- .ead-right-inner -->
     </div><!-- .ead-right-wrap -->
     <div class="clear"></div>
 </div><!-- .wrap -->
