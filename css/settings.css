@@ -1,93 +1,125 @@
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
 img {
     max-width: 100%;
     height: auto;
 }
+
 .clear {
     clear: both;
 }
+
 .f-left {
     float: left;
 }
+
 .fl-right {
     float: right;
 }
-.tabs {
-    display: none;
+
+.ead-tabs {
     background: #fff;
-    padding: 20px 20px 0;
+    padding: 5px 20px 0;
 }
-.tabs.visible {
+h1.ead-title{
+     margin-bottom: 10px;
+}
+
+.ead-tabs.visible {
     display: block;
 }
-.nav-tab-wrapper a {
-    background: none;
-    border: none;
+
+#supportform p.submit {
+    border: none !important;
+    padding-top: 0px !important;
 }
+
+.nav-tab-wrapper a {
+    border: none;
+    padding: 7px 15px;
+    margin: 0 10px 0 0;
+    background: none;
+}
+
 .nav-tab-wrapper a:hover {
     border: none;
+    background: none;
 }
+
 .nav-tab-wrapper a.nav-tab-active {
     background: #fff;
 }
+
 .form-table {
     margin-top: 0;
-    padding-top: 0.5em;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
+
 h2.nav-tab-wrapper {
     border: none;
     padding-left: 0;
 }
-h2.ead-title {
-    background: url(../images/icon-ead.png) no-repeat 0 14px;
-    padding-left: 46px !important;
-    padding-bottom: 25px !important;
+
+.row {
+    margin: 0 -15px;
 }
+
 .ead-left-wrap {
+    width: 66.66666667%;
+    padding: 0 15px;
     float: left;
-    width: 100%;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    padding-right: 340px;
-    margin-right: -340px;
 }
-.ead-left-wrap h3{
-    font-weight: 300;
-    font-size: 20px;
-    margin: 0 0 20px;
-}
-.ead-form-footer{
+
+.ead-form-footer {
     margin: 0 -20px;
     padding: 20px;
     background: #f5f5f5;
     border-top: 1px solid #ddd;
-    -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
-    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
-.ead-form-footer p{ 
+
+.ead-form-footer p {
     margin: 0;
     float: right;
     padding: 0;
 }
-.ead-form-footer .button{
-    height: 42px;
+
+.purchase-key .ead-inputholder{
+    width: 90%;
 }
+ 
+/*--- Sidebar -----*/
+
 .ead-right-wrap {
-    float: right;
-    max-width: 300px;
+    float: left;
+    width: 33.3333%;
     color: #372e2e;
+    padding: 0 15px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
-.ead-banner{
-    text-align: center;
-    padding-top: 20px;
+
+.we-are-awsm {
+    background: #fff;
+    padding: 26px 20px;
 }
+
 .ead-right-inner {
     background: #fff;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
-.ead-right-inner h3{
+
+.ead-right-inner h3 {
     margin: 0;
     padding: 15px 20px;
     border-bottom: 1px solid #ddd;
@@ -96,133 +128,165 @@ h2.ead-title {
     color: #5b5b5b;
     font-weight: normal;
 }
-.ead-right-inner ol{
+
+.ead-right-wrap ol {
     padding: 0 20px 15px;
     margin: 0 0 0 20px;
 }
-.ead-right-inner ol a{ 
+
+.ead-right-wrap ol a {
     text-decoration: none;
 }
-.author-info {
-    padding: 10px 15px;
-    text-align: center;
+
+.awsm-branding {
+    overflow: hidden;
 }
-.awsm-social {
-    text-align: center;
-    list-style-type: none;
-    padding: 15px;
-    border-bottom: 1px solid #dadada;
+
+.awsm-branding img {
+    float: left;
+    margin-right: 15px;
+}
+
+.left-clear {
+    overflow: hidden;
+}
+
+.awsm-branding h2 {
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+    line-height: 1.6667;
+}
+
+.awsm-branding h3 {
+    font-size: 18px;
+    padding: 0 0 10px;
     margin: 0;
 }
+
+.awsm-branding h3 a {
+    text-decoration: none;
+    color: #333;
+}
+
+.awsm-social {
+    list-style-type: none;
+    margin: 0 -2px;
+}
+
 .awsm-social li {
     display: inline-block;
-    margin: 0 6px;
+    padding: 0 2px;
 }
+
 .awsm-icon {
-    background: url(../images/ead-icon-sprite.jpg) no-repeat;
+    background: url(../images/icon-sprite.png) no-repeat;
     display: block;
     width: 21px;
-    height: 21px;
+    height: 17px;
     text-indent: -999999px;
     opacity: 0.46;
+    -webkit-transition: opacity 0.3s ease;
+    -moz-transition: opacity 0.3s ease;
+    -ms-transition: opacity 0.3s ease;
+    -o-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease;
 }
+
 .awsm-icon:hover {
     opacity: 1;
 }
-.awsm-icon-facebook {} .awsm-icon-twitter {
+
+.awsm-icon-twitter {
     background-position: -26px 0;
 }
+
 .awsm-icon-github {
-    background-position: -52px 0;
+    background-position: -53px 0;
 }
+
 .awsm-icon-behance {
     background-position: -78px 0;
     width: 28px;
 }
+
 .awsm-icon-dribbble {
     background-position: right 0;
 }
+
 .paypal {
     text-align: center;
 }
+
 .paypal input.small {
     vertical-align: top;
     margin-right: 20px;
 }
+
 .paypal .donate-btn {
     vertical-align: top;
     padding: 0;
 }
+
 input.small {
     max-width: 60px;
 }
+
 .ead-frame-width {
     margin-right: 15px;
     margin-bottom: 10px;
 }
+
 .ead-frame-height {
     margin-bottom: 10px;
 }
-.row-col{
-    margin: 0 -5px 10px;
-    overflow: hidden;
-}
-.col-2{
-    float: left;
-    padding: 0 5px;
-    width: 50%;
-    -moz-box-sizing: border-box;
--webkit-box-sizing: border-box;
-box-sizing: border-box;
-}
-.col-2 a{
-    background: #fff;
-    display: block;
-    text-align: center;
-    padding: 25px 10px;
-    text-decoration: none;
-}
 
-.col-2 a img{
-    display: block;
-    margin: 0 auto 10px;
-}
-span.note, .ead_supported {
+span.note,
+.ead-supported {
     font-size: 12px;
     color: #999;
 }
-div.awsm-error, div.awsm-updated {
+
+div.awsm-error,
+div.awsm-updated {
     margin: 5px 0 2px;
     border-width: 1px 1px 1px 4px;
     border-style: solid;
     -webkit-border-radius: 4px;
     border-radius: 4px;
 }
+
 div.awsm-updated {
     background-color: #fff;
     border-color: #eee #eee #eee #7ad03a;
     padding: 1px 12px;
 }
+
 div.awsm-error {
     background: none repeat scroll 0 0 #fff;
     border-color: #eee #eee #eee #dd3d36;
     padding: 1px 12px;
 }
-div.awsm-error p, div.awsm-updated p {
+
+div.awsm-error p,
+div.awsm-updated p {
     margin: 0.5em 0;
     padding: 2px;
 }
-.ead_doller {
+
+.ead-doller {
     display: inline-block;
     vertical-align: top;
     margin: 5px 5px 0 0;
     font-weight: bold;
 }
+
 #supportform label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
 }
+
 .text-input {
     width: 100%;
     height: 40px;
@@ -230,24 +294,30 @@ div.awsm-error p, div.awsm-updated p {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+
 #supportform textarea {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     width: 100%;
+    min-height: 150px;
 }
-.ead_supported span {
+
+.ead-supported span {
     display: block;
     font-weight: bold;
     margin-top: 10px;
 }
+
 .supportedlist ul {
     margin-top: 5px;
 }
+
 .supportedlist li {
     padding-left: 17px;
     position: relative;
 }
+
 .supportedlist li span {
     position: absolute;
     left: 0;
@@ -256,38 +326,162 @@ div.awsm-error p, div.awsm-updated p {
     height: 11px;
     margin: 0;
 }
+
 .supportedlist li span.ead-check {
     background: url(../images/icon-yes.png) no-repeat;
 }
+
 .supportedlist li span.ead-close {
     background: url(../images/icon-no.png) no-repeat;
 }
+
 .col-left {
     float: left;
     width: 47%;
     margin-right: 6%;
 }
+
 .col-right {
     float: right;
     width: 47%;
 }
-@media (max-width: 800px) {
+
+.cloudform {
+    margin: 0;
+}
+
+.cloudform > li {
+    border: 1px solid #eee;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    padding: 30px 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.ead-cloud {
+    float: left;
+    padding: 0 5px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.ead-cloud.ead-service {
+    text-align: center;
+    width: 14%;
+}
+
+.ead-cloud.ead-setup {
+    width: 53%;
+}
+
+.ead-cloud.ead-config {
+    width: 30%;
+}
+
+.ead-cloud span {
+    display: block;
+    font-weight: bold;
+    color: #ccc;
+}
+
+.ead-cloud label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.ead-inputholder {
+    float: left;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 50%;
+    padding: 0 5px;
+}
+
+.ead-inputholder input {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.ead-cloud ol {
+    list-style: none;
+    margin: 0;
+}
+
+.ead-right-widget {
+    margin-bottom: 15px;
+}
+
+.row-2 {
+    margin-left: -1px;
+    margin-right: -1px;
+}
+
+.col-2 {
+    float: left;
+    padding: 0 1px;
+    width: 50%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.col-2 a {
+    background: #fff;
+    display: block;
+    text-align: center;
+    padding: 25px 10px;
+    text-decoration: none;
+}
+
+.col-2 a img {
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.settings_page_ead-plus-settings .nav-tab-wrapper {
+    border: none;
+}
+
+@media (max-width: 1024px) {
     .ead-left-wrap {
-        float: none;
         width: 100%;
-        margin-bottom: 30px;
-        padding-right: 0;
-        margin-right: 0;
+        margin-bottom: 25px;
     }
     .ead-right-wrap {
-        float: none;
         width: 100%;
     }
 }
+
 @media (max-width: 980px) {
-    .col-left, .col-right {
+    .col-left,
+    .col-right {
         float: none;
         width: 100%;
         margin-right: 0%;
     }
+}
+
+@media (max-width: 600px) {
+    .ead-cloud {
+        width: 100% !important;
+        text-align: left !important;
+        float: none;
+        margin-bottom: 20px;
+    }
+    .ead-inputholder {
+        float: none;
+        width: 100%;
+        margin-bottom: 8px;
+    }
+}
+
+
+.ead-banner{
+    margin-top: 40px;
 }

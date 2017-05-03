@@ -4,6 +4,10 @@
     margin: 0 auto;
 }
 
+.ead-popup-on #TB_overlay {
+    z-index: 200000 !important;
+}
+
 .ead-popup-on #TB_window {
     background: none;
     box-shadow: none;
@@ -11,12 +15,8 @@
     z-index: 200001 !important;
 }
 
-.ead-popup-on #TB_overlay {
-    z-index: 200000 !important;
-}
-
-.ead-popup-on .media-modal {
-    z-index: 200003 !important;
+.ead-popup-on .fw-modal .media-modal{
+    z-index: 200001 !important;
 }
 
 .ead-popup-on #TB_ajaxContent {
@@ -34,16 +34,16 @@
 #embed-popup {
     position: relative;
     width: 99%;
-    max-width: 1000px;
+    max-width: 1030px;
     background: #fff;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     display: inline-block;
     vertical-align: middle;
-    -webkit-box-shadow: 0 2px 25px #000;
-    -moz-box-shadow: 0 2px 25px #000;
-    box-shadow: 0 2px 25px #000;
+    -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
     text-align: left;
 }
 
@@ -89,18 +89,30 @@ ul.ead-options {
 }
 
 .ead-options li span {
-    border: 2px dotted #ccc;
+    border: 1px solid #dfdfdf;
     -webkit-border-radius: 4px;
     border-radius: 4px;
     display: block;
-    padding: 30px 10px 20px;
+    padding: 44px 10px;
     text-align: center;
     position: relative;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.ead-options li span:hover {
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    border-color: #ccc;
 }
 
 .ead-options li img {
     display: block;
     margin: 0 auto 10px;
+    max-height: 50px;
 }
 
 .ead-options li span span.overlay {
@@ -160,11 +172,13 @@ ul.ead-options {
 
 .box {
     display: none;
-    border: 2px dotted #ccc;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
     padding: 20px;
     margin: 30px 0;
+}
+
+.addurl-box.box {
+    margin: 10px 0;
+    padding: 20px 0;
 }
 
 a.go-back {
@@ -251,25 +265,8 @@ input.input-group-text {
     font-weight: normal;
 }
 
-body.mfp-shown .mfp-bg {
-    z-index: 1010;
-}
-
-body.mfp-shown .mfp-wrap {
-    z-index: 1011;
-}
-
-body.mfp-shown .mfp-preloader {
-    z-index: 1012;
-}
-
-body.mfp-shown .mfp-content {
-    z-index: 1013;
-}
-
-body.mfp-shown button.mfp-close,
-body.mfp-shown button.mfp-arrow {
-    z-index: 1014;
+.ead-popup-on .media-modal {
+    z-index: 200003 !important;
 }
 
 .wp-core-ui .ead-btn.button-large {
@@ -290,12 +287,12 @@ body.mfp-shown button.mfp-arrow {
     text-align: center;
 }
 
-.mfp-close {
+.ead-popup-on .ead-close {
     position: absolute;
     right: 30px;
     top: 30px;
     font-weight: bold;
-    background: url(../images/icon-close.png)!important;
+    background: url(../images/icon-close.png) !important;
     width: 22px;
     height: 22px;
     display: block;
@@ -312,6 +309,10 @@ body.mfp-shown button.mfp-arrow {
 
 .mfp-close .upload-success {
     display: none;
+}
+
+#embed-message {
+    margin-top: 20px;
 }
 
 div.awsm-error,
@@ -358,6 +359,7 @@ div.awsm-updated p {
 .option-fields li {
     padding-bottom: 15px;
     overflow: hidden;
+    margin-bottom: 0;
 }
 
 .option-fields label {
@@ -384,21 +386,21 @@ div.awsm-updated p {
 .option-fields .f-left {
     margin-right: 25px;
     max-width: 160px;
-    margin-bottom: 6px;
 }
 
-#ead-download-text input {
-    width: 100px;
-}
-
-.option-fields .f-left select,
-.option-fields .f-left input {
-    height: 32px;
+.option-fields .f-left input,
+.option-fields .f-left select {
+    height: 34px;
     padding: 6px;
+    margin-bottom: 10px;
 }
 
 .option-fields .f-left select {
     width: 100%;
+}
+
+#ead-download-text input {
+    width: 100px;
 }
 
 .option-fields .f-left.last {
@@ -420,18 +422,18 @@ div.awsm-updated p {
 }
 
 .picker-dialog {
-    z-index: 100091;
+    z-index: 20000091 !important;
 }
 
 .picker-dialog-bg {
-    z-index: 100090;
+    z-index: 20000090 !important;
 }
 
 .ead-popon #adminmenuwrap {
-    z-index: 999!important;
+    z-index: 999 !important;
 }
 
-@media (max-width: 915px) {
+@media (max-width:915px) {
     .ead-options li {
         width: 33.33%;
         padding-bottom: 20px;
@@ -449,28 +451,31 @@ div.awsm-updated p {
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width:700px) {
+    .ead-section {
+        padding: 0;
+    }
     .upload-success .inner {
         width: 100%;
-        padding: 30px 0;
-        float: none;
     }
-    .advanced-options {
+    .advanced_options {
         width: 100%;
-        padding: 30px 0;
-        float: none;
         border-left: none;
         border-top: 1px solid #ebebeb;
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width:600px) {
     .ead-options li {
         width: 50%;
     }
+    #ead_downloadc select,
+    #new_provider select {
+        width: 100%;
+    }
 }
 
-@media (max-width: 440px) {
+@media (max-width:440px) {
     .ead-options li {
         width: 100%;
     }
