@@ -3,7 +3,7 @@
 } // Exit if accessed directly ?>
 <div id="embed-popup-wrap">
     <div id="embed-popup">
-        <button title="<?php esc_html_e( 'Close', 'embed-any-document' ); ?>" type="button" class="mfp-close">×</button>
+        <button title="<?php esc_html_e( 'Close', 'embed-any-document' ); ?>" type="button" class="ead-close">×</button>
         <div id="popup-header" class="ead-popup-header">
             <h1><?php esc_html_e( 'Add Document', 'embed-any-document' ); ?></h1>
         </div>

@@ -107,11 +107,9 @@ class Awsm_embed {
         }
         // Print button in media column
         $button = '<a href="javascript:void(0);" class="' . esc_attr( $args['class'] ) . '" title="' . esc_attr( $args['text'] ) . '" data-mfp-src="#embed-popup-wrap" data-target="' . esc_attr( $args['target'] ) . '" >' . $args['icon'] . esc_html( $args['text'] ) . '</a>';
-        // Request assets
+
         wp_enqueue_media();
-        //Loads Support css and js
-        $this->embed_helper();
-        // Print/return result
+
         if ( $args['echo'] ) {
             echo $button;
         }
@@ -135,8 +133,10 @@ class Awsm_embed {
      */
     function embedpopup() {
 
-        add_thickbox();
-        include( $this->plugin_path . 'inc/popup.php' );
+        if (wp_script_is('ead_media_button')) {
+            add_thickbox();
+            include( $this->plugin_path . 'inc/popup.php' );
+        }
     }
 
     /**
@@ -144,9 +144,9 @@ class Awsm_embed {
      */
     function embed_helper() {
 
-        wp_register_style( 'embed-css', plugins_url( 'css/embed.css', $this->plugin_file ), false, $this->plugin_version, 'all' );
-        wp_register_script( 'embed', plugins_url( 'js/embed.js', $this->plugin_file ), array( 'jquery' ), $this->plugin_version, true );
-        wp_localize_script( 'embed', 'emebeder', array(
+        wp_enqueue_script( 'ead_media_button', plugins_url( 'js/embed.js', $this->plugin_file), array('jquery'), $this->plugin_version, true );
+        wp_enqueue_style( 'ead_media_button', plugins_url( 'css/embed.css', $this->plugin_file), false, $this->plugin_version, 'all' );
+        wp_localize_script( 'ead_media_button', 'emebeder', array(
             'height'        => get_option( 'ead_height', '100%' ),
             'width'         => get_option( 'ead_width', '100%' ),
             'download'      => get_option( 'ead_download', 'none' ),
@@ -164,8 +164,6 @@ class Awsm_embed {
             'select_button' => __( 'Select', 'embed-any-document' ),
 
         ) );
-        wp_enqueue_style( 'embed-css' );
-        wp_enqueue_script( 'embed' );
     }
 
     /**
@@ -191,12 +189,14 @@ class Awsm_embed {
                                                 'viewer'   => $default_provider,
                                                 'download' => $default_download,
                                             ), $atts );
+
         if ( isset( $atts['provider'] ) ) {
-            $viewer = $atts['provider'];
+            $shortcode_atts['viewer'] = $atts['provider'];
         }
         if ( ! isset( $atts['provider'] ) AND ! isset( $atts['viewer'] ) ) {
-            $viewer = 'google';
+            $shortcode_atts['viewer'] = 'google';
         }
+
         if ( $shortcode_atts['url'] ):
             $filedata    = wp_remote_head( $shortcode_atts['url'] );
             $durl        = '';
@@ -223,10 +223,10 @@ class Awsm_embed {
                 $durl = '<p class="embed_download"><a href="' . esc_url( $url ) . '" download >' . __( $shortcode_atts['text'], 'embed-any-document' ) . $fileHtml . ' </a></p>';
             }
 
-            $url          = esc_url( $url, array( 'http', 'https' ) );
-            $providerList = array( 'google', 'microsoft' );
-            if ( ! in_array( $viewer, $providerList ) ) {
-                $viewer = 'google';
+            $url            = esc_url( $url, array( 'http', 'https' ) );
+            $provider_list  = array( 'google', 'microsoft' );
+            if ( ! in_array( $shortcode_atts['viewer'] , $provider_list ) ) {
+                $shortcode_atts['viewer'] = 'google';
             }
             switch ( $shortcode_atts['viewer'] ) {
                 case 'google':
@@ -250,9 +250,9 @@ class Awsm_embed {
                 $iframe_style = sprintf( 'style="width:%s; height:%s; border: none;' . $min_height . '"', esc_html(  $shortcode_atts['width'] ), esc_html(  $shortcode_atts['height'] ) );
                 $doc_style    = 'style="position:relative;"';
             }
+           
+            $iframe = sprintf('<iframe src="%s" title="%s" %s></iframe>', esc_attr( $iframe ), esc_html__( 'Embedded Document', 'embed-any-document-plus'), $iframe_style );
 
-            $iframe = '<iframe src="' . $iframe . '" ' . $iframe_style . '></iframe>';
-            $show   = false;
             $embed  = '<div class="ead-preview"><div class="ead-document" ' . $doc_style . '>' . $iframe . $privatefile . '</div>' . $durl . '</div>';
         else:
             $embed = esc_html__( 'No Url Found', 'embed-any-document' );
@@ -297,15 +297,11 @@ class Awsm_embed {
     function adminfunctions() {
 
         if ( is_admin() ) {
-            //Admin Settings menu
+            add_action( 'wp_enqueue_media', array($this, 'embed_helper') );
             add_action( 'admin_menu', array( $this, 'admin_menu' ) );
             add_action( 'admin_init', array( $this, 'register_eadsettings' ) );
-            // Show generator popup
             add_action( 'admin_footer', array( $this, 'embedpopup' ) );
-            //Add easy settings link
             add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'settingslink' ) );
-            //ajax Contact Form
-            add_action( 'wp_ajax_supportform', array( $this, 'supportform' ) );
             add_filter( 'upload_mimes', array( $this, 'additional_mimes' ) );
         }
     }
