@@ -208,9 +208,10 @@ class Awsm_embed {
                     $show = true;
                 }
             }
+            $url      = esc_url( $shortcode_atts['url'], array( 'http', 'https' ) );
             if ( $show ) {
                 $filesize = 0;
-                $url      = esc_url( $shortcode_atts['url'], array( 'http', 'https' ) );
+                
                 if ( ! is_wp_error( $filedata ) && isset( $filedata['headers']['content-length'] ) ) {
                     $filesize = $this->human_filesize( $filedata['headers']['content-length'] );
                 } else {
@@ -222,8 +223,7 @@ class Awsm_embed {
                 }
                 $durl = '<p class="embed_download"><a href="' . esc_url( $url ) . '" download >' . __( $shortcode_atts['text'], 'embed-any-document' ) . $fileHtml . ' </a></p>';
             }
-
-            $url            = esc_url( $url, array( 'http', 'https' ) );
+            
             $provider_list  = array( 'google', 'microsoft' );
             if ( ! in_array( $shortcode_atts['viewer'] , $provider_list ) ) {
                 $shortcode_atts['viewer'] = 'google';
@@ -340,7 +340,7 @@ class Awsm_embed {
             'ead_height'      => '100%',
             'ead_download'    => 'none',
             'ead_provider'    => 'google',
-            'ead_mediainsert' => '1',
+            'ead_media:t' => '1',
         );
         foreach ( $o as $k => $v ) {
             if ( ! get_option( $k ) ) {
