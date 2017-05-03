@@ -4,35 +4,35 @@
     <div class="ead-left-wrap">
         
         <div class="tabs visible" id="general">
-            <h3><?php _e('General Settings', $this->text_domain); ?></h3>
+            <h3><?php _e('General Settings', 'embed-any-document'); ?></h3>
             <form method="post" action="options.php">
                 <?php settings_fields( 'ead-settings-group' ); ?>
                 <table class="form-table">
                     <tr valign="top">
-                        <th scope="row"><?php _e('Default Size', $this->text_domain); ?></th>
+                        <th scope="row"><?php _e('Default Size', 'embed-any-document'); ?></th>
                         <td> 
-                         <div class="f-left ead-frame-width"><?php _e('Width', $this->text_domain); ?>    
+                         <div class="f-left ead-frame-width"><?php _e('Width', 'embed-any-document'); ?>    
                          <input type="text" class="small" name="ead_width"  value="<?php echo esc_attr( get_option('ead_width','100%') ); ?>" />   
                          </div>
                          <div class="f-left ead-frame-height">
-                         <?php _e('Height', $this->text_domain); ?> 
+                         <?php _e('Height', 'embed-any-document'); ?> 
                          <input type="text" class="small" name="ead_height" value="<?php echo esc_attr( get_option('ead_height','100%') ); ?>" />
                         </div>
                         <div class="clear"></div>
-                        <span class="note"><?php _e('Enter values in pixels or percentage (Example: 500px or 100%)', $this->text_domain); ?></span>
+                        <span class="note"><?php _e('Enter values in pixels or percentage (Example: 500px or 100%)', 'embed-any-document'); ?></span>
                         </td>
                     </tr>
                     <tr valign="top">
-                    <th scope="row"><?php _e('Show Download Link',$this->text_domain);?></th>
+                    <th scope="row"><?php _e('Show Download Link','embed-any-document');?></th>
                     <td>
                        <?php 
-                        $downoptions= array('alluser' => __('For all users',$this->text_domain),'logged' => __('For Logged-in users',$this->text_domain),'none' => __('No Download',$this->text_domain));
+                        $downoptions= array('alluser' => __('For all users','embed-any-document'),'logged' => __('For Logged-in users','embed-any-document'),'none' => __('No Download','embed-any-document'));
                         $this->selectbuilder('ead_download', $downoptions,esc_attr( get_option('ead_download','none'))); 
                         ?> 
                     </td>
                     </tr>
                     <tr valign="top">
-                    <th scope="row"><?php _e('Download Text',$this->text_domain);?></th>
+                    <th scope="row"><?php _e('Download Text','embed-any-document');?></th>
                     <td>
                        <input type="text" class="" name="ead_text" value="<?php echo esc_attr( get_option('ead_text','Download') ); ?>" />
                     </td>
@@ -60,22 +60,22 @@
         <div class="clearfix row-col">
             <div class="col-2">
                 <a href="https://wordpress.org/support/view/plugin-reviews/embed-any-document#postform" target="_blank">
-                    <img src="<?php echo $this->plugin_url;?>images/star.gif"><?php _e('Like the plugin?', $this->text_domain);?><br/><?php _e('Rate Now!', $this->text_domain);?>
+                    <img src="<?php echo $this->plugin_url;?>images/star.gif"><?php _e('Like the plugin?', 'embed-any-document');?><br/><?php _e('Rate Now!', 'embed-any-document');?>
                 </a>
             </div><!-- .col -->
             <div class="col-2">
                 <a href="http://awsm.in/support" target="_blank">
-                    <img src="<?php echo $this->plugin_url;?>images/ticket.gif"><?php _e('Need Help?', $this->text_domain);?><br/><?php _e('Open a Ticket', $this->text_domain);?>
+                    <img src="<?php echo $this->plugin_url;?>images/ticket.gif"><?php _e('Need Help?', 'embed-any-document');?><br/><?php _e('Open a Ticket', 'embed-any-document');?>
                 </a>
             </div><!-- .col -->
         </div><!-- .row -->
         <div class="ead-right-inner">
             <h3>More Links</h3>
             <ol>
-                    <li><a href="http://awsm.in/ead-plus-documentation/#embedding" target="_blank" title="<?php _e('How to Embed Documents?', $this->text_domain); ?>"><?php _e('How to Embed Documents?', $this->text_domain); ?></a></li>
-                    <li><a href="http://awsm.in/ead-plus-documentation/#viewers" target="_blank" title="<?php _e('About Viewers', $this->text_domain); ?>"><?php _e('About Viewers', $this->text_domain); ?></a></li>
-                    <li><a href="http://awsm.in/ead-plus-documentation/#shortcode" target="_blank" title="<?php _e('Shortcode & Attributes', $this->text_domain); ?>"><?php _e('Shortcode & Attributes', $this->text_domain); ?></a></li>
-                    <li><a href="http://awsm.in/support" target="_blank" title="<?php _e('FAQs', $this->text_domain); ?>"><?php _e('FAQs', $this->text_domain); ?></a></li>
+                    <li><a href="http://awsm.in/ead-plus-documentation/#embedding" target="_blank" title="<?php _e('How to Embed Documents?', 'embed-any-document'); ?>"><?php _e('How to Embed Documents?', 'embed-any-document'); ?></a></li>
+                    <li><a href="http://awsm.in/ead-plus-documentation/#viewers" target="_blank" title="<?php _e('About Viewers', 'embed-any-document'); ?>"><?php _e('About Viewers', 'embed-any-document'); ?></a></li>
+                    <li><a href="http://awsm.in/ead-plus-documentation/#shortcode" target="_blank" title="<?php _e('Shortcode & Attributes', 'embed-any-document'); ?>"><?php _e('Shortcode & Attributes', 'embed-any-document'); ?></a></li>
+                    <li><a href="http://awsm.in/support" target="_blank" title="<?php _e('FAQs', 'embed-any-document'); ?>"><?php _e('FAQs', 'embed-any-document'); ?></a></li>
             </ol>
         </div><!-- .ead-right-inner -->
     </div><!-- .ead-right-wrap -->
