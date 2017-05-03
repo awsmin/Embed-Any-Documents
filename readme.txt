@@ -81,6 +81,9 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
 
+= V 2.2.5 - 2017-05-03 =
+* Minor bug fixes and enhancements
+
 = V 2.2.5 - 2016-05-12 =
 * Minor bug fixes and enhancements
 
@@ -132,6 +135,9 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 
 == Upgrade Notice ==
+
+= V 2.2.5 - 2017-05-03 =
+* Minor bug fixes and enhancements
 
 = V 2.2.5 - 2016-05-12 =
 * Minor bug fixes and enhancements
