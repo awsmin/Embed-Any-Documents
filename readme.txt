@@ -81,8 +81,10 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
 
-= V 2.3 - 2017-05-03 =
-* Minor bug fixes and enhancements
+= V 2.3 - 2017-05-12 =
+* UI improvements
+* Added title for the embed iframe
+* Other minor bug fixes
 
 = V 2.2.5 - 2017-05-03 =
 * Minor bug fixes and enhancements
@@ -139,8 +141,10 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Upgrade Notice ==
 
-= V 2.3 - 2017-05-03 =
-* Minor bug fixes and enhancements
+= V 2.3 - 2017-05-12 =
+* UI improvements
+* Added title for the embed iframe
+* Other minor bug fixes
 
 = V 2.2.5 - 2017-05-03 =
 * Minor bug fixes and enhancements
