@@ -49,7 +49,7 @@ jQuery(document).ready(function($) {
         $('.ead-options').fadeIn();
     });
      // Close embed dialog
-    $('#embed-popup').on('click', '.cancel-embed,.mfp-close', function(e) {
+    $('#embed-popup').on('click', '.cancel-embed,.ead-close', function(e) {
         // Prevent default action
         e.preventDefault();
         ead_remove_pop();

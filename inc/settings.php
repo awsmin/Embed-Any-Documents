@@ -69,7 +69,7 @@
                 <!-- .ead-right-inner -->
                 <div class="clearfix row-2 ead-right-widget">
                     <div class="col-2">
-                        <a href="http://goo.gl/wJTQlc" target="_blank">
+                        <a href="https://goo.gl/V2XQOM" target="_blank">
                    <img src="<?php echo $this->plugin_url;?>images/star.gif"><?php esc_html_e('Like the plugin?', 'embed-any-document-plus');?><br/><?php esc_html_e('Rate Now!', 'embed-any-document-plus');?>
                    </a>
                     </div>
