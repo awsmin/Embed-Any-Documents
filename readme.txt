@@ -81,7 +81,7 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
 
-= V 2.3 - 2017-06-28 =
+= V 2.3.1 - 2017-06-28 =
 * Minor bug fixes and enhancements
 
 = V 2.3 - 2017-05-12 =
@@ -144,7 +144,7 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Upgrade Notice ==
 
-= V 2.3 - 2017-06-28 =
+= V 2.3.1 - 2017-06-28 =
 * Minor bug fixes and enhancements
 
 = V 2.3 - 2017-05-12 =
