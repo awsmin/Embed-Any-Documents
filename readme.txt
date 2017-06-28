@@ -4,7 +4,7 @@ Donate link: http://awsm.in/donate
 Tags: embed documents, upload pdf, embed ppt, document viewer, pdf viewer, pdf viewer plugin, display pdf, embed pdf, embed pdf in wordpress, word, word viewer, word document, embed word, word plugin, doc, doc viewer, docx, docx viewer, excel, excel plugin, xls, xlsx, spreadsheet, embed spreadsheet, powerpoint, powerpoint viewer, ppt, ppt viewer, pptx, image viewer
 Author URI: http://awsm.in
 Requires at least: 3.5
-Tested up to: 4.7
+Tested up to: 4.8
 Stable tag: trunk
 License: GPLv2 
 
@@ -81,6 +81,9 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
 
+= V 2.3 - 2017-06-28 =
+* Minor bug fixes and enhancements
+
 = V 2.3 - 2017-05-12 =
 * UI improvements
 * Added title for the embed iframe
@@ -140,6 +143,9 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 
 == Upgrade Notice ==
+
+= V 2.3 - 2017-06-28 =
+* Minor bug fixes and enhancements
 
 = V 2.3 - 2017-05-12 =
 * UI improvements
