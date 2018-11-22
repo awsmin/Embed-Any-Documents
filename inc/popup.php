@@ -22,7 +22,7 @@
                         <li><?php $this->providerlink( 'Dropbox' ); ?></li>
                         <li><?php $this->providerlink( 'Box' ); ?></li>
                     </ul>
-                    <div class="ead-url-box addurl-box">
+                    <div class="box addurl-box">
                         <label for="awsm-url"><?php esc_html_e( 'Enter document URL', 'embed-any-document' ); ?></label>
                         <input name="awsm-url" type="text" class="opt dwl input-group-text" placeholder="Eg: http://www.yoursite.com/file.pdf" id="awsm-url"/>
                         <input type="button" value="<?php esc_html_e( 'Add URL', 'embed-any-document' ); ?>" class="ead-btn button-primary input-group-btn" id="ead-add-url"/>

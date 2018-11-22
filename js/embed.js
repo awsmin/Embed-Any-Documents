@@ -16,6 +16,7 @@ jQuery(document).ready(function($) {
         $('body').addClass('ead-popup-on');
         tb_show("Embed Any Document", "#TB_inline?inlineId=embed-popup-wrap&amp;width=1030&amp;modal=true", null);
         ead_tb_position();
+        $("#upload-doc").focus();
         return;
     });
     

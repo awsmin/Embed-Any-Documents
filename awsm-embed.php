@@ -3,7 +3,7 @@
   Plugin Name: Embed Any Document
   Plugin URI: http://awsm.in/embed-any-documents
   Description: Embed Any Document WordPress plugin lets you upload and embed your documents easily in your WordPress website without any additional browser plugins like Flash or Acrobat reader. The plugin lets you choose between Google Docs Viewer and Microsoft Office Online to display your documents. 
-  Version: 2.3.1
+  Version: 2.3.2
   Author: Awsm Innovations
   Author URI: http://awsm.in
   License: GPL V3
@@ -48,7 +48,7 @@ class Awsm_embed {
         $this->plugin_base    = dirname( plugin_basename( __FILE__ ) );
         $this->plugin_file    = __FILE__;
         $this->settings_slug  = 'ead-settings';
-        $this->plugin_version = '2.3.1';
+        $this->plugin_version = '2.3.2';
 
         add_action( 'media_buttons', array( $this, 'embedbutton' ), 1000 );
 
@@ -103,7 +103,7 @@ class Awsm_embed {
         ) );
         // Prepare EAD icon
         if ( $args['icon'] ) {
-            $args['icon'] = '<img src="' . esc_url( $args['icon'] ) . '" /> ';
+            $args['icon'] = '<img src="' . esc_url( $args['icon'] ) . '" alt="add document" role="presentation" /> ';
         }
         // Print button in media column
         $button = '<a href="javascript:void(0);" class="' . esc_attr( $args['class'] ) . '" title="' . esc_attr( $args['text'] ) . '" data-mfp-src="#embed-popup-wrap" data-target="' . esc_attr( $args['target'] ) . '" >' . $args['icon'] . esc_html( $args['text'] ) . '</a>';
