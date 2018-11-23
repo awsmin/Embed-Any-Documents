@@ -1,10 +1,10 @@
 {
   "name": "embed-any-document",
-  "version": "2.4",
+  "version": "2.4.0",
   "description": "Embed Any Document WordPress plugin lets you upload and embed your documents easily in your WordPress website without any additional browser plugins like Flash or Acrobat reader. The plugin lets you choose between Google Docs Viewer and Microsoft Office Online to display your documents.",
   "main": "webpack.config.js",
   "scripts": {
-    "dev" : "webpack",
+    "dev": "webpack",
     "build": "cross-env NODE_ENV=production webpack",
     "archive": "cross-env git archive --format=zip --prefix=embed-any-document/ --output=./build/embed-any-document.zip --worktree-attributes master",
     "gb-archive": "cross-env git archive --format=zip --prefix=embed-any-document/ --output=./build/embed-any-document.zip --worktree-attributes document-block"

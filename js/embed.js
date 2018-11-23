@@ -190,14 +190,21 @@ jQuery(document).ready(function($) {
     function ead_validateurl(url) {
         var uClass = 'link';
         $('#embed-message').hide();
-        if(ead_is_valid_url(url)){
+        if(ead_is_valid_url(url)) {
             fileurl = url;
+            var filename = url.split('/').pop();
+            if (!filename) filename = emebeder.from_url;
+            var file = {
+                url: fileurl,
+                filename: filename
+            };
             $('#insert-doc').removeAttr('disabled');
             $('#ead-filename').html(emebeder.from_url);
             $('#ead-filesize').html('&nbsp;');
             $('.upload-success').fadeIn();
             $container.hide();
             ead_upload_class(uClass);
+            ead_valid_viewer(file, uClass);
             ead_updateshortcode();
         }else{
             ead_showmsg(emebeder.invalidurl);
@@ -212,7 +219,17 @@ jQuery(document).ready(function($) {
 
     function ead_shortcode() {
         if (fileurl) {
-            wp.media.editor.insert($shortcode.text());
+            // @rel: document guten-block
+            var ins_shortcode = true;
+            if(typeof wp.blocks !== 'undefined') {
+                var document_block = wp.blocks.getBlockType('embed-any-document/document');
+                if(typeof document_block !== 'undefined') {
+                    ins_shortcode = false;
+                }
+            }
+            if(ins_shortcode) {
+                wp.media.editor.insert($shortcode.text());
+            }
             ead_remove_pop();
         } else {
             showmsg(emebeder.nocontent);
@@ -258,7 +275,11 @@ jQuery(document).ready(function($) {
     function ead_valid_viewer(file, provider) {
         var cprovider = ["link", "upload"];
         var validext = msextension.split(',');
-        var ext = '.' + file.filename.split('.').pop();
+        var checkitem = file.filename;
+        if (provider == 'link') {
+            checkitem = file.url;
+        }
+        var ext = '.' + checkitem.split('.').pop();
         $("#new-provider  option[value='microsoft']").attr('disabled', false);
         if ($.inArray(provider, cprovider) != -1) {
             if ($.inArray(ext, validext) == -1) {

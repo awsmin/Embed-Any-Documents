@@ -60,6 +60,10 @@ class Awsm_embed {
 
         //default options
         register_activation_hook( $this->plugin_file, array( $this, 'defaults' ) );
+
+        //Initialize block
+        include_once $this->plugin_path . 'blocks/document.php';
+
         //Load plugin textdomain.
         add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 
@@ -147,8 +151,11 @@ class Awsm_embed {
      * Register admin scripts
      */
     function embed_helper() {
-
-        wp_enqueue_script( 'ead_media_button', plugins_url( 'js/embed.js', $this->plugin_file), array('jquery'), $this->plugin_version, true );
+        $script_deps = array('jquery');
+        if(function_exists('register_block_type')) {
+            $script_deps = array_merge($script_deps, array('wp-blocks', 'wp-element'));
+        }
+        wp_enqueue_script( 'ead_media_button', plugins_url( 'js/embed.js', $this->plugin_file), $script_deps, $this->plugin_version, true );
         wp_enqueue_style( 'ead_media_button', plugins_url( 'css/embed.css', $this->plugin_file), false, $this->plugin_version, 'all' );
         wp_localize_script( 'ead_media_button', 'emebeder', array(
             'height'        => get_option( 'ead_height', '100%' ),
@@ -255,7 +262,7 @@ class Awsm_embed {
                 $doc_style    = 'style="position:relative;"';
             }
            
-            $iframe = sprintf('<iframe src="%s" title="%s" %s></iframe>', esc_attr( $iframe ), esc_html__( 'Embedded Document', 'embed-any-document-plus'), $iframe_style );
+            $iframe = sprintf('<iframe src="%s" title="%s" %s></iframe>', esc_attr( $iframe ), esc_html__( 'Embedded Document', 'embed-any-document'), $iframe_style );
 
             $embed  = '<div class="ead-preview"><div class="ead-document" ' . $doc_style . '>' . $iframe . $privatefile . '</div>' . $durl . '</div>';
         else:
