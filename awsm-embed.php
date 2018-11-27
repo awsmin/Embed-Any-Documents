@@ -338,6 +338,7 @@ class Awsm_embed {
         $id        = "";
         $configure = '<span class="overlay"><strong>' . esc_html__( 'Buy Pro Version', 'embed-any-document' ) . '</strong><i></i></span>';
         $target    = 'target="_blank"';
+        /* translators: %1$s: Service provider */
         echo '<a href="' . $link . '" id="' . $id . '" ' . $target . '><span><img src="' . esc_url( $this->plugin_url ) . 'images/icon-' . strtolower( $provider ) . '.png" alt="' . sprintf( esc_html__( 'Add From %1$s', 'embed-any-document' ), $provider ) . '" />' . sprintf( esc_html__( 'Add From %1$s', 'embed-any-document' ), $provider ) . $configure . '</span></a>';
     }
 
