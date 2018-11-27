@@ -125,15 +125,15 @@ var _wp$components = wp.components,
  */
 
 registerBlockType('embed-any-document/document', {
-  title: __('Document'),
+  title: __('Document', 'embed-any-document'),
   // Block title.
-  description: __('Upload and Embed your documents.'),
+  description: __('Upload and Embed your documents.', 'embed-any-document'),
   // Block description
   icon: 'media-document',
   // Block icon
   category: 'embed',
   // Block category,
-  keywords: [__('add document'), __('embed document'), __('embed any document')],
+  keywords: [__('add document', 'embed-any-document'), __('embed document', 'embed-any-document'), __('embed any document', 'embed-any-document')],
   // Access the block easily with keyword aliases
 
   /**
@@ -201,7 +201,7 @@ registerBlockType('embed-any-document/document', {
         icon: "media-document",
         onClick: setBlockProps,
         isLarge: true
-      }, __('Add Document')));
+      }, __('Add Document', 'embed-any-document')));
     }
   },
 
@@ -361,19 +361,19 @@ function (_Component) {
           setAttributes = _this$props.setAttributes;
       var viewerOptions = [{
         value: 'google',
-        label: __('Google Docs Viewer')
+        label: __('Google Docs Viewer', 'embed-any-document')
       }];
 
       if (_helper__WEBPACK_IMPORTED_MODULE_0__["default"].isValidMSExtension(url)) {
         viewerOptions.push({
           value: 'microsoft',
-          label: __('Microsoft Office Online')
+          label: __('Microsoft Office Online', 'embed-any-document')
         });
       }
 
       var downloadTextControl = wp.element.createElement(TextControl, {
-        label: __('Download Text'),
-        help: __('Default download button text'),
+        label: __('Download Text', 'embed-any-document'),
+        help: __('Default download button text', 'embed-any-document'),
         value: text,
         onChange: function onChange(text) {
           return setAttributes({
@@ -387,8 +387,8 @@ function (_Component) {
       }
 
       return wp.element.createElement(InspectorControls, null, wp.element.createElement(PanelBody, null, wp.element.createElement(TextControl, {
-        label: __('Width'),
-        help: __('Width of document either in px or in %'),
+        label: __('Width', 'embed-any-document'),
+        help: __('Width of document either in px or in %', 'embed-any-document'),
         value: width,
         onChange: function onChange(width) {
           return setAttributes({
@@ -396,8 +396,8 @@ function (_Component) {
           });
         }
       })), wp.element.createElement(PanelBody, null, wp.element.createElement(TextControl, {
-        label: __('Height'),
-        help: __('Height of document either in px or in %'),
+        label: __('Height', 'embed-any-document'),
+        help: __('Height of document either in px or in %', 'embed-any-document'),
         value: height,
         onChange: function onChange(height) {
           return setAttributes({
@@ -405,26 +405,26 @@ function (_Component) {
           });
         }
       })), wp.element.createElement(PanelBody, null, wp.element.createElement(SelectControl, {
-        label: __('Show Download Link'),
+        label: __('Show Download Link', 'embed-any-document'),
         options: [{
           value: 'all',
-          label: __('For all users')
+          label: __('For all users', 'embed-any-document')
         }, {
           value: 'logged',
-          label: __('For Logged-in users')
+          label: __('For Logged-in users', 'embed-any-document')
         }, {
           value: 'none',
-          label: __('No Download')
+          label: __('No Download', 'embed-any-document')
         }],
         value: download,
         onChange: this.downloadControlhandle
       })), wp.element.createElement(PanelBody, null, downloadTextControl), wp.element.createElement(PanelBody, null, wp.element.createElement(SelectControl, {
-        label: __('Viewer '),
+        label: __('Viewer', 'embed-any-document'),
         options: viewerOptions,
         value: viewer,
         onChange: this.viewerControlHandle
       })), !this.state.cacheHidden && wp.element.createElement(PanelBody, null, wp.element.createElement(ToggleControl, {
-        label: __('Cache'),
+        label: __('Cache', 'embed-any-document'),
         checked: cache,
         onChange: function onChange(cache) {
           return setAttributes({

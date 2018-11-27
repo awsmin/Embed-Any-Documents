@@ -35,11 +35,11 @@ class EadInspector extends Component {
 
     render() {
         const { attributes: { url, width, height, text, download, viewer, cache }, setAttributes } = this.props;
-        let viewerOptions = [{ value: 'google', label: __( 'Google Docs Viewer' ) }];
+        let viewerOptions = [{ value: 'google', label: __( 'Google Docs Viewer', 'embed-any-document' ) }];
         if( EadHelper.isValidMSExtension(url) ) {
-            viewerOptions.push({ value: 'microsoft', label: __( 'Microsoft Office Online' ) });
+            viewerOptions.push({ value: 'microsoft', label: __( 'Microsoft Office Online', 'embed-any-document' ) });
         }
-        let downloadTextControl = <TextControl label={ __( 'Download Text' ) } help={ __( 'Default download button text' ) } value={ text } onChange={ text => setAttributes( { text } ) } />;
+        let downloadTextControl = <TextControl label={ __( 'Download Text', 'embed-any-document' ) } help={ __( 'Default download button text', 'embed-any-document' ) } value={ text } onChange={ text => setAttributes( { text } ) } />;
         if( this.state.downloadDisabled ) {
             downloadTextControl = <Disabled>{ downloadTextControl }</Disabled>;
         }
@@ -47,27 +47,27 @@ class EadInspector extends Component {
         return (
             <InspectorControls>
                 <PanelBody>
-                    <TextControl label={ __( 'Width' ) } help={ __( 'Width of document either in px or in %' ) } value={ width } onChange={ width => setAttributes( { width } ) } />
+                    <TextControl label={ __( 'Width', 'embed-any-document' ) } help={ __( 'Width of document either in px or in %', 'embed-any-document' ) } value={ width } onChange={ width => setAttributes( { width } ) } />
                 </PanelBody>
 
                 <PanelBody>
-                    <TextControl label={ __( 'Height' ) } help={ __( 'Height of document either in px or in %' ) } value={ height } onChange={ height => setAttributes( { height } ) } />
+                    <TextControl label={ __( 'Height', 'embed-any-document' ) } help={ __( 'Height of document either in px or in %', 'embed-any-document' ) } value={ height } onChange={ height => setAttributes( { height } ) } />
                 </PanelBody>
 
                 <PanelBody>
-                    <SelectControl label={ __( 'Show Download Link' ) } options={[
-                        { value: 'all', label: __( 'For all users' ) },
-                        { value: 'logged', label: __( 'For Logged-in users' ) },
-                        { value: 'none', label: __( 'No Download' ) }
+                    <SelectControl label={ __( 'Show Download Link', 'embed-any-document' ) } options={[
+                        { value: 'all', label: __( 'For all users', 'embed-any-document' ) },
+                        { value: 'logged', label: __( 'For Logged-in users', 'embed-any-document' ) },
+                        { value: 'none', label: __( 'No Download', 'embed-any-document' ) }
                     ]} value={ download } onChange={ this.downloadControlhandle } />
                 </PanelBody>
                 <PanelBody>{ downloadTextControl }</PanelBody>
                 <PanelBody>
-                    <SelectControl label={ __( 'Viewer ' ) } options={ viewerOptions } value={ viewer } onChange={ this.viewerControlHandle } />
+                    <SelectControl label={ __( 'Viewer', 'embed-any-document' ) } options={ viewerOptions } value={ viewer } onChange={ this.viewerControlHandle } />
                 </PanelBody>
 
                 { ! this.state.cacheHidden && <PanelBody>
-                    <ToggleControl label={ __( 'Cache' ) } checked={ cache } onChange={ cache => setAttributes( { cache } ) } />
+                    <ToggleControl label={ __( 'Cache', 'embed-any-document' ) } checked={ cache } onChange={ cache => setAttributes( { cache } ) } />
                 </PanelBody> }
             </InspectorControls>
         );

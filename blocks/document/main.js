@@ -19,11 +19,11 @@ const { ServerSideRender, IconButton } = wp.components;
  *                             registered; otherwise `undefined`.
  */
 registerBlockType( 'embed-any-document/document', {
-	title: __( 'Document' ), // Block title.
-	description: __( 'Upload and Embed your documents.' ), // Block description
+	title: __( 'Document', 'embed-any-document' ), // Block title.
+	description: __( 'Upload and Embed your documents.', 'embed-any-document' ), // Block description
 	icon: 'media-document', // Block icon
 	category: 'embed', // Block category,
-	keywords: [ __( 'add document' ), __( 'embed document' ), __( 'embed any document' ) ], // Access the block easily with keyword aliases
+	keywords: [ __( 'add document', 'embed-any-document' ), __( 'embed document', 'embed-any-document' ), __( 'embed any document', 'embed-any-document' ) ], // Access the block easily with keyword aliases
 	/**
 	 * The edit function describes the structure of the block in the context of the editor.
 	 * This represents what the editor will render when the block is used.
@@ -66,7 +66,7 @@ registerBlockType( 'embed-any-document/document', {
 		} else {
 			return (
 				<div className="components-placeholder ead-block-wrapper">
-					<IconButton className="awsm-embed" icon="media-document" onClick={ setBlockProps } isLarge>{ __( 'Add Document' ) }</IconButton>
+					<IconButton className="awsm-embed" icon="media-document" onClick={ setBlockProps } isLarge>{ __( 'Add Document', 'embed-any-document' ) }</IconButton>
 				</div>
 			);
 		}
