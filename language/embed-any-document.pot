@@ -1,212 +1,302 @@
-#, fuzzy
+# Copyright (C) 2018 Awsm Innovations
+# This file is distributed under the same license as the Embed Any Document plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Embed Any Document\n"
-"POT-Creation-Date: 2017-05-03 15:45+0530\n"
-"PO-Revision-Date: 2016-05-12 11:40+0530\n"
+"Project-Id-Version: Embed Any Document 2.4\n"
 "Last-Translator: \n"
 "Language-Team: Awsm Innovations <hello@awsm.in>\n"
-"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.8\n"
-"X-Poedit-Basepath: .\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPath-1: ..\n"
+"POT-Creation-Date: 2018-11-27T10:39:45+01:00\n"
+"PO-Revision-Date: 2018-11-27T10:39:45+01:00\n"
+"X-Generator: WP-CLI 2.0.1\n"
+"X-Domain: embed-any-document\n"
 
-#: ../awsm-embed.php:98 ../inc/popup.php:8
-msgid "Add Document"
-msgstr ""
-
-#: ../awsm-embed.php:125
-msgid "Settings"
-msgstr ""
-
-#: ../awsm-embed.php:153 ../awsm-embed.php:180
-msgid "Download"
-msgstr ""
-
-#: ../awsm-embed.php:159
-msgid "Nothing to insert"
-msgstr ""
-
-#: ../awsm-embed.php:160
-msgid "Invalid URL"
-msgstr ""
-
-#: ../awsm-embed.php:161 ../inc/popup.php:28
-msgid "Add URL"
-msgstr ""
-
-#: ../awsm-embed.php:162
-msgid "Verifying..."
-msgstr ""
-
-#: ../awsm-embed.php:163
-msgid "From URL"
-msgstr ""
-
-#: ../awsm-embed.php:164
-msgid "Select"
-msgstr ""
-
-#: ../awsm-embed.php:254
-msgid "Embedded Document"
-msgstr ""
-
-#: ../awsm-embed.php:258
-msgid "No Url Found"
-msgstr ""
-
-#: ../awsm-embed.php:269
+#. Plugin Name of the plugin
+#: awsm-embed.php:280
 msgid "Embed Any Document"
 msgstr ""
 
-#: ../awsm-embed.php:277
-msgid "You do not have sufficient permissions to access this page."
+#. Plugin URI of the plugin
+msgid "http://awsm.in/embed-any-documents"
 msgstr ""
 
-#: ../awsm-embed.php:328
+#. Description of the plugin
+msgid "Embed Any Document WordPress plugin lets you upload and embed your documents easily in your WordPress website without any additional browser plugins like Flash or Acrobat reader. The plugin lets you choose between Google Docs Viewer and Microsoft Office Online to display your documents."
+msgstr ""
+
+#. Author of the plugin
+msgid "Awsm Innovations"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://awsm.in"
+msgstr ""
+
+#: awsm-embed.php:106
+#: inc/popup.php:8
+#: blocks/document/main.js:69
+msgid "Add Document"
+msgstr ""
+
+#: awsm-embed.php:133
+msgid "Settings"
+msgstr ""
+
+#: awsm-embed.php:164
+#: awsm-embed.php:191
+msgid "Download"
+msgstr ""
+
+#: awsm-embed.php:170
+msgid "Nothing to insert"
+msgstr ""
+
+#: awsm-embed.php:171
+msgid "Invalid URL"
+msgstr ""
+
+#: awsm-embed.php:172
+#: inc/popup.php:28
+msgid "Add URL"
+msgstr ""
+
+#: awsm-embed.php:173
+msgid "Verifying..."
+msgstr ""
+
+#: awsm-embed.php:174
+msgid "From URL"
+msgstr ""
+
+#: awsm-embed.php:175
+msgid "Select"
+msgstr ""
+
+#: awsm-embed.php:265
+msgid "Embedded Document"
+msgstr ""
+
+#: awsm-embed.php:269
+msgid "No Url Found"
+msgstr ""
+
+#: awsm-embed.php:339
 msgid "Buy Pro Version"
 msgstr ""
 
-#: ../awsm-embed.php:330
-#, php-format
+#. translators: %1$s: Service provider
+#: awsm-embed.php:342
 msgid "Add From %1$s"
 msgstr ""
 
-#: ../inc/popup.php:6
+#: inc/popup.php:6
 msgid "Close"
 msgstr ""
 
-#: ../inc/popup.php:16
+#: inc/popup.php:16
 msgid "Upload Document"
 msgstr ""
 
-#: ../inc/popup.php:19
+#: inc/popup.php:19
 msgid "Add from URL"
 msgstr ""
 
-#: ../inc/popup.php:26
+#: inc/popup.php:26
 msgid "Enter document URL"
 msgstr ""
 
-#: ../inc/popup.php:30
+#: inc/popup.php:30
 msgid "back"
 msgstr ""
 
-#: ../inc/popup.php:43
+#: inc/popup.php:43
 msgid "Advanced Options"
 msgstr ""
 
-#: ../inc/popup.php:46 ../inc/settings.php:16
+#: inc/popup.php:46
+#: inc/settings.php:17
+#: blocks/document/modules/inspector.js:50
 msgid "Width"
 msgstr ""
 
-#: ../inc/popup.php:49 ../inc/settings.php:20
+#: inc/popup.php:49
+#: inc/settings.php:21
+#: blocks/document/modules/inspector.js:54
 msgid "Height"
 msgstr ""
 
-#: ../inc/popup.php:53 ../inc/settings.php:28
+#: inc/popup.php:53
+#: inc/settings.php:29
+#: blocks/document/modules/inspector.js:58
 msgid "Show Download Link"
 msgstr ""
 
-#: ../inc/popup.php:55 ../inc/settings.php:31
+#: inc/popup.php:55
+#: inc/settings.php:32
+#: blocks/document/modules/inspector.js:59
 msgid "For all users"
 msgstr ""
 
-#: ../inc/popup.php:55 ../inc/settings.php:31
+#: inc/popup.php:55
+#: inc/settings.php:32
+#: blocks/document/modules/inspector.js:60
 msgid "For Logged-in users"
 msgstr ""
 
-#: ../inc/popup.php:55 ../inc/settings.php:31
+#: inc/popup.php:55
+#: inc/settings.php:32
+#: blocks/document/modules/inspector.js:61
 msgid "No Download"
 msgstr ""
 
-#: ../inc/popup.php:60 ../inc/settings.php:37
+#: inc/popup.php:60
+#: inc/settings.php:38
+#: blocks/document/modules/inspector.js:42
 msgid "Download Text"
 msgstr ""
 
-#: ../inc/popup.php:64 ../inc/popup.php:71
+#: inc/popup.php:64
+#: inc/popup.php:71
+#: blocks/document/modules/inspector.js:66
 msgid "Viewer"
 msgstr ""
 
-#: ../inc/popup.php:66
+#: inc/popup.php:66
+#: blocks/document/modules/inspector.js:38
 msgid "Google Docs Viewer"
 msgstr ""
 
-#: ../inc/popup.php:66
+#: inc/popup.php:66
+#: blocks/document/modules/inspector.js:40
 msgid "Microsoft Office Online"
 msgstr ""
 
-#: ../inc/popup.php:73
+#: inc/popup.php:73
 msgid "Box"
 msgstr ""
 
-#: ../inc/popup.php:74
+#: inc/popup.php:74
 msgid "Drive"
 msgstr ""
 
-#: ../inc/popup.php:81
+#: inc/popup.php:81
 msgid "Shortcode Preview"
 msgstr ""
 
-#: ../inc/popup.php:90
+#: inc/popup.php:90
 msgid "Insert"
 msgstr ""
 
-#: ../inc/popup.php:90
+#: inc/popup.php:90
 msgid "Loading..."
 msgstr ""
 
-#: ../inc/popup.php:94
+#: inc/popup.php:94
 msgid "Cancel"
 msgstr ""
 
-#: ../inc/settings.php:9
+#: inc/settings.php:10
 msgid "General Settings"
 msgstr ""
 
-#: ../inc/settings.php:14
+#: inc/settings.php:15
 msgid "Default Size"
 msgstr ""
 
-#: ../inc/settings.php:24
+#: inc/settings.php:25
 msgid "Enter values in pixels or percentage (Example: 500px or 100%)"
 msgstr ""
 
-#: ../inc/settings.php:73
+#: inc/settings.php:59
+msgid "Designed and developed by"
+msgstr ""
+
+#: inc/settings.php:62
+msgid "Facebook"
+msgstr ""
+
+#: inc/settings.php:63
+msgid "Twitter"
+msgstr ""
+
+#: inc/settings.php:64
+msgid "Github"
+msgstr ""
+
+#: inc/settings.php:73
 msgid "Like the plugin?"
 msgstr ""
 
-#: ../inc/settings.php:74
+#: inc/settings.php:73
 msgid "Rate Now!"
 msgstr ""
 
-#: ../inc/settings.php:79
+#: inc/settings.php:79
 msgid "Need Help?"
 msgstr ""
 
-#: ../inc/settings.php:80
+#: inc/settings.php:79
 msgid "Open a Ticket"
 msgstr ""
 
-#: ../inc/settings.php:88
+#: inc/settings.php:86
+msgid "Quick Help"
+msgstr ""
+
+#: inc/settings.php:89
+#: inc/settings.php:90
 msgid "How to Embed Documents?"
 msgstr ""
 
-#: ../inc/settings.php:91
+#: inc/settings.php:94
+#: inc/settings.php:95
 msgid "About Viewers"
 msgstr ""
 
-#: ../inc/settings.php:94
+#: inc/settings.php:99
+#: inc/settings.php:100
 msgid "Shortcode & Attributes"
 msgstr ""
 
-#: ../inc/settings.php:97
+#: inc/settings.php:104
+#: inc/settings.php:105
 msgid "FAQs"
+msgstr ""
+
+#: blocks/document/main.js:22
+msgid "Document"
+msgstr ""
+
+#: blocks/document/main.js:23
+msgid "Upload and Embed your documents."
+msgstr ""
+
+#: blocks/document/main.js:26
+msgid "add document"
+msgstr ""
+
+#: blocks/document/main.js:26
+msgid "embed document"
+msgstr ""
+
+#: blocks/document/main.js:26
+msgid "embed any document"
+msgstr ""
+
+#: blocks/document/modules/inspector.js:42
+msgid "Default download button text"
+msgstr ""
+
+#: blocks/document/modules/inspector.js:50
+msgid "Width of document either in px or in %"
+msgstr ""
+
+#: blocks/document/modules/inspector.js:54
+msgid "Height of document either in px or in %"
+msgstr ""
+
+#: blocks/document/modules/inspector.js:70
+msgid "Cache"
 msgstr ""
