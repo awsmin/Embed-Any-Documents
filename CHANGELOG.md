@@ -1,5 +1,10 @@
 ## Changelog
 
+### V 2.4 - 2018-12-06
+* Added Gutenberg Support. New Document Block is added.
+* Fixed: Disabled Microsoft viewer support for unsupported extensions
+* Fixed: Localization issues
+
 ### V 2.3.2 - 2018-01-24
 * Focus added when modal window opens
 
@@ -10,9 +15,6 @@
 * UI improvements
 * Added title for the embed iframe
 * Other minor bug fixes
-
-### V 2.2.5 - 2017-05-03
-* Minor bug fixes and enhancements
 
 ### V 2.2.5 - 2016-05-12
 * Minor bug fixes and enhancements
