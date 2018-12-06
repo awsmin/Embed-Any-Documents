@@ -47,6 +47,10 @@
     text-align: left;
 }
 
+#embed-popup li::before {
+    display: none;
+}
+
 .ead-popup-header {
     padding: 20px 30px;
 }
