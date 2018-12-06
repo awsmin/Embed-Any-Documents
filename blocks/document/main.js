@@ -7,6 +7,8 @@
 import EadHelper from './modules/helper';
 import EadInspector from './modules/inspector';
 
+import icon from './modules/icon';
+
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
 const { ServerSideRender, IconButton } = wp.components;
@@ -21,7 +23,7 @@ const { ServerSideRender, IconButton } = wp.components;
 registerBlockType( 'embed-any-document/document', {
 	title: __( 'Document', 'embed-any-document' ), // Block title.
 	description: __( 'Upload and Embed your documents.', 'embed-any-document' ), // Block description
-	icon: 'media-document', // Block icon
+	icon: icon.block, // Block icon
 	category: 'embed', // Block category,
 	keywords: [ __( 'add document', 'embed-any-document' ), __( 'embed document', 'embed-any-document' ), __( 'embed any document', 'embed-any-document' ) ], // Access the block easily with keyword aliases
 	/**
