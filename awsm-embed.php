@@ -152,8 +152,11 @@ class Awsm_embed {
      */
     function embed_helper() {
         $script_deps = array('jquery');
-        if(function_exists('register_block_type')) {
-            $script_deps = array_merge($script_deps, array('wp-blocks', 'wp-element'));
+        if(function_exists('get_current_screen')) {
+            $screen = get_current_screen();
+            if(method_exists($screen, 'is_block_editor') && $screen->is_block_editor()) {
+                $script_deps[] = 'wp-blocks';
+            }
         }
         wp_enqueue_script( 'ead_media_button', plugins_url( 'js/embed.js', $this->plugin_file), $script_deps, $this->plugin_version, true );
         wp_enqueue_style( 'ead_media_button', plugins_url( 'css/embed.css', $this->plugin_file), false, $this->plugin_version, 'all' );
