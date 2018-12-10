@@ -5,7 +5,7 @@
 **Author URI:** http://awsm.in  
 **Requires at least:** 3.5  
 **Tested up to:** 5.0  
-**Stable tag:** 2.4  
+**Stable tag:** 2.4.1  
 **License:** GPLv2  
 
 Easiest way to upload and display PDF, MS Office and more documents on your WordPress website using Google Docs Viewer or Microsoft Office Online.
@@ -90,6 +90,9 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 ## Changelog
 
+**V 2.4.1 - 2018-12-10**
+* Fixed: Blank screen in visual mode of the classic editor plugin
+
 **V 2.4 - 2018-12-06**
 * Added Gutenberg Support. New Document Block is added.
 * Fixed: Disabled Microsoft viewer support for unsupported extensions
@@ -105,8 +108,5 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 * UI improvements
 * Added title for the embed iframe
 * Other minor bug fixes
-
-**V 2.2.5 - 2017-05-12**
-* Minor bug fixes and enhancements
 
 View complete Changelog in [CHANGELOG.MD](https://github.com/awsmin/Embed-Any-Documents/blob/master/CHANGELOG.md)

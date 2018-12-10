@@ -1,5 +1,8 @@
 ## Changelog
 
+### V 2.4.1 - 2018-12-10**
+* Fixed: Blank screen in visual mode of the classic editor plugin
+
 ### V 2.4 - 2018-12-06
 * Added Gutenberg Support. New Document Block is added.
 * Fixed: Disabled Microsoft viewer support for unsupported extensions

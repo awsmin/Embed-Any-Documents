@@ -80,6 +80,9 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
 
+= V 2.4.1 - 2018-12-10 =
+* Fixed: Blank screen in visual mode of the classic editor plugin
+
 = V 2.4 - 2018-12-06 =
 * Added Gutenberg Support. New Document Block is added.
 * Fixed: Disabled Microsoft viewer support for unsupported extensions
@@ -96,12 +99,12 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 * Added title for the embed iframe
 * Other minor bug fixes
 
-= V 2.2.5 - 2016-05-12 =
-* Minor bug fixes and enhancements
-
 [See changelog of previous versions](https://raw.githubusercontent.com/awsmin/Embed-Any-Documents/master/CHANGELOG.md)
 
 == Upgrade Notice ==
+
+= 2.4.1 =
+Fixed: Blank screen in visual mode of the classic editor plugin
 
 = 2.4 =
 Added Gutenberg Support. New Document Block is added.
