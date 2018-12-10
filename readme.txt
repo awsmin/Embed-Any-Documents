@@ -42,10 +42,6 @@ Embed Any Document WordPress plugin lets you upload and embed your documents eas
 
 5. <strong>Clean and Minimal UI.</strong> Embed Any Document comes with a clean and clutter-free UI.
 
-<h4>Video Demo</h4> 
-
-[youtube https://www.youtube.com/watch?v=DUW_aEEcBrI]
-
 For more information and instructions visit <a href="http://awsm.in/embed-any-document/" target="_blank">our website.</a>.
 
 This is an <a href="http://awsm.in" target=“_blank”>AWSM</a> Project.
@@ -84,7 +80,7 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 * Fixed: Blank screen in visual mode of the classic editor plugin
 
 = V 2.4 - 2018-12-06 =
-* Added Gutenberg Support. New Document Block is added.
+* Added: Gutenberg Support. New Document Block is added.
 * Fixed: Disabled Microsoft viewer support for unsupported extensions
 * Fixed: Localization issues
 
@@ -104,7 +100,7 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 == Upgrade Notice ==
 
 = 2.4.1 =
-Fixed: Blank screen in visual mode of the classic editor plugin
+Fixed Blank screen in visual mode of the classic editor plugin
 
 = 2.4 =
 Added Gutenberg Support. New Document Block is added.
