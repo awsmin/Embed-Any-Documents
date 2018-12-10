@@ -2,19 +2,19 @@
 # This file is distributed under the same license as the Embed Any Document plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Embed Any Document 2.4\n"
+"Project-Id-Version: Embed Any Document 2.4.1\n"
 "Last-Translator: \n"
 "Language-Team: Awsm Innovations <hello@awsm.in>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2018-12-06T09:12:18+00:00\n"
-"PO-Revision-Date: 2018-12-06T09:12:18+00:00\n"
+"POT-Creation-Date: 2018-12-10T12:59:35+00:00\n"
+"PO-Revision-Date: 2018-12-10T12:59:35+00:00\n"
 "X-Generator: WP-CLI 2.0.1\n"
 "X-Domain: embed-any-document\n"
 
 #. Plugin Name of the plugin
-#: awsm-embed.php:280
+#: awsm-embed.php:283
 msgid "Embed Any Document"
 msgstr ""
 
@@ -167,7 +167,7 @@ msgid "Enter document URL"
 msgstr ""
 
 #: inc/popup.php:28
-#: awsm-embed.php:172
+#: awsm-embed.php:175
 msgid "Add URL"
 msgstr ""
 
@@ -223,45 +223,45 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: awsm-embed.php:164
-#: awsm-embed.php:191
+#: awsm-embed.php:167
+#: awsm-embed.php:194
 msgid "Download"
 msgstr ""
 
-#: awsm-embed.php:170
+#: awsm-embed.php:173
 msgid "Nothing to insert"
 msgstr ""
 
-#: awsm-embed.php:171
+#: awsm-embed.php:174
 msgid "Invalid URL"
 msgstr ""
 
-#: awsm-embed.php:173
+#: awsm-embed.php:176
 msgid "Verifying..."
 msgstr ""
 
-#: awsm-embed.php:174
+#: awsm-embed.php:177
 msgid "From URL"
 msgstr ""
 
-#: awsm-embed.php:175
+#: awsm-embed.php:178
 msgid "Select"
 msgstr ""
 
-#: awsm-embed.php:265
+#: awsm-embed.php:268
 msgid "Embedded Document"
 msgstr ""
 
-#: awsm-embed.php:269
+#: awsm-embed.php:272
 msgid "No Url Found"
 msgstr ""
 
-#: awsm-embed.php:339
+#: awsm-embed.php:342
 msgid "Buy Pro Version"
 msgstr ""
 
 #. translators: %1$s: Service provider
-#: awsm-embed.php:342
+#: awsm-embed.php:345
 msgid "Add From %1$s"
 msgstr ""
 
