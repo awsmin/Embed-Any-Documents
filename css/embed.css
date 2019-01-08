@@ -174,13 +174,13 @@ ul.ead-options {
     width: 20%;
 }
 
-.box {
+.ead-url-box {
     display: none;
     padding: 20px;
     margin: 30px 0;
 }
 
-.addurl-box.box {
+.addurl-box.ead-url-box {
     margin: 10px 0;
     padding: 20px 0;
 }
@@ -191,7 +191,7 @@ a.go-back {
     text-decoration: none;
 }
 
-.box label {
+.ead-url-box label {
     display: block;
     font-size: 12px;
     margin-bottom: 5px;
@@ -419,7 +419,7 @@ div.awsm-updated p {
     width: 60px;
 }
 
-.box .urlerror {
+.ead-url-box .urlerror {
     border-color: #D95B5B;
     -webkit-box-shadow: 0 0 2px rgba(190, 30, 30, 0.8);
     box-shadow: 0 0 2px rgba(190, 30, 30, 0.8);
