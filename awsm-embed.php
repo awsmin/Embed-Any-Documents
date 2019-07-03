@@ -143,7 +143,7 @@ class Awsm_embed {
 
         if (wp_script_is('ead_media_button')) {
             add_thickbox();
-            include( $this->plugin_path . 'inc/popup.php' );
+            include_once( $this->plugin_path . 'inc/popup.php' );
         }
     }
 
