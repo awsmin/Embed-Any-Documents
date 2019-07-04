@@ -312,13 +312,16 @@ class Awsm_embed {
     function adminfunctions() {
 
         if ( is_admin() ) {
-            add_action( 'wp_enqueue_media', array($this, 'embed_helper') );
+            //add_action( 'wp_enqueue_media', array($this, 'embed_helper') );
             add_action( 'admin_menu', array( $this, 'admin_menu' ) );
             add_action( 'admin_init', array( $this, 'register_eadsettings' ) );
             add_action( 'admin_footer', array( $this, 'embedpopup' ) );
             add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'settingslink' ) );
             add_filter( 'upload_mimes', array( $this, 'additional_mimes' ) );
         }
+        add_action( 'wp_enqueue_media', array($this, 'embed_helper') );
+        add_action( 'media_buttons', array($this, 'embedpopup') );
+
     }
 
     /**

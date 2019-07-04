@@ -14,47 +14,51 @@ jQuery(document).ready(function($) {
         ead_reset();
         e.preventDefault();
         $('body').addClass('ead-popup-on');
+                renderEvents();
+
         tb_show("Embed Any Document", "#TB_inline?inlineId=embed-popup-wrap&amp;width=1030&amp;modal=true", null);
+        renderEvents();
         ead_tb_position();
         $("#upload-doc").focus();
         return;
     });
-    
-    //Update shortcode on change
-    $(".ead-usc").change(function() {
-        newprovider = "";
-        ead_updateshortcode($(this).attr('id'));
-        ead_customize_popup();
-    });
-    $('.embedval').keyup(function() {
-        ead_updateshortcode($(this).attr('id'));
-    });
-    //Wordpress Uploader
-    $('#upload-doc').click(ead_open_media_window);
+    function renderEvents(){
+        //Update shortcode on change
+        $(".ead-usc").change(function() {
+            newprovider = "";
+            ead_updateshortcode($(this).attr('id'));
+            ead_customize_popup();
+        });
+        $('.embedval').keyup(function() {
+            ead_updateshortcode($(this).attr('id'));
+        });
+        //Wordpress Uploader
+        $('#upload-doc').click(ead_open_media_window);
 
-    //Add url
-    $('#ead-add-url').click(ead_embded_url);
+        //Add url
+        $('#ead-add-url').click(ead_embded_url);
 
-    //insert Shortcode
-    $('#insert-doc').click(ead_shortcode);
-    // Add from URL support
-    $('#add-ead-document').on('click', function(e) {
-        e.preventDefault();
-        $('.addurl-box').fadeIn();
-        $('.ead-options').hide();
-    });
-    //Add fromrom URL cancel handler
-    $('.go-back').on('click', function(e) {
-        e.preventDefault();
-        $('.addurl-box').hide();
-        $('.ead-options').fadeIn();
-    });
-     // Close embed dialog
-    $('#embed-popup').on('click', '.cancel-embed,.ead-close', function(e) {
-        // Prevent default action
-        e.preventDefault();
-        ead_remove_pop();
-    });
+        //insert Shortcode
+        $('#insert-doc').click(ead_shortcode);
+        // Add from URL support
+        $('#add-ead-document').on('click', function(e) {
+            e.preventDefault();
+            $('.addurl-box').fadeIn();
+            $('.ead-options').hide();
+        });
+        //Add fromrom URL cancel handler
+        $('.go-back').on('click', function(e) {
+            e.preventDefault();
+            $('.addurl-box').hide();
+            $('.ead-options').fadeIn();
+        });
+         // Close embed dialog
+        $('#embed-popup').on('click', '.cancel-embed,.ead-close', function(e) {
+            // Prevent default action
+            e.preventDefault();
+            ead_remove_pop();
+        });
+    }
     //Insert Media window
     function ead_open_media_window() {
         var uClass = 'upload';
@@ -169,17 +173,18 @@ jQuery(document).ready(function($) {
             $('#ead-filesize').html('&nbsp;');
         }
         $('.upload-success').fadeIn();
-        $container.hide();
+        $('.ead-container').hide();
         ead_upload_class(uClass);
     }
    
 
     function ead_embded_url() {
-        var checkurl = $embedurl.val();
+
+        var checkurl = $('#awsm-url').val();
         if (checkurl !== '') {
             ead_validateurl(checkurl);
         } else {
-            $embedurl.addClass('urlerror');
+            $('#awsm-url').addClass('urlerror');
             updateshortcode();
         }
     }
@@ -202,7 +207,7 @@ jQuery(document).ready(function($) {
             $('#ead-filename').html(emebeder.from_url);
             $('#ead-filesize').html('&nbsp;');
             $('.upload-success').fadeIn();
-            $container.hide();
+            $('.ead-container').hide();
             ead_upload_class(uClass);
             ead_valid_viewer(file, uClass);
             ead_updateshortcode();
@@ -213,7 +218,7 @@ jQuery(document).ready(function($) {
     //Show Message
     function ead_showmsg(msg) {
         $('#embed-message').fadeIn();
-        $message.text(msg);
+        $('#embed-message p').text(msg);
     }
     
 
@@ -228,7 +233,7 @@ jQuery(document).ready(function($) {
                 }
             }
             if(ins_shortcode) {
-                wp.media.editor.insert($shortcode.text());
+                wp.media.editor.insert($('#shortcode').text());
             }
             ead_remove_pop();
         } else {
@@ -240,9 +245,9 @@ jQuery(document).ready(function($) {
     function ead_updateshortcode(item) {
         item = typeof item !== 'undefined' ? item : false;
         if (fileurl) {
-            $shortcode.text(getshortcode(fileurl, item));
+            $('#shortcode').text(getshortcode(fileurl, item));
         } else {
-            $shortcode.text('');
+            $('#shortcode').text('');
         }
     }
    
@@ -303,8 +308,8 @@ jQuery(document).ready(function($) {
     }
     //Reset form data
     function ead_reset() {
-        $container.show();
-        $embedurl.val('');
+        $('.ead-container').show();
+        $('#awsm-url').val('');
         $('.ead-options').fadeIn();
         $('.addurl-box').hide();
         $('.upload-success').hide();
