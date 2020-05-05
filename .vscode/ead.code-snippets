@@ -1,0 +1,26 @@
+{
+    "EAD: Error Log": {
+		"scope": "php",
+		"prefix": "ead:log",
+		"body": [
+			"error_log( json_encode( $1 ) );"
+		],
+		"description": "Error log function"
+	},
+	"EAD: Translation": {
+		"scope": "php",
+		"prefix": "ead:_",
+		"body": [
+			"__( '$1', 'embed-any-document' )"
+		],
+		"description": "Translation function"
+	},
+	"EAD: Translation Extended": {
+		"scope": "php",
+		"prefix": "ead:__",
+		"body": [
+			"esc_html__( '$1', 'embed-any-document' )"
+		],
+		"description": "Translation function extended"
+	},
+}
