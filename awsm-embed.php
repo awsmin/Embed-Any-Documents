@@ -201,7 +201,7 @@ class Awsm_embed {
                             <span><?php esc_html_e( 'Taking too long?', 'embed-any-document' ) ?></span>
                         </h2>
                         <p>
-                            <a href="<?php echo esc_url( $current_url ); ?>">
+                            <a href="<?php echo esc_url( $current_url ); ?>" class="ead-reload-btn">
                                 <img src="<?php echo esc_url( plugins_url( 'images/reload.svg', __FILE__ ) ); ?>" alt="<?php esc_html_e( 'Reload', 'embed-any-document'); ?>" width="12" height="12"/> <?php esc_html_e( 'Reload document', 'embed-any-document' ); ?>
                             </a>
                             <span>|</span>
