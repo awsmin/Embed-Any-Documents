@@ -64,6 +64,7 @@ class Awsm_embed {
         //Initialize block
         include_once $this->plugin_path . 'blocks/document.php';
 
+        add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
         //Load plugin textdomain.
         add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 
@@ -180,6 +181,46 @@ class Awsm_embed {
         ) );
     }
 
+    public static function get_iframe_preloader() {
+        global $wp;
+        $current_url = add_query_arg( $_SERVER['QUERY_STRING'], '', trim( home_url( $wp->request ), '/' ) . '/' );
+
+        ob_start();
+        ?>
+            <div class="ead-document-loading" style="width:100%;height:100%;position:absolute;left:0;top:0;z-index:1000;">
+                <div class="ead-loading-wrap">
+                    <div class="ead-loading-main">
+                        <div class="ead-loading">
+                            <img src="<?php echo esc_url( plugins_url( 'images/loading.svg', __FILE__ ) ); ?>" width="55" height="55" alt="<?php esc_html_e( 'Loader', 'embed-any-document'); ?>">
+                            <span><?php esc_html_e( 'Loading...', 'embed-any-document'); ?></span>
+                        </div>
+                    </div>
+                    <div class="ead-loading-foot">
+                        <h2>
+                            <img src="<?php echo esc_url( plugins_url( 'images/EAD-logo.svg', __FILE__ ) ); ?>" alt="<?php esc_html_e( 'EAD Logo', 'embed-any-document'); ?>" width="36" height="23"/>
+                            <span><?php esc_html_e( 'Taking too long?', 'embed-any-document' ) ?></span>
+                        </h2>
+                        <p>
+                            <a href="<?php echo esc_url( $current_url ); ?>">
+                                <img src="<?php echo esc_url( plugins_url( 'images/reload.svg', __FILE__ ) ); ?>" alt="<?php esc_html_e( 'Reload', 'embed-any-document'); ?>" width="12" height="12"/> <?php esc_html_e( 'Reload document', 'embed-any-document' ); ?>
+                            </a>
+                            <span>|</span>
+                            <a href="<?php echo esc_url( $current_url ); ?>" target="_blank">
+                                <img src="<?php echo esc_url( plugins_url( 'images/open.svg', __FILE__ ) ); ?>" alt="<?php esc_html_e( 'Open', 'embed-any-document'); ?>" width="12" height="12"/> <?php esc_html_e( 'Open in new tab', 'embed-any-document' ); ?>
+                            </a>
+                    </div>
+                </div>
+            </div>
+        <?php
+        return ob_get_clean();
+    }
+
+    public function wp_enqueue_scripts() {
+        wp_register_style( 'awsm-ead-public', plugins_url( 'css/embed-public.css', $this->plugin_file ), array(), $this->plugin_version, 'all' );
+
+        wp_register_script( 'awsm-ead-public', plugins_url( 'js/embed-public.js', $this->plugin_file ), array( 'jquery' ), $this->plugin_version, true );
+    }
+
     /**
      * Shortcode Functionality
      */
@@ -194,15 +235,15 @@ class Awsm_embed {
         $default_text     = get_option( 'ead_text', __( 'Download', 'embed-any-document' ) );
         $show             = false;
         $shortcode_atts   = shortcode_atts( array(
-                                                'url'      => '',
-                                                'drive'    => '',
-                                                'width'    => $default_width,
-                                                'height'   => $default_height,
-                                                'language' => 'en',
-                                                'text'     => __( $default_text, 'embed-any-document' ),
-                                                'viewer'   => $default_provider,
-                                                'download' => $default_download,
-                                            ), $atts );
+            'url'      => '',
+            'drive'    => '',
+            'width'    => $default_width,
+            'height'   => $default_height,
+            'language' => 'en',
+            'text'     => __( $default_text, 'embed-any-document' ),
+            'viewer'   => $default_provider,
+            'download' => $default_download,
+        ), $atts );
 
         if ( isset( $atts['provider'] ) ) {
             $shortcode_atts['viewer'] = $atts['provider'];
@@ -211,10 +252,12 @@ class Awsm_embed {
             $shortcode_atts['viewer'] = 'google';
         }
 
+        wp_enqueue_style( 'awsm-ead-public' );
+        wp_enqueue_script( 'awsm-ead-public' );
+
         if ( $shortcode_atts['url'] ):
             $filedata    = wp_remote_head( $shortcode_atts['url'] );
             $durl        = '';
-            $privatefile = '';
             if ( $this->allowdownload( $shortcode_atts['viewer'] ) ) {
                 if ( $shortcode_atts['download'] === 'alluser' or $shortcode_atts['download'] === 'all' ) {
                     $show = true;
@@ -267,7 +310,10 @@ class Awsm_embed {
            
             $iframe = sprintf('<iframe src="%s" title="%s" %s></iframe>', esc_attr( $iframe ), esc_html__( 'Embedded Document', 'embed-any-document'), $iframe_style );
 
-            $embed  = '<div class="ead-preview"><div class="ead-document" ' . $doc_style . '>' . $iframe . $privatefile . '</div>' . $durl . '</div>';
+            if ( $shortcode_atts['viewer'] === 'google' ) {
+                $iframe .= self::get_iframe_preloader();
+            }
+            $embed = sprintf( '<div class="ead-preview"><div class="ead-document" %3$s>%1$s</div>%2$s</div>', $iframe, $durl, $doc_style );
         else:
             $embed = esc_html__( 'No Url Found', 'embed-any-document' );
         endif;

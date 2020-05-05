@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>refresh</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1200-Grid" transform="translate(-690.000000, -885.000000)" fill="#000000" fill-rule="nonzero">
+            <g id="refresh" transform="translate(690.000000, 885.000000)">
+                <path d="M12,5.24997803 L12,0 L10.2364095,1.76248484 C9.15196998,0.674998682 7.65478424,0 5.99623593,0 C2.67917448,0 0,2.68498304 0,6 C0,9.31501696 2.67917448,12 5.99623593,12 C8.79174484,12 11.1332083,10.0875037 11.7973734,7.5 L10.2364095,7.5 C9.61727251,9.24751709 7.9587242,10.5 5.99627111,10.5 C3.50846623,10.5 1.49345685,8.48624514 1.49345685,6 C1.49345685,3.51375486 3.50846623,1.5 5.99627111,1.5 C7.2383091,1.5 8.35275563,2.01750778 9.16699109,2.83126791 L6.74672842,5.25001318 L12,5.25001318 L12,5.24997803 Z" id="Path"></path>
+            </g>
+        </g>
+    </g>
+</svg>
