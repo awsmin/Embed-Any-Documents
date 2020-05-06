@@ -45,8 +45,10 @@
 .ead-loading-foot span{
     margin: 0 10px;
 }
-.ead-loading-foot a{
+.ead-loading-foot .ead-document-btn {
     color: #1A1F2A;
+    cursor: pointer;
+    display: inline-block;
     text-decoration: underline;
 }
 .ead-loading-foot img{

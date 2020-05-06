@@ -64,7 +64,7 @@ class Awsm_embed {
         //Initialize block
         include_once $this->plugin_path . 'blocks/document.php';
 
-        add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
+        add_action( 'wp_loaded', array( $this, 'register_scripts' ) );
         //Load plugin textdomain.
         add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 
@@ -181,13 +181,20 @@ class Awsm_embed {
         ) );
     }
 
-    public static function get_iframe_preloader() {
-        global $wp;
-        $current_url = add_query_arg( $_SERVER['QUERY_STRING'], '', trim( home_url( $wp->request ), '/' ) . '/' );
+    public static function get_iframe_preloader( $shortcode_atts ) {
+        if ( ! isset( $shortcode_atts['viewer'] ) || ! isset( $shortcode_atts['url'] ) ) {
+            return;
+        }
+
+        $document_url = '#';
+        if ( $shortcode_atts['viewer'] === 'google' ) {
+            $src = 'https://docs.google.com/viewer?url=%1$s&hl=%2$s';
+            $document_url = sprintf( $src, urlencode( $shortcode_atts['url'] ), esc_attr( $shortcode_atts['language'] ) );
+        }
 
         ob_start();
         ?>
-            <div class="ead-document-loading" style="width:100%;height:100%;position:absolute;left:0;top:0;z-index:1000;">
+            <div class="ead-document-loading" style="width:100%;height:100%;position:absolute;left:0;top:0;z-index:10;">
                 <div class="ead-loading-wrap">
                     <div class="ead-loading-main">
                         <div class="ead-loading">
@@ -201,11 +208,11 @@ class Awsm_embed {
                             <span><?php esc_html_e( 'Taking too long?', 'embed-any-document' ) ?></span>
                         </h2>
                         <p>
-                            <a href="<?php echo esc_url( $current_url ); ?>" class="ead-reload-btn">
+                            <div class="ead-document-btn ead-reload-btn" role="button">
                                 <img src="<?php echo esc_url( plugins_url( 'images/reload.svg', __FILE__ ) ); ?>" alt="<?php esc_html_e( 'Reload', 'embed-any-document'); ?>" width="12" height="12"/> <?php esc_html_e( 'Reload document', 'embed-any-document' ); ?>
-                            </a>
+                            </div>
                             <span>|</span>
-                            <a href="<?php echo esc_url( $current_url ); ?>" target="_blank">
+                            <a href="<?php echo esc_url( $document_url ); ?>" class="ead-document-btn" target="_blank">
                                 <img src="<?php echo esc_url( plugins_url( 'images/open.svg', __FILE__ ) ); ?>" alt="<?php esc_html_e( 'Open', 'embed-any-document'); ?>" width="12" height="12"/> <?php esc_html_e( 'Open in new tab', 'embed-any-document' ); ?>
                             </a>
                     </div>
@@ -215,7 +222,7 @@ class Awsm_embed {
         return ob_get_clean();
     }
 
-    public function wp_enqueue_scripts() {
+    public function register_scripts() {
         wp_register_style( 'awsm-ead-public', plugins_url( 'css/embed-public.css', $this->plugin_file ), array(), $this->plugin_version, 'all' );
 
         wp_register_script( 'awsm-ead-public', plugins_url( 'js/embed-public.js', $this->plugin_file ), array( 'jquery' ), $this->plugin_version, true );
@@ -311,7 +318,7 @@ class Awsm_embed {
             $iframe = sprintf('<iframe src="%s" title="%s" %s></iframe>', esc_attr( $iframe ), esc_html__( 'Embedded Document', 'embed-any-document'), $iframe_style );
 
             if ( $shortcode_atts['viewer'] === 'google' ) {
-                $iframe .= self::get_iframe_preloader();
+                $iframe .= self::get_iframe_preloader( $shortcode_atts );
             }
             $embed = sprintf( '<div class="ead-preview"><div class="ead-document" %3$s>%1$s</div>%2$s</div>', $iframe, $durl, $doc_style );
         else:

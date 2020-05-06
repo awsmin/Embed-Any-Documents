@@ -19,6 +19,8 @@ class Awsm_embed_Guten_blocks {
 	public function __construct() {
 		add_action( 'init', array( $this, 'register_dynamic_block' ) );
 
+		// Hook: Assets for both editor and front-end.
+		add_action( 'enqueue_block_assets', array( $this, 'block_assets' ) );
 		// Hook: Editor assets.
 		add_action( 'enqueue_block_editor_assets', array( $this, 'block_editor_assets' ) );
 	}
@@ -96,6 +98,14 @@ class Awsm_embed_Guten_blocks {
 			}
 		}
 		return $embed;
+	}
+
+	/**
+	 * Enqueue Gutenberg block assets for both editor and front-end.
+	 */
+	public function block_assets() {
+		wp_enqueue_style( 'awsm-ead-public' );
+        wp_enqueue_script( 'awsm-ead-public' );
 	}
 
 	/**
