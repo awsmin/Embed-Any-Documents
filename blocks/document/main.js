@@ -11,7 +11,7 @@ import icon from './modules/icon';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { ServerSideRender, IconButton } = wp.components;
+const { ServerSideRender, Placeholder, Button } = wp.components;
 /**
  * Register: a Gutenberg Block.
  *
@@ -67,9 +67,9 @@ registerBlockType( 'embed-any-document/document', {
 			];
 		} else {
 			return (
-				<div className="components-placeholder ead-block-wrapper">
-					<IconButton className="awsm-embed" icon="media-document" onClick={ setBlockProps } isLarge>{ __( 'Add Document', 'embed-any-document' ) }</IconButton>
-				</div>
+				<Placeholder label={ __( 'Document', 'embed-any-document' ) } instructions={ __( 'Upload and Embed your documents.', 'embed-any-document' ) } icon={ icon.block } className="ead-block-wrapper">
+					<Button className="awsm-embed" onClick={ setBlockProps } isSecondary isLarge>{ __( 'Add Document', 'embed-any-document' ) }</Button>
+				</Placeholder>
 			);
 		}
 	},
