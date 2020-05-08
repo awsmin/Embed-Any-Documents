@@ -181,6 +181,19 @@ class Awsm_embed {
         ) );
     }
 
+    public static function is_browser_viewable_type( $url ) {
+        $is_viewable = false;
+        $types = array( 'pdf', 'txt' );
+        $splitted = explode( '.', $url );
+        $extension = end( $splitted );
+        if ( ! empty( $extension ) ) {
+            if ( in_array( strtolower( trim( $extension ) ), $types ) ) {
+                $is_viewable = true;
+            }
+        }
+        return $is_viewable;
+    }
+
     public static function get_iframe_preloader( $shortcode_atts ) {
         if ( ! isset( $shortcode_atts['viewer'] ) || ! isset( $shortcode_atts['url'] ) ) {
             return;
@@ -188,8 +201,12 @@ class Awsm_embed {
 
         $document_url = '#';
         if ( $shortcode_atts['viewer'] === 'google' ) {
-            $src = 'https://docs.google.com/viewer?url=%1$s&hl=%2$s';
-            $document_url = sprintf( $src, urlencode( $shortcode_atts['url'] ), esc_attr( $shortcode_atts['language'] ) );
+            if ( self::is_browser_viewable_type( $shortcode_atts['url'] ) ) {
+                $document_url = $shortcode_atts['url'];
+            } else {
+                $src = 'https://docs.google.com/viewer?url=%1$s&hl=%2$s';
+                $document_url = sprintf( $src, urlencode( $shortcode_atts['url'] ), esc_attr( $shortcode_atts['language'] ) );
+            } 
         }
 
         ob_start();
