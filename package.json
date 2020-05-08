@@ -8,7 +8,7 @@
     "build": "cross-env NODE_ENV=production webpack",
     "translate": "cross-env wp i18n make-pot . language/embed-any-document.pot --exclude=document-block.js",
     "archive": "cross-env git archive --format=zip --prefix=embed-any-document/ --output=./build/embed-any-document.zip --worktree-attributes master",
-    "gb-archive": "cross-env git archive --format=zip --prefix=embed-any-document/ --output=./build/embed-any-document.zip --worktree-attributes document-block"
+    "dev-archive": "cross-env git archive --format=zip --prefix=embed-any-document/ --output=./build/embed-any-document.zip --worktree-attributes dev-branch"
   },
   "repository": {
     "type": "git",
