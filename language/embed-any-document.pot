@@ -9,13 +9,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-05-08T14:37:08+00:00\n"
+"POT-Creation-Date: 2020-05-08T16:33:11+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: embed-any-document\n"
 
 #. Plugin Name of the plugin
-#: awsm-embed.php:336
+#: awsm-embed.php:353
 msgid "Embed Any Document"
 msgstr ""
 
@@ -46,7 +46,7 @@ msgid "Settings"
 msgstr ""
 
 #: awsm-embed.php:168
-#: awsm-embed.php:242
+#: awsm-embed.php:259
 msgid "Download"
 msgstr ""
 
@@ -75,53 +75,53 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
-#: awsm-embed.php:201
+#: awsm-embed.php:218
 msgid "Loader"
 msgstr ""
 
-#: awsm-embed.php:202
+#: awsm-embed.php:219
 #: inc/popup.php:90
 msgid "Loading..."
 msgstr ""
 
-#: awsm-embed.php:207
+#: awsm-embed.php:224
 msgid "EAD Logo"
 msgstr ""
 
-#: awsm-embed.php:208
+#: awsm-embed.php:225
 msgid "Taking too long?"
 msgstr ""
 
-#: awsm-embed.php:212
+#: awsm-embed.php:229
 msgid "Reload"
 msgstr ""
 
-#: awsm-embed.php:212
+#: awsm-embed.php:229
 msgid "Reload document"
 msgstr ""
 
-#: awsm-embed.php:216
+#: awsm-embed.php:233
 msgid "Open"
 msgstr ""
 
-#: awsm-embed.php:216
+#: awsm-embed.php:233
 msgid "Open in new tab"
 msgstr ""
 
-#: awsm-embed.php:318
+#: awsm-embed.php:335
 msgid "Embedded Document"
 msgstr ""
 
-#: awsm-embed.php:325
+#: awsm-embed.php:342
 msgid "No Url Found"
 msgstr ""
 
-#: awsm-embed.php:395
+#: awsm-embed.php:412
 msgid "Buy Pro Version"
 msgstr ""
 
 #. translators: %1$s: Service provider
-#: awsm-embed.php:398
+#: awsm-embed.php:415
 msgid "Add From %1$s"
 msgstr ""
 
