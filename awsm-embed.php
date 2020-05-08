@@ -315,10 +315,10 @@ class Awsm_embed {
                 $doc_style    = 'style="position:relative;"';
             }
            
-            $iframe = sprintf('<iframe src="%s" title="%s" %s></iframe>', esc_attr( $iframe ), esc_html__( 'Embedded Document', 'embed-any-document'), $iframe_style );
+            $iframe = sprintf('<iframe src="%s" title="%s" class="ead-iframe" %s></iframe>', esc_attr( $iframe ), esc_html__( 'Embedded Document', 'embed-any-document'), $iframe_style );
 
             if ( $shortcode_atts['viewer'] === 'google' ) {
-                $iframe .= self::get_iframe_preloader( $shortcode_atts );
+                $iframe = '<div class="ead-iframe-wrapper">' . $iframe . '</div>' . self::get_iframe_preloader( $shortcode_atts );
             }
             $embed = sprintf( '<div class="ead-preview"><div class="ead-document" %3$s>%1$s</div>%2$s</div>', $iframe, $durl, $doc_style );
         else:
