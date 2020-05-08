@@ -432,9 +432,6 @@ class Awsm_embed {
             echo "<select name=\"" . esc_attr( $name ) . "\" id=\"" . esc_attr( $name ) . "\" class=\"" . esc_attr( $class ) . "\">";
             foreach ( $options as $key => $option ) {
                 echo "<option value=\"" . esc_attr( $key ) . "\"";
-                if ( ! empty( $helptext ) ) {
-                    echo " title=\"" . esc_attr( $helptext ) . "\"";
-                }
                 if ( $key == $selected ) {
                     echo ' selected="selected"';
                 }
@@ -528,11 +525,10 @@ class Awsm_embed {
     /**
      * Validate Source mime type
      *
-     * @since   1.0
-     * @return  boolean
+     * @since  1.0
+     * @return array
      */
     function validmime_types() {
-
         $mimetypes = array(
         // Text formats
         'txt|asc|c|cc|h'               => 'text/plain',
@@ -571,7 +567,6 @@ class Awsm_embed {
      * @return  boolean
      */
     function valid_type( $url ) {
-
         $doctypes = $this->validmime_types();
         if ( is_array( $doctypes ) ) {
             $allowed_ext = implode( "|", array_keys( $doctypes ) );
@@ -590,9 +585,7 @@ class Awsm_embed {
      * @return  string Mimetypes
      */
     function validembedtypes() {
-
         $doctypes = $this->validmime_types();
-
         return $allowedtype = implode( ',', $doctypes );
     }
 
