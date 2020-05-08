@@ -7,8 +7,8 @@
     flex-wrap: wrap;
     align-items: center;
     background: #E4EAF1;
-    border: 2px solid #AFB8C1;
     height: 100%;
+    opacity: 0.5;
 }
 .ead-loading{
     text-align: center;
@@ -31,13 +31,13 @@
     font-size: 14px;
     text-align: center;
 }
-.ead-loading-foot h2{
+.ead-loading-foot .ead-loading-foot-title{
     margin: 0 0 20px !important;
     color: #404347;
     font-size: 14px;
     font-weight: bold
 }
-.ead-loading-foot h2 span{
+.ead-loading-foot .ead-loading-foot-title span{
     display: block;
     margin-top: 15px;
     font-size: 14px;
@@ -56,7 +56,7 @@
     display: inline-block;
     text-decoration: underline;
 }
-.ead-loading-foot h2 img{
+.ead-loading-foot .ead-loading-foot-title img{
     margin: 0 auto;
 }
 .ead-loading-foot .ead-document-btn img {

@@ -203,10 +203,10 @@ class Awsm_embed {
                         </div>
                     </div>
                     <div class="ead-loading-foot">
-                        <h2>
+                        <div class="ead-loading-foot-title">
                             <img src="<?php echo esc_url( plugins_url( 'images/EAD-logo.svg', __FILE__ ) ); ?>" alt="<?php esc_html_e( 'EAD Logo', 'embed-any-document'); ?>" width="36" height="23"/>
                             <span><?php esc_html_e( 'Taking too long?', 'embed-any-document' ) ?></span>
-                        </h2>
+                        </div>
                         <p>
                             <div class="ead-document-btn ead-reload-btn" role="button">
                                 <img src="<?php echo esc_url( plugins_url( 'images/reload.svg', __FILE__ ) ); ?>" alt="<?php esc_html_e( 'Reload', 'embed-any-document'); ?>" width="12" height="12"/> <?php esc_html_e( 'Reload document', 'embed-any-document' ); ?>
