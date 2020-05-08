@@ -121,7 +121,7 @@ class Awsm_embed_Guten_blocks {
 		wp_enqueue_script(
 			'ead-block-editor-js',
 			plugins_url( 'blocks/document/document-block.js', dirname( __FILE__ ) ),
-			array( 'wp-blocks', 'wp-components', 'wp-editor', 'wp-element', 'wp-i18n',  'ead_media_button' ),
+			array( 'wp-blocks', 'wp-components', 'wp-editor', 'wp-element', 'wp-i18n', 'wp-url', 'wp-api-fetch', 'lodash', 'ead_media_button' ),
 			AWSM_EMBED_VERSION,
 			true
 		);
