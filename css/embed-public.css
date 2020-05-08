@@ -19,6 +19,9 @@
     font-size: 14px;
     color: #74787D;
 }
+.ead-loading img {
+    margin: 0 auto;
+}
 .ead-loading-foot{
     position: absolute;
     left: 0;
@@ -29,7 +32,7 @@
     text-align: center;
 }
 .ead-loading-foot h2{
-    margin: 0 0 20px;
+    margin: 0 0 20px !important;
     color: #404347;
     font-size: 14px;
     font-weight: bold
@@ -37,6 +40,8 @@
 .ead-loading-foot h2 span{
     display: block;
     margin-top: 15px;
+    font-size: 14px;
+    letter-spacing: 0;
 }
 .ead-loading-foot p{
     margin-bottom: 0;
@@ -51,6 +56,11 @@
     display: inline-block;
     text-decoration: underline;
 }
-.ead-loading-foot img{
+.ead-loading-foot h2 img{
+    margin: 0 auto;
+}
+.ead-loading-foot .ead-document-btn img {
+    display: inline-block;
+    vertical-align: middle;
     margin-right: 2px;
 }
