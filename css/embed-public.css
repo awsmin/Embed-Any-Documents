@@ -56,6 +56,9 @@
     display: inline-block;
     text-decoration: underline;
 }
+.ead-loading-foot .ead-document-btn:active {
+    opacity: 0.5;
+}
 .ead-loading-foot .ead-loading-foot-title img{
     margin: 0 auto;
 }
