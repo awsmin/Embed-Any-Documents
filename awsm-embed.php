@@ -287,6 +287,21 @@ class Awsm_embed {
 	}
 
 	/**
+	 * Generate style attribute from attributes array.
+	 *
+	 * @param array $attrs Attributes array.
+	 * @return string
+	 */
+	public static function build_style_attr( $attrs ) {
+		$style = 'style="';
+		foreach ( $attrs as $property => $value ) {
+			$style .= sprintf( '%1$s: %2$s;', esc_attr( $property ), esc_attr( $value ) );
+		}
+		$style .= '"';
+		return $style;
+	}
+
+	/**
 	 * Shortcode Functionality.
 	 *
 	 * @param array $atts The shortcode attributes.
@@ -366,24 +381,46 @@ class Awsm_embed {
 					$iframe   = sprintf( $embedsrc, rawurlencode( $url ) );
 					break;
 			}
-			$min_height = '';
-			if ( $this->in_percentage( $shortcode_atts['height'] ) ) {
-				$min_height = 'min-height:500px;';
-			}
+
+			$iframe_style_attrs = array();
+			$doc_style_attrs    = array(
+				'position' => 'relative',
+			);
 			if ( $this->check_responsive( $shortcode_atts['height'] ) && $this->check_responsive( $shortcode_atts['width'] ) ) {
-				$iframe_style = 'style="width:100%; height:100%; border: none; position: absolute;left:0;top:0;"';
-				$doc_style    = 'style="position:relative;padding-top:90%;"';
+				$iframe_style_attrs = array(
+					'width'    => '100%',
+					'height'   => '100%',
+					'border'   => 'none',
+					'position' => 'absolute',
+					'left'     => '0',
+					'top'      => '0',
+				);
+
+				$doc_style_attrs['padding-top'] = '90%';
 			} else {
-				$iframe_style = sprintf( 'style="width:%s; height:%s; border: none;' . $min_height . '"', esc_html( $shortcode_atts['width'] ), esc_html( $shortcode_atts['height'] ) );
-				$doc_style    = 'style="position:relative;"';
+				$iframe_style_attrs = array(
+					'width'  => $shortcode_atts['width'],
+					'height' => $shortcode_atts['height'],
+					'border' => 'none',
+				);
+				if ( $this->in_percentage( $shortcode_atts['height'] ) ) {
+					$iframe_style_attrs['min-height'] = '500px';
+				}
 			}
 
-			$iframe = sprintf( '<iframe src="%s" title="%s" class="ead-iframe" %s></iframe>', esc_attr( $iframe ), esc_html__( 'Embedded Document', 'embed-any-document' ), $iframe_style );
+			if ( $shortcode_atts['viewer'] === 'google' ) {
+				$iframe_style_attrs['visibility'] = 'hidden';
+			}
+
+			$iframe_style = self::build_style_attr( $iframe_style_attrs );
+			$iframe       = sprintf( '<iframe src="%s" title="%s" class="ead-iframe" %s></iframe>', esc_attr( $iframe ), esc_html__( 'Embedded Document', 'embed-any-document' ), $iframe_style );
 
 			if ( $shortcode_atts['viewer'] === 'google' ) {
 				$iframe = '<div class="ead-iframe-wrapper">' . $iframe . '</div>' . self::get_iframe_preloader( $shortcode_atts );
 			}
-			$embed = sprintf( '<div class="ead-preview"><div class="ead-document" %3$s>%1$s</div>%2$s</div>', $iframe, $durl, $doc_style );
+
+			$doc_style = self::build_style_attr( $doc_style_attrs );
+			$embed     = sprintf( '<div class="ead-preview"><div class="ead-document" %3$s>%1$s</div>%2$s</div>', $iframe, $durl, $doc_style );
 		else :
 			$embed = esc_html__( 'No Url Found', 'embed-any-document' );
 		endif;
