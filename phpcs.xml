@@ -25,7 +25,9 @@
 
     <rule ref="PHPCompatibilityWP" />
 
-    <rule ref="WordPress-Core" />
+    <rule ref="WordPress-Core">
+        <exclude name="PEAR.NamingConventions.ValidClassName.Invalid" />
+    </rule>
     
     <rule ref="WordPress-Docs">
         <exclude-pattern>index.php</exclude-pattern>
@@ -33,6 +35,7 @@
     
     <rule ref="WordPress.Files.FileName.InvalidClassFileName">
         <exclude-pattern>awsm-embed.php</exclude-pattern>
+        <exclude-pattern>document.php</exclude-pattern>
     </rule>
 
     <rule ref="WordPress-Extra">
