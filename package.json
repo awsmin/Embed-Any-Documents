@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack",
     "build": "cross-env NODE_ENV=production webpack",
-    "translate": "cross-env wp i18n make-pot . language/embed-any-document.pot --exclude=document-block.js",
+    "translate": "cross-env wp i18n make-pot . language/embed-any-document.pot --exclude=document-block.js --headers='{\"Language-Team\":\"Awsm Innovations <hello@awsm.in>\"}'",
     "archive": "cross-env git archive --format=zip --prefix=embed-any-document/ --output=./build/embed-any-document.zip --worktree-attributes master",
     "dev-archive": "cross-env git archive --format=zip --prefix=embed-any-document/ --output=./build/embed-any-document.zip --worktree-attributes dev-branch"
   },
@@ -21,13 +21,33 @@
   },
   "homepage": "https://awsm.in",
   "devDependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/preset-env": "^7.9.6",
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
     "babel-loader": "^8.1.0",
     "babel-plugin-add-module-exports": "^1.0.2",
     "babel-plugin-transform-react-jsx": "^6.24.1",
+    "browser-sync": "^2.26.7",
     "cross-env": "^5.2.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-clean-css": "^3.10.0",
+    "gulp-line-ending-corrector": "^1.0.3",
+    "gulp-rename": "^1.4.0",
+    "gulp-uglify": "^3.0.2",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
-  }
+  },
+  "browserslist": [
+    "last 2 version",
+    "> 1%",
+    "ie >= 9",
+    "ie_mob >= 10",
+    "ff >= 30",
+    "chrome >= 34",
+    "safari >= 7",
+    "opera >= 23",
+    "ios >= 7",
+    "android >= 4",
+    "bb >= 10"
+  ]
 }
