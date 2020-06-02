@@ -40,12 +40,6 @@ registerBlockType( 'embed-any-document/document', {
 			blockProps.activeEadBlock = true;
 		};
 
-		const displayEmbeddedDocument = (elem) => {
-			jQuery(elem).find('.ead-iframe-wrapper .ead-iframe').on('load', function() {
-				jQuery(this).parents('.ead-document').find('.ead-document-loading').css('display', 'none');
-			});
-		}
-
 		jQuery('body').on('click', '#embed-popup #insert-doc', () => {
 			let shortcodeText = jQuery('#embed-popup #shortcode').text();
 			let { url, width = emebeder.width, height = emebeder.height, download = emebeder.download, viewer = emebeder.provider, text = emebeder.text, cache = true } = EadHelper.parseShortcode(shortcodeText);
@@ -67,16 +61,11 @@ registerBlockType( 'embed-any-document/document', {
 		});
 
 		if( typeof shortcode !== 'undefined' ) {
-			let renderProps = {};
-			if ( attributes.viewer === 'google' ) {
-				renderProps.onSuccess = displayEmbeddedDocument;
-			}
 			return [
 				<EadInspector { ...{ setAttributes, ...props } } />,
 				<EadServerSideRender
 					block="embed-any-document/document"
 					attributes={ attributes }
-					{ ...renderProps }
 				/>
 			];
 		} else {

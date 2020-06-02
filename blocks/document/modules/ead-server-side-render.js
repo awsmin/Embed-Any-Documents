@@ -42,10 +42,10 @@ class EadServerSideRender extends Component {
 			this.fetch( this.props );
 		}
 
-		if ( this.state.response !== prevState.response ) {
-			if ( null !== this.eadRef.current && this.props.onSuccess ) {
-				this.props.onSuccess(this.eadRef.current);
-			}
+		if ( this.state.response !== prevState.response && null !== this.eadRef.current ) {
+			jQuery(this.eadRef.current).find('.ead-iframe-wrapper .ead-iframe').on('load', function() {
+				jQuery(this).parents('.ead-document').find('.ead-document-loading').css('display', 'none');
+			});
 		}
 	}
 
