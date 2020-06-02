@@ -54,7 +54,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<ul class="option-fields">
 						<li>
 							<div class="f-left"><label><?php esc_html_e( 'Width', 'embed-any-document' ); ?></label>
-								<input type="text" name="width" class="embedval input-small" id="ead-width" value="<?php echo esc_attr( get_option( 'ead-width', '100%' ) ); ?>">
+								<input type="text" name="width" class="embedval input-small" id="ead-width" value="<?php echo esc_attr( get_option( 'ead_width', '100%' ) ); ?>">
 							</div>
 							<div class="f-left"><label><?php esc_html_e( 'Height', 'embed-any-document' ); ?></label>
 								<input type="text" name="height" class="embedval input-small" id="ead-height" value="<?php echo esc_attr( get_option( 'ead_height', '100%' ) ); ?>">
@@ -67,7 +67,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									'logged' => __( 'For Logged-in users', 'embed-any-document' ),
 									'none'   => __( 'No Download', 'embed-any-document' ),
 								);
-								$this->selectbuilder( 'ead-download', $downoptions, esc_attr( get_option( 'ead_download' ) ), 'ead-usc' );
+								$this->selectbuilder( 'ead-download', $downoptions, esc_attr( get_option( 'ead_download', 'none' ) ), 'ead-usc' );
 								?>
 							</div>
 							<div class="f-left" id="ead-download-text">
