@@ -119,7 +119,7 @@ class Awsm_embed {
 	 * Register admin Settings style
 	 */
 	public function setting_styles() {
-		wp_register_style( 'embed-settings', plugins_url( 'css/settings.css', $this->plugin_file ), false, $this->plugin_version, 'all' );
+		wp_register_style( 'embed-settings', plugins_url( 'css/settings.min.css', $this->plugin_file ), false, $this->plugin_version, 'all' );
 		wp_enqueue_style( 'embed-settings' );
 	}
 
@@ -183,8 +183,8 @@ class Awsm_embed {
 				$script_deps[] = 'wp-blocks';
 			}
 		}
-		wp_enqueue_script( 'ead_media_button', plugins_url( 'js/embed.js', $this->plugin_file ), $script_deps, $this->plugin_version, true );
-		wp_enqueue_style( 'ead_media_button', plugins_url( 'css/embed.css', $this->plugin_file ), false, $this->plugin_version, 'all' );
+		wp_enqueue_script( 'ead_media_button', plugins_url( 'js/embed.min.js', $this->plugin_file ), $script_deps, $this->plugin_version, true );
+		wp_enqueue_style( 'ead_media_button', plugins_url( 'css/embed.min.css', $this->plugin_file ), false, $this->plugin_version, 'all' );
 		wp_localize_script(
 			'ead_media_button',
 			'emebeder',
@@ -281,9 +281,9 @@ class Awsm_embed {
 	 * Register scripts for both back-end and front-end use.
 	 */
 	public function register_scripts() {
-		wp_register_style( 'awsm-ead-public', plugins_url( 'css/embed-public.css', $this->plugin_file ), array(), $this->plugin_version, 'all' );
+		wp_register_style( 'awsm-ead-public', plugins_url( 'css/embed-public.min.css', $this->plugin_file ), array(), $this->plugin_version, 'all' );
 
-		wp_register_script( 'awsm-ead-public', plugins_url( 'js/embed-public.js', $this->plugin_file ), array( 'jquery' ), $this->plugin_version, true );
+		wp_register_script( 'awsm-ead-public', plugins_url( 'js/embed-public.min.js', $this->plugin_file ), array( 'jquery' ), $this->plugin_version, true );
 	}
 
 	/**
