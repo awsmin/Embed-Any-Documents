@@ -417,7 +417,7 @@ class Awsm_embed {
 		wp_enqueue_style( 'awsm-ead-public' );
 		wp_enqueue_script( 'awsm-ead-public' );
 
-		if ( isset( $shortcode_atts['url'] ) ) :
+		if ( isset( $shortcode_atts['url'] ) && ! empty( $shortcode_atts['url'] ) ) :
 			// AMP.
 			$is_amp = function_exists( 'is_amp_endpoint' ) && is_amp_endpoint();
 

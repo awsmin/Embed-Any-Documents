@@ -102,7 +102,7 @@ class Awsm_embed_Guten_blocks {
 		$shortcode     = isset( $atts['shortcode'] ) ? $atts['shortcode'] : '';
 		$atts['cache'] = isset( $atts['cache'] ) && $atts['cache'] == false ? 'off' : 'on';
 		if ( ! empty( $shortcode ) ) {
-			$parsed_atts = shortcode_parse_atts( $shortcode );
+			$parsed_atts = Awsm_embed::get_shortcode_attrs( $shortcode );
 			$atts['url'] = isset( $parsed_atts['url'] ) ? $parsed_atts['url'] : ''; // url remains static.
 			$ead_atts    = array_replace( $parsed_atts, $atts );
 			$ead         = Awsm_embed::get_instance();
