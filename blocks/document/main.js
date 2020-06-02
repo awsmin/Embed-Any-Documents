@@ -46,6 +46,8 @@ registerBlockType( 'embed-any-document/document', {
 			if( blockProps !== null ) {
 				if(blockProps.activeEadBlock === true) {
 					blockProps.activeEadBlock = false;
+					viewer = jQuery.inArray( viewer, emebeder.viewers ) !== -1 ? viewer : 'google';
+
 					blockProps.setAttributes({
 						shortcode: shortcodeText,
 						url: url,
