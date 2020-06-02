@@ -187,7 +187,7 @@ jQuery(document).ready(function($) {
             ead_validateurl(checkurl);
         } else {
             $embedurl.addClass('urlerror');
-            updateshortcode();
+            ead_updateshortcode();
         }
     }
     function ead_is_valid_url(url) {
