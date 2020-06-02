@@ -35,14 +35,32 @@ class EadInspector extends Component {
 
     render() {
         const { attributes: { url, width, height, text, download, viewer, cache }, setAttributes } = this.props;
-        let viewerOptions = [{ value: 'google', label: __( 'Google Docs Viewer', 'embed-any-document' ) }];
-        if( EadHelper.isValidMSExtension(url) ) {
-            viewerOptions.push({ value: 'microsoft', label: __( 'Microsoft Office Online', 'embed-any-document' ) });
-        }
-        let downloadTextControl = <TextControl label={ __( 'Download Text', 'embed-any-document' ) } help={ __( 'Default download button text', 'embed-any-document' ) } value={ text } onChange={ text => setAttributes( { text } ) } />;
-        if( this.state.downloadDisabled ) {
-            downloadTextControl = <Disabled>{ downloadTextControl }</Disabled>;
-        }
+        let viewerOptions = [];
+		let downloadTextControl = null;
+		let enableViewerControl = viewer && jQuery.inArray( viewer, emebeder.viewers ) !== -1;
+
+		if ( enableViewerControl ) {
+			viewerOptions = [{ value: 'google', label: __( 'Google Docs Viewer', 'embed-any-document' ) }];
+
+			if( EadHelper.isValidMSExtension( url ) ) {
+				viewerOptions.push({ value: 'microsoft', label: __( 'Microsoft Office Online', 'embed-any-document' ) });
+			}
+
+			let fileSrc = EadHelper.getFileSource( url );
+			if ( EadHelper.isPDF(url) && fileSrc !== 'dropbox' ) {
+				viewerOptions.push({ value: 'browser', label: __( 'Browser Based', 'embed-any-document' ) });
+
+				if (jQuery.inArray( 'built-in', emebeder.viewers ) !== -1 && fileSrc === 'internal') {
+					viewerOptions.push({ value: 'built-in', label: __( 'Built-In Viewer', 'embed-any-document' ) });
+				}
+			}
+
+			downloadTextControl = <TextControl label={ __( 'Download Text', 'embed-any-document' ) } help={ __( 'Default download button text', 'embed-any-document' ) } value={ text } onChange={ text => setAttributes( { text } ) } />;
+
+			if( this.state.downloadDisabled ) {
+				downloadTextControl = <Disabled>{ downloadTextControl }</Disabled>;
+			}
+		}
 
         return (
             <InspectorControls>

@@ -130,11 +130,19 @@ class Awsm_embed_Guten_blocks {
 	 * `wp-i18n`: To internationalize the block's text.
 	 */
 	public function block_editor_assets() {
+		// Styles.
+		wp_enqueue_style(
+			'ead-block-editor-css',
+			plugins_url( 'blocks/document/editor.css', dirname( __FILE__ ) ),
+			array( 'ead_media_button' ),
+			AWSM_EMBED_VERSION,
+			'all'
+		);
 		// Scripts.
 		wp_enqueue_script(
 			'ead-block-editor-js',
 			plugins_url( 'blocks/document/document-block.js', dirname( __FILE__ ) ),
-			array( 'wp-blocks', 'wp-components', 'wp-editor', 'wp-element', 'wp-i18n', 'wp-url', 'wp-api-fetch', 'lodash', 'ead_media_button' ),
+			array( 'wp-blocks', 'wp-components', 'wp-editor', 'wp-element', 'wp-i18n', 'wp-url', 'wp-api-fetch', 'lodash', 'ead_media_button', 'awsm-ead-pdf-object' ),
 			AWSM_EMBED_VERSION,
 			true
 		);

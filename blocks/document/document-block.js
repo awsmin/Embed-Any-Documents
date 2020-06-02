@@ -331,9 +331,53 @@ var EadServerSideRender = /*#__PURE__*/function (_Component) {
       }
 
       if (this.state.response !== prevState.response && null !== this.eadRef.current) {
-        jQuery(this.eadRef.current).find('.ead-iframe-wrapper .ead-iframe').on('load', function () {
-          jQuery(this).parents('.ead-document').find('.ead-document-loading').css('display', 'none');
-        });
+        var _this$props$attribute = this.props.attributes,
+            attributes = _this$props$attribute === void 0 ? null : _this$props$attribute;
+
+        if (attributes !== null && attributes && (attributes.viewer === 'google' || attributes.viewer === 'browser' || attributes.viewer === 'built-in')) {
+          var viewer = attributes.viewer;
+          var currentRef = this.eadRef.current;
+          var documentWrapper = jQuery(currentRef).find('.ead-document');
+          var iframe = documentWrapper.find('.ead-iframe');
+
+          if (viewer === 'google' || viewer === 'browser') {
+            if (viewer === 'google') {
+              iframe.css('visibility', 'visible');
+            }
+
+            iframe.on('load', function () {
+              jQuery(this).parents('.ead-document').find('.ead-document-loading').css('display', 'none');
+            });
+          }
+
+          if (viewer === 'browser' || viewer === 'built-in') {
+            var src = documentWrapper.data('pdfSrc');
+            viewer = typeof src !== 'undefined' && src.length > 0 && viewer.length > 0 ? viewer : false;
+            var isBuiltInViewer = 'pdfjs' in eadPublic && eadPublic.pdfjs && eadPublic.pdfjs.length > 0 && viewer === 'built-in';
+
+            if (viewer && (viewer === 'browser' || isBuiltInViewer)) {
+              if (PDFObject.supportsPDFs || isBuiltInViewer) {
+                var options = {};
+
+                if (!isBuiltInViewer) {
+                  options = {
+                    width: iframe.css('width'),
+                    height: iframe.css('height')
+                  };
+                } else {
+                  options = {
+                    forcePDFJS: true,
+                    PDFJS_URL: eadPublic.pdfjs
+                  };
+                }
+
+                PDFObject.embed(src, documentWrapper, options);
+              } else {
+                iframe.css('visibility', 'visible');
+              }
+            }
+          }
+        }
       }
     }
   }, {
@@ -403,9 +447,10 @@ var EadServerSideRender = /*#__PURE__*/function (_Component) {
         }, this.props));
       }
 
+      var wrapperClass = typeof className !== 'undefined' && className ? 'ead-block-content-wrapper ' + className : 'ead-block-content-wrapper';
       return wp.element.createElement("div", {
         ref: this.eadRef,
-        className: className,
+        className: wrapperClass,
         dangerouslySetInnerHTML: {
           __html: response
         }
@@ -468,6 +513,22 @@ var EadHelper = /*#__PURE__*/function () {
   }
 
   _createClass(EadHelper, null, [{
+    key: "getFileSource",
+    value: function getFileSource(url) {
+      var source = 'internal';
+      var siteUrl = emebeder.site_url;
+
+      if (url.indexOf(siteUrl) === -1) {
+        if (url.indexOf('dropbox.com') !== -1) {
+          source = 'dropbox';
+        } else {
+          source = 'external';
+        }
+      }
+
+      return source;
+    }
+  }, {
     key: "parseShortcode",
     value: function parseShortcode(shortcodeText) {
       var atts = {};
@@ -478,11 +539,26 @@ var EadHelper = /*#__PURE__*/function () {
       return atts;
     }
   }, {
+    key: "getFileExtension",
+    value: function getFileExtension(url) {
+      var ext = '.' + url.split('.').pop();
+      var extSplitted = ext.split('?');
+      return extSplitted[0];
+    }
+  }, {
     key: "isValidMSExtension",
     value: function isValidMSExtension(url) {
       var validExt = emebeder.msextension.split(',');
-      var ext = '.' + url.split('.').pop();
-      return jQuery.inArray(ext, validExt) !== -1;
+      return jQuery.inArray(this.getFileExtension(url), validExt) !== -1;
+    }
+  }, {
+    key: "isPDF",
+    value: function isPDF(url) {
+      if (this.getFileExtension(url) === '.pdf') {
+        return true;
+      } else {
+        return false;
+      }
     }
   }]);
 
@@ -619,31 +695,53 @@ var EadInspector = /*#__PURE__*/function (_Component) {
           viewer = _this$props$attribute2.viewer,
           cache = _this$props$attribute2.cache,
           setAttributes = _this$props.setAttributes;
-      var viewerOptions = [{
-        value: 'google',
-        label: __('Google Docs Viewer', 'embed-any-document')
-      }];
+      var viewerOptions = [];
+      var downloadTextControl = null;
+      var enableViewerControl = viewer && jQuery.inArray(viewer, emebeder.viewers) !== -1;
 
-      if (_helper__WEBPACK_IMPORTED_MODULE_0__["default"].isValidMSExtension(url)) {
-        viewerOptions.push({
-          value: 'microsoft',
-          label: __('Microsoft Office Online', 'embed-any-document')
-        });
-      }
+      if (enableViewerControl) {
+        viewerOptions = [{
+          value: 'google',
+          label: __('Google Docs Viewer', 'embed-any-document')
+        }];
 
-      var downloadTextControl = wp.element.createElement(TextControl, {
-        label: __('Download Text', 'embed-any-document'),
-        help: __('Default download button text', 'embed-any-document'),
-        value: text,
-        onChange: function onChange(text) {
-          return setAttributes({
-            text: text
+        if (_helper__WEBPACK_IMPORTED_MODULE_0__["default"].isValidMSExtension(url)) {
+          viewerOptions.push({
+            value: 'microsoft',
+            label: __('Microsoft Office Online', 'embed-any-document')
           });
         }
-      });
 
-      if (this.state.downloadDisabled) {
-        downloadTextControl = wp.element.createElement(Disabled, null, downloadTextControl);
+        var fileSrc = _helper__WEBPACK_IMPORTED_MODULE_0__["default"].getFileSource(url);
+
+        if (_helper__WEBPACK_IMPORTED_MODULE_0__["default"].isPDF(url) && fileSrc !== 'dropbox') {
+          viewerOptions.push({
+            value: 'browser',
+            label: __('Browser Based', 'embed-any-document')
+          });
+
+          if (jQuery.inArray('built-in', emebeder.viewers) !== -1 && fileSrc === 'internal') {
+            viewerOptions.push({
+              value: 'built-in',
+              label: __('Built-In Viewer', 'embed-any-document')
+            });
+          }
+        }
+
+        downloadTextControl = wp.element.createElement(TextControl, {
+          label: __('Download Text', 'embed-any-document'),
+          help: __('Default download button text', 'embed-any-document'),
+          value: text,
+          onChange: function onChange(text) {
+            return setAttributes({
+              text: text
+            });
+          }
+        });
+
+        if (this.state.downloadDisabled) {
+          downloadTextControl = wp.element.createElement(Disabled, null, downloadTextControl);
+        }
       }
 
       return wp.element.createElement(InspectorControls, null, wp.element.createElement(PanelBody, null, wp.element.createElement(TextControl, {

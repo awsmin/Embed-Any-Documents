@@ -43,9 +43,50 @@ class EadServerSideRender extends Component {
 		}
 
 		if ( this.state.response !== prevState.response && null !== this.eadRef.current ) {
-			jQuery(this.eadRef.current).find('.ead-iframe-wrapper .ead-iframe').on('load', function() {
-				jQuery(this).parents('.ead-document').find('.ead-document-loading').css('display', 'none');
-			});
+			const { attributes = null } = this.props;
+
+			if ( ( attributes !== null && attributes ) && ( attributes.viewer === 'google' || attributes.viewer === 'browser' || attributes.viewer === 'built-in' ) ) {
+				let viewer = attributes.viewer;
+				let currentRef = this.eadRef.current;
+				let documentWrapper = jQuery(currentRef).find('.ead-document');
+				let iframe = documentWrapper.find('.ead-iframe');
+
+				if ( viewer === 'google' || viewer === 'browser' ) {
+					if ( viewer === 'google' ) {
+						iframe.css('visibility', 'visible');
+					}
+					iframe.on('load', function() {
+						jQuery(this).parents('.ead-document').find('.ead-document-loading').css('display', 'none');
+					});
+				}
+
+				if ( viewer === 'browser' || viewer === 'built-in' ) {
+					let src = documentWrapper.data('pdfSrc');
+					viewer = typeof src !== 'undefined' && src.length > 0 && viewer.length > 0 ? viewer : false;
+					let isBuiltInViewer = 'pdfjs' in eadPublic && eadPublic.pdfjs && eadPublic.pdfjs.length > 0 && viewer === 'built-in';
+
+					if (viewer && (viewer === 'browser' || isBuiltInViewer)) {
+						if (PDFObject.supportsPDFs || isBuiltInViewer) {
+							let options = {};
+							if (! isBuiltInViewer) {
+								options = {
+									width: iframe.css('width'),
+									height: iframe.css('height')
+								}
+							} else {
+								options = {
+									forcePDFJS: true,
+									PDFJS_URL: eadPublic.pdfjs
+								};
+							}
+
+							PDFObject.embed(src, documentWrapper, options);
+						} else {
+							iframe.css('visibility', 'visible');
+						}
+					}
+				}
+			}
 		}
 	}
 
@@ -119,8 +160,9 @@ class EadServerSideRender extends Component {
 			);
 		}
 
+		let wrapperClass = typeof className !== 'undefined' && className ? 'ead-block-content-wrapper ' + className : 'ead-block-content-wrapper';
 		return (
-			<div ref={ this.eadRef } className={ className } dangerouslySetInnerHTML={ { __html: response } } />
+			<div ref={ this.eadRef } className={ wrapperClass } dangerouslySetInnerHTML={ { __html: response } } />
 		);
 	}
 }
