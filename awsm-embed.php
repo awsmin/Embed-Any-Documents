@@ -102,9 +102,6 @@ class Awsm_embed {
 
 		add_shortcode( 'embeddoc', array( $this, 'embed_shortcode' ) );
 
-		// default options.
-		register_activation_hook( $this->plugin_file, array( $this, 'defaults' ) );
-
 		// Initialize block.
 		include_once $this->plugin_path . 'blocks/document.php';
 
@@ -375,6 +372,20 @@ class Awsm_embed {
 	}
 
 	/**
+	 * Get shortcode attributes as an array from EAD shortcode.
+	 *
+	 * @param string $shortcode EAD Shortcode.
+	 * @return array
+	 */
+	public static function get_shortcode_attrs( $shortcode ) {
+		$text       = str_replace( '[embeddoc', '', $shortcode );
+		$text       = trim( $text );
+		$text       = rtrim( $text, ']' );
+		$attributes = shortcode_parse_atts( $text );
+		return $attributes;
+	}
+
+	/**
 	 * Shortcode Functionality.
 	 *
 	 * @param array $atts The shortcode attributes.
@@ -612,16 +623,16 @@ class Awsm_embed {
 	 * To initialize default options
 	 */
 	public function defaults() {
-		$o = array(
+		$options = array(
 			'ead_width'       => '100%',
 			'ead_height'      => '100%',
 			'ead_download'    => 'none',
 			'ead_provider'    => 'google',
 			'ead_mediainsert' => '1',
 		);
-		foreach ( $o as $k => $v ) {
-			if ( ! get_option( $k ) ) {
-				update_option( $k, $v );
+		foreach ( $options as $key => $value ) {
+			if ( ! get_option( $key ) ) {
+				update_option( $key, $value );
 			}
 		}
 	}
@@ -860,23 +871,20 @@ class Awsm_embed {
 	}
 }
 
-/**
- * Plugin class initialization.
- */
-function embed_doc_activation() {
-	if ( ! defined( 'EAD_PLUS' ) ) {
-		Awsm_embed::get_instance();
+if ( defined( 'EAD_PLUS' ) ) {
+	if ( ! function_exists( 'embed_doc_disable_self' ) ) {
+		/**
+		 * Deactivate free version if Plus version is available.
+		 */
+		function embed_doc_disable_self() {
+			deactivate_plugins( plugin_basename( __FILE__ ) );
+		}
+		add_action( 'admin_init', 'embed_doc_disable_self' );
 	}
-}
+} else {
+	// Initialize the class.
+	$awsm_embed = Awsm_embed::get_instance();
 
-/**
- * Deactivate free version if Plus version is available.
- */
-function embed_doc_disable_self() {
-	if ( defined( 'EAD_PLUS' ) ) {
-		deactivate_plugins( plugin_basename( __FILE__ ) );
-	}
+	// Register defaults.
+	register_activation_hook( __FILE__, array( $awsm_embed, 'defaults' ) );
 }
-
-add_action( 'plugins_loaded', 'embed_doc_activation' );
-add_action( 'admin_init', 'embed_doc_disable_self' );
