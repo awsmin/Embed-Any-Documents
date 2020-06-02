@@ -2,20 +2,20 @@
 # This file is distributed under the same license as the Embed Any Document plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Embed Any Document 2.5.0\n"
+"Project-Id-Version: Embed Any Document 2.6.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/embed-any-document\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Awsm Innovations <hello@awsm.in>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-05-08T16:33:11+00:00\n"
+"POT-Creation-Date: 2020-06-02T20:35:28+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: embed-any-document\n"
 
 #. Plugin Name of the plugin
-#: awsm-embed.php:353
+#: awsm-embed.php:550
 msgid "Embed Any Document"
 msgstr ""
 
@@ -35,275 +35,285 @@ msgstr ""
 msgid "https://awsm.in"
 msgstr ""
 
-#: awsm-embed.php:107
-#: inc/popup.php:8
-#: blocks/document/main.js:85
+#: awsm-embed.php:143
+#: inc/popup.php:18
+#: blocks/document/main.js:76
 msgid "Add Document"
 msgstr ""
 
-#: awsm-embed.php:134
+#: awsm-embed.php:156
 msgid "Settings"
 msgstr ""
 
-#: awsm-embed.php:168
-#: awsm-embed.php:259
+#: awsm-embed.php:193
+#: awsm-embed.php:401
 msgid "Download"
 msgstr ""
 
-#: awsm-embed.php:174
+#: awsm-embed.php:200
 msgid "Nothing to insert"
 msgstr ""
 
-#: awsm-embed.php:175
+#: awsm-embed.php:201
 msgid "Invalid URL"
 msgstr ""
 
-#: awsm-embed.php:176
-#: inc/popup.php:28
+#: awsm-embed.php:202
+#: inc/popup.php:38
 msgid "Add URL"
 msgstr ""
 
-#: awsm-embed.php:177
+#: awsm-embed.php:203
 msgid "Verifying..."
 msgstr ""
 
-#: awsm-embed.php:178
+#: awsm-embed.php:204
 msgid "From URL"
 msgstr ""
 
-#: awsm-embed.php:179
+#: awsm-embed.php:205
 msgid "Select"
 msgstr ""
 
-#: awsm-embed.php:218
+#: awsm-embed.php:255
 msgid "Loader"
 msgstr ""
 
-#: awsm-embed.php:219
-#: inc/popup.php:90
+#: awsm-embed.php:256
+#: inc/popup.php:109
 msgid "Loading..."
 msgstr ""
 
-#: awsm-embed.php:224
+#: awsm-embed.php:261
 msgid "EAD Logo"
 msgstr ""
 
-#: awsm-embed.php:225
+#: awsm-embed.php:262
 msgid "Taking too long?"
 msgstr ""
 
-#: awsm-embed.php:229
+#: awsm-embed.php:266
 msgid "Reload"
 msgstr ""
 
-#: awsm-embed.php:229
+#: awsm-embed.php:266
 msgid "Reload document"
 msgstr ""
 
-#: awsm-embed.php:233
+#: awsm-embed.php:270
 msgid "Open"
 msgstr ""
 
-#: awsm-embed.php:233
+#: awsm-embed.php:270
 msgid "Open in new tab"
 msgstr ""
 
-#: awsm-embed.php:335
+#: awsm-embed.php:343
+#: blocks/document/modules/inspector.js:43
+msgid "Google Docs Viewer"
+msgstr ""
+
+#: awsm-embed.php:344
+#: blocks/document/modules/inspector.js:51
+msgid "Browser Based"
+msgstr ""
+
+#: awsm-embed.php:345
+#: blocks/document/modules/inspector.js:46
+msgid "Microsoft Office Online"
+msgstr ""
+
+#: awsm-embed.php:521
 msgid "Embedded Document"
 msgstr ""
 
-#: awsm-embed.php:342
+#: awsm-embed.php:530
 msgid "No Url Found"
 msgstr ""
 
-#: awsm-embed.php:412
+#: awsm-embed.php:616
 msgid "Buy Pro Version"
 msgstr ""
 
 #. translators: %1$s: Service provider
-#: awsm-embed.php:415
+#: awsm-embed.php:619
 msgid "Add From %1$s"
 msgstr ""
 
-#: inc/popup.php:6
+#: inc/popup.php:16
 msgid "Close"
 msgstr ""
 
-#: inc/popup.php:16
+#: inc/popup.php:26
 msgid "Upload Document"
 msgstr ""
 
-#: inc/popup.php:19
+#: inc/popup.php:29
 msgid "Add from URL"
 msgstr ""
 
-#: inc/popup.php:26
+#: inc/popup.php:36
 msgid "Enter document URL"
 msgstr ""
 
-#: inc/popup.php:30
+#: inc/popup.php:40
 msgid "back"
 msgstr ""
 
-#: inc/popup.php:43
+#: inc/popup.php:53
 msgid "Advanced Options"
 msgstr ""
 
-#: inc/popup.php:46
-#: inc/settings.php:17
-#: blocks/document/modules/inspector.js:50
+#: inc/popup.php:56
+#: inc/settings.php:26
+#: blocks/document/modules/inspector.js:68
 msgid "Width"
 msgstr ""
 
-#: inc/popup.php:49
-#: inc/settings.php:21
-#: blocks/document/modules/inspector.js:54
+#: inc/popup.php:59
+#: inc/settings.php:30
+#: blocks/document/modules/inspector.js:72
 msgid "Height"
 msgstr ""
 
-#: inc/popup.php:53
-#: inc/settings.php:29
-#: blocks/document/modules/inspector.js:58
+#: inc/popup.php:63
+#: inc/settings.php:38
+#: blocks/document/modules/inspector.js:76
 msgid "Show Download Link"
 msgstr ""
 
-#: inc/popup.php:55
-#: inc/settings.php:32
-#: blocks/document/modules/inspector.js:59
+#: inc/popup.php:66
+#: inc/settings.php:42
+#: blocks/document/modules/inspector.js:77
 msgid "For all users"
 msgstr ""
 
-#: inc/popup.php:55
-#: inc/settings.php:32
-#: blocks/document/modules/inspector.js:60
+#: inc/popup.php:67
+#: inc/settings.php:43
+#: blocks/document/modules/inspector.js:78
 msgid "For Logged-in users"
 msgstr ""
 
-#: inc/popup.php:55
-#: inc/settings.php:32
-#: blocks/document/modules/inspector.js:61
+#: inc/popup.php:68
+#: inc/settings.php:44
+#: blocks/document/modules/inspector.js:79
 msgid "No Download"
 msgstr ""
 
-#: inc/popup.php:60
-#: inc/settings.php:38
-#: blocks/document/modules/inspector.js:42
+#: inc/popup.php:74
+#: inc/settings.php:51
+#: blocks/document/modules/inspector.js:58
 msgid "Download Text"
 msgstr ""
 
-#: inc/popup.php:64
-#: inc/popup.php:71
-#: blocks/document/modules/inspector.js:66
+#: inc/popup.php:78
+#: inc/popup.php:84
+#: blocks/document/modules/inspector.js:84
 msgid "Viewer"
 msgstr ""
 
-#: inc/popup.php:66
-#: blocks/document/modules/inspector.js:38
-msgid "Google Docs Viewer"
-msgstr ""
-
-#: inc/popup.php:66
-#: blocks/document/modules/inspector.js:40
-msgid "Microsoft Office Online"
-msgstr ""
-
-#: inc/popup.php:73
+#: inc/popup.php:86
 msgid "Box"
 msgstr ""
 
-#: inc/popup.php:74
+#: inc/popup.php:87
 msgid "Drive"
 msgstr ""
 
-#: inc/popup.php:81
+#. translators: %1$s: strong opening tag, %2$s: strong closing tag
+#: inc/popup.php:94
+msgid "%1$s Note:%2$s Browser based PDF embedding feature is not supported by certain browsers and some external servers. Google viewer will be used as a fallback for the unsupported browsers."
+msgstr ""
+
+#: inc/popup.php:100
 msgid "Shortcode Preview"
 msgstr ""
 
-#: inc/popup.php:90
+#: inc/popup.php:109
 msgid "Insert"
 msgstr ""
 
-#: inc/popup.php:94
+#: inc/popup.php:113
 msgid "Cancel"
 msgstr ""
 
-#: inc/settings.php:10
+#: inc/settings.php:19
 msgid "General Settings"
 msgstr ""
 
-#: inc/settings.php:15
+#: inc/settings.php:24
 msgid "Default Size"
 msgstr ""
 
-#: inc/settings.php:25
+#: inc/settings.php:34
 msgid "Enter values in pixels or percentage (Example: 500px or 100%)"
 msgstr ""
 
-#: inc/settings.php:59
+#: inc/settings.php:72
 msgid "Designed and developed by"
 msgstr ""
 
-#: inc/settings.php:62
+#: inc/settings.php:75
 msgid "Facebook"
 msgstr ""
 
-#: inc/settings.php:63
+#: inc/settings.php:76
 msgid "Twitter"
 msgstr ""
 
-#: inc/settings.php:64
+#: inc/settings.php:77
 msgid "Github"
 msgstr ""
 
-#: inc/settings.php:73
+#: inc/settings.php:86
 msgid "Like the plugin?"
 msgstr ""
 
-#: inc/settings.php:73
+#: inc/settings.php:86
 msgid "Rate Now!"
 msgstr ""
 
-#: inc/settings.php:79
+#: inc/settings.php:92
 msgid "Need Help?"
 msgstr ""
 
-#: inc/settings.php:79
+#: inc/settings.php:92
 msgid "Open a Ticket"
 msgstr ""
 
-#: inc/settings.php:86
+#: inc/settings.php:99
 msgid "Quick Help"
 msgstr ""
 
-#: inc/settings.php:89
-#: inc/settings.php:90
+#: inc/settings.php:102
+#: inc/settings.php:103
 msgid "How to Embed Documents?"
 msgstr ""
 
-#: inc/settings.php:94
-#: inc/settings.php:95
+#: inc/settings.php:107
+#: inc/settings.php:108
 msgid "About Viewers"
 msgstr ""
 
-#: inc/settings.php:99
-#: inc/settings.php:100
+#: inc/settings.php:112
+#: inc/settings.php:113
 msgid "Shortcode & Attributes"
 msgstr ""
 
-#: inc/settings.php:104
-#: inc/settings.php:105
+#: inc/settings.php:117
+#: inc/settings.php:118
 msgid "FAQs"
 msgstr ""
 
 #: blocks/document/main.js:25
-#: blocks/document/main.js:84
-#: blocks/document/modules/ead-server-side-render.js:130
-#: blocks/document/modules/ead-server-side-render.js:141
+#: blocks/document/main.js:75
+#: blocks/document/modules/ead-server-side-render.js:172
+#: blocks/document/modules/ead-server-side-render.js:183
 msgid "Document"
 msgstr ""
 
 #: blocks/document/main.js:26
-#: blocks/document/main.js:84
+#: blocks/document/main.js:75
 msgid "Upload and Embed your documents."
 msgstr ""
 
@@ -319,27 +329,31 @@ msgstr ""
 msgid "embed any document"
 msgstr ""
 
-#: blocks/document/modules/ead-server-side-render.js:131
+#: blocks/document/modules/ead-server-side-render.js:173
 msgid "No document found!"
 msgstr ""
 
 #. translators: %s: error message describing the problem
-#: blocks/document/modules/ead-server-side-render.js:137
+#: blocks/document/modules/ead-server-side-render.js:179
 msgid "Error loading the document: %s"
 msgstr ""
 
-#: blocks/document/modules/inspector.js:42
+#: blocks/document/modules/inspector.js:54
+msgid "Built-In Viewer"
+msgstr ""
+
+#: blocks/document/modules/inspector.js:58
 msgid "Default download button text"
 msgstr ""
 
-#: blocks/document/modules/inspector.js:50
+#: blocks/document/modules/inspector.js:68
 msgid "Width of document either in px or in %"
 msgstr ""
 
-#: blocks/document/modules/inspector.js:54
+#: blocks/document/modules/inspector.js:72
 msgid "Height of document either in px or in %"
 msgstr ""
 
-#: blocks/document/modules/inspector.js:70
+#: blocks/document/modules/inspector.js:88
 msgid "Cache"
 msgstr ""
