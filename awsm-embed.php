@@ -189,12 +189,14 @@ class Awsm_embed {
 			'ead_media_button',
 			'emebeder',
 			array(
+				'viewers'       => array_keys( self::get_viewers() ),
 				'height'        => get_option( 'ead_height', '100%' ),
 				'width'         => get_option( 'ead_width', '100%' ),
 				'download'      => get_option( 'ead_download', 'none' ),
 				'text'          => get_option( 'ead_text', __( 'Download', 'embed-any-document' ) ),
 				'provider'      => get_option( 'ead_provider', 'google' ),
 				'ajaxurl'       => admin_url( 'admin-ajax.php' ),
+				'site_url'      => site_url( '/' ),
 				'validtypes'    => $this->validembedtypes(),
 				'msextension'   => $this->validextensions( 'ms' ),
 				'drextension'   => $this->validextensions( 'all' ),
@@ -274,7 +276,37 @@ class Awsm_embed {
 				</div>
 			</div>
 		<?php
-		return ob_get_clean();
+		$preloader = ob_get_clean();
+
+		/**
+		 * Customize the document preloader.
+		 *
+		 * @since 2.6.0
+		 *
+		 * @param string $preloader The preloader content.
+		 * @param array $shortcode_atts The shortcode attributes.
+		 */
+		return apply_filters( 'awsm_ead_preloader', $preloader, $shortcode_atts );
+	}
+
+	/**
+	 * Get public script data.
+	 *
+	 * @return array
+	 */
+	public function get_public_script_data() {
+		/**
+		 * Customize the public script data.
+		 *
+		 * @since 2.6.0
+		 *
+		 * @param array $script_data The script data.
+		 */
+		$script_data = apply_filters(
+			'awsm_ead_public_script_data',
+			array()
+		);
+		return $script_data;
 	}
 
 	/**
@@ -283,7 +315,10 @@ class Awsm_embed {
 	public function register_scripts() {
 		wp_register_style( 'awsm-ead-public', plugins_url( 'css/embed-public.min.css', $this->plugin_file ), array(), $this->plugin_version, 'all' );
 
-		wp_register_script( 'awsm-ead-public', plugins_url( 'js/embed-public.min.js', $this->plugin_file ), array( 'jquery' ), $this->plugin_version, true );
+		wp_register_script( 'awsm-ead-pdf-object', plugins_url( 'js/pdfobject.min.js', $this->plugin_file ), array(), $this->plugin_version, true );
+		wp_register_script( 'awsm-ead-public', plugins_url( 'js/embed-public.min.js', $this->plugin_file ), array( 'jquery', 'awsm-ead-pdf-object' ), $this->plugin_version, true );
+
+		wp_localize_script( 'awsm-ead-public', 'eadPublic', $this->get_public_script_data() );
 	}
 
 	/**
@@ -299,6 +334,44 @@ class Awsm_embed {
 		}
 		$style .= '"';
 		return $style;
+	}
+
+	/**
+	 * Get the supported viewers.
+	 *
+	 * @return array
+	 */
+	public static function get_viewers() {
+		$viewers = array(
+			'google'    => __( 'Google Docs Viewer', 'embed-any-document' ),
+			'browser'   => __( 'Browser Based', 'embed-any-document' ),
+			'microsoft' => __( 'Microsoft Office Online', 'embed-any-document' ),
+		);
+		/**
+		 * Customize the supported viewers.
+		 *
+		 * @since 2.6.0
+		 *
+		 * @param array $viewers Viewers array.
+		 */
+		return apply_filters( 'awsm_ead_viewers', $viewers );
+	}
+
+	/**
+	 * Get all providers.
+	 *
+	 * @return array
+	 */
+	public static function get_all_providers() {
+		$providers = array( 'google', 'microsoft', 'browser' );
+		/**
+		 * Customize the providers.
+		 *
+		 * @since 2.6.0
+		 *
+		 * @param array $providers Providers array.
+		 */
+		return apply_filters( 'awsm_ead_providers', $providers );
 	}
 
 	/**
@@ -330,19 +403,33 @@ class Awsm_embed {
 			$atts
 		);
 
-		if ( isset( $atts['provider'] ) ) {
-			$shortcode_atts['viewer'] = $atts['provider'];
-		}
-		if ( ! isset( $atts['provider'] ) && ! isset( $atts['viewer'] ) ) {
-			$shortcode_atts['viewer'] = 'google';
-		}
-
 		wp_enqueue_style( 'awsm-ead-public' );
 		wp_enqueue_script( 'awsm-ead-public' );
 
-		if ( $shortcode_atts['url'] ) :
-			$filedata = wp_remote_head( $shortcode_atts['url'] );
-			$durl     = '';
+		if ( isset( $shortcode_atts['url'] ) ) :
+			// AMP.
+			$is_amp = function_exists( 'is_amp_endpoint' ) && is_amp_endpoint();
+
+			$durl      = '';
+			$viewer    = $shortcode_atts['viewer'];
+			$providers = self::get_all_providers();
+
+			if ( ! in_array( $viewer, $providers, true ) ) {
+				$viewer                   = 'google';
+				$shortcode_atts['viewer'] = 'google';
+			}
+
+			$is_browser_viewer = false;
+			if ( $shortcode_atts['viewer'] === 'browser' ) {
+				// fallback for Browser viewer.
+				$is_browser_viewer = true;
+				$viewer            = 'google';
+				// AMP handling.
+				if ( $is_amp ) {
+					$is_browser_viewer = false;
+				}
+			}
+
 			if ( $this->allowdownload( $shortcode_atts['viewer'] ) ) {
 				if ( $shortcode_atts['download'] === 'alluser' || $shortcode_atts['download'] === 'all' ) {
 					$show = true;
@@ -352,8 +439,8 @@ class Awsm_embed {
 			}
 			$url = esc_url( $shortcode_atts['url'], array( 'http', 'https' ) );
 			if ( $show ) {
+				$filedata = wp_remote_head( $shortcode_atts['url'] );
 				$filesize = 0;
-
 				if ( ! is_wp_error( $filedata ) && isset( $filedata['headers']['content-length'] ) ) {
 					$filesize = $this->human_filesize( $filedata['headers']['content-length'] );
 				} else {
@@ -366,19 +453,16 @@ class Awsm_embed {
 				$durl = '<p class="embed_download"><a href="' . esc_url( $url ) . '" download >' . $shortcode_atts['text'] . $file_html . ' </a></p>';
 			}
 
-			$provider_list = array( 'google', 'microsoft' );
-			if ( ! in_array( $shortcode_atts['viewer'], $provider_list, true ) ) {
-				$shortcode_atts['viewer'] = 'google';
-			}
+			$iframe_src = '';
 			switch ( $shortcode_atts['viewer'] ) {
 				case 'google':
-					$embedsrc = '//docs.google.com/viewer?url=%1$s&embedded=true&hl=%2$s';
-					$iframe   = sprintf( $embedsrc, rawurlencode( $url ), esc_attr( $shortcode_atts['language'] ) );
+					$embedsrc   = '//docs.google.com/viewer?url=%1$s&embedded=true&hl=%2$s';
+					$iframe_src = sprintf( $embedsrc, rawurlencode( $url ), esc_attr( $shortcode_atts['language'] ) );
 					break;
 
 				case 'microsoft':
-					$embedsrc = '//view.officeapps.live.com/op/embed.aspx?src=%1$s';
-					$iframe   = sprintf( $embedsrc, rawurlencode( $url ) );
+					$embedsrc   = '//view.officeapps.live.com/op/embed.aspx?src=%1$s';
+					$iframe_src = sprintf( $embedsrc, rawurlencode( $url ) );
 					break;
 			}
 
@@ -386,7 +470,7 @@ class Awsm_embed {
 			$doc_style_attrs    = array(
 				'position' => 'relative',
 			);
-			if ( $this->check_responsive( $shortcode_atts['height'] ) && $this->check_responsive( $shortcode_atts['width'] ) ) {
+			if ( $this->check_responsive( $shortcode_atts['height'] ) && $this->check_responsive( $shortcode_atts['width'] ) && ! $is_browser_viewer ) {
 				$iframe_style_attrs = array(
 					'width'    => '100%',
 					'height'   => '100%',
@@ -408,22 +492,42 @@ class Awsm_embed {
 				}
 			}
 
-			if ( $shortcode_atts['viewer'] === 'google' ) {
+			$enable_preloader = ! $is_amp && $viewer === 'google';
+
+			if ( $enable_preloader ) {
 				$iframe_style_attrs['visibility'] = 'hidden';
 			}
 
-			$iframe_style = self::build_style_attr( $iframe_style_attrs );
-			$iframe       = sprintf( '<iframe src="%s" title="%s" class="ead-iframe" %s></iframe>', esc_attr( $iframe ), esc_html__( 'Embedded Document', 'embed-any-document' ), $iframe_style );
+			$data_attr = '';
+			if ( $is_browser_viewer ) {
+				$data_attr = sprintf( ' data-pdf-src="%1$s" data-viewer="%2$s"', esc_url( $shortcode_atts['url'] ), esc_attr( $shortcode_atts['viewer'] ) );
 
-			if ( $shortcode_atts['viewer'] === 'google' ) {
+				$doc_style_attrs = array_merge( $doc_style_attrs, $iframe_style_attrs );
+				unset( $doc_style_attrs['visibility'] );
+			}
+
+			$iframe_style = self::build_style_attr( $iframe_style_attrs );
+			$iframe       = sprintf( '<iframe src="%s" title="%s" class="ead-iframe" %s></iframe>', esc_attr( $iframe_src ), esc_html__( 'Embedded Document', 'embed-any-document' ), $iframe_style );
+
+			if ( $enable_preloader ) {
 				$iframe = '<div class="ead-iframe-wrapper">' . $iframe . '</div>' . self::get_iframe_preloader( $shortcode_atts );
 			}
 
 			$doc_style = self::build_style_attr( $doc_style_attrs );
-			$embed     = sprintf( '<div class="ead-preview"><div class="ead-document" %3$s>%1$s</div>%2$s</div>', $iframe, $durl, $doc_style );
+			$embed     = sprintf( '<div class="ead-preview"><div class="ead-document" %3$s>%1$s</div>%2$s</div>', $iframe, $durl, $doc_style . $data_attr );
 		else :
 			$embed = esc_html__( 'No Url Found', 'embed-any-document' );
 		endif;
+
+		/**
+		 * Customize the embedded content.
+		 *
+		 * @since 2.6.0
+		 *
+		 * @param string $embed The embedded content.
+		 * @param array $shortcode_atts The shortcode attributes.
+		 */
+		$embed = apply_filters( 'awsm_ead_content', $embed, $shortcode_atts );
 
 		return $embed;
 	}

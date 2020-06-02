@@ -77,11 +77,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<div class="f-left last" id="new-provider">
 								<label><?php esc_html_e( 'Viewer', 'embed-any-document' ); ?></label>
 								<?php
-								$providers = array(
-									'google'    => __( 'Google Docs Viewer', 'embed-any-document' ),
-									'microsoft' => __( 'Microsoft Office Online', 'embed-any-document' ),
-								);
-								$this->selectbuilder( 'ead-provider', $providers, esc_attr( get_option( 'ead_provider', 'google' ) ), 'ead-usc' );
+								$this->selectbuilder( 'ead-provider', self::get_viewers(), esc_attr( get_option( 'ead_provider', 'google' ) ), 'ead-usc' );
 								?>
 							</div>
 							<div class="f-left last" id="ead-pseudo" style="display:none">
@@ -92,6 +88,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 								</select>
 							</div>
 							<div class="clear"></div>
+							<div class="ead-browser-viewer-note" style="display: none;">
+								<?php
+									/* translators: %1$s: strong opening tag, %2$s: strong closing tag */
+									printf( esc_html__( '%1$s Note:%2$s Browser based PDF embedding feature is not supported by certain browsers and some external servers. Google viewer will be used as a fallback for the unsupported browsers.', 'embed-any-document' ), '<strong>', '</strong>' );
+								?>
+							</div>
 						</li>
 
 						<li>
