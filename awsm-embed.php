@@ -410,6 +410,7 @@ class Awsm_embed {
 				'text'     => $default_text,
 				'viewer'   => $default_provider,
 				'download' => $default_download,
+				'cache'    => 'on',
 			),
 			$atts
 		);
@@ -462,6 +463,14 @@ class Awsm_embed {
 					$file_html = ' [' . $filesize . ']';
 				}
 				$durl = '<p class="embed_download"><a href="' . esc_url( $url ) . '" download >' . $shortcode_atts['text'] . $file_html . ' </a></p>';
+			}
+
+			if ( $shortcode_atts['cache'] === 'off' && $viewer === 'google' ) {
+				if ( $this->url_get_param( $url ) ) {
+					$url .= '?' . time();
+				} else {
+					$url .= '&' . time();
+				}
 			}
 
 			$iframe_src = '';
@@ -867,6 +876,22 @@ class Awsm_embed {
 	public function getactive_menu( $tab, $needle ) {
 		if ( $tab === $needle ) {
 			echo 'nav-tab-active';
+		}
+	}
+
+	/**
+	 * Checks for url query parameter.
+	 *
+	 * @since 2.6.0
+	 * @param string $url Document url.
+	 * @return bool
+	 */
+	public function url_get_param( $url ) {
+		$urldata = parse_url( $url );
+		if ( isset( $urldata['query'] ) ) {
+			return false;
+		} else {
+			return true;
 		}
 	}
 }

@@ -95,7 +95,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 								?>
 							</div>
 						</li>
-
+						<li class="checkbox" id="eadcachemain">
+							<input type="checkbox" id="ead-cache" class="ead-usc" value="on">
+							<label for="ead-cache">
+								<?php esc_html_e( 'Do not cache this file (Affects performance)', 'embed-any-document' ); ?>
+							</label>
+						</li>
 						<li>
 							<label><?php esc_html_e( 'Shortcode Preview', 'embed-any-document' ); ?></label>
 							<textarea name="shortcode" style="width:100%" id="shortcode" readonly="readonly"></textarea>

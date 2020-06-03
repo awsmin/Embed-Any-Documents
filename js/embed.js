@@ -123,11 +123,13 @@ jQuery(document).ready(function($) {
             download = $('#ead-download').val(),
             provider = $('#ead-provider').val(),
             text = $('#ead-text').val(),
+            cache = $('#ead-cache').is(':checked'),
             heightstr = "",
             widthstr = "",
             downloadstr = "",
             providerstr = "",
             textstr="",
+            cachestr="",
             drivestr = "";
         if (ead_itemcheck('height', item)) {
             heightstr = ' height="' + height + '"';
@@ -146,13 +148,22 @@ jQuery(document).ready(function($) {
             textstr = ' text="' + text + '"';
         }
 
+        if (provider == 'google') {
+            $('#eadcachemain').show();
+            if (cache) {
+                cachestr = ' cache="off"';
+            }
+        } else {
+            $('#eadcachemain').hide();
+        }
+
         if (provider === 'browser') {
             $('.ead-browser-viewer-note').show();
         } else {
             $('.ead-browser-viewer-note').hide();
         }
 
-        return '[embeddoc url="' + url + '"' + widthstr + heightstr + downloadstr + providerstr + drivestr + textstr +']';
+        return '[embeddoc url="' + url + '"' + widthstr + heightstr + downloadstr + providerstr + cachestr + drivestr + textstr +']';
     }
     // Checks with default setting value
     function ead_itemcheck(item, dataitem) {
