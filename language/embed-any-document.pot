@@ -9,13 +9,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-06-02T20:35:28+00:00\n"
+"POT-Creation-Date: 2020-06-03T15:19:03+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: embed-any-document\n"
 
 #. Plugin Name of the plugin
-#: awsm-embed.php:550
+#: awsm-embed.php:559
 msgid "Embed Any Document"
 msgstr ""
 
@@ -80,7 +80,7 @@ msgid "Loader"
 msgstr ""
 
 #: awsm-embed.php:256
-#: inc/popup.php:109
+#: inc/popup.php:114
 msgid "Loading..."
 msgstr ""
 
@@ -123,20 +123,20 @@ msgstr ""
 msgid "Microsoft Office Online"
 msgstr ""
 
-#: awsm-embed.php:521
+#: awsm-embed.php:530
 msgid "Embedded Document"
 msgstr ""
 
-#: awsm-embed.php:530
+#: awsm-embed.php:539
 msgid "No Url Found"
 msgstr ""
 
-#: awsm-embed.php:616
+#: awsm-embed.php:625
 msgid "Buy Pro Version"
 msgstr ""
 
 #. translators: %1$s: Service provider
-#: awsm-embed.php:619
+#: awsm-embed.php:628
 msgid "Add From %1$s"
 msgstr ""
 
@@ -225,15 +225,19 @@ msgstr ""
 msgid "%1$s Note:%2$s Browser based PDF embedding feature is not supported by certain browsers and some external servers. Google viewer will be used as a fallback for the unsupported browsers."
 msgstr ""
 
-#: inc/popup.php:100
+#: inc/popup.php:101
+msgid "Do not cache this file (Affects performance)"
+msgstr ""
+
+#: inc/popup.php:105
 msgid "Shortcode Preview"
 msgstr ""
 
-#: inc/popup.php:109
+#: inc/popup.php:114
 msgid "Insert"
 msgstr ""
 
-#: inc/popup.php:113
+#: inc/popup.php:118
 msgid "Cancel"
 msgstr ""
 
