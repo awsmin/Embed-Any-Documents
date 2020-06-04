@@ -77,7 +77,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<div class="f-left last" id="new-provider">
 								<label><?php esc_html_e( 'Viewer', 'embed-any-document' ); ?></label>
 								<?php
-								$this->selectbuilder( 'ead-provider', self::get_viewers(), esc_attr( get_option( 'ead_provider', 'google' ) ), 'ead-usc' );
+								if ( method_exists( 'Awsm_embed', 'get_viewers' ) ) {
+									$this->selectbuilder( 'ead-provider', self::get_viewers(), esc_attr( get_option( 'ead_provider', 'google' ) ), 'ead-usc' );
+								}
 								?>
 							</div>
 							<div class="f-left last" id="ead-pseudo" style="display:none">
