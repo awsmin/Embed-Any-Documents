@@ -82,13 +82,16 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
 
+= V 2.6.1 - 2020-06-04 =
+* Fixed: Fatal error during plugin updation in some installations.
+
 = V 2.6.0 - 2020-06-03 =
-Added: Browser Based viewer.
-Fixed: Document Block automatic reload issue in Gutenberg editor.
-Fixed: Preloader for Google viewer not hiding in some installations when document is loaded.
-Fixed: Cache 'off' setting not working when 'Google' viewer is selected.
-Improved: AMP support.
-Other bug fixes and improvements.
+* Added: Browser Based viewer.
+* Fixed: Document Block automatic reload issue in Gutenberg editor.
+* Fixed: Preloader for Google viewer not hiding in some installations when document is loaded.
+* Fixed: Cache 'off' setting not working when 'Google' viewer is selected.
+* Improved: AMP support.
+* Other bug fixes and improvements.
 
 = V 2.5.0 - 2020-05-08 =
 * Added: Pre-load screen for Google Docs viewer with reload and open in new tab options for better user experience.
@@ -103,12 +106,9 @@ Other bug fixes and improvements.
 * Fixed: Disabled Microsoft viewer support for unsupported extensions
 * Fixed: Localization issues
 
-= V 2.3.2 - 2018-01-24 =
-* Focus added when modal window opens
-
 [See changelog of previous versions](https://raw.githubusercontent.com/awsmin/Embed-Any-Documents/master/CHANGELOG.md)
 
 == Upgrade Notice ==
 
-= 2.6.0 =
-Added Browser Based viewer.
+= 2.6.1 =
+Fixes fatal error during updation.

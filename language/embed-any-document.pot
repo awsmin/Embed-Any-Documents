@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Embed Any Document plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Embed Any Document 2.6.0\n"
+"Project-Id-Version: Embed Any Document 2.6.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/embed-any-document\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Awsm Innovations <hello@awsm.in>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-06-03T15:19:03+00:00\n"
+"POT-Creation-Date: 2020-06-04T10:30:36+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: embed-any-document\n"
@@ -80,7 +80,7 @@ msgid "Loader"
 msgstr ""
 
 #: awsm-embed.php:256
-#: inc/popup.php:114
+#: inc/popup.php:116
 msgid "Loading..."
 msgstr ""
 
@@ -207,37 +207,37 @@ msgid "Download Text"
 msgstr ""
 
 #: inc/popup.php:78
-#: inc/popup.php:84
+#: inc/popup.php:86
 #: blocks/document/modules/inspector.js:84
 msgid "Viewer"
 msgstr ""
 
-#: inc/popup.php:86
+#: inc/popup.php:88
 msgid "Box"
 msgstr ""
 
-#: inc/popup.php:87
+#: inc/popup.php:89
 msgid "Drive"
 msgstr ""
 
 #. translators: %1$s: strong opening tag, %2$s: strong closing tag
-#: inc/popup.php:94
+#: inc/popup.php:96
 msgid "%1$s Note:%2$s Browser based PDF embedding feature is not supported by certain browsers and some external servers. Google viewer will be used as a fallback for the unsupported browsers."
 msgstr ""
 
-#: inc/popup.php:101
+#: inc/popup.php:103
 msgid "Do not cache this file (Affects performance)"
 msgstr ""
 
-#: inc/popup.php:105
+#: inc/popup.php:107
 msgid "Shortcode Preview"
 msgstr ""
 
-#: inc/popup.php:114
+#: inc/popup.php:116
 msgid "Insert"
 msgstr ""
 
-#: inc/popup.php:118
+#: inc/popup.php:120
 msgid "Cancel"
 msgstr ""
 
