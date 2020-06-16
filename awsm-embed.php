@@ -474,7 +474,7 @@ class Awsm_embed {
 			}
 
 			$iframe_src = '';
-			switch ( $shortcode_atts['viewer'] ) {
+			switch ( $viewer ) {
 				case 'google':
 					$embedsrc   = '//docs.google.com/viewer?url=%1$s&embedded=true&hl=%2$s';
 					$iframe_src = sprintf( $embedsrc, rawurlencode( $url ), esc_attr( $shortcode_atts['language'] ) );
