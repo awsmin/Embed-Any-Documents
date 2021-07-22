@@ -13,6 +13,8 @@ import icon from './modules/icon';
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
 const { Placeholder, Button } = wp.components;
+const { Fragment } = wp.element;
+const { MediaPlaceholder } = wp.editor;
 /**
  * Register: a Gutenberg Block.
  *
@@ -34,7 +36,63 @@ registerBlockType( 'embed-any-document/document', {
 	edit: ( props ) => {
 		const { attributes, setAttributes } = props;
 		const { shortcode } = attributes;
-		let blockProps = null;
+		
+
+        let blockProps = null;
+		let shortcodeText;
+		let embedurl;
+
+		function onSelectImage( media ) {
+			if ( ! media || ! media.url ) {
+				return;
+			}
+
+ 			if(media.url){
+				embedurl=media.url;
+ 			}
+ 		    eadShortcode(embedurl);
+		}
+
+		function onSelectURL( url ) {
+			if ( ! url) {
+				return;
+			}
+
+			if(url) {
+		   	  embedurl=url;
+		    } 
+		    eadShortcode(embedurl);
+		}
+
+		function eadShortcode( embedurl ){
+			blockProps = props;
+
+			if(embedurl) {
+		   	  shortcodeText = '[embeddoc url="'+embedurl+'"]';
+		    } 
+
+		    let { url, width = emebeder.width, height = emebeder.height, download = emebeder.download, viewer = emebeder.provider, text = emebeder.text, cache = true } = EadHelper.parseShortcode(shortcodeText); 
+
+		    viewer = jQuery.inArray( viewer, emebeder.viewers ) !== -1 ? viewer : 'google';
+
+		    blockProps.setAttributes({
+				shortcode: shortcodeText,
+				url: url,
+				width: width,
+				height: height,
+				download: download,
+				text: text,
+				viewer: viewer,
+				cache: cache === 'off' ? false : true
+			});
+		}
+
+		function providerLink(){
+			let link = 'http://goo.gl/wJTQlc';
+			window.open(link, '_blank');
+		}
+
+
 		const setBlockProps = () => {
 			blockProps = props;
 			blockProps.activeEadBlock = true;
@@ -72,9 +130,15 @@ registerBlockType( 'embed-any-document/document', {
 			];
 		} else {
 			return (
-				<Placeholder label={ __( 'Document', 'embed-any-document' ) } instructions={ __( 'Upload and Embed your documents.', 'embed-any-document' ) } icon={ icon.block } className="ead-block-wrapper">
-					<Button className="awsm-embed" onClick={ setBlockProps } isSecondary isLarge>{ __( 'Add Document', 'embed-any-document' ) }</Button>
-				</Placeholder>
+			 <Fragment>
+				<MediaPlaceholder onSelect={ onSelectImage } onSelectURL={ onSelectURL } labels = { { title: 'Embed Any Document' } } icon="format-image">
+				<div>
+					<Button variant="secondary" onClick={ providerLink }>Add from dropbox</Button>
+					<Button variant="secondary" onClick={ providerLink }>Add from drive</Button>
+					<Button variant="secondary" onClick={ providerLink }>Add from box</Button>
+				</div>
+				</MediaPlaceholder>
+			</Fragment>
 			);
 		}
 	},
