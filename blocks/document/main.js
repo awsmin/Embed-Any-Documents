@@ -17,7 +17,7 @@ const { Fragment } = wp.element;
 const { MediaPlaceholder } = wp.editor;
 
 const validTypes = [ 'text/plain','text/richtext','text/css','application/javascript','application/pdf','application/postscript','image/tiff','application/pdf','application/msword','application/vnd.ms-powerpoint','application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/vnd.openxmlformats-officedocument.wordprocessingml.template','application/vnd.ms-word.template.macroEnabled.12','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','application/vnd.ms-excel.sheet.macroEnabled.12','application/vnd.openxmlformats-officedocument.presentationml.presentation','application/vnd.openxmlformats-officedocument.presentationml.slideshow','application/vnd.apple.pages','image/svg+xml'];
-const validExts = emebeder.drextension;
+const validExts = ".pdf,.tif, .tiff, .doc, .txt,.pps, .ppt, .xla, .xls, .xlt, .xlw, .docx, .dotx, .dotm, .xlsx, .xlsm, .pptx, .pages, .svg, .ppsx";
 /**
  * Register: a Gutenberg Block.
  *
@@ -170,11 +170,12 @@ registerBlockType( 'embed-any-document/document', {
 			return (
 			 <Fragment>
 			 	
-				<MediaPlaceholder className="ead-media-placeholder" onSelect={ onSelectImage } onSelectURL={ onSelectURL } labels = { { title: 'Embed Any Document' } } icon="format-image" accept={ validExts } allowedTypes = { validTypes }  OnError={ onUploadError } >
+
+				<MediaPlaceholder className="ead-media-placeholder" onSelect={ onSelectImage } onSelectURL={ onSelectURL } labels = { { title: 'Embed Any Document' } } icon="format-image" accept={validExts} allowedTypes = { validTypes }  OnError={ onUploadError } >
 				<div>
-					<Button variant="secondary" onClick={ providerLink }>Add from dropbox</Button>
-					<Button variant="secondary" onClick={ providerLink }>Add from drive</Button>
-					<Button variant="secondary" onClick={ providerLink }>Add from box</Button>
+					<Button variant="secondary" className="ead-button-dropbox" onClick={ providerLink }>Add from dropbox</Button>
+					<Button variant="secondary" className="ead-button-drive" onClick={ providerLink }>Add from drive</Button>
+					<Button variant="secondary" className="ead-button-box" onClick={ providerLink }>Add from box</Button>
 				</div>
 				</MediaPlaceholder>
 			</Fragment>
