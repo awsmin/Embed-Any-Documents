@@ -123,8 +123,9 @@ var _wp$components = wp.components,
     Button = _wp$components.Button,
     withNotices = _wp$components.withNotices;
 var Fragment = wp.element.Fragment;
-var MediaPlaceholder = wp.editor.MediaPlaceholder;
-var validTypes = emebeder.validtypes;
+var MediaPlaceholder = wp.editor.MediaPlaceholder; //const validTypes = emebeder.validtypes;
+
+var validTypes = ['text/plain', 'text/richtext', 'text/css', 'application/javascript', 'application/pdf', 'application/postscript', 'image/tiff', 'application/pdf', 'application/msword', 'application/vnd.ms-powerpoint', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.wordprocessingml.template', 'application/vnd.ms-word.template.macroEnabled.12', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel.sheet.macroEnabled.12', 'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/vnd.openxmlformats-officedocument.presentationml.slideshow', 'application/vnd.apple.pages', 'image/svg+xml'];
 var validExts = emebeder.drextension;
 /**
  * Register: a Gutenberg Block.
