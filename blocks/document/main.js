@@ -16,7 +16,6 @@ const { Placeholder, Button, withNotices } = wp.components;
 const { Fragment } = wp.element;
 const { MediaPlaceholder } = wp.editor;
 
-//const validTypes = emebeder.validtypes;
 const validTypes = [ 'text/plain','text/richtext','text/css','application/javascript','application/pdf','application/postscript','image/tiff','application/pdf','application/msword','application/vnd.ms-powerpoint','application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/vnd.openxmlformats-officedocument.wordprocessingml.template','application/vnd.ms-word.template.macroEnabled.12','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','application/vnd.ms-excel.sheet.macroEnabled.12','application/vnd.openxmlformats-officedocument.presentationml.presentation','application/vnd.openxmlformats-officedocument.presentationml.slideshow','application/vnd.apple.pages','image/svg+xml'];
 const validExts = emebeder.drextension;
 /**
