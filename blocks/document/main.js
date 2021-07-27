@@ -12,9 +12,12 @@ import icon from './modules/icon';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { Placeholder, Button } = wp.components;
+const { Placeholder, Button, withNotices } = wp.components;
 const { Fragment } = wp.element;
 const { MediaPlaceholder } = wp.editor;
+
+const validTypes = emebeder.validtypes;
+const validExts = emebeder.drextension;
 /**
  * Register: a Gutenberg Block.
  *
@@ -34,15 +37,27 @@ registerBlockType( 'embed-any-document/document', {
 	 * This represents what the editor will render when the block is used.
 	 */
 	edit: ( props ) => {
-		const { attributes, setAttributes } = props;
+		const { attributes, setAttributes, noticeUI, noticeOperations} = props;
 		const { shortcode } = attributes;
 		
 
         let blockProps = null;
 		let shortcodeText;
 		let embedurl;
+		
+		const createNotice = (type,msg,id) =>{
+			wp.data.dispatch('core/notices').createNotice(
+				type, // Can be one of: success, info, warning, error.
+				__(msg), // Text string to display.
+				{
+					id: id, //assigning an ID prevents the notice from being added repeatedly
+					isDismissible: true, // Whether the user can dismiss the notice.
+				}
+			);
+		}
 
-		function onSelectImage( media ) {
+		const onSelectImage = (media) => { 
+		
 			if ( ! media || ! media.url ) {
 				return;
 			}
@@ -51,20 +66,44 @@ registerBlockType( 'embed-any-document/document', {
 				embedurl=media.url;
  			}
  		    eadShortcode(embedurl);
+ 		   
 		}
 
-		function onSelectURL( url ) {
+		const onSelectURL = (url) => { 
+			let filename;
+			let checkExtExist
+
 			if ( ! url) {
 				return;
 			}
 
 			if(url) {
 		   	  embedurl=url;
+		   	  filename = url.split('/').pop(); 
+		   	  filename = filename.split('.').pop();
+		   	  filename = '.'+filename;
 		    } 
-		    eadShortcode(embedurl);
+
+		    if(filename != ''){
+ 				checkExtExist = validExts.includes(filename);
+ 				if(checkExtExist == true){
+					eadShortcode(embedurl);
+ 				}else{
+ 					createNotice('error','File type is not supported!!!','eadlinkerror');
+ 					return;
+ 				}
+		    }else{
+		    	createNotice('warning','Some error occurred, click','eadunknownerror');
+		    }
 		}
 
-		function eadShortcode( embedurl ){
+
+		const onUploadError = (message) => { 
+			noticeOperations.removeAllNotices();
+			noticeOperations.createErrorNotice( message );
+		}
+
+		const eadShortcode = (embedurl) => { 
 			blockProps = props;
 
 			if(embedurl) {
@@ -87,11 +126,10 @@ registerBlockType( 'embed-any-document/document', {
 			});
 		}
 
-		function providerLink(){
+		const providerLink = () => {
 			let link = 'http://goo.gl/wJTQlc';
 			window.open(link, '_blank');
 		}
-
 
 		const setBlockProps = () => {
 			blockProps = props;
@@ -131,7 +169,8 @@ registerBlockType( 'embed-any-document/document', {
 		} else {
 			return (
 			 <Fragment>
-				<MediaPlaceholder onSelect={ onSelectImage } onSelectURL={ onSelectURL } labels = { { title: 'Embed Any Document' } } icon="format-image">
+			 	
+				<MediaPlaceholder className="ead-media-placeholder" onSelect={ onSelectImage } onSelectURL={ onSelectURL } labels = { { title: 'Embed Any Document' } } icon="format-image" accept={ validExts } allowedTypes = { validTypes }  OnError={ onUploadError } >
 				<div>
 					<Button variant="secondary" onClick={ providerLink }>Add from dropbox</Button>
 					<Button variant="secondary" onClick={ providerLink }>Add from drive</Button>

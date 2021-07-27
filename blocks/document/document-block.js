@@ -120,9 +120,12 @@ var registerBlockType = wp.blocks.registerBlockType; // Import registerBlockType
 
 var _wp$components = wp.components,
     Placeholder = _wp$components.Placeholder,
-    Button = _wp$components.Button;
+    Button = _wp$components.Button,
+    withNotices = _wp$components.withNotices;
 var Fragment = wp.element.Fragment;
 var MediaPlaceholder = wp.editor.MediaPlaceholder;
+var validTypes = emebeder.validtypes;
+var validExts = emebeder.drextension;
 /**
  * Register: a Gutenberg Block.
  *
@@ -150,13 +153,26 @@ registerBlockType('embed-any-document/document', {
    */
   edit: function edit(props) {
     var attributes = props.attributes,
-        setAttributes = props.setAttributes;
+        setAttributes = props.setAttributes,
+        noticeUI = props.noticeUI,
+        noticeOperations = props.noticeOperations;
     var shortcode = attributes.shortcode;
     var blockProps = null;
     var shortcodeText;
     var embedurl;
 
-    function onSelectImage(media) {
+    var createNotice = function createNotice(type, msg, id) {
+      wp.data.dispatch('core/notices').createNotice(type, // Can be one of: success, info, warning, error.
+      __(msg), // Text string to display.
+      {
+        id: id,
+        //assigning an ID prevents the notice from being added repeatedly
+        isDismissible: true // Whether the user can dismiss the notice.
+
+      });
+    };
+
+    var onSelectImage = function onSelectImage(media) {
       if (!media || !media.url) {
         return;
       }
@@ -166,21 +182,43 @@ registerBlockType('embed-any-document/document', {
       }
 
       eadShortcode(embedurl);
-    }
+    };
 
-    function onSelectURL(url) {
+    var onSelectURL = function onSelectURL(url) {
+      var filename;
+      var checkExtExist;
+
       if (!url) {
         return;
       }
 
       if (url) {
         embedurl = url;
+        filename = url.split('/').pop();
+        filename = filename.split('.').pop();
+        filename = '.' + filename;
       }
 
-      eadShortcode(embedurl);
-    }
+      if (filename != '') {
+        checkExtExist = validExts.includes(filename);
 
-    function eadShortcode(embedurl) {
+        if (checkExtExist == true) {
+          eadShortcode(embedurl);
+        } else {
+          createNotice('error', 'File type is not supported!!!', 'eadlinkerror');
+          return;
+        }
+      } else {
+        createNotice('warning', 'Some error occurred, click', 'eadunknownerror');
+      }
+    };
+
+    var onUploadError = function onUploadError(message) {
+      noticeOperations.removeAllNotices();
+      noticeOperations.createErrorNotice(message);
+    };
+
+    var eadShortcode = function eadShortcode(embedurl) {
       blockProps = props;
 
       if (embedurl) {
@@ -213,12 +251,12 @@ registerBlockType('embed-any-document/document', {
         viewer: viewer,
         cache: cache === 'off' ? false : true
       });
-    }
+    };
 
-    function providerLink() {
+    var providerLink = function providerLink() {
       var link = 'http://goo.gl/wJTQlc';
       window.open(link, '_blank');
-    }
+    };
 
     var setBlockProps = function setBlockProps() {
       blockProps = props;
@@ -270,12 +308,16 @@ registerBlockType('embed-any-document/document', {
       })];
     } else {
       return wp.element.createElement(Fragment, null, wp.element.createElement(MediaPlaceholder, {
+        className: "ead-media-placeholder",
         onSelect: onSelectImage,
         onSelectURL: onSelectURL,
         labels: {
           title: 'Embed Any Document'
         },
-        icon: "format-image"
+        icon: "format-image",
+        accept: validExts,
+        allowedTypes: validTypes,
+        OnError: onUploadError
       }, wp.element.createElement("div", null, wp.element.createElement(Button, {
         variant: "secondary",
         onClick: providerLink
@@ -486,7 +528,7 @@ var EadServerSideRender = /*#__PURE__*/function (_Component) {
             response: response.rendered
           });
         }
-      })["catch"](function (error) {
+      }).catch(function (error) {
         if (_this2.isStillMounted && fetchRequest === _this2.currentFetchRequest) {
           _this2.setState({
             response: {
