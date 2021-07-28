@@ -171,9 +171,21 @@ registerBlockType( 'embed-any-document/document', {
 		} else {
 			return (
 				<MediaPlaceholder className="ead-media-placeholder" onSelect={ onSelectImage } onSelectURL={ onSelectURL } labels = { { title: 'Embed Any Document','instructions':'Upload a document,pick from your media library,or add from external websites' } } icon="format-image"  accept={validExts} allowedTypes = { validTypes }  OnError={ onUploadError } >
-					<Button  className="ead-button-dropbox disabled" onClick={ providerLink } value="click">Add from dropbox</Button>
-					<Button  className="ead-button-drive" onClick={ providerLink } value="click">Add from drive</Button>
-					<Button  className="ead-button-box" onClick={ providerLink } value="click">Add from box</Button>
+					<Button  className="ead-button-dropbox disabled" onClick={ providerLink } value="click">Add from dropbox
+                        <span className="overlay">
+                        	<span>Buy pro version</span>
+                        </span>
+					</Button>
+					<Button  className="ead-button-drive disabled" onClick={ providerLink } value="click">Add from drive
+ 						<span className="overlay">
+                        	<span>Buy pro version</span>
+                        </span>
+					</Button>
+					<Button  className="ead-button-box disabled" onClick={ providerLink } value="click">Add from box
+						<span className="overlay">
+                        	<span>Buy pro version</span>
+                        </span>
+					</Button>
 				</MediaPlaceholder>
 			);
 		}

@@ -13,26 +13,43 @@ div[data-type="embed-any-document/document"] .components-placeholder__fieldset .
 }
 
 div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button {
-	border: 1px solid #000 !important;
+	border: 1px solid #212121 !important;
 	padding: 20px 10px 15px  !important;
 	text-align: center;
 	background: #fff !important;
 	border-radius: 0  !important;
-	color: #000 !important;
+	color: #212121 !important;
 	width: 100%;
 	height: 100%;
 	font-size: 0;
 	display: block;
 	transition: all 0.3s ease;
+	position: relative;
 }
-div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.disabled{
-	opacity: 0.5;
-	pointer-events: none;
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button span.overlay{
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(255, 255, 255, 0.7);
+	display: flex;
+	justify-content: center;
+    align-items: center;
+    font-size: 0.875rem;
+}
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button span.overlay span{
+	opacity: 0;
+	transition: all 0.3s ease;
+}
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button:hover span.overlay span{
+	opacity: 1;
 }
 
 div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button:hover, div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button:focus {
 	border-color: var(--wp-admin-theme-color) !important;
-	box-shadow: none !important;
+	box-shadow: 1px 1px 3px rgba(0,0,0,.1) !important;
 }
 
 div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button::before {
