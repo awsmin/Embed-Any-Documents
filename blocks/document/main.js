@@ -16,10 +16,10 @@ const { Placeholder, Button, withNotices } = wp.components;
 const { Fragment } = wp.element;
 const { MediaPlaceholder } = wp.editor;
 
-const validTypes = [ 'text/plain','text/richtext','application/pdf','application/postscript','image/tiff','application/msword','application/vnd.ms-powerpoint','application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/vnd.openxmlformats-officedocument.wordprocessingml.template','application/vnd.ms-word.template.macroEnabled.12','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','application/vnd.ms-excel.sheet.macroEnabled.12','application/vnd.openxmlformats-officedocument.presentationml.presentation','application/vnd.openxmlformats-officedocument.presentationml.slideshow','application/vnd.apple.pages','image/svg+xml'];
-const validExts = ".pdf,.tif, .tiff, .doc, .txt,.pps, .ppt, .xla, .xls, .xlt, .xlw, .docx, .dotx, .dotm, .xlsx, .xlsm, .pptx, .pages, .svg, .ppsx";
+const validTypes = [ 'text/plain','text/richtext','application/pdf','application/postscript','image/tiff','application/msword','application/vnd.ms-powerpoint','application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/vnd.openxmlformats-officedocument.wordprocessingml.template','application/vnd.ms-word.template.macroEnabled.12','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','application/vnd.ms-excel.sheet.macroEnabled.12','application/vnd.openxmlformats-officedocument.presentationml.presentation','application/vnd.openxmlformats-officedocument.presentationml.slideshow','application/vnd.apple.pages'];
+const validExts = ".pdf,.tif, .tiff, .doc, .txt,.pps, .ppt, .xla, .xls, .xlt, .xlw, .docx, .dotx, .dotm, .xlsx, .xlsm, .pptx, .pages, .ppsx";
 
-const validExtension = [ '.pdf', '.tif', '.tiff', '.doc', '.txt', '.xls', '.xlt', '.xlw', '.docx', '.dotx', '.dotm', '.xlsx', '.xlsm', '.pptx', '.pages', '.svg', '.ppsx'];
+const validExtension = [ '.pdf', '.tif', '.tiff', '.doc', '.txt', '.xls', '.xlt', '.xlw', '.docx', '.dotx', '.dotm', '.xlsx', '.xlsm', '.pptx', '.pages', '.ppsx'];
 /**
  * Register: a Gutenberg Block.
  *
@@ -170,26 +170,26 @@ registerBlockType( 'embed-any-document/document', {
 			];
 		} else {
 			return (
-				<MediaPlaceholder className="ead-media-placeholder" onSelect={ onSelectImage } onSelectURL={ onSelectURL } labels = { { title: 'Embed Any Document','instructions':'Upload a document,pick from your media library,or add from external websites' } } icon="format-image"  accept={validExts} allowedTypes = { validTypes }  OnError={ onUploadError } >
+				<MediaPlaceholder className="ead-media-placeholder" onSelect={ onSelectImage } onSelectURL={ onSelectURL } labels = { { title: __( 'Embed Any Document', 'embed-any-document' ),'instructions':__( 'Upload a document, pick from your media library, or add from an external URL.', 'embed-any-document' ) } } icon={icon.block}  accept={validExts} allowedTypes = { validTypes }  OnError={ onUploadError } >
 					<Button  className="ead-button-dropbox disabled" onClick={ providerLink } value="click">Add from dropbox
                         <span className="overlay">
-                        	<span>Buy pro version</span>
+                        	<span>Pro Feature</span>
                         </span>
 					</Button>
 					<Button  className="ead-button-drive disabled" onClick={ providerLink } value="click">Add from drive
  						<span className="overlay">
-                        	<span>Buy pro version</span>
+                        	<span>Pro Feature</span>
                         </span>
 					</Button>
 					<Button  className="ead-button-box disabled" onClick={ providerLink } value="click">Add from box
 						<span className="overlay">
-                        	<span>Buy pro version</span>
+                        	<span>Pro Feature</span>
                         </span>
 					</Button>
 				</MediaPlaceholder>
 			);
 		}
-	},
+	},   
 	/**
 	 * The save function defines the way in which the different attributes should be combined into the final markup, which is then serialized by Gutenberg into post_content.
 	 */
