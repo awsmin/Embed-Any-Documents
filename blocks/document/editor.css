@@ -14,7 +14,7 @@ div[data-type="embed-any-document/document"] .components-placeholder__fieldset .
 
 div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button {
 	border: 1px solid #000 !important;
-	padding: 20px 10px 10px  !important;
+	padding: 20px 10px 15px  !important;
 	text-align: center;
 	background: #fff !important;
 	border-radius: 0  !important;
@@ -24,6 +24,10 @@ div[data-type="embed-any-document/document"] .components-placeholder__fieldset .
 	font-size: 0;
 	display: block;
 	transition: all 0.3s ease;
+}
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.disabled{
+	opacity: 0.5;
+	pointer-events: none;
 }
 
 div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button:hover, div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button:focus {
