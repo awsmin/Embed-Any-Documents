@@ -6,3 +6,101 @@
 	margin: 14px 0px 0px;
 }
 
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-form-file-upload, div[data-type="embed-any-document/document"] .components-placeholder__fieldset > .components-button, div[data-type="embed-any-document/document"] .components-placeholder__fieldset .block-editor-media-placeholder__url-input-container {
+	flex: 0 0 25%;
+	margin-bottom: 3%;
+	margin-right: 3%;
+}
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button {
+	border: 1px solid #000 !important;
+	padding: 20px 10px 10px  !important;
+	text-align: center;
+	background: #fff !important;
+	border-radius: 0  !important;
+	color: #000 !important;
+	width: 100%;
+	height: 100%;
+	font-size: 0;
+	display: block;
+	transition: all 0.3s ease;
+}
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button:hover, div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button:focus {
+	border-color: var(--wp-admin-theme-color) !important;
+	box-shadow: none !important;
+}
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button::before {
+	content: "";
+	width: 100%;
+	height: 50px;
+	margin-bottom: 20px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	display: block;
+	background-position: center;
+}
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button::after {
+	content: "";
+	display: block;
+	font-size: 1rem;
+}
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.ead-button-dropbox::before {
+	background-image: url("../../images/dropbox_logo.svg");
+}
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.ead-button-dropbox::after {
+	content: "Dropbox";
+}
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.ead-button-drive::before {
+	background-image: url("../../images/google_drive_logo.svg");
+}
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.ead-button-drive::after {
+	content: "Google Drive";
+}
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.ead-button-box::before {
+	background-image: url("../../images/box_inc_logo.svg");
+	background-size: 60px;
+}
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.ead-button-box::after {
+	content: "Box.com";
+}
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-form-file-upload .components-button {
+	margin: 0 !important;
+}
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-form-file-upload .components-button::before {
+	background-image: url("../../images/iconmonstr-upload-17.svg");
+}
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-form-file-upload .components-button::after {
+	content: "Upload";
+}
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-form-file-upload + .components-button::before {
+	background-image: url("../../images/admin-media.svg");
+}
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-form-file-upload + .components-button::after {
+	content: "Media Library";
+}
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .block-editor-media-placeholder__url-input-container .components-button {
+	margin: 0 !important;
+}
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .block-editor-media-placeholder__url-input-container .components-button::before {
+	background-image: url("../../images/iconmonstr-link-1.svg");
+}
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .block-editor-media-placeholder__url-input-container .components-button::after {
+	content: "URL";
+}
