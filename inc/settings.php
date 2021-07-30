@@ -61,7 +61,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</div><!-- #general-->
 			</div><!-- .ead-tabs -->
 			<div class="ead-banner">
-				<a href="http://goo.gl/wJTQlc" target="_blank"><img src="<?php echo esc_url( $this->plugin_url ); ?>images/eadplus-banner.png"></a>
+				<a href="http://embedanydocument.com/plus-cc" target="_blank"><img src="<?php echo esc_url( $this->plugin_url ); ?>images/eadplus-banner.png"></a>
 			</div>
 		</div><!-- .ead-left-wrap -->
 		<div class="ead-right-wrap">

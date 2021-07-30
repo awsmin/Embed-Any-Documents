@@ -620,7 +620,7 @@ class Awsm_embed {
 	 * @param string $provider Service provider.
 	 */
 	public function providerlink( $provider ) {
-		$link      = 'http://goo.gl/wJTQlc';
+		$link      = 'http://embedanydocument.com/plus-cc';
 		$id        = '';
 		$configure = '<span class="overlay"><strong>' . esc_html__( 'Buy Pro Version', 'embed-any-document' ) . '</strong><i></i></span>';
 		$target    = 'target="_blank"';

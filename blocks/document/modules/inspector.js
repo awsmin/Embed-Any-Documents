@@ -2,7 +2,7 @@ import EadHelper from './helper';
 
 const { __ } = wp.i18n;
 const { Component } = wp.element;
-const { InspectorControls } = wp.editor;
+const { InspectorControls } = wp.blockEditor || wp.editor;
 const {
     PanelBody,
     TextControl,
