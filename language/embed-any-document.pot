@@ -1,21 +1,22 @@
-# Copyright (C) 2020 Awsm Innovations
-# This file is distributed under the same license as the Embed Any Document plugin.
+# Copyright (C) 2021 Awsm Innovations
+# This file is distributed under the GPL V3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Embed Any Document 2.6.1\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/embed-any-document\n"
+"Project-Id-Version: Embed Any Document 2.7.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/Embed-Any-Documents\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Awsm Innovations <hello@awsm.in>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-06-04T10:30:36+00:00\n"
+"POT-Creation-Date: 2021-08-02T07:18:44+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.4.0\n"
+"X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: embed-any-document\n"
 
 #. Plugin Name of the plugin
 #: awsm-embed.php:559
+#: blocks/document/main.js:143
 msgid "Embed Any Document"
 msgstr ""
 
@@ -37,7 +38,6 @@ msgstr ""
 
 #: awsm-embed.php:143
 #: inc/popup.php:18
-#: blocks/document/main.js:76
 msgid "Add Document"
 msgstr ""
 
@@ -309,28 +309,60 @@ msgstr ""
 msgid "FAQs"
 msgstr ""
 
-#: blocks/document/main.js:25
-#: blocks/document/main.js:75
+#: blocks/document/main.js:30
 #: blocks/document/modules/ead-server-side-render.js:172
 #: blocks/document/modules/ead-server-side-render.js:183
 msgid "Document"
 msgstr ""
 
-#: blocks/document/main.js:26
-#: blocks/document/main.js:75
+#: blocks/document/main.js:31
 msgid "Upload and Embed your documents."
 msgstr ""
 
-#: blocks/document/main.js:29
+#: blocks/document/main.js:34
 msgid "add document"
 msgstr ""
 
-#: blocks/document/main.js:29
+#: blocks/document/main.js:34
 msgid "embed document"
 msgstr ""
 
-#: blocks/document/main.js:29
+#: blocks/document/main.js:34
 msgid "embed any document"
+msgstr ""
+
+#: blocks/document/main.js:87
+msgid "File type is not supported!"
+msgstr ""
+
+#: blocks/document/main.js:91
+msgid "Unknown file type. This may cause issues with the document viewer."
+msgstr ""
+
+#: blocks/document/main.js:95
+msgid "Please enter a valid URL."
+msgstr ""
+
+#: blocks/document/main.js:143
+msgid "Upload a document, pick from your media library, or add from an external URL."
+msgstr ""
+
+#: blocks/document/main.js:144
+msgid "Add from dropbox"
+msgstr ""
+
+#: blocks/document/main.js:146
+#: blocks/document/main.js:151
+#: blocks/document/main.js:156
+msgid "Pro Feature"
+msgstr ""
+
+#: blocks/document/main.js:149
+msgid "Add from drive"
+msgstr ""
+
+#: blocks/document/main.js:154
+msgid "Add from box"
 msgstr ""
 
 #: blocks/document/modules/ead-server-side-render.js:173

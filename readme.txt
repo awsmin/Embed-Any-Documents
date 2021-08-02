@@ -3,15 +3,15 @@ Contributors: awsmin
 Tags: embed documents, upload pdf, embed ppt, document viewer, pdf viewer, pdf viewer plugin, display pdf, embed pdf, embed pdf in wordpress, word, word viewer, word document, embed word, word plugin, doc, doc viewer, docx, docx viewer, excel, excel plugin, xls, xlsx, spreadsheet, embed spreadsheet, powerpoint, powerpoint viewer, ppt, ppt viewer, pptx, image viewer
 Author URI: http://awsm.in
 Requires at least: 3.5
-Tested up to: 5.4
+Tested up to: 5.7
 Stable tag: trunk
 License: GPLv2 
 
-Easiest way to upload and display PDF, MS Office and more documents on your WordPress website using Google Docs Viewer or Microsoft Office Online. 
+Upload and Embed PDF, DOC, PPT and XLS documents easily on your WordPress website with the help of Google Docs Viewer or Microsoft Office Online. 
 
 == Summary ==
 
-Seamlessly embed and display PDF, Microsoft Word, Excel and PowerPoint documents on your WordPress website.
+Seamlessly embed and display PDF, Word, Excel and PowerPoint documents on your WordPress website.
 
 == Description ==
 
@@ -25,10 +25,8 @@ Embed Any Document WordPress plugin lets you upload and embed your documents eas
 * Microsoft Excel (xlsx, xlsb, xls, xlsm)
 * Microsoft PowerPoint (pptx, ppsx, ppt, pps, pptm, potm, ppam, potx, ppsm)
 * Adobe Portable Document Format (pdf)
-* Text files (txt)
 * TIFF Images (tif, tiff)
 * Adobe Illustrator (ai)
-* Scalable Vector Graphics (svg)
 
 <h4>Key Benefits of Embed Any Document WordPress plugin </h4>
 
@@ -42,7 +40,6 @@ Embed Any Document WordPress plugin lets you upload and embed your documents eas
 
 5. <strong>Clean and Minimal UI.</strong> Embed Any Document comes with a clean and clutter-free UI.
 
-For more information and instructions visit <a href="http://awsm.in/embed-any-document/" target="_blank">our website.</a>.
 
 <h4>Limitations of the plugin</h4>
 
@@ -62,7 +59,7 @@ Upload or link the documents to your site using the ‘Add Document’ button in
 
 == Screenshots ==
 
-1.Embed Any Document Gutenberg Block
+1. Embed Any Document Gutenberg Block
 2 ‘Add Document’ button in WordPress visual editor
 3. Add document popup
 4. Inserting Document
@@ -82,6 +79,11 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
 
+= V 2.7.0 - 2021-08-02 =
+* Added: Improved Block Design.
+* Fixed: Conflict with Lazy loading feature added by some themes and plugins.
+* Fixed: Browser viewer fallback for unsupported browsers not working.
+
 = V 2.6.1 - 2020-06-04 =
 * Fixed: Fatal error during plugin updation in some installations.
 
@@ -99,16 +101,11 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 * Other minor bug fixes and style improvements.
 
 = V 2.4.1 - 2018-12-10 =
-* Fixed: Blank screen in visual mode of the classic editor plugin
-
-= V 2.4 - 2018-12-06 =
-* Added: Gutenberg Support. New Document Block is added.
-* Fixed: Disabled Microsoft viewer support for unsupported extensions
-* Fixed: Localization issues
+* Fixed: Blank screen in visual mode of the classic editor plugin.
 
 [See changelog of previous versions](https://raw.githubusercontent.com/awsmin/Embed-Any-Documents/master/CHANGELOG.md)
 
 == Upgrade Notice ==
 
-= 2.6.1 =
-Fixes fatal error during updation.
+= 2.7.0 =
+New Features And Fixes.
