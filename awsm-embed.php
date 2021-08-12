@@ -129,6 +129,20 @@ class Awsm_embed {
 		load_plugin_textdomain( 'embed-any-document', false, $this->plugin_base . '/language/' );
 	}
 
+    /**
+    * function to check if the current page is a post or post edit page
+    * */
+	function is_edit_page(){
+        global $pagenow;
+        if (!is_admin()) return false;
+
+        if(in_array( $pagenow, array( 'post.php', 'post-new.php' ))){
+           return true;
+        }else{
+           return false;
+        }
+    }  
+
 	/**
 	 * Embed any Docs Button.
 	 *
@@ -140,10 +154,18 @@ class Awsm_embed {
 			return;
 		}
 
-		$btn_text = __( 'Add Document', 'embed-any-document' );
-		$btn_icon = sprintf( '<img src="%1$s" alt="%2$s" role="presentation" /> ', esc_url( plugins_url( 'images/ead-small.png', __FILE__ ) ), esc_attr( $btn_text ) );
+        $is_visible = true;
 
-		printf( '<a href="javascript:void(0);" class="awsm-embed button" title="%2$s" data-mfp-src="#embed-popup-wrap" data-target="%3$s">%1$s</a>', $btn_icon . esc_html( $btn_text ), esc_attr( $btn_text ), esc_attr( $editor_id ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        if(self::is_edit_page() == false){
+            $is_visible = false;
+        }
+
+        if ( $is_visible ) {
+			$btn_text = __( 'Add Document', 'embed-any-document' );
+			$btn_icon = sprintf( '<img src="%1$s" alt="%2$s" role="presentation" /> ', esc_url( plugins_url( 'images/ead-small.png', __FILE__ ) ), esc_attr( $btn_text ) );
+
+			printf( '<a href="javascript:void(0);" class="awsm-embed button" title="%2$s" data-mfp-src="#embed-popup-wrap" data-target="%3$s">%1$s</a>', $btn_icon . esc_html( $btn_text ), esc_attr( $btn_text ), esc_attr( $editor_id ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		}
 	}
 
 	/**
