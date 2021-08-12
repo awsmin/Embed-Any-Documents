@@ -134,7 +134,7 @@ class Awsm_embed {
     * */
 	function is_edit_page(){
         global $pagenow;
-        if (!is_admin()) return false;
+        if (!is_admin()){ return false; }
 
         if(in_array( $pagenow, array( 'post.php', 'post-new.php' ))){
            return true;
