@@ -71,7 +71,7 @@ div[data-type="embed-any-document/document"] .components-placeholder__fieldset .
 }
 
 div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.ead-button-dropbox::before {
-	background-image: url("../../images/dropbox_logo.svg");
+	background-image: url("../../images/icon-dropbox.svg");
 }
 
 div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.ead-button-dropbox::after {
@@ -79,7 +79,7 @@ div[data-type="embed-any-document/document"] .components-placeholder__fieldset .
 }
 
 div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.ead-button-drive::before {
-	background-image: url("../../images/google_drive_logo.svg");
+	background-image: url("../../images/icon-drive.svg");
 }
 
 div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.ead-button-drive::after {
@@ -87,7 +87,7 @@ div[data-type="embed-any-document/document"] .components-placeholder__fieldset .
 }
 
 div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.ead-button-box::before {
-	background-image: url("../../images/box_inc_logo.svg");
+	background-image: url("../../images/icon-box.svg");
 }
 
 div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.ead-button-box::after {
