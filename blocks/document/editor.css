@@ -88,11 +88,18 @@ div[data-type="embed-any-document/document"] .components-placeholder__fieldset .
 
 div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.ead-button-box::before {
 	background-image: url("../../images/box_inc_logo.svg");
-	background-size: 50px;
 }
 
 div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.ead-button-box::after {
 	content: "Box.com";
+}
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.ead-button-onedrive::before {
+	background-image: url("../../images/icon-onedrive.svg");
+}
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.ead-button-onedrive::after {
+	content: "OneDrive";
 }
 
 div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-form-file-upload .components-button {
@@ -101,7 +108,6 @@ div[data-type="embed-any-document/document"] .components-placeholder__fieldset .
 
 div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-form-file-upload .components-button::before {
 	background-image: url("../../images/iconmonstr-upload-17.svg");
-	background-size: 35px;
 }
 
 div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-form-file-upload .components-button::after {
