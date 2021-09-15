@@ -13,7 +13,7 @@ import icon from './modules/icon';
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
 const { Button } = wp.components;
-const {Fragment} = wp.element;
+const { Fragment } = wp.element;
 const { MediaPlaceholder } = wp.blockEditor || wp.editor;
 const { isURL } = wp.url;
 
