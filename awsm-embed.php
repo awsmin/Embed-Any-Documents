@@ -629,6 +629,58 @@ class Awsm_embed {
 	}
 
 	/**
+	 * To be used for addons.
+	 *
+	 * @param string|array $keys Option name.
+	 * @param string       $id 'id' attribute value for anchor tag.
+	 * @param string       $provider Service provider.
+	 */
+	public function providerlink_viewer($key,$id,$provider) {
+		if(! get_option( $key )){
+			$link      = 'options-general.php?page=';
+			$id        = '';
+			$configure = sprintf( '<span class="overlay"><strong>%s</strong><i></i></span>', esc_html__( 'Configure', 'embed-any-document' ) );
+			$target    = 'target="_blank"';
+		}else{
+			$configure = '';
+			$link      = '#';
+			$target    = '';
+		}
+
+		$imageurl = 'http://localhost:8888/wp-demo/wp-content/plugins/Embed-Any-Documents/images/icon-dropbox.png';
+		/* translators: %1$s: Service provider */
+		$linktext = sprintf( __( 'Add from %1$s', 'embed-any-document-plus' ), $provider );
+
+		printf(
+			wp_kses(
+				'<li><a href="%1$s" id="%2$s" %3$s><span><img src="%4$s" alt="%2$s" height="50" />%5$s %6$s</span></a></li>',
+				array(
+					'a'    => array(
+						'href'   => array(),
+						'id'     => array(),
+						'target' => array(),
+					),
+					'span' => array(),
+					'img'  => array(
+						'src'    => array(),
+						'alt'    => array(),
+						'width'  => array(),
+						'height' => array(),
+					),
+					'li' => array(),
+				)
+			),
+			esc_url( $link ),
+			esc_attr( $id ),
+			$target,
+			esc_url( $imageurl ),
+			esc_html( $linktext ),
+			$configure
+		);
+
+	}
+
+	/**
 	 * To initialize default options
 	 */
 	public function defaults() {
