@@ -32,6 +32,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<li><?php $this->providerlink( 'Dropbox' ); ?></li>
 						<li><?php $this->providerlink( 'Box' ); ?></li>
 						<li><?php $this->providerlink( 'OneDrive' ); ?></li>
+						<?php
+							/**
+							 * Hook: after_awsm_ead_viewer_options.
+							 *
+							 * @since 2.4.0
+							 */
+							do_action( 'after_awsm_ead_viewer_options' );
+						?>
 					</ul>
 					<div class="ead-url-box addurl-box">
 						<label for="awsm-url"><?php esc_html_e( 'Enter document URL', 'embed-any-document' ); ?></label>

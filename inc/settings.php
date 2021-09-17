@@ -53,11 +53,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 									<input type="text" class="" name="ead_text" value="<?php echo esc_attr( get_option( 'ead_text', 'Download' ) ); ?>"/>
 								</td>
 							</tr>
+							
+							<?php
+								/**
+								 * Hook: after_awsm_ead_general_settings.
+								 */
+								do_action( 'after_awsm_ead_general_settings' );
+							?>
 						</table>
 						<div class="ead-form-footer">
 							<?php submit_button(); ?>
 						</div>
 					</form>
+					
 				</div><!-- #general-->
 			</div><!-- .ead-tabs -->
 			<div class="ead-banner">
