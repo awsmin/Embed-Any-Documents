@@ -646,7 +646,8 @@ class Awsm_embed {
 			$link      = '#';
 			$target    = '';
 		}
-
+		//$imageurl = $this->plugin_url . 'images/icon-' . strtolower( $provider ) . '.svg';
+		/* translators: %1$s: Service provider */
 		$imageurl = 'http://localhost:8888/wp-demo/wp-content/plugins/Embed-Any-Documents/images/icon-dropbox.png';
 		/* translators: %1$s: Service provider */
 		$linktext = sprintf( __( 'Add from %1$s', 'embed-any-document-plus' ), $provider );
