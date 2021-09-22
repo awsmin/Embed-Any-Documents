@@ -652,7 +652,7 @@ class Awsm_embed {
 		/* translators: %1$s: Service provider */
 		$linktext = sprintf( __( 'Add from %1$s', 'embed-any-document-plus' ), $provider );
 
-		printf(
+		$link_content = sprintf(
 			wp_kses(
 				'<li><a href="%1$s" id="%2$s" %3$s><span><img src="%4$s" alt="%2$s" height="50" />%5$s %6$s</span></a></li>',
 				array(
@@ -679,6 +679,13 @@ class Awsm_embed {
 			$configure
 		);
 
+		echo apply_filters( 'awsm_ead_dropbox_link_content', $link_content );
+
+	}
+
+	public function embed_js(){
+		$path = plugins_url( 'js/embed.js', __FILE__ );
+		return $path;
 	}
 
 	/**

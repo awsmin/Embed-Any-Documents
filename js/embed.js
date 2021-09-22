@@ -1,4 +1,11 @@
-jQuery(document).ready(function($) {
+jQuery(document).ready(function($) { 
+    var eadEmbed = window.eadEmbed = window.eadEmbed || {};
+
+    eadEmbed.test = function() {
+        var testdata = 'hello';
+        alert(testdata);
+    };
+
     var $embedurl = $('#awsm-url'),
         $shortcode = $('#shortcode'),
         $message = $('#embed-message p'),
