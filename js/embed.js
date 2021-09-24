@@ -5,6 +5,10 @@ jQuery(document).ready(function($) {
         ead_updateprovider(file,handle);
     };
 
+    eadEmbed.human_filesize = function(bytes){
+        ead_human_file_size(bytes);
+    }
+
     var $embedurl = $('#awsm-url'),
         $shortcode = $('#shortcode'),
         $message = $('#embed-message p'),

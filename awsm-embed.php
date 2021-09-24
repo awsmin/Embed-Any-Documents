@@ -361,7 +361,7 @@ class Awsm_embed {
 	 * @return array
 	 */
 	public static function get_all_providers() {
-		$providers = array( 'google', 'microsoft', 'browser','dropbox', 'drive', 'box', 'onedrive' );
+		$providers = array( 'google', 'microsoft', 'browser' );
 		/**
 		 * Customize the providers.
 		 *
@@ -491,7 +491,7 @@ class Awsm_embed {
 			$doc_style_attrs    = array(
 				'position' => 'relative',
 			);
-			if ( $this->check_responsive( $shortcode_atts['height'] ) && $this->check_responsive( $shortcode_atts['width'] ) && ! $is_browser_viewer  && $viewer !== 'dropbox') {
+			if ( $this->check_responsive( $shortcode_atts['height'] ) && $this->check_responsive( $shortcode_atts['width'] ) && ! $is_browser_viewer ) {
 				$iframe_style_attrs = array(
 					'width'    => '100%',
 					'height'   => '100%',
@@ -510,13 +510,10 @@ class Awsm_embed {
 				);
 				if ( $this->in_percentage( $shortcode_atts['height'] ) ) {
 					$iframe_style_attrs['min-height'] = '500px';
-					if ( $viewer === 'dropbox' ) {
-						$iframe_style_attrs['height'] = '500px';
-					}
 				}
 			}
 
-			$enable_preloader = ! $is_amp && ( $viewer === 'google' || $viewer === 'dropbox');
+			$enable_preloader = ! $is_amp && $viewer === 'google';
 
 			if ( $enable_preloader ) {
 				$iframe_style_attrs['visibility'] = 'hidden';
@@ -528,29 +525,17 @@ class Awsm_embed {
 
 				$doc_style_attrs = array_merge( $doc_style_attrs, $iframe_style_attrs );
 				unset( $doc_style_attrs['visibility'] );
-			} elseif ( $viewer === 'dropbox' ) {
-				$data_attr       = sprintf( ' data-viewer="%s"', esc_attr( $shortcode_atts['viewer'] ) );
-				$doc_style_attrs = array_merge( $doc_style_attrs, $iframe_style_attrs );
-				unset( $doc_style_attrs['visibility'] );
 			}
 
-			$iframe = '';
-			if ( $viewer === 'dropbox' ) { 
-				$url    = str_replace( 'dl=1', 'dl=0', $url ); 
-				$iframe = sprintf( '<a href="%s" class="dropbox-embed" data-height="%s" data-width="%s"></a>', $url, esc_attr( $iframe_style_attrs['height'] ), esc_attr( $iframe_style_attrs['width'] ) ); 
-			} else {
-				$iframe_style = self::build_style_attr( $iframe_style_attrs );
-				$iframe       = sprintf( '<iframe src="%s" title="%s" class="ead-iframe" %s></iframe>', esc_attr( $iframe_src ), esc_html__( 'Embedded Document', 'embed-any-document' ), $iframe_style );
-			}
+			$iframe_style = self::build_style_attr( $iframe_style_attrs );
+			$iframe       = sprintf( '<iframe src="%s" title="%s" class="ead-iframe" %s></iframe>', esc_attr( $iframe_src ), esc_html__( 'Embedded Document', 'embed-any-document' ), $iframe_style );
 
 			if ( $enable_preloader ) {
-				$iframe = '<div class="embed-iframe-wrapper">' . $iframe . '</div>' . self::get_iframe_preloader( $shortcode_atts );
+				$iframe = '<div class="ead-iframe-wrapper">' . $iframe . '</div>' . self::get_iframe_preloader( $shortcode_atts );
 			}
 
 			$doc_style = self::build_style_attr( $doc_style_attrs );
 			$embed     = sprintf( '<div class="ead-preview"><div class="ead-document" %3$s>%1$s</div>%2$s</div>', $iframe, $durl, $doc_style . $data_attr );
-
-
 		else :
 			$embed = esc_html__( 'No Url Found', 'embed-any-document' );
 		endif;
@@ -695,8 +680,7 @@ class Awsm_embed {
 			$configure
 		);
 
-		echo apply_filters( 'awsm_ead_dropbox_link_content', $link_content );
-
+		return $link_content;
 	}
 
 	/**
