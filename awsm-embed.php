@@ -343,7 +343,6 @@ class Awsm_embed {
 			'google'    => __( 'Google Docs Viewer', 'embed-any-document' ),
 			'browser'   => __( 'Browser Based', 'embed-any-document' ),
 			'microsoft' => __( 'Microsoft Office Online', 'embed-any-document' ),
-			'dropbox'   => __( 'Dropbox', 'embed-any-document' ),
 		);
 		/**
 		 * Customize the supported viewers.
