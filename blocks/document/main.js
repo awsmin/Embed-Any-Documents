@@ -163,6 +163,7 @@ registerBlockType( 'embed-any-document/document', {
                         	<span>{ __( 'Pro Feature', 'embed-any-document' ) }</span>
                         </span>
 					</Button>
+					{ wp.hooks.doAction( 'after_awsm_ead_viewer_options',props ) }
 					</Fragment>
 				</MediaPlaceholder>
 			);
