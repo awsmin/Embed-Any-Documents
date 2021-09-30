@@ -41,6 +41,8 @@ registerBlockType( 'embed-any-document/document', {
 		const { attributes, setAttributes, noticeOperations} = props;
 		const { shortcode } = attributes;
 
+		let viewerList = [];
+
         let blockProps = null;
 		let shortcodeText;
 		let embedurl;
@@ -163,7 +165,8 @@ registerBlockType( 'embed-any-document/document', {
                         	<span>{ __( 'Pro Feature', 'embed-any-document' ) }</span>
                         </span>
 					</Button>
-					{ wp.hooks.doAction( 'after_awsm_ead_viewer_options',props ) }
+					 { wp.hooks.doAction( 'after_awsm_ead_viewer_options',viewerList,props ) }
+					 { viewerList }
 					</Fragment>
 				</MediaPlaceholder>
 			);

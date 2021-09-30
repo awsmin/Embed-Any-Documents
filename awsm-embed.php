@@ -197,6 +197,7 @@ class Awsm_embed {
 				'validtypes'    => $this->validembedtypes(),
 				'msextension'   => $this->validextensions( 'ms' ),
 				'drextension'   => $this->validextensions( 'all' ),
+				'settings_slug'	=> $this->settings_slug,
 				'nocontent'     => __( 'Nothing to insert', 'embed-any-document' ),
 				'invalidurl'    => __( 'Invalid URL', 'embed-any-document' ),
 				'addurl'        => __( 'Add URL', 'embed-any-document' ),
