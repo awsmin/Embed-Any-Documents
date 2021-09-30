@@ -431,48 +431,76 @@ var EadServerSideRender = /*#__PURE__*/function (_Component) {
         var _this$props$attribute = this.props.attributes,
             attributes = _this$props$attribute === void 0 ? null : _this$props$attribute;
 
-        if (attributes !== null && attributes && (attributes.viewer === 'google' || attributes.viewer === 'browser' || attributes.viewer === 'built-in')) {
+        if (attributes !== null && attributes && (attributes.viewer === 'google' || attributes.viewer === 'browser' || attributes.viewer === 'built-in' || attributes.viewer === "dropbox")) {
           var viewer = attributes.viewer;
           var currentRef = this.eadRef.current;
           var documentWrapper = jQuery(currentRef).find('.ead-document');
           var iframe = documentWrapper.find('.ead-iframe');
 
-          if (viewer === 'google' || viewer === 'browser') {
-            if (viewer === 'google') {
-              iframe.css('visibility', 'visible');
-            }
-
-            iframe.on('load', function () {
-              jQuery(this).parents('.ead-document').find('.ead-document-loading').css('display', 'none');
-            });
-          }
-
-          if (viewer === 'browser' || viewer === 'built-in') {
-            var src = documentWrapper.data('pdfSrc');
-            viewer = typeof src !== 'undefined' && src.length > 0 && viewer.length > 0 ? viewer : false;
-            var isBuiltInViewer = 'pdfjs' in eadPublic && eadPublic.pdfjs && eadPublic.pdfjs.length > 0 && viewer === 'built-in';
-
-            if (viewer && (viewer === 'browser' || isBuiltInViewer)) {
-              if (PDFObject.supportsPDFs || isBuiltInViewer) {
-                var options = {};
-
-                if (!isBuiltInViewer) {
-                  options = {
-                    width: iframe.css('width'),
-                    height: iframe.css('height')
-                  };
-                } else {
-                  options = {
-                    forcePDFJS: true,
-                    PDFJS_URL: eadPublic.pdfjs
-                  };
-                }
-
-                PDFObject.embed(src, documentWrapper, options);
-              } else {
+          if (viewer !== "dropbox") {
+            if (viewer === 'google' || viewer === 'browser') {
+              if (viewer === 'google') {
                 iframe.css('visibility', 'visible');
               }
+
+              iframe.on('load', function () {
+                jQuery(this).parents('.ead-document').find('.ead-document-loading').css('display', 'none');
+              });
             }
+
+            if (viewer === 'browser' || viewer === 'built-in') {
+              var src = documentWrapper.data('pdfSrc');
+              viewer = typeof src !== 'undefined' && src.length > 0 && viewer.length > 0 ? viewer : false;
+              var isBuiltInViewer = 'pdfjs' in eadPublic && eadPublic.pdfjs && eadPublic.pdfjs.length > 0 && viewer === 'built-in';
+
+              if (viewer && (viewer === 'browser' || isBuiltInViewer)) {
+                if (PDFObject.supportsPDFs || isBuiltInViewer) {
+                  var _options = {};
+
+                  if (!isBuiltInViewer) {
+                    _options = {
+                      width: iframe.css('width'),
+                      height: iframe.css('height')
+                    };
+                  } else {
+                    _options = {
+                      forcePDFJS: true,
+                      PDFJS_URL: eadPublic.pdfjs
+                    };
+                  }
+
+                  PDFObject.embed(src, documentWrapper, _options);
+                } else {
+                  iframe.css('visibility', 'visible');
+                }
+              }
+            }
+          } else {
+            var iframeWrapper = documentWrapper.find(".ead-iframe-wrapper");
+            var dropboxEmbed = iframeWrapper.find(".dropbox-embed");
+            var options = {
+              link: dropboxEmbed.attr("href"),
+              file: {
+                zoom: "best"
+              }
+            };
+            iframeWrapper.css({
+              height: dropboxEmbed.data("height"),
+              width: dropboxEmbed.data("width")
+            });
+            dropboxEmbed.remove();
+            Dropbox.embed(options, iframeWrapper.get(0));
+            var embedCheck = setInterval(function () {
+              var iframe = iframeWrapper.find("iframe").first();
+
+              if (iframe.length > 0) {
+                iframe.addClass("ead-iframe");
+                iframe.on("load", function () {
+                  jQuery(this).parents(".ead-document").find(".ead-document-loading").css("display", "none");
+                });
+                clearInterval(embedCheck);
+              }
+            }, 250);
           }
         }
       }
@@ -863,6 +891,11 @@ var EadInspector = /*#__PURE__*/function (_Component) {
               label: __('Built-In Viewer', 'embed-any-document')
             });
           }
+        } else {
+          viewerOptions.push({
+            value: "dropbox",
+            label: __("Dropbox", "embed-any-document")
+          });
         }
 
         downloadTextControl = wp.element.createElement(TextControl, {

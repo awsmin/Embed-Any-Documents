@@ -361,7 +361,7 @@ class Awsm_embed {
 	 * @return array
 	 */
 	public static function get_all_providers() {
-		$providers = array( 'google', 'microsoft', 'browser' );
+		$providers = array( 'google', 'microsoft', 'browser');
 		/**
 		 * Customize the providers.
 		 *
