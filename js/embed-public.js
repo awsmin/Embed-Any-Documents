@@ -1,10 +1,10 @@
 jQuery(function($) {
-	if(eadPublicViewer.viewer.length === 0){
-		$('.ead-iframe-wrapper').each(function() { 
-			var $wrapper = $(this);
-			var $activeIframe = $wrapper.find('.ead-iframe');
-			var viewer = $wrapper.parent('.ead-document').data('viewer');
-			var isNativeViewer = typeof viewer !== 'undefined' && viewer.length > 0 ? viewer : false;
+	$('.ead-iframe-wrapper').each(function() { 
+		var $wrapper = $(this);
+		var $activeIframe = $wrapper.find('.ead-iframe');
+		var viewer = $wrapper.parent('.ead-document').data('viewer');
+		var isNativeViewer = typeof viewer !== 'undefined' && viewer.length > 0 ? viewer : false;
+		if(isNativeViewer !== eadPublicViewer.viewer){ 
 			var lazyLoadSrc = $activeIframe.data('src');
 			var lazyLoadAttr = $activeIframe.attr('loading');
 			var isLazyLoaded = false;
@@ -30,8 +30,9 @@ jQuery(function($) {
 			if (!isLazyLoaded) {
 				$wrapper.html($iframe);
 			}
-		});
-	}
+		}
+	});
+	
 
 	$('.ead-document[data-pdf-src]').each(function() {
 		var $elem = $(this);

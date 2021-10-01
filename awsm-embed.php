@@ -322,7 +322,7 @@ class Awsm_embed {
 		 */
 		$script_data = apply_filters(
 			'awsm_ead_public_viewer_check',
-			array()
+			array('viewer'=>'')
 		);
 		return $script_data;
 	}
