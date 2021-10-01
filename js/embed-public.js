@@ -1,11 +1,10 @@
 jQuery(function($) {
-	$('.ead-iframe-wrapper').each(function() { 
-		var $wrapper = $(this);
-		var viewer = $wrapper.parent('.ead-document').data('viewer');
-		viewer = typeof viewer !== 'undefined' ? viewer : '';
-		if ( viewer !== 'dropbox' ) { 
+	if(eadPublicViewer.viewer.length === 0){
+		$('.ead-iframe-wrapper').each(function() { 
+			var $wrapper = $(this);
 			var $activeIframe = $wrapper.find('.ead-iframe');
-			var isNativeViewer = viewer.length > 0 ? viewer : false;
+			var viewer = $wrapper.parent('.ead-document').data('viewer');
+			var isNativeViewer = typeof viewer !== 'undefined' && viewer.length > 0 ? viewer : false;
 			var lazyLoadSrc = $activeIframe.data('src');
 			var lazyLoadAttr = $activeIframe.attr('loading');
 			var isLazyLoaded = false;
@@ -31,19 +30,8 @@ jQuery(function($) {
 			if (!isLazyLoaded) {
 				$wrapper.html($iframe);
 			}
-		} else { 
-			var embedCheck = setInterval(function() {
-				var $iframe = $wrapper.find('iframe').first();
-				if ($iframe.length > 0) {
-					$iframe.addClass('ead-iframe');
-					$iframe.on('load', function() {
-						$(this).parents('.ead-document').find('.ead-document-loading').css('display', 'none');
-					});
-					clearInterval(embedCheck);
-				}
-			}, 250);
-		}
-	});
+		});
+	}
 
 	$('.ead-document[data-pdf-src]').each(function() {
 		var $elem = $(this);

@@ -308,6 +308,26 @@ class Awsm_embed {
 	}
 
 	/**
+	 * Get public script data.
+	 *
+	 * @return array
+	 */
+	public function get_public_viewer_check_data() {
+		/**
+		 * Customize the public script data.
+		 *
+		 * @since 2.6.0
+		 *
+		 * @param array $script_data The script data.
+		 */
+		$script_data = apply_filters(
+			'awsm_ead_public_viewer_check',
+			array()
+		);
+		return $script_data;
+	}
+
+	/**
 	 * Register scripts for both back-end and front-end use.
 	 */
 	public function register_scripts() {
@@ -317,6 +337,7 @@ class Awsm_embed {
 		wp_register_script( 'awsm-ead-public', plugins_url( 'js/embed-public.min.js', $this->plugin_file ), array( 'jquery', 'awsm-ead-pdf-object' ), $this->plugin_version, true );
 
 		wp_localize_script( 'awsm-ead-public', 'eadPublic', $this->get_public_script_data() );
+		wp_localize_script( 'awsm-ead-public', 'eadPublicViewer', $this->get_public_viewer_check_data() );
 	}
 
 	/**
