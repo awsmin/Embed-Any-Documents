@@ -659,9 +659,9 @@ class Awsm_embed {
 	 */
 	public function providerlink_viewer($key,$id,$provider) {
 		if(! get_option( $key )){
-			$link      = 'options-general.php?page=';
+			$link      = 'options-general.php?page=ead-settings';
 			$id        = '';
-			$configure = sprintf( '<span class="overlay"><strong>%s</strong><i></i></span>', esc_html__( 'Configure', 'embed-any-document' ) );
+			$configure = '';
 			$target    = 'target="_blank"';
 		}else{
 			$configure = '';
