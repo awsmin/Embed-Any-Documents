@@ -46,19 +46,16 @@ class EadInspector extends Component {
 				viewerOptions.push({ value: 'microsoft', label: __( 'Microsoft Office Online', 'embed-any-document' ) });
 			}
 
-			let fileSrc = EadHelper.getFileSource( url ); 
-			if ( EadHelper.isPDF(url) && fileSrc !== 'dropbox' ) {
-				viewerOptions.push({ value: 'browser', label: __( 'Browser Based', 'embed-any-document' ) });
+            let fileSrc = EadHelper.getFileSource( url );
+            if ( EadHelper.isPDF(url) && fileSrc !== 'dropbox' ) {
+                viewerOptions.push({ value: 'browser', label: __( 'Browser Based', 'embed-any-document' ) });
 
-				if (jQuery.inArray( 'built-in', emebeder.viewers ) !== -1 && fileSrc === 'internal') {
-					viewerOptions.push({ value: 'built-in', label: __( 'Built-In Viewer', 'embed-any-document' ) });
-				}
-			}else{
-                viewerOptions.push({
-                    value: "dropbox",
-                    label: __("Dropbox", "embed-any-document")
-                });
+                if (jQuery.inArray( 'built-in', emebeder.viewers ) !== -1 && fileSrc === 'internal') {
+                    viewerOptions.push({ value: 'built-in', label: __( 'Built-In Viewer', 'embed-any-document' ) });
+                }
             }
+            
+            wp.hooks.applyFilters('droppbox_vieweroption',viewerOptions,fileSrc);
 
 			downloadTextControl = <TextControl label={ __( 'Download Text', 'embed-any-document' ) } help={ __( 'Default download button text', 'embed-any-document' ) } value={ text } onChange={ text => setAttributes( { text } ) } />;
 
