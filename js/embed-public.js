@@ -3,7 +3,7 @@ jQuery(function($) {
 		var $wrapper = $(this);
 		var viewer = $wrapper.parent('.ead-document').data('viewer');
 		viewer = typeof viewer !== 'undefined' ? viewer : '';
-		if ( viewer !== 'dropbox' ) {
+		if ( viewer !== 'dropbox' ) { 
 			var $activeIframe = $wrapper.find('.ead-iframe');
 			var isNativeViewer = viewer.length > 0 ? viewer : false;
 			var lazyLoadSrc = $activeIframe.data('src');
@@ -31,7 +31,7 @@ jQuery(function($) {
 			if (!isLazyLoaded) {
 				$wrapper.html($iframe);
 			}
-		} else {
+		} else { 
 			var embedCheck = setInterval(function() {
 				var $iframe = $wrapper.find('iframe').first();
 				if ($iframe.length > 0) {
