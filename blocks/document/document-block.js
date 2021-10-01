@@ -307,7 +307,7 @@ registerBlockType('embed-any-document/document', {
         value: "click"
       }, __('Add from OneDrive', 'embed-any-document'), wp.element.createElement("span", {
         className: "overlay"
-      }, wp.element.createElement("span", null, __('Pro Feature', 'embed-any-document')))), wp.hooks.doAction('after_awsm_ead_viewer_options', viewerList, props), viewerList));
+      }, wp.element.createElement("span", null, __('Pro Feature', 'embed-any-document')))), wp.hooks.doAction('after_awsm_ead_viewer_options', viewerList, props, _modules_helper__WEBPACK_IMPORTED_MODULE_0__["default"].parseShortcode), viewerList));
     }
   },
 
