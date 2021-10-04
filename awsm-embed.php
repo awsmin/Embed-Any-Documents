@@ -672,7 +672,7 @@ class Awsm_embed {
 		$imageurl = esc_url( plugins_url( 'images/icon-'. strtolower( $provider ) . '.png', __FILE__ ) );
 
 		/* translators: %1$s: Service provider */
-		$linktext = sprintf( __( 'Add from %1$s', 'embed-any-document-plus' ), $provider );
+		$linktext = sprintf( __( 'Add from %1$s', 'embed-any-document' ), $provider );
 
 		$link_content = sprintf(
 			wp_kses(
