@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AWSM_EMBED_VERSION' ) ) {
-	define( 'AWSM_EMBED_VERSION', '2.7.0' );
+	define( 'AWSM_EMBED_VERSION', '3.0.0' );
 }
 
 /**

@@ -79,6 +79,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 								$this->selectbuilder( 'ead-download', $downoptions, esc_attr( get_option( 'ead_download', 'none' ) ), 'ead-usc' );
 								?>
 							</div>
+
+							<div class="f-left" id="ead-pseudo">
+								<label><?php esc_html_e( 'Viewer', 'embed-any-document' ); ?></label>
+								<select name="ead-pseudo">
+									<option value="box"><?php esc_html_e( 'Box', 'embed-any-document' ); ?></option>
+									<option value="drive"><?php esc_html_e( 'Drive', 'embed-any-document' ); ?></option>
+								</select>
+							</div>
+
 							<div class="f-left" id="ead-download-text">
 								<label><?php esc_html_e( 'Download Text', 'embed-any-document' ); ?></label>
 								<input type="text" name="text" class="embedval" id="ead-text" value="<?php echo esc_attr( get_option( 'ead_text', 'Download' ) ); ?>">

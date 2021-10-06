@@ -127,7 +127,7 @@ jQuery(document).ready(function($) {
     };
     $(window).resize( function() { ead_tb_position() } );
     //to getshortcode
-    function getshortcode(url, item) {
+    function getshortcode(url, item) { 
         var height = ead_sanitize($('#ead-height').val()),
             width = ead_sanitize($('#ead-width').val()),
             download = $('#ead-download').val(),
@@ -140,7 +140,7 @@ jQuery(document).ready(function($) {
             providerstr = "",
             textstr="",
             cachestr="",
-            drivestr = "";
+            drivestr = "";  
         if (ead_itemcheck('height', item)) {
             heightstr = ' height="' + height + '"';
         }
@@ -266,7 +266,7 @@ jQuery(document).ready(function($) {
     
     //Update ShortCode
     function ead_updateshortcode(item) {
-        item = typeof item !== 'undefined' ? item : false;
+        item = typeof item !== 'undefined' ? item : false; 
         if (fileurl) {
             $shortcode.text(getshortcode(fileurl, item));
         } else {
@@ -300,9 +300,8 @@ jQuery(document).ready(function($) {
         return bytes.toFixed(1) + ' ' + units[u];
     }
     // Viewer Check
-    function ead_valid_viewer(file, provider) {
-        var native_provides = ["link", "upload"];
-        var cprovider = native_provides.concat(['dropbox']);
+     function ead_valid_viewer(file, provider) { 
+        var cprovider = ["link", "upload"];
 
         var validext = msextension.split(',');
         var checkitem = file.filename;
@@ -311,7 +310,7 @@ jQuery(document).ready(function($) {
         }
         var ext = '.' + checkitem.split('.').pop();
 
-        var flexible_viewers = ['built-in', 'browser', 'microsoft', 'dropbox'];
+        var flexible_viewers = ['built-in', 'browser', 'microsoft'];
         $.each(flexible_viewers, function(i, value) {
             $("#new-provider option[value='" + value + "']").attr({
                 'disabled': false,
@@ -331,16 +330,6 @@ jQuery(document).ready(function($) {
             } else {
                 newprovider = "microsoft";
                 $("#new-provider option[value='microsoft']").attr("selected", "selected");
-            }
-
-            if (provider !== 'dropbox') {
-                $("#new-provider option[value='dropbox']").attr({
-                    'disabled': true,
-                    'hidden': true
-                });
-            } else {
-                newprovider = "dropbox";
-                $("#new-provider option[value='dropbox']").attr("selected", "selected");
             }
 
             // Hide the Browser viewer and built-in viewer if the extension is not pdf and also if the provider is not in the supported providers list.
