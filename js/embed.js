@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) { 
+jQuery(document).ready(function($) {
     var eadEmbed = window.eadEmbed = window.eadEmbed || {};
 
     eadEmbed.updateprovider = function(file,handle) {
@@ -9,6 +9,8 @@ jQuery(document).ready(function($) {
         ead_human_file_size(bytes);
     }
 
+    eadEmbed.newprovider = "";
+
     var $embedurl = $('#awsm-url'),
         $shortcode = $('#shortcode'),
         $message = $('#embed-message p'),
@@ -18,9 +20,11 @@ jQuery(document).ready(function($) {
         newprovider = "",
         frame,
         msextension = emebeder.msextension,
-        drextension = emebeder.drextension;
+        drextension = emebeder.drextension,
+        $embed_popup = $('#embed-popup'),
+        eadshortcode = '';
     //Opens Embed popup
-    $('body').on('click', '.awsm-embed', function(e) {
+    $('body').on('click', '.awsm-embed', function(e) { 
         ead_reset();
         e.preventDefault();
         $('body').addClass('ead-popup-on');
@@ -141,27 +145,46 @@ jQuery(document).ready(function($) {
             textstr="",
             cachestr="",
             drivestr = "";  
+
+        eadEmbed.shortcodeAttrs = {
+            url: url
+        };
+
         if (ead_itemcheck('height', item)) {
-            heightstr = ' height="' + height + '"';
+            eadEmbed.shortcodeAttrs.height = height;
         }
         if (ead_itemcheck('width', item)) {
-            widthstr = ' width="' + width + '"';
+            eadEmbed.shortcodeAttrs.width = width;
         }
-        if (ead_itemcheck('download', item)) {
-            downloadstr = ' download="' + download + '"';
 
+        if (ead_itemcheck('download', item)) {
+            eadEmbed.shortcodeAttrs.download = download;
         }
-        if (ead_itemcheck('provider', item)) {
-            providerstr = ' viewer="' + provider + '"';
-        }
+
+        if (ead_itemcheck('provider', item)) { 
+            eadEmbed.shortcodeAttrs.viewer = provider;
+        } 
+
+
+        $('#embed-popup [data-setting]').each(function() { 
+            if ($(this).data('setting') == 'viewer') {
+                eadEmbed.shortcodeAttrs.viewer = provider;
+                if(eadEmbed.newprovider != ''){
+                    eadEmbed.shortcodeAttrs.viewer  = eadEmbed.newprovider;
+                }
+            }
+        });
+        
+        eadEmbed.newprovider= '';
+
         if (ead_itemcheck('text', item) && download!='none' ) {
-            textstr = ' text="' + text + '"';
+            eadEmbed.shortcodeAttrs.text = text;
         }
 
         if (provider == 'google') {
             $('#eadcachemain').show();
             if (cache) {
-                cachestr = ' cache="off"';
+                eadEmbed.shortcodeAttrs.cache = off;
             }
         } else {
             $('#eadcachemain').hide();
@@ -173,19 +196,28 @@ jQuery(document).ready(function($) {
             $('.ead-browser-viewer-note').hide();
         }
 
-        return '[embeddoc url="' + url + '"' + widthstr + heightstr + downloadstr + providerstr + cachestr + drivestr + textstr +']';
+        $embed_popup.trigger('ead_embed_shortcodetext', [eadEmbed.shortcode]);
+        var attrs = "";
+       
+        $.each(eadEmbed.shortcodeAttrs,function(index,item){
+            attrs += index+'="'+item+'" ';
+        });
+    
+        var embed_shortcode = '[embeddoc '+attrs +']';
+        return embed_shortcode;
     }
     // Checks with default setting value
-    function ead_itemcheck(item, dataitem) {
+    function ead_itemcheck(item, dataitem) { 
         var check = $('#ead-' + item).val();
         if(!check) return false;
         var datacheck = 'ead-' + item;
-        if (datacheck == dataitem) {
+        if (datacheck == dataitem) { 
             return true;
         } else if (check != emebeder[item]) {
             return true;
         }
         return false;
+
     }
     //Print uploaded file details
     function ead_uploaddetails(file, uClass) {
@@ -266,7 +298,8 @@ jQuery(document).ready(function($) {
     
     //Update ShortCode
     function ead_updateshortcode(item) {
-        item = typeof item !== 'undefined' ? item : false; 
+        item = typeof item !== 'undefined' ? item : false;
+
         if (fileurl) {
             $shortcode.text(getshortcode(fileurl, item));
         } else {
@@ -320,7 +353,7 @@ jQuery(document).ready(function($) {
         $('.ead-browser-viewer-note').hide();
 
         if ($.inArray(provider, cprovider) !== -1) {
-            if ($.inArray(ext, validext) === -1) {
+            if ($.inArray(ext, validext) === -1) { 
                 newprovider = "google";
                 $("#new-provider option[value='google']").attr("selected", "selected");
                 $("#new-provider option[value='microsoft']").attr({

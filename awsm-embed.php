@@ -730,17 +730,17 @@ class Awsm_embed {
 	 * @param mixed  $selected Optional. One of the values to compare. Default empty.
 	 * @param string $class Optional. 'class' attribute value. Default empty.
 	 */
-	public function selectbuilder( $name, $options, $selected = '', $class = '' ) {
+	public function selectbuilder( $name, $options, $selected = '', $class = '', $attr = '' ) {
 		if ( is_array( $options ) ) :
-			echo '<select name="' . esc_attr( $name ) . '" id="' . esc_attr( $name ) . '" class="' . esc_attr( $class ) . '">';
+			$select_html = '<select name="' . esc_attr( $name ) . '" id="' . esc_attr( $name ) . '" class="' . esc_attr( $class ) . '" ' . $attr . '>';
 			foreach ( $options as $key => $option ) {
-				echo '<option value="' . esc_attr( $key ) . '"';
-				if ( $key == $selected ) {
-					echo ' selected="selected"';
+				$selected_html = '';
+				if ( $key === $selected ) {
+					$selected_html = ' selected="selected"';
 				}
-				echo '>' . esc_html( $option ) . "</option>\n";
+				$select_html .= '<option value="' . esc_attr( $key ) . '" ' . $selected_html . '>' . esc_html( $option ) . '</option>';
 			}
-			echo '</select>';
+			echo $select_html .= '</select>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		endif;
 	}
 
