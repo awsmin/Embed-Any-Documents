@@ -131,7 +131,7 @@ jQuery(document).ready(function($) {
     };
     $(window).resize( function() { ead_tb_position() } );
     //to getshortcode
-    function getshortcode(url, item) { 
+    function getshortcode(url, item) {
         var height = ead_sanitize($('#ead-height').val()),
             width = ead_sanitize($('#ead-width').val()),
             download = $('#ead-download').val(),
@@ -144,47 +144,39 @@ jQuery(document).ready(function($) {
             providerstr = "",
             textstr="",
             cachestr="",
-            drivestr = "";  
-
-        eadEmbed.shortcodeAttrs = {
-            url: url
-        };
-
+            drivestr = "";
         if (ead_itemcheck('height', item)) {
-            eadEmbed.shortcodeAttrs.height = height;
+            heightstr = ' height="' + height + '"';
         }
         if (ead_itemcheck('width', item)) {
-            eadEmbed.shortcodeAttrs.width = width;
+            widthstr = ' width="' + width + '"';
         }
-
         if (ead_itemcheck('download', item)) {
-            eadEmbed.shortcodeAttrs.download = download;
+            downloadstr = ' download="' + download + '"';
+
+        }
+        if (ead_itemcheck('provider', item)) {
+            providerstr = ' viewer="' + provider + '"';
         }
 
-        if (ead_itemcheck('provider', item)) { 
-            eadEmbed.shortcodeAttrs.viewer = provider;
-        } 
-
-
-        $('#embed-popup [data-setting]').each(function() { 
+      /*  $('#embed-popup [data-setting]').each(function() { 
             if ($(this).data('setting') == 'viewer') {
-                eadEmbed.shortcodeAttrs.viewer = provider;
+                providerstr = ' viewer="' + provider + '"';
                 if(eadEmbed.newprovider != ''){
-                    eadEmbed.shortcodeAttrs.viewer  = eadEmbed.newprovider;
+                    providerstr = ' viewer="' + eadEmbed.newprovider + '"';
                 }
             }
-        });
-        
-        eadEmbed.newprovider= '';
+            eadEmbed.newprovider= '';
+        });*/
 
         if (ead_itemcheck('text', item) && download!='none' ) {
-            eadEmbed.shortcodeAttrs.text = text;
+            textstr = ' text="' + text + '"';
         }
 
         if (provider == 'google') {
             $('#eadcachemain').show();
             if (cache) {
-                eadEmbed.shortcodeAttrs.cache = off;
+                cachestr = ' cache="off"';
             }
         } else {
             $('#eadcachemain').hide();
@@ -196,28 +188,19 @@ jQuery(document).ready(function($) {
             $('.ead-browser-viewer-note').hide();
         }
 
-        $embed_popup.trigger('ead_embed_shortcodetext', [eadEmbed.shortcode]);
-        var attrs = "";
-       
-        $.each(eadEmbed.shortcodeAttrs,function(index,item){
-            attrs += index+'="'+item+'" ';
-        });
-    
-        var embed_shortcode = '[embeddoc '+attrs +']';
-        return embed_shortcode;
+        return '[embeddoc url="' + url + '"' + widthstr + heightstr + downloadstr + providerstr + cachestr + drivestr + textstr +']';
     }
     // Checks with default setting value
     function ead_itemcheck(item, dataitem) { 
-        var check = $('#ead-' + item).val();
+        var check = $('#ead-' + item).val(); 
         if(!check) return false;
         var datacheck = 'ead-' + item;
-        if (datacheck == dataitem) { 
+        if (datacheck == dataitem) {
             return true;
         } else if (check != emebeder[item]) {
             return true;
         }
         return false;
-
     }
     //Print uploaded file details
     function ead_uploaddetails(file, uClass) {
