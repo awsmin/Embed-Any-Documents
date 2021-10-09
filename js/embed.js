@@ -9,7 +9,7 @@ jQuery(document).ready(function($) {
         ead_human_file_size(bytes);
     }
 
-    eadEmbed.newprovider = "";
+    eadEmbed.newprovider = '';
 
     var $embedurl = $('#awsm-url'),
         $shortcode = $('#shortcode'),
@@ -159,15 +159,15 @@ jQuery(document).ready(function($) {
             providerstr = ' viewer="' + provider + '"';
         }
 
-      /*  $('#embed-popup [data-setting]').each(function() { 
+        $('#embed-popup [data-setting]').each(function() { 
             if ($(this).data('setting') == 'viewer') {
                 providerstr = ' viewer="' + provider + '"';
-                if(eadEmbed.newprovider != ''){
+                if(eadEmbed.newprovider != ''){ 
                     providerstr = ' viewer="' + eadEmbed.newprovider + '"';
                 }
             }
             eadEmbed.newprovider= '';
-        });*/
+        });
 
         if (ead_itemcheck('text', item) && download!='none' ) {
             textstr = ' text="' + text + '"';
@@ -194,7 +194,7 @@ jQuery(document).ready(function($) {
     function ead_itemcheck(item, dataitem) { 
         var check = $('#ead-' + item).val(); 
         if(!check) return false;
-        var datacheck = 'ead-' + item;
+        var datacheck = 'ead-' + item; 
         if (datacheck == dataitem) {
             return true;
         } else if (check != emebeder[item]) {
@@ -335,7 +335,10 @@ jQuery(document).ready(function($) {
         });
         $('.ead-browser-viewer-note').hide();
 
-        if ($.inArray(provider, cprovider) !== -1) {
+      
+        if ($.inArray(provider, cprovider) !== -1) { 
+            $('#new-provider option:selected').removeAttr('selected');
+
             if ($.inArray(ext, validext) === -1) { 
                 newprovider = "google";
                 $("#new-provider option[value='google']").attr("selected", "selected");
@@ -343,9 +346,12 @@ jQuery(document).ready(function($) {
                     'disabled': true,
                     'hidden': true
                 });
+
+                $("#ead-provider").val($("#new-provider option[value='google']").val());
             } else {
                 newprovider = "microsoft";
                 $("#new-provider option[value='microsoft']").attr("selected", "selected");
+                $("#ead-provider").val($("#new-provider option[value='microsoft']").val());
             }
 
             // Hide the Browser viewer and built-in viewer if the extension is not pdf and also if the provider is not in the supported providers list.
