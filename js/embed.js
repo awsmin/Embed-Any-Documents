@@ -144,10 +144,12 @@ jQuery(document).ready(function($) {
             providerstr = "",
             textstr="",
             cachestr="",
-            drivestr = "";
+            drivestr = ""; 
+
         if (ead_itemcheck('height', item)) {
             heightstr = ' height="' + height + '"';
         }
+
         if (ead_itemcheck('width', item)) {
             widthstr = ' width="' + width + '"';
         }
@@ -159,7 +161,12 @@ jQuery(document).ready(function($) {
             providerstr = ' viewer="' + provider + '"';
         }
 
-        $('#embed-popup [data-setting]').each(function() { 
+        if(eadEmbed.newprovider != ''){ 
+            providerstr = ' viewer="' + eadEmbed.newprovider + '"';
+        }
+         eadEmbed.newprovider= '';
+
+        /*$('#embed-popup [data-setting]').each(function() { 
             if ($(this).data('setting') == 'viewer') {
                 providerstr = ' viewer="' + provider + '"';
                 if(eadEmbed.newprovider != ''){ 
@@ -167,7 +174,7 @@ jQuery(document).ready(function($) {
                 }
             }
             eadEmbed.newprovider= '';
-        });
+        });*/
 
         if (ead_itemcheck('text', item) && download!='none' ) {
             textstr = ' text="' + text + '"';
@@ -199,7 +206,7 @@ jQuery(document).ready(function($) {
             return true;
         } else if (check != emebeder[item]) {
             return true;
-        }
+        } console.log(item);
         return false;
     }
     //Print uploaded file details
@@ -335,7 +342,6 @@ jQuery(document).ready(function($) {
         });
         $('.ead-browser-viewer-note').hide();
 
-      
         if ($.inArray(provider, cprovider) !== -1) { 
             $('#new-provider option:selected').removeAttr('selected');
 
