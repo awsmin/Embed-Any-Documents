@@ -96,7 +96,7 @@ class Awsm_embed_Guten_blocks {
 	 * @param array $atts Attributes array.
 	 * @return string
 	 */
-	public function block_render_callback( $atts ) {
+	public function block_render_callback( $atts ) { 
 		$embed         = '';
 		$class_name    = isset( $atts['className'] ) ? $atts['className'] : '';
 		$shortcode     = isset( $atts['shortcode'] ) ? $atts['shortcode'] : '';

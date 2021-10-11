@@ -42,10 +42,10 @@ class EadServerSideRender extends Component {
 			this.fetch( this.props );
 		}
 
-		if ( this.state.response !== prevState.response && null !== this.eadRef.current ) {
+		if ( this.state.response !== prevState.response && null !== this.eadRef.current ) { 
 			const { attributes = null } = this.props; 
 
-			if ( ( attributes !== null && attributes ) && ( attributes.viewer === 'google' || attributes.viewer === 'browser' || attributes.viewer === 'built-in' ) ) {
+			if ( ( attributes !== null && attributes ) && ( attributes.viewer === 'google' || attributes.viewer === 'browser' || attributes.viewer === 'built-in' ) ) { 
 				let viewer = attributes.viewer;
 				let currentRef = this.eadRef.current;
 				let documentWrapper = jQuery(currentRef).find('.ead-document');
@@ -60,7 +60,7 @@ class EadServerSideRender extends Component {
 					});
 				}
 
-				if ( viewer === 'browser' || viewer === 'built-in' ) {
+				if ( viewer === 'browser' || viewer === 'built-in' ) { 
 					let src = documentWrapper.data('pdfSrc');
 					viewer = typeof src !== 'undefined' && src.length > 0 && viewer.length > 0 ? viewer : false;
 					let isBuiltInViewer = 'pdfjs' in eadPublic && eadPublic.pdfjs && eadPublic.pdfjs.length > 0 && viewer === 'built-in';

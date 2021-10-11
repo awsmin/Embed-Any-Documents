@@ -68,23 +68,25 @@ class EadInspector extends Component {
             <InspectorControls>
                 <PanelBody>
                     <TextControl label={ __( 'Width', 'embed-any-document' ) } help={ __( 'Width of document either in px or in %', 'embed-any-document' ) } value={ width } onChange={ width => setAttributes( { width } ) } />
-                </PanelBody>
+                 </PanelBody>
 
                 <PanelBody>
                     <TextControl label={ __( 'Height', 'embed-any-document' ) } help={ __( 'Height of document either in px or in %', 'embed-any-document' ) } value={ height } onChange={ height => setAttributes( { height } ) } />
                 </PanelBody>
 
+               {enableViewerControl && [
                 <PanelBody>
                     <SelectControl label={ __( 'Show Download Link', 'embed-any-document' ) } options={[
                         { value: 'all', label: __( 'For all users', 'embed-any-document' ) },
                         { value: 'logged', label: __( 'For Logged-in users', 'embed-any-document' ) },
                         { value: 'none', label: __( 'No Download', 'embed-any-document' ) }
                     ]} value={ download } onChange={ this.downloadControlhandle } />
-                </PanelBody>
-                <PanelBody>{ downloadTextControl }</PanelBody>
-                <PanelBody>
+                </PanelBody>,
+                   <PanelBody>{ downloadTextControl }</PanelBody>,
+                   <PanelBody>
                     <SelectControl label={ __( 'Viewer', 'embed-any-document' ) } options={ viewerOptions } value={ viewer } onChange={ this.viewerControlHandle } />
                 </PanelBody>
+                ]}
 
                 { ! this.state.cacheHidden && <PanelBody>
                     <ToggleControl label={ __( 'Cache', 'embed-any-document' ) } checked={ cache } onChange={ cache => setAttributes( { cache } ) } />

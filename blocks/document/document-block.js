@@ -902,7 +902,7 @@ var EadInspector = /*#__PURE__*/function (_Component) {
             height: height
           });
         }
-      })), wp.element.createElement(PanelBody, null, wp.element.createElement(SelectControl, {
+      })), enableViewerControl && [wp.element.createElement(PanelBody, null, wp.element.createElement(SelectControl, {
         label: __('Show Download Link', 'embed-any-document'),
         options: [{
           value: 'all',
@@ -921,7 +921,7 @@ var EadInspector = /*#__PURE__*/function (_Component) {
         options: viewerOptions,
         value: viewer,
         onChange: this.viewerControlHandle
-      })), !this.state.cacheHidden && wp.element.createElement(PanelBody, null, wp.element.createElement(ToggleControl, {
+      }))], !this.state.cacheHidden && wp.element.createElement(PanelBody, null, wp.element.createElement(ToggleControl, {
         label: __('Cache', 'embed-any-document'),
         checked: cache,
         onChange: function onChange(cache) {
