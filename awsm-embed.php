@@ -22,6 +22,8 @@ if ( ! defined( 'AWSM_EMBED_VERSION' ) ) {
 	define( 'AWSM_EMBED_VERSION', '3.0.0' );
 }
 
+require_once plugin_dir_path( __FILE__ ) . '/lib/fs-init.php';
+
 /**
  * Embed Any Document Main Class.
  */
