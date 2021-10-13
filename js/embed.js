@@ -164,17 +164,8 @@ jQuery(document).ready(function($) {
         if(eadEmbed.newprovider != ''){ 
             providerstr = ' viewer="' + eadEmbed.newprovider + '"';
         }
-         eadEmbed.newprovider= '';
-
-        /*$('#embed-popup [data-setting]').each(function() { 
-            if ($(this).data('setting') == 'viewer') {
-                providerstr = ' viewer="' + provider + '"';
-                if(eadEmbed.newprovider != ''){ 
-                    providerstr = ' viewer="' + eadEmbed.newprovider + '"';
-                }
-            }
-            eadEmbed.newprovider= '';
-        });*/
+        
+        eadEmbed.newprovider= '';
 
         if (ead_itemcheck('text', item) && download!='none' ) {
             textstr = ' text="' + text + '"';
@@ -343,7 +334,6 @@ jQuery(document).ready(function($) {
         $('.ead-browser-viewer-note').hide();
 
         if ($.inArray(provider, cprovider) !== -1) { 
-            $('#new-provider option:selected').removeAttr('selected');
 
             if ($.inArray(ext, validext) === -1) { 
                 newprovider = "google";

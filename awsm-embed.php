@@ -659,9 +659,9 @@ class Awsm_embed {
 	 * @param string       $id 'id' attribute value for anchor tag.
 	 * @param string       $provider Service provider.
 	 */
-	public function providerlink_viewer($key,$id,$provider) {
+	public function providerlink_viewer($key,$id,$provider) { 
 		if(! get_option( $key )){
-			$link      = 'options-general.php?page=ead-settings';
+			$link      = 'options-general.php?page='.$this->settings_slug;
 			$id        = '';
 			$configure = '';
 			$target    = 'target="_blank"';
@@ -671,7 +671,7 @@ class Awsm_embed {
 			$target    = '';
 		}
 		/* translators: %1$s: Service provider */
-		$imageurl = esc_url( plugins_url( 'images/icon-'. strtolower( $provider ) . '.png', __FILE__ ) );
+		$imageurl = esc_url( plugins_url( 'images/icon-'. strtolower( $provider ) . '.svg', __FILE__ ) );
 
 		/* translators: %1$s: Service provider */
 		$linktext = sprintf( __( 'Add from %1$s', 'embed-any-document' ), $provider );
