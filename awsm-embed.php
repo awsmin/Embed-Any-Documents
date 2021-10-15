@@ -558,6 +558,7 @@ class Awsm_embed {
 			}
 
 			$doc_style = self::build_style_attr( $doc_style_attrs );
+
 			$embed     = sprintf( '<div class="ead-preview"><div class="ead-document" %3$s>%1$s</div>%2$s</div>', $iframe, $durl, $doc_style . $data_attr );
 		else :
 			$embed = esc_html__( 'No Url Found', 'embed-any-document' );
@@ -571,7 +572,7 @@ class Awsm_embed {
 		 * @param string $embed The embedded content.
 		 * @param array $shortcode_atts The shortcode attributes.
 		 */
-		$embed = apply_filters( 'awsm_ead_content', $embed, $shortcode_atts );
+		$embed = apply_filters( 'awsm_ead_content', $embed, $shortcode_atts, $durl );
 
 		return $embed;
 	}
