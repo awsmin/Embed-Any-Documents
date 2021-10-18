@@ -82,7 +82,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 							<div class="f-left" id="ead-pseudo">
 								<label><?php esc_html_e( 'Viewer', 'embed-any-document' ); ?></label>
-								<select name="ead-pseudo">
+								<select name="ead-pseudo" disabled>
 									<option value="box"><?php esc_html_e( 'Box', 'embed-any-document' ); ?></option>
 									<option value="drive"><?php esc_html_e( 'Drive', 'embed-any-document' ); ?></option>
 								</select>

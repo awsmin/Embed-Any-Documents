@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {
+jQuery(document).ready(function($) { 
     var eadEmbed = window.eadEmbed = window.eadEmbed || {};
 
     eadEmbed.updateprovider = function(file,handle) {
@@ -131,7 +131,7 @@ jQuery(document).ready(function($) {
     };
     $(window).resize( function() { ead_tb_position() } );
     //to getshortcode
-    function getshortcode(url, item) {
+    function getshortcode(url, item) { 
         var height = ead_sanitize($('#ead-height').val()),
             width = ead_sanitize($('#ead-width').val()),
             download = $('#ead-download').val(),
@@ -163,6 +163,7 @@ jQuery(document).ready(function($) {
 
         if(eadEmbed.newprovider != ''){ 
             providerstr = ' viewer="' + eadEmbed.newprovider + '"';
+            provider=eadEmbed.newprovider;
         }
         
         eadEmbed.newprovider= '';
@@ -171,7 +172,7 @@ jQuery(document).ready(function($) {
             textstr = ' text="' + text + '"';
         }
 
-        if (provider == 'google') {
+        if (provider == 'google') { 
             $('#eadcachemain').show();
             if (cache) {
                 cachestr = ' cache="off"';

@@ -8,6 +8,8 @@ if ( ! function_exists( 'ead_fs' ) ) {
             // Include Freemius SDK.
             require_once dirname(__FILE__) . '/freemius/start.php';
 
+            $fs_secret_key = defined( 'AWSM_EAD_FS_SECRET_KEY' ) ? AWSM_EAD_FS_SECRET_KEY : '';
+
             $ead_fs = fs_dynamic_init( array(
                 'id'                  => '9010',
                 'slug'                => 'embed-any-document',
@@ -17,12 +19,15 @@ if ( ! function_exists( 'ead_fs' ) ) {
                 'has_addons'          => true,
                 'has_paid_plans'      => false,
                 'is_org_compliant'    => false,
+                'navigation'          => 'tabs',
                 'menu'                => array(
                     'slug'           => 'ead-settings',
                     'account'        => false,
                     'contact'        => false,
                     'support'        => false,
                 ),
+                // Development only.
+                'secret_key'       => $fs_secret_key,
             ) );
         }
 
