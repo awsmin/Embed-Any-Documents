@@ -9,7 +9,9 @@ jQuery(document).ready(function($) {
         ead_human_file_size(bytes);
     }
 
-    eadEmbed.newprovider = '';
+    eadEmbed.setpseudo = function(viewer) {
+        setpseudo(viewer);
+    };
 
     var $embedurl = $('#awsm-url'),
         $shortcode = $('#shortcode'),
@@ -17,6 +19,7 @@ jQuery(document).ready(function($) {
         $ActionPanel = $('.mceActionPanel'),
         $container = $('.ead-container'),
         fileurl = "",
+        filedata={},
         newprovider = "",
         frame,
         msextension = emebeder.msextension,
@@ -97,6 +100,7 @@ jQuery(document).ready(function($) {
     //update provider
     function ead_updateprovider(file, uClass) {
         fileurl = file.url;
+        filedata = file; 
         ead_valid_viewer(file, uClass);
         ead_updateshortcode();
         ead_uploaddetails(file, uClass);
@@ -131,7 +135,7 @@ jQuery(document).ready(function($) {
     };
     $(window).resize( function() { ead_tb_position() } );
     //to getshortcode
-    function getshortcode(url, item) { 
+    function getshortcode(filedata, item) { 
         var height = ead_sanitize($('#ead-height').val()),
             width = ead_sanitize($('#ead-width').val()),
             download = $('#ead-download').val(),
@@ -146,48 +150,50 @@ jQuery(document).ready(function($) {
             cachestr="",
             drivestr = ""; 
 
-        if (ead_itemcheck('height', item)) {
-            heightstr = ' height="' + height + '"';
+        eadEmbed.shortcodeAttrs = {};
+
+        if(filedata.url){
+            eadEmbed.shortcodeAttrs.url = filedata.url;
         }
 
+        if (ead_itemcheck('height', item)) {
+            eadEmbed.shortcodeAttrs.height = height;
+        }
         if (ead_itemcheck('width', item)) {
-            widthstr = ' width="' + width + '"';
+            eadEmbed.shortcodeAttrs.width = width;
         }
         if (ead_itemcheck('download', item)) {
-            downloadstr = ' download="' + download + '"';
-
+            eadEmbed.shortcodeAttrs.download = download;
         }
-        if (ead_itemcheck('provider', item)) {
-            providerstr = ' viewer="' + provider + '"';
-        }
-
-        if(eadEmbed.newprovider != ''){ 
-            providerstr = ' viewer="' + eadEmbed.newprovider + '"';
-            provider=eadEmbed.newprovider;
-        }
-        
-        eadEmbed.newprovider= '';
-
+        if (ead_itemcheck('provider', item)) { 
+            eadEmbed.shortcodeAttrs.viewer = provider;
+        } 
+       
         if (ead_itemcheck('text', item) && download!='none' ) {
-            textstr = ' text="' + text + '"';
+            eadEmbed.shortcodeAttrs.text = text;
         }
 
-        if (provider == 'google') { 
+        eadEmbed.file = filedata;
+
+        if (provider == 'google') {
             $('#eadcachemain').show();
             if (cache) {
-                cachestr = ' cache="off"';
+                eadEmbed.shortcodeAttrs.cache = off;
             }
         } else {
             $('#eadcachemain').hide();
-        }
-
-        if (provider === 'browser') {
-            $('.ead-browser-viewer-note').show();
-        } else {
             $('.ead-browser-viewer-note').hide();
         }
 
-        return '[embeddoc url="' + url + '"' + widthstr + heightstr + downloadstr + providerstr + cachestr + drivestr + textstr +']';
+        $embed_popup.trigger('ead_embed_shortcodetext', [eadEmbed.shortcodeAttrs,eadEmbed.file]);
+        var attrs = "";
+       
+        $.each(eadEmbed.shortcodeAttrs,function(index,item){
+            attrs += index+'="'+item+'" ';
+        });
+    
+        var embed_shortcode = '[embeddoc '+attrs +']';
+        return embed_shortcode;
     }
     // Checks with default setting value
     function ead_itemcheck(item, dataitem) { 
@@ -282,8 +288,8 @@ jQuery(document).ready(function($) {
     function ead_updateshortcode(item) {
         item = typeof item !== 'undefined' ? item : false;
 
-        if (fileurl) {
-            $shortcode.text(getshortcode(fileurl, item));
+        if (filedata) {
+            $shortcode.text(getshortcode(filedata, item));
         } else {
             $shortcode.text('');
         }
@@ -367,6 +373,14 @@ jQuery(document).ready(function($) {
             }
         }
     }
+
+    function setpseudo(viewer){
+        $('#new-provider').hide();
+        $('#ead-pseudo').show();
+        $('#ead-downloadc').hide();
+        $('select[name="ead-pseudo"]').val(viewer);
+    }
+
     //Download text show
     function ead_customize_popup(){
         if($('#ead-download').val()=="none"){
@@ -387,6 +401,7 @@ jQuery(document).ready(function($) {
         $('#insert-doc').attr('disabled', 'disabled');
         $('#new-provider').show();
         $('#ead-pseudo').hide();
+        $('select[name="ead-pseudo"]').val('');
         newprovider = "";
         $("#new-provider  option[value='microsoft']").attr('disabled', false);
         $('#ead-downloadc').show();

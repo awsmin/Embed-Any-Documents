@@ -88,13 +88,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php endif; ?>
 				<?php if ( $settings_tab === 'cloud' ) : ?>
 				<form method="post" action="options.php">
-					<?php settings_fields( 'ead-settings-group' ); ?>
+					<?php settings_fields( 'ead-cloud-group' ); ?>
 					<div class="form-table">
 						<ul class="cloudform">
 				<?php
-
-					/**
-					 * Hook: after_awsm_ead_general_settings.
+				/**
+					 * Hook: after_awsm_ead_general_settings..
+					 *
+					 * @since 3.0.0
 					 */
 					do_action( 'after_awsm_ead_general_settings' );
 				?>

@@ -234,7 +234,7 @@ class Awsm_embed {
 	 *
 	 * @param array $shortcode_atts The shortcode attributes.
 	 */
-	public static function get_iframe_preloader( $shortcode_atts ) {
+	public static function get_iframe_preloader( $shortcode_atts ) { 
 		if ( ! isset( $shortcode_atts['viewer'] ) || ! isset( $shortcode_atts['url'] ) ) {
 			return;
 		}
@@ -466,6 +466,7 @@ class Awsm_embed {
 				}
 			}
 
+
 			if ( $this->allowdownload( $shortcode_atts['viewer'] ) ) {
 				if ( $shortcode_atts['download'] === 'alluser' || $shortcode_atts['download'] === 'all' ) {
 					$show = true;
@@ -660,9 +661,9 @@ class Awsm_embed {
 	 * @param string       $id 'id' attribute value for anchor tag.
 	 * @param string       $provider Service provider.
 	 */
-	public function providerlink_viewer($key,$id,$provider) { 
-		if(! get_option( $key )){
-			$link      = 'options-general.php?page='.$this->settings_slug;
+	public function providerlink_viewer($keys,$id,$provider) { 
+		if ( $this->isprovider_api( $keys ) ) {
+			$link      = 'options-general.php?page='.$this->settings_slug. '&tab=cloud';;
 			$id        = '';
 			$configure = '';
 			$target    = 'target="_blank"';
@@ -705,6 +706,29 @@ class Awsm_embed {
 		);
 
 		return $link_content;
+	}
+
+	/**
+	 * Check Provider API.
+	 *
+	 * @param string|array $keys Option name.
+	 * @return bool
+	 */
+	public function isprovider_api( $keys ) {
+		$itemflag = false;
+		if ( is_array( $keys ) ) {
+			foreach ( $keys as $key ) {
+				if ( ! get_option( $key ) ) {
+					$itemflag = true;
+					break;
+				}
+			}
+		} else {
+			if ( ! get_option( $keys ) ) {
+				$itemflag = true;
+			}
+		}
+		return $itemflag;
 	}
 
 	/**
