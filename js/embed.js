@@ -178,7 +178,7 @@ jQuery(document).ready(function($) {
         if (provider == 'google') {
             $('#eadcachemain').show();
             if (cache) {
-                eadEmbed.shortcodeAttrs.cache = off;
+                eadEmbed.shortcodeAttrs.cache = "off";
             }
         } else {
             $('#eadcachemain').hide();
