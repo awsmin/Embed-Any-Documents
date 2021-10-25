@@ -207,6 +207,7 @@ class Awsm_embed {
 				'verify'        => __( 'Verifying...', 'embed-any-document' ),
 				'from_url'      => __( 'From URL', 'embed-any-document' ),
 				'select_button' => __( 'Select', 'embed-any-document' ),
+				'nopublic'      => __( 'The document you have chosen is a not public.', 'embed-any-document' ) . __( ' Only the owner and explicitly shared collaborators will be able to view it.', 'embed-any-document' ),
 			)
 		);
 	}

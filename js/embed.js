@@ -13,6 +13,10 @@ jQuery(document).ready(function($) {
         setpseudo(viewer);
     };
 
+    eadEmbed.ead_showmsg = function(msg){
+        ead_showmsg(msg);
+    };
+
     var $embedurl = $('#awsm-url'),
         $shortcode = $('#shortcode'),
         $message = $('#embed-message p'),
