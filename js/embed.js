@@ -284,7 +284,7 @@ jQuery(document).ready(function($) {
             }
             ead_remove_pop();
         } else {
-            showmsg(emebeder.nocontent);
+            ead_showmsg(emebeder.nocontent);
         }
     }
     

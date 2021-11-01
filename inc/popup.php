@@ -22,6 +22,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="ead-container">
 				<form action="" onSubmit="return false" method="post" enctype="multipart/form-data" id="docuploader">
 					<ul class="ead-options">
+						<?php
+							/**
+							 * Hook: before_awsm_ead_viewer_options.
+							 *
+							 * @since 3.0.0
+							 */
+							do_action( 'before_awsm_ead_viewer_options' );
+						?>
 						<li>
 							<a href="#" id="upload-doc"><span><img src="<?php echo esc_url( $this->plugin_url ); ?>images/icon-upload.png" alt="Upload document"/><?php esc_html_e( 'Upload Document', 'embed-any-document' ); ?></span></a>
 						</li>
@@ -96,6 +104,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<div class="f-left last" id="ead-pseudo" style="display:none">
 								<label><?php esc_html_e( 'Viewer', 'embed-any-document' ); ?></label>
 								<select name="ead-pseudo" disabled>
+									<?php
+										/**
+										 * Hook: before_awsm_ead_provider.
+										 *
+										 * @since 3.0.0
+										 */
+										do_action( 'before_awsm_ead_provider' );
+									?>
 									<?php
 										/**
 										 * Hook: after_awsm_ead_provider.

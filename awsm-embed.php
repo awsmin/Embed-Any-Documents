@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: Embed Any Document
- * Plugin URI: http://awsm.in/embed-any-documents
+ * Plugin URI: https://embedanydocument.com
  * Description: Embed Any Document WordPress plugin lets you upload and embed your documents easily in your WordPress website without any additional browser plugins like Flash or Acrobat reader. The plugin lets you choose between Google Docs Viewer and Microsoft Office Online to display your documents.
- * Version: 2.7.0
+ * Version: 3.0.0
  * Author: Awsm Innovations
  * Author URI: https://awsm.in
  * License: GPL V3
@@ -184,10 +184,8 @@ class Awsm_embed {
 		}
 		wp_enqueue_script( 'ead_media_button', plugins_url( 'js/embed.min.js', $this->plugin_file ), $script_deps, $this->plugin_version, true );
 		wp_enqueue_style( 'ead_media_button', plugins_url( 'css/embed.min.css', $this->plugin_file ), false, $this->plugin_version, 'all' );
-		wp_localize_script(
-			'ead_media_button',
-			'emebeder',
-			array(
+
+		$localized_script_data = array(
 				'viewers'       => array_keys( self::get_viewers() ),
 				'height'        => get_option( 'ead_height', '100%' ),
 				'width'         => get_option( 'ead_width', '100%' ),
@@ -208,8 +206,17 @@ class Awsm_embed {
 				'from_url'      => __( 'From URL', 'embed-any-document' ),
 				'select_button' => __( 'Select', 'embed-any-document' ),
 				'nopublic'      => __( 'The document you have chosen is a not public.', 'embed-any-document' ) . __( ' Only the owner and explicitly shared collaborators will be able to view it.', 'embed-any-document' ),
-			)
-		);
+			);
+
+		/**
+		 * Filters the public script localized data.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param array $localized_script_data Localized data array.
+		 */
+		$localized_script_data = apply_filters( 'awsm_ead_localized_script_data', $localized_script_data );
+		wp_localize_script( 'ead_media_button', 'emebeder', $localized_script_data );
 	}
 
 	/**
@@ -438,7 +445,7 @@ class Awsm_embed {
 				'download' => $default_download,
 				'cache'    => 'on',
 			),
-			$atts
+			$atts 
 		);
 
 		wp_enqueue_style( 'awsm-ead-public' );
@@ -513,8 +520,16 @@ class Awsm_embed {
 					break;
 			}
 
-			$iframe_src = apply_filters( 'awsm_ead_iframe_src_change', $iframe_src, $shortcode_atts); 
-			
+			/**
+			 * Add the iframe src.
+			 *
+			 * @since 3.0.0
+			 *
+			 * @param string $iframe_src The iframe src variable.
+			 * @param array $shortcode_atts The shortcode attributes.
+			 */
+			$iframe_src = apply_filters( 'awsm_ead_iframe_src', $iframe_src, $shortcode_atts); 
+
 			$iframe_style_attrs = array();
 			$doc_style_attrs    = array(
 				'position' => 'relative',
@@ -555,7 +570,16 @@ class Awsm_embed {
 				unset( $doc_style_attrs['visibility'] );
 			}
 
-			$iframe_style = self::build_style_attr( $iframe_style_attrs );
+			/**
+			 * iframe style attributes.
+			 *
+			 * @since 3.0.0
+			 *
+			 * @param string $iframe_style_attrs The iframe stle attributes variable.
+			 */
+			$iframe_style_attrs = self::build_style_attr( $iframe_style_attrs );
+			$iframe_style       = apply_filters( 'awsm_ead_iframe_style_attrs', $iframe_style_attrs );
+
 			$iframe       = sprintf( '<iframe src="%s" title="%s" class="ead-iframe" %s></iframe>', esc_attr( $iframe_src ), esc_html__( 'Embedded Document', 'embed-any-document' ), $iframe_style );
 
 			if ( $enable_preloader ) {
@@ -574,11 +598,14 @@ class Awsm_embed {
 		 * Customize the embedded content.
 		 *
 		 * @since 2.6.0
+		 * @since 3.0.0 $iframe_attrs is added.
 		 *
 		 * @param string $embed The embedded content.
 		 * @param array $shortcode_atts The shortcode attributes.
+		 * @param array $iframe_attrs The iframe attributes.
 		 */
-		$embed = apply_filters( 'awsm_ead_content', $embed, $shortcode_atts, $durl );
+		$iframe_attrs['durl'] = $durl;
+		$embed = apply_filters( 'awsm_ead_content', $embed, $shortcode_atts, $iframe_attrs );
 
 		return $embed;
 	}
