@@ -270,7 +270,7 @@ jQuery(document).ready(function($) {
     
 
     function ead_shortcode() {
-        if (fileurl) {
+        if (filedata) {
             // @rel: document guten-block
             var ins_shortcode = true;
             if(typeof wp.blocks !== 'undefined') {

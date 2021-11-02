@@ -52,42 +52,49 @@ class Awsm_embed_Guten_blocks {
 			return;
 		}
 
-		register_block_type(
-			'embed-any-document/document',
-			array(
-				'attributes'      => array(
-					'className' => array(
-						'type' => 'string',
-					),
-					'shortcode' => array(
-						'type' => 'string',
-					),
-					'url'       => array(
-						'type' => 'string',
-					),
-					'width'     => array(
-						'type' => 'string',
-					),
-					'height'    => array(
-						'type' => 'string',
-					),
-					'cache'     => array(
-						'type'    => 'boolean',
-						'default' => true,
-					),
-					'download'  => array(
-						'type' => 'string',
-					),
-					'text'      => array(
-						'type' => 'string',
-					),
-					'viewer'    => array(
-						'type' => 'string',
-					),
+		$dynamic_block_data = array(
+			'attributes'      => array(
+				'className' => array(
+					'type' => 'string',
 				),
-				'render_callback' => array( $this, 'block_render_callback' ),
-			)
+				'shortcode' => array(
+					'type' => 'string',
+				),
+				'url'       => array(
+					'type' => 'string',
+				),
+				'width'     => array(
+					'type' => 'string',
+				),
+				'height'    => array(
+					'type' => 'string',
+				),
+				'cache'     => array(
+					'type'    => 'boolean',
+					'default' => true,
+				),
+				'download'  => array(
+					'type' => 'string',
+				),
+				'text'      => array(
+					'type' => 'string',
+				),
+				'viewer'    => array(
+					'type' => 'string',
+				),
+			),
+			'render_callback' => array( $this, 'block_render_callback' ),
 		);
+
+		/**
+		 * Filters the block attributes data.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param array $localized_script_data Localized data array.
+		 */
+		$dynamic_block_data = apply_filters( 'awsm_ead_dynamic_block_data', $dynamic_block_data );
+		register_block_type( 'embed-any-document/document', $dynamic_block_data );
 	}
 
 	/**
@@ -111,6 +118,16 @@ class Awsm_embed_Guten_blocks {
 				$embed = sprintf( '<div class="%2$s">%1$s</div>', $embed, esc_attr( $class_name ) );
 			}
 		}
+
+		/**
+		 * Customize the embed data.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param string $embed The embedded content.
+		 * @param array $atts Attribute data array.
+		 */
+		$embed = apply_filters( 'awsm_ead_block_render_callback', $embed, $atts );
 		return $embed;
 	}
 

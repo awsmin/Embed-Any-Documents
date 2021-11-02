@@ -419,6 +419,21 @@ class Awsm_embed {
 	}
 
 	/**
+	 * Check if shortcode attribute has url or id.
+	 *
+	 * @param string $shortcode EAD Shortcode.
+	 * @return array
+	 */
+    public static function is_shortcode_valid( $shortcode_atts) {
+        $status = false;
+        if( $shortcode_atts['url'] != '' ){
+          	$status = true;
+        }else if( $shortcode_atts['id'] != '' ){
+			$status = true;
+        }
+        return $status;
+    }
+	/**
 	 * Shortcode Functionality.
 	 *
 	 * @param array $atts The shortcode attributes.
@@ -445,13 +460,15 @@ class Awsm_embed {
 				'download' => $default_download,
 				'cache'    => 'on',
 			),
-			$atts 
+			$atts,
+			'embeddoc'
 		);
-
+		
 		wp_enqueue_style( 'awsm-ead-public' );
 		wp_enqueue_script( 'awsm-ead-public' );
 
-		if ( isset( $shortcode_atts['url'] ) && ! empty( $shortcode_atts['url'] ) ) :
+		//if ( isset( $shortcode_atts['url'] ) && ! empty( $shortcode_atts['url'] ) ) :
+		if ( isset( $shortcode_atts['url'] ) ||  isset( $shortcode_atts['id'] ) ) :
 			// AMP.
 			$is_amp = function_exists( 'is_amp_endpoint' ) && is_amp_endpoint();
 

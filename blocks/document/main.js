@@ -145,6 +145,9 @@ registerBlockType( 'embed-any-document/document', {
 			return (
 				<MediaPlaceholder className="ead-media-placeholder" onSelect={ onSelectDocument } onSelectURL={ onSelectURL } labels = { { title: __( 'Embed Any Document', 'embed-any-document' ), 'instructions':__( 'Upload a document, pick from your media library, or add from an external URL.', 'embed-any-document' ) } } icon={icon.block}  accept={validExtension.join(', ')} allowedTypes={ validTypes } OnError={ onUploadError }>
 					<Fragment>
+					
+					{ wp.hooks.doAction( 'before_awsm_ead_viewer_options' ) }
+				
 					<Button className="ead-button-dropbox disabled" onClick={ providerLink } value="click">{ __( 'Add from dropbox', 'embed-any-document' ) }
                         <span className="overlay">
                         	<span>{ __( 'Pro Feature', 'embed-any-document' ) }</span>
