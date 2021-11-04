@@ -37,7 +37,7 @@ registerBlockType( 'embed-any-document/document', {
 	 * The edit function describes the structure of the block in the context of the editor.
 	 * This represents what the editor will render when the block is used.
 	 */
-	edit: ( props ) => {
+	edit: ( props ) => { 
 		const { attributes, setAttributes, noticeOperations} = props;
 		const { shortcode } = attributes;
 
@@ -133,6 +133,8 @@ registerBlockType( 'embed-any-document/document', {
 			window.open(link, '_blank');
 		}
 
+
+
 		if( typeof shortcode !== 'undefined' ) {
 			return [
 				<EadInspector { ...{ setAttributes, ...props } } />,
@@ -142,17 +144,20 @@ registerBlockType( 'embed-any-document/document', {
 				/>
 			];
 		} else {
-			return (
+			return ( 
 				<MediaPlaceholder className="ead-media-placeholder" onSelect={ onSelectDocument } onSelectURL={ onSelectURL } labels = { { title: __( 'Embed Any Document', 'embed-any-document' ), 'instructions':__( 'Upload a document, pick from your media library, or add from an external URL.', 'embed-any-document' ) } } icon={icon.block}  accept={validExtension.join(', ')} allowedTypes={ validTypes } OnError={ onUploadError }>
-					<Fragment>
+					<Fragment> 
 					
 					{ wp.hooks.doAction( 'before_awsm_ead_viewer_options' ) }
-				
+
+					{ emebeder.addon_active.length === 0 && (
 					<Button className="ead-button-dropbox disabled" onClick={ providerLink } value="click">{ __( 'Add from dropbox', 'embed-any-document' ) }
                         <span className="overlay">
                         	<span>{ __( 'Pro Feature', 'embed-any-document' ) }</span>
                         </span>
 					</Button>
+					)}
+
 					<Button  className="ead-button-drive disabled" onClick={ providerLink } value="click">{ __( 'Add from drive', 'embed-any-document' ) }
  						<span className="overlay">
                         	<span>{ __( 'Pro Feature', 'embed-any-document' ) }</span>
@@ -168,8 +173,9 @@ registerBlockType( 'embed-any-document/document', {
                         	<span>{ __( 'Pro Feature', 'embed-any-document' ) }</span>
                         </span>
 					</Button>
-					 { wp.hooks.doAction( 'after_awsm_ead_viewer_options',viewerList,props,EadHelper.parseShortcode ) }
-					 { viewerList }
+					
+					{ wp.hooks.doAction( 'after_awsm_ead_viewer_options',viewerList,props,EadHelper.parseShortcode ) }
+					{ viewerList }
 					</Fragment>
 				</MediaPlaceholder>
 			);

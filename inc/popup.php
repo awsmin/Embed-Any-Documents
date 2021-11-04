@@ -36,10 +36,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<li>
 							<a href="#" id="add-ead-document"><span><img src="<?php echo esc_url( $this->plugin_url ); ?>images/icon-link.png" alt="Add From URL"/><?php esc_html_e( 'Add from URL', 'embed-any-document' ); ?></span></a>
 						</li>
-						<li><?php $this->providerlink( 'Drive' ); ?></li>
-						<li><?php $this->providerlink( 'Dropbox' ); ?></li>
-						<li><?php $this->providerlink( 'Box' ); ?></li>
-						<li><?php $this->providerlink( 'OneDrive' ); ?></li>
+						<?php if( empty(self::is_addon_active()) ): ?>
+							<li><?php $this->providerlink( 'Drive' ); ?></li>
+							<li><?php $this->providerlink( 'Dropbox' ); ?></li>
+							<li><?php $this->providerlink( 'Box' ); ?></li>
+							<li><?php $this->providerlink( 'OneDrive' ); ?></li>
+						<?php endif; ?>
+
 						<?php
 							/**
 							 * Hook: after_awsm_ead_viewer_options.

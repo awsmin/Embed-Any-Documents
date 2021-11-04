@@ -206,6 +206,7 @@ class Awsm_embed {
 				'from_url'      => __( 'From URL', 'embed-any-document' ),
 				'select_button' => __( 'Select', 'embed-any-document' ),
 				'nopublic'      => __( 'The document you have chosen is a not public.', 'embed-any-document' ) . __( ' Only the owner and explicitly shared collaborators will be able to view it.', 'embed-any-document' ),
+				'addon_active'    => $this->is_addon_active(),
 			);
 
 		/**
@@ -385,6 +386,24 @@ class Awsm_embed {
 		 * @param array $viewers Viewers array.
 		 */
 		return apply_filters( 'awsm_ead_viewers', $viewers );
+	}
+
+	/**
+	 * Check if Addons are active.
+	 *
+	 * @return array
+	 */
+	public function is_addon_active() {
+		
+		$viewers = array();
+		/**
+		 * Customize the viewers array data.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param array $viewers The viewers array.
+		 */
+		return apply_filters( 'awsm_ead_addon_active', $viewers );
 	}
 
 	/**

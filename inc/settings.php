@@ -46,6 +46,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<form method="post" action="options.php">
 							<?php settings_fields( 'ead-settings-group' ); ?>
 							<table class="form-table">
+								<?php
+									/**
+									 * Hook: before_awsm_ead_general_settings.
+									 *
+									 * @since 3.0.0
+									 */
+									do_action( 'before_awsm_ead_general_settings' );
+								?>
 								<tr valign="top">
 									<th scope="row"><?php esc_html_e( 'Default Size', 'embed-any-document' ); ?></th>
 									<td>
@@ -79,7 +87,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 										<input type="text" class="" name="ead_text" value="<?php echo esc_attr( get_option( 'ead_text', 'Download' ) ); ?>"/>
 									</td>
 								</tr>
-								
+								<?php
+									/**
+									 * Hook: after_awsm_ead_general_settings.
+									 *
+									 * @since 3.0.0
+									 */
+									do_action( 'after_awsm_ead_general_settings' );
+								?>
 							</table>
 							<div class="ead-form-footer">
 								<?php submit_button(); ?>

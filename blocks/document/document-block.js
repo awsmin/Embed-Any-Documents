@@ -283,7 +283,7 @@ registerBlockType('embed-any-document/document', {
         accept: validExtension.join(', '),
         allowedTypes: validTypes,
         OnError: onUploadError
-      }, wp.element.createElement(Fragment, null, wp.hooks.doAction('before_awsm_ead_viewer_options'), wp.element.createElement(Button, {
+      }, wp.element.createElement(Fragment, null, wp.hooks.doAction('before_awsm_ead_viewer_options'), emebeder.addon_active.length === 0 && wp.element.createElement(Button, {
         className: "ead-button-dropbox disabled",
         onClick: providerLink,
         value: "click"
