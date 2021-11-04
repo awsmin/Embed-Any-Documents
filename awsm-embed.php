@@ -436,22 +436,6 @@ class Awsm_embed {
 		$attributes = shortcode_parse_atts( $text );
 		return $attributes;
 	}
-
-	/**
-	 * Check if shortcode attribute has url or id.
-	 *
-	 * @param string $shortcode EAD Shortcode.
-	 * @return array
-	 */
-    public static function is_shortcode_valid( $shortcode_atts) {
-        $status = false;
-        if( $shortcode_atts['url'] != '' ){
-          	$status = true;
-        }else if( $shortcode_atts['id'] != '' ){
-			$status = true;
-        }
-        return $status;
-    }
 	/**
 	 * Shortcode Functionality.
 	 *
@@ -467,6 +451,7 @@ class Awsm_embed {
 		$default_download = get_option( 'ead_download', 'none' );
 		$default_text     = get_option( 'ead_text', __( 'Download', 'embed-any-document' ) );
 		$show             = false;
+		$is_shortcode_url = false;
 		$shortcode_atts   = shortcode_atts(
 			array(
 				'url'      => '',
@@ -486,39 +471,43 @@ class Awsm_embed {
 		wp_enqueue_style( 'awsm-ead-public' );
 		wp_enqueue_script( 'awsm-ead-public' );
 
-		//if ( isset( $shortcode_atts['url'] ) && ! empty( $shortcode_atts['url'] ) ) :
-		if ( isset( $shortcode_atts['url'] ) ||  isset( $shortcode_atts['id'] ) ) :
-			// AMP.
-			$is_amp = function_exists( 'is_amp_endpoint' ) && is_amp_endpoint();
+		if( isset($shortcode_atts['url']) && !empty($shortcode_atts['url']) ){
+			$is_shortcode_url = true;
+		}
 
-			$durl      = '';
-			$viewer    = $shortcode_atts['viewer'];
-			$providers = self::get_all_providers();
+		// AMP.
+		$is_amp = function_exists( 'is_amp_endpoint' ) && is_amp_endpoint();
 
-			if ( ! in_array( $viewer, $providers, true ) ) {
-				$viewer                   = 'google';
-				$shortcode_atts['viewer'] = 'google';
+		$durl      = '';
+		$viewer    = $shortcode_atts['viewer'];
+		$providers = self::get_all_providers();
+
+		if ( ! in_array( $viewer, $providers, true ) ) {
+			$viewer                   = 'google';
+			$shortcode_atts['viewer'] = 'google';
+		}
+
+		$is_browser_viewer = false;
+		if ( $shortcode_atts['viewer'] === 'browser' ) {
+			// fallback for Browser viewer.
+			$is_browser_viewer = true;
+			$viewer            = 'google';
+			// AMP handling.
+			if ( $is_amp ) {
+				$is_browser_viewer = false;
 			}
+		}
 
-			$is_browser_viewer = false;
-			if ( $shortcode_atts['viewer'] === 'browser' ) {
-				// fallback for Browser viewer.
-				$is_browser_viewer = true;
-				$viewer            = 'google';
-				// AMP handling.
-				if ( $is_amp ) {
-					$is_browser_viewer = false;
-				}
+
+		if ( $this->allowdownload( $shortcode_atts['viewer'] ) ) {
+			if ( $shortcode_atts['download'] === 'alluser' || $shortcode_atts['download'] === 'all' ) {
+				$show = true;
+			} elseif ( $shortcode_atts['download'] === 'logged' && is_user_logged_in() ) {
+				$show = true;
 			}
+		}
 
-
-			if ( $this->allowdownload( $shortcode_atts['viewer'] ) ) {
-				if ( $shortcode_atts['download'] === 'alluser' || $shortcode_atts['download'] === 'all' ) {
-					$show = true;
-				} elseif ( $shortcode_atts['download'] === 'logged' && is_user_logged_in() ) {
-					$show = true;
-				}
-			}
+		if($is_shortcode_url === true){
 			$url = esc_url( $shortcode_atts['url'], array( 'http', 'https' ) );
 			if ( $show ) {
 				$filedata = wp_remote_head( $shortcode_atts['url'] );
@@ -535,6 +524,7 @@ class Awsm_embed {
 				$durl = '<p class="embed_download"><a href="' . esc_url( $url ) . '" download >' . $shortcode_atts['text'] . $file_html . ' </a></p>';
 			}
 
+
 			if ( $shortcode_atts['cache'] === 'off' && $viewer === 'google' ) {
 				if ( $this->url_get_param( $url ) ) {
 					$url .= '?' . time();
@@ -542,93 +532,90 @@ class Awsm_embed {
 					$url .= '&' . time();
 				}
 			}
+		}
 
-			$iframe_src = '';
-			switch ( $viewer ) {
-				case 'google':
-					$embedsrc   = '//docs.google.com/viewer?url=%1$s&embedded=true&hl=%2$s';
-					$iframe_src = sprintf( $embedsrc, rawurlencode( $url ), esc_attr( $shortcode_atts['language'] ) );
-					break;
+		$iframe_src = '';
+		switch ( $viewer ) {
+			case 'google':
+				$embedsrc   = '//docs.google.com/viewer?url=%1$s&embedded=true&hl=%2$s';
+				$iframe_src = sprintf( $embedsrc, rawurlencode( $url ), esc_attr( $shortcode_atts['language'] ) );
+				break;
 
-				case 'microsoft':
-					$embedsrc   = '//view.officeapps.live.com/op/embed.aspx?src=%1$s';
-					$iframe_src = sprintf( $embedsrc, rawurlencode( $url ) );
-					break;
-			}
+			case 'microsoft':
+				$embedsrc   = '//view.officeapps.live.com/op/embed.aspx?src=%1$s';
+				$iframe_src = sprintf( $embedsrc, rawurlencode( $url ) );
+				break;
+		}
 
-			/**
-			 * Add the iframe src.
-			 *
-			 * @since 3.0.0
-			 *
-			 * @param string $iframe_src The iframe src variable.
-			 * @param array $shortcode_atts The shortcode attributes.
-			 */
-			$iframe_src = apply_filters( 'awsm_ead_iframe_src', $iframe_src, $shortcode_atts); 
+		/**
+		 * Add the iframe src.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param string $iframe_src The iframe src variable.
+		 * @param array $shortcode_atts The shortcode attributes.
+		 */
+		$iframe_src = apply_filters( 'awsm_ead_iframe_src', $iframe_src, $shortcode_atts); 
 
-			$iframe_style_attrs = array();
-			$doc_style_attrs    = array(
-				'position' => 'relative',
+		$iframe_style_attrs = array();
+		$doc_style_attrs    = array(
+			'position' => 'relative',
+		);
+		if ( $this->check_responsive( $shortcode_atts['height'] ) && $this->check_responsive( $shortcode_atts['width'] ) && ! $is_browser_viewer ) {
+			$iframe_style_attrs = array(
+				'width'    => '100%',
+				'height'   => '100%',
+				'border'   => 'none',
+				'position' => 'absolute',
+				'left'     => '0',
+				'top'      => '0',
 			);
-			if ( $this->check_responsive( $shortcode_atts['height'] ) && $this->check_responsive( $shortcode_atts['width'] ) && ! $is_browser_viewer ) {
-				$iframe_style_attrs = array(
-					'width'    => '100%',
-					'height'   => '100%',
-					'border'   => 'none',
-					'position' => 'absolute',
-					'left'     => '0',
-					'top'      => '0',
-				);
 
-				$doc_style_attrs['padding-top'] = '90%';
-			} else {
-				$iframe_style_attrs = array(
-					'width'  => $shortcode_atts['width'],
-					'height' => $shortcode_atts['height'],
-					'border' => 'none',
-				);
-				if ( $this->in_percentage( $shortcode_atts['height'] ) ) {
-					$iframe_style_attrs['min-height'] = '500px';
-				}
+			$doc_style_attrs['padding-top'] = '90%';
+		} else {
+			$iframe_style_attrs = array(
+				'width'  => $shortcode_atts['width'],
+				'height' => $shortcode_atts['height'],
+				'border' => 'none',
+			);
+			if ( $this->in_percentage( $shortcode_atts['height'] ) ) {
+				$iframe_style_attrs['min-height'] = '500px';
 			}
+		}
 
-			$enable_preloader = ! $is_amp && $viewer === 'google';
+		$enable_preloader = ! $is_amp && $viewer === 'google';
 
-			if ( $enable_preloader ) {
-				$iframe_style_attrs['visibility'] = 'hidden';
-			}
+		if ( $enable_preloader ) {
+			$iframe_style_attrs['visibility'] = 'hidden';
+		}
 
-			$data_attr = '';
-			if ( $is_browser_viewer ) {
-				$data_attr = sprintf( ' data-pdf-src="%1$s" data-viewer="%2$s"', esc_url( $shortcode_atts['url'] ), esc_attr( $shortcode_atts['viewer'] ) );
+		$data_attr = '';
+		if ( $is_browser_viewer && $is_shortcode_url ) {
+			$data_attr = sprintf( ' data-pdf-src="%1$s" data-viewer="%2$s"', esc_url( $shortcode_atts['url'] ), esc_attr( $shortcode_atts['viewer'] ) );
 
-				$doc_style_attrs = array_merge( $doc_style_attrs, $iframe_style_attrs );
-				unset( $doc_style_attrs['visibility'] );
-			}
+			$doc_style_attrs = array_merge( $doc_style_attrs, $iframe_style_attrs );
+			unset( $doc_style_attrs['visibility'] );
+		}
 
-			/**
-			 * iframe style attributes.
-			 *
-			 * @since 3.0.0
-			 *
-			 * @param string $iframe_style_attrs The iframe stle attributes variable.
-			 */
-			$iframe_style_attrs = self::build_style_attr( $iframe_style_attrs );
-			$iframe_style       = apply_filters( 'awsm_ead_iframe_style_attrs', $iframe_style_attrs );
+		/**
+		 * iframe style attributes.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param string $iframe_style_attrs The iframe stle attributes variable.
+		 */
+		$iframe_style_attrs = self::build_style_attr( $iframe_style_attrs );
+		$iframe_style       = apply_filters( 'awsm_ead_iframe_style_attrs', $iframe_style_attrs );
 
-			$iframe       = sprintf( '<iframe src="%s" title="%s" class="ead-iframe" %s></iframe>', esc_attr( $iframe_src ), esc_html__( 'Embedded Document', 'embed-any-document' ), $iframe_style );
+		$iframe       = sprintf( '<iframe src="%s" title="%s" class="ead-iframe" %s></iframe>', esc_attr( $iframe_src ), esc_html__( 'Embedded Document', 'embed-any-document' ), $iframe_style );
 
-			if ( $enable_preloader ) {
-				$iframe = '<div class="ead-iframe-wrapper">' . $iframe . '</div>' . self::get_iframe_preloader( $shortcode_atts );
-			}
+		if ( $enable_preloader ) {
+			$iframe = '<div class="ead-iframe-wrapper">' . $iframe . '</div>' . self::get_iframe_preloader( $shortcode_atts );
+		}
 
-			$doc_style = self::build_style_attr( $doc_style_attrs ); 
-			$embed     = sprintf( '<div class="ead-preview"><div class="ead-document" %3$s>%1$s</div>%2$s</div>', $iframe, $durl, $doc_style . $data_attr );
+		$doc_style = self::build_style_attr( $doc_style_attrs ); 
+		$embed     = sprintf( '<div class="ead-preview"><div class="ead-document" %3$s>%1$s</div>%2$s</div>', $iframe, $durl, $doc_style . $data_attr );
 
-
-		else :
-			$embed = esc_html__( 'No Url Found', 'embed-any-document' );
-		endif;
 
 		/**
 		 * Customize the embedded content.

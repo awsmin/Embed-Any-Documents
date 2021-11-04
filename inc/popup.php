@@ -109,19 +109,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<select name="ead-pseudo" disabled>
 									<?php
 										/**
-										 * Hook: before_awsm_ead_provider.
+										 * Hook: awsm_ead_pseudo_provider.
 										 *
 										 * @since 3.0.0
 										 */
-										do_action( 'before_awsm_ead_provider' );
-									?>
-									<?php
-										/**
-										 * Hook: after_awsm_ead_provider.
-										 *
-										 * @since 3.0.0
-										 */
-										do_action( 'after_awsm_ead_provider' );
+										do_action( 'awsm_ead_pseudo_provider' );
 									?>
 								</select>
 							</div>

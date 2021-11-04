@@ -116,74 +116,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 				?>
 						</ul>
 					</div>
-					<div class="ead-form-footer">
+					<div>
 						<?php submit_button(); ?>
 					</div>
 				</form>
 				<?php endif; ?>
 			</div>
-			<div class="ead-banner">
-				<a href="http://embedanydocument.com/plus-cc" target="_blank"><img src="<?php echo esc_url( $this->plugin_url ); ?>images/eadplus-banner.png"></a>
-			</div>
 		</div>
-		<div class="ead-right-wrap">
-				<div class="ead-right-widget we-are-awsm">
-					<div class="awsm-branding">
-						<img src="<?php echo esc_url( $this->plugin_url ); ?>/images/awsm-logo.png" width="67" height="67" alt="AWSM Innovations">
-						<div class="left-clear">
-							<h2><?php esc_html_e( 'Designed and developed by', 'embed-any-document' ); ?></h2>
-							<h3><a href="http://awsm.in/" target="_blank" title="awsm innovations">awsm innovations</a></h3>
-							<ul class="awsm-social">
-								<li><a href="https://www.facebook.com/awsminnovations" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-facebook"><?php esc_html_e( 'Facebook', 'embed-any-document' ); ?></span></a></li>
-								<li><a href="https://twitter.com/awsmin" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-twitter"><?php esc_html_e( 'Twitter', 'embed-any-document' ); ?></span></a></li>
-								<li><a href="https://github.com/awsmin" target="_blank" title="AWSM Innovations"><span class="awsm-icon awsm-icon-github"><?php esc_html_e( 'Github', 'embed-any-document' ); ?></span></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<!-- .ead-right-inner -->
-				<div class="clearfix row-2 ead-right-widget">
-					<div class="col-2">
-						<a href="https://goo.gl/V2XQOM" target="_blank">
-				   <img src="<?php echo esc_url( $this->plugin_url ); ?>images/star.gif"><?php esc_html_e( 'Like the plugin?', 'embed-any-document' ); ?><br/><?php esc_html_e( 'Rate Now!', 'embed-any-document' ); ?>
-				   </a>
-					</div>
-					<!-- .col-2 -->
-					<div class="col-2">
-						<a href="http://awsm.in/support" target="_blank">
-				   <img src="<?php echo esc_url( $this->plugin_url ); ?>images/ticket.gif"><?php esc_html_e( 'Need Help?', 'embed-any-document' ); ?><br/><?php esc_html_e( 'Open a Ticket', 'embed-any-document' ); ?>
-				   </a>
-					</div>
-					<!-- .col-2 -->
-				</div>
-				<!-- .row -->
-				<div class="ead-right-inner">
-					<h3><?php esc_html_e( 'Quick Help', 'embed-any-document' ); ?></h3>
-					<ol>
-						<li>
-							<a href="http://awsm.in/ead-plus-documentation/#embedding" target="_blank" title="<?php esc_html_e( 'How to Embed Documents?', 'embed-any-document' ); ?>">
-								<?php esc_html_e( 'How to Embed Documents?', 'embed-any-document' ); ?>
-							</a>
-						</li>
-						<li>
-							<a href="http://awsm.in/ead-plus-documentation/#viewers" target="_blank" title="<?php esc_html_e( 'About Viewers', 'embed-any-document' ); ?>">
-								<?php esc_html_e( 'About Viewers', 'embed-any-document' ); ?>
-							</a>
-						</li>
-						<li>
-							<a href="http://awsm.in/ead-plus-documentation/#shortcode" target="_blank" title="<?php esc_html_e( 'Shortcode & Attributes', 'embed-any-document' ); ?>">
-								<?php esc_html_e( 'Shortcode & Attributes', 'embed-any-document' ); ?>
-							</a>
-						</li>
-						<li>
-							<a href="http://awsm.in/support" target="_blank" title="<?php esc_html_e( 'FAQs', 'embed-any-document' ); ?>">
-								<?php esc_html_e( 'FAQs', 'embed-any-document' ); ?>
-							</a>
-						</li>
-					</ol>
-				</div>
-				<!-- .ead-right-inner -->
-		</div>
+		
 	</div>
 	<!-- .row -->
 </div>

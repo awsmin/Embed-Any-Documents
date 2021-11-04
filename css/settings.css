@@ -22,7 +22,7 @@ img {
 }
 
 .ead-tabs {
-    background: #fff;
+   /* background: #fff;*/
     padding: 5px 20px 0;
 }
 h1.ead-title{
@@ -50,10 +50,6 @@ h1.ead-title{
     background: none;
 }
 
-.nav-tab-wrapper a.nav-tab-active {
-    background: #fff;
-}
-
 .form-table {
     margin-top: 0;
     margin-bottom: 30px;
@@ -77,37 +73,11 @@ h2.nav-tab-wrapper {
     box-sizing: border-box;
 }
 
-.ead-form-footer {
-    margin: 0 -20px;
-    padding: 20px;
-    background: #f5f5f5;
-    border-top: 1px solid #ddd;
-    -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
-.ead-form-footer p {
-    margin: 0;
-    float: right;
-    padding: 0;
-}
-
 .purchase-key .ead-inputholder{
     width: 90%;
 }
  
 /*--- Sidebar -----*/
-
-.ead-right-wrap {
-    float: left;
-    width: 33.3333%;
-    color: #372e2e;
-    padding: 0 15px;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
 
 .we-are-awsm {
     background: #fff;
@@ -127,15 +97,6 @@ h2.nav-tab-wrapper {
     font-size: 14px;
     color: #5b5b5b;
     font-weight: normal;
-}
-
-.ead-right-wrap ol {
-    padding: 0 20px 15px;
-    margin: 0 0 0 20px;
-}
-
-.ead-right-wrap ol a {
-    text-decoration: none;
 }
 
 .awsm-branding {
@@ -453,9 +414,6 @@ div.awsm-updated p {
         width: 100%;
         margin-bottom: 25px;
     }
-    .ead-right-wrap {
-        width: 100%;
-    }
 }
 
 @media (max-width: 980px) {
@@ -479,9 +437,4 @@ div.awsm-updated p {
         width: 100%;
         margin-bottom: 8px;
     }
-}
-
-
-.ead-banner{
-    margin-top: 40px;
 }
