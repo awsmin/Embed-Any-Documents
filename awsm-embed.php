@@ -467,6 +467,8 @@ class Awsm_embed {
 			$atts,
 			'embeddoc'
 		);
+
+		$preloader = get_option( 'ead_preloader');
 		
 		wp_enqueue_style( 'awsm-ead-public' );
 		wp_enqueue_script( 'awsm-ead-public' );
@@ -507,7 +509,7 @@ class Awsm_embed {
 			}
 		}
 
-		if($is_shortcode_url === true){
+		if($is_shortcode_url){
 			$url = esc_url( $shortcode_atts['url'], array( 'http', 'https' ) );
 			if ( $show ) {
 				$filedata = wp_remote_head( $shortcode_atts['url'] );
@@ -523,28 +525,31 @@ class Awsm_embed {
 				}
 				$durl = '<p class="embed_download"><a href="' . esc_url( $url ) . '" download >' . $shortcode_atts['text'] . $file_html . ' </a></p>';
 			}
-
-
-			if ( $shortcode_atts['cache'] === 'off' && $viewer === 'google' ) {
-				if ( $this->url_get_param( $url ) ) {
-					$url .= '?' . time();
-				} else {
-					$url .= '&' . time();
-				}
-			}
 		}
 
-		$iframe_src = '';
-		switch ( $viewer ) {
-			case 'google':
-				$embedsrc   = '//docs.google.com/viewer?url=%1$s&embedded=true&hl=%2$s';
-				$iframe_src = sprintf( $embedsrc, rawurlencode( $url ), esc_attr( $shortcode_atts['language'] ) );
-				break;
 
-			case 'microsoft':
-				$embedsrc   = '//view.officeapps.live.com/op/embed.aspx?src=%1$s';
-				$iframe_src = sprintf( $embedsrc, rawurlencode( $url ) );
-				break;
+		if ( $shortcode_atts['cache'] === 'off' && $viewer === 'google' && $is_shortcode_url) {
+			if ( $this->url_get_param( $url ) ) {
+				$url .= '?' . time();
+			} else {
+				$url .= '&' . time();
+			}
+		}
+		
+
+		$iframe_src = '';
+		if($is_shortcode_url){
+			switch ( $viewer ) {
+				case 'google':
+					$embedsrc   = '//docs.google.com/viewer?url=%1$s&embedded=true&hl=%2$s';
+					$iframe_src = sprintf( $embedsrc, rawurlencode( $url ), esc_attr( $shortcode_atts['language'] ) );
+					break;
+
+				case 'microsoft':
+					$embedsrc   = '//view.officeapps.live.com/op/embed.aspx?src=%1$s';
+					$iframe_src = sprintf( $embedsrc, rawurlencode( $url ) );
+					break;
+			}
 		}
 
 		/**
@@ -583,9 +588,9 @@ class Awsm_embed {
 			}
 		}
 
-		$enable_preloader = ! $is_amp && $viewer === 'google';
+		$enable_preloader = ! $is_amp && $viewer === 'google' && $preloader == 1; 
 
-		if ( $enable_preloader ) {
+		if ( $enable_preloader ) {  
 			$iframe_style_attrs['visibility'] = 'hidden';
 		}
 
@@ -663,6 +668,7 @@ class Awsm_embed {
 		register_setting( 'ead-settings-group', 'ead_download' );
 		register_setting( 'ead-settings-group', 'ead_text' );
 		register_setting( 'ead-settings-group', 'ead_mediainsert' );
+		register_setting( 'ead-settings-group', 'ead_preloader' );
 	}
 
 	/**
