@@ -283,31 +283,11 @@ registerBlockType('embed-any-document/document', {
         accept: validExtension.join(', '),
         allowedTypes: validTypes,
         OnError: onUploadError
-      }, wp.element.createElement(Fragment, null, wp.hooks.doAction('before_awsm_ead_viewer_options'), emebeder.addon_active.length === 0 && wp.element.createElement(Button, {
-        className: "ead-button-dropbox disabled",
+      }, wp.hooks.doAction('before_awsm_ead_viewer_options'), emebeder.addon_active.length === 0 && wp.element.createElement(Button, {
+        className: "ead-button-addon",
         onClick: providerLink,
         value: "click"
-      }, __('Add from dropbox', 'embed-any-document'), wp.element.createElement("span", {
-        className: "overlay"
-      }, wp.element.createElement("span", null, __('Pro Feature', 'embed-any-document')))), wp.element.createElement(Button, {
-        className: "ead-button-drive disabled",
-        onClick: providerLink,
-        value: "click"
-      }, __('Add from drive', 'embed-any-document'), wp.element.createElement("span", {
-        className: "overlay"
-      }, wp.element.createElement("span", null, __('Pro Feature', 'embed-any-document')))), wp.element.createElement(Button, {
-        className: "ead-button-box disabled",
-        onClick: providerLink,
-        value: "click"
-      }, __('Add from box', 'embed-any-document'), wp.element.createElement("span", {
-        className: "overlay"
-      }, wp.element.createElement("span", null, __('Pro Feature', 'embed-any-document')))), wp.element.createElement(Button, {
-        className: "ead-button-onedrive disabled",
-        onClick: providerLink,
-        value: "click"
-      }, __('Add from OneDrive', 'embed-any-document'), wp.element.createElement("span", {
-        className: "overlay"
-      }, wp.element.createElement("span", null, __('Pro Feature', 'embed-any-document')))), wp.hooks.doAction('after_awsm_ead_viewer_options', viewerList, props, _modules_helper__WEBPACK_IMPORTED_MODULE_0__["default"].parseShortcode), viewerList));
+      }), wp.hooks.doAction('after_awsm_ead_viewer_options', viewerList, props, _modules_helper__WEBPACK_IMPORTED_MODULE_0__["default"].parseShortcode), viewerList);
     }
   },
 

@@ -38,9 +38,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</li>
 						<?php if( empty(self::is_addon_active()) ): ?>
 							<li><?php $this->providerlink( 'Drive' ); ?></li>
-							<li><?php $this->providerlink( 'Dropbox' ); ?></li>
-							<li><?php $this->providerlink( 'Box' ); ?></li>
-							<li><?php $this->providerlink( 'OneDrive' ); ?></li>
 						<?php endif; ?>
 
 						<?php

@@ -133,8 +133,6 @@ registerBlockType( 'embed-any-document/document', {
 			window.open(link, '_blank');
 		}
 
-
-
 		if( typeof shortcode !== 'undefined' ) {
 			return [
 				<EadInspector { ...{ setAttributes, ...props } } />,
@@ -146,37 +144,16 @@ registerBlockType( 'embed-any-document/document', {
 		} else {
 			return ( 
 				<MediaPlaceholder className="ead-media-placeholder" onSelect={ onSelectDocument } onSelectURL={ onSelectURL } labels = { { title: __( 'Embed Any Document', 'embed-any-document' ), 'instructions':__( 'Upload a document, pick from your media library, or add from an external URL.', 'embed-any-document' ) } } icon={icon.block}  accept={validExtension.join(', ')} allowedTypes={ validTypes } OnError={ onUploadError }>
-					<Fragment> 
 					
 					{ wp.hooks.doAction( 'before_awsm_ead_viewer_options' ) }
 
 					{ emebeder.addon_active.length === 0 && (
-					<Button className="ead-button-dropbox disabled" onClick={ providerLink } value="click">{ __( 'Add from dropbox', 'embed-any-document' ) }
-                        <span className="overlay">
-                        	<span>{ __( 'Pro Feature', 'embed-any-document' ) }</span>
-                        </span>
-					</Button>
+						<Button className="ead-button-addon" onClick={ providerLink } value="click"></Button>
 					)}
 
-					<Button  className="ead-button-drive disabled" onClick={ providerLink } value="click">{ __( 'Add from drive', 'embed-any-document' ) }
- 						<span className="overlay">
-                        	<span>{ __( 'Pro Feature', 'embed-any-document' ) }</span>
-                        </span>
-					</Button>
-					<Button  className="ead-button-box disabled" onClick={ providerLink } value="click">{ __( 'Add from box', 'embed-any-document' ) }
-						<span className="overlay">
-                        	<span>{ __( 'Pro Feature', 'embed-any-document' ) }</span>
-                        </span>
-					</Button>
-					<Button  className="ead-button-onedrive disabled" onClick={ providerLink } value="click">{ __( 'Add from OneDrive', 'embed-any-document' ) }
-						<span className="overlay">
-                        	<span>{ __( 'Pro Feature', 'embed-any-document' ) }</span>
-                        </span>
-					</Button>
-					
 					{ wp.hooks.doAction( 'after_awsm_ead_viewer_options',viewerList,props,EadHelper.parseShortcode ) }
 					{ viewerList }
-					</Fragment>
+					
 				</MediaPlaceholder>
 			);
 		}
