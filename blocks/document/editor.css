@@ -70,9 +70,14 @@ div[data-type="embed-any-document/document"] .components-placeholder__fieldset .
 	font-size: 1rem;
 }
 
-div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.ead-button-addon {
-	background-image: url("../../images/more-icon.jpg");
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.ead-button-addon::before {
+	background-image: url("../../images/plus.png");
 }
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.ead-button-addon::after {
+	content: "Add More";
+}
+
 
 div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.ead-button-dropbox::before {
 	background-image: url("../../images/icon-dropbox.svg");
