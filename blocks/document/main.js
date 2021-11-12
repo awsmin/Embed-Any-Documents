@@ -153,7 +153,6 @@ registerBlockType( 'embed-any-document/document', {
 
 					{ wp.hooks.doAction( 'after_awsm_ead_viewer_options',viewerList,props,EadHelper.parseShortcode ) }
 					{ viewerList }
-					
 				</MediaPlaceholder>
 			);
 		}

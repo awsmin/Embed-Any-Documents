@@ -38,18 +38,6 @@ h1.ead-title{
     padding-top: 0px !important;
 }
 
-.nav-tab-wrapper a {
-    border: none;
-    padding: 7px 15px;
-    margin: 0 10px 0 0;
-    background: none;
-}
-
-.nav-tab-wrapper a:hover {
-    border: none;
-    background: none;
-}
-
 .form-table {
     margin-top: 0;
     margin-bottom: 30px;

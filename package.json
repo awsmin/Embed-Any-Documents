@@ -8,7 +8,7 @@
     "build": "cross-env NODE_ENV=production webpack",
     "translate": "cross-env wp i18n make-pot . language/embed-any-document.pot --exclude=document-block.js --headers='{\"Language-Team\":\"Awsm Innovations <hello@awsm.in>\"}'",
     "archive": "cross-env git archive --format=zip --prefix=embed-any-document/ --output=./build/embed-any-document.zip --worktree-attributes master",
-    "dev-archive": "cross-env git archive --format=zip --prefix=embed-any-document/ --output=./build/embed-any-document.zip --worktree-attributes dev-branch"
+    "dev-archive": "cross-env git archive --format=zip --prefix=embed-any-document/ --output=./build/embed-any-document.zip --worktree-attributes dev-branch-v3"
   },
   "repository": {
     "type": "git",
