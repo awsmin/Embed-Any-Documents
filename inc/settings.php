@@ -89,6 +89,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								</tr>
 								<tr valign="top">
 									<th scope="row">
+										<?php esc_html_e( 'Preloader for Viewer', 'embed-any-document' ); ?>
 									</th>
 									<td>
 										<?php
