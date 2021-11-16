@@ -18,13 +18,16 @@ if ( ! function_exists( 'ead_fs' ) ) {
                 'is_premium'          => false,
                 'has_addons'          => true,
                 'has_paid_plans'      => false,
-                'is_org_compliant'    => false,
                 'navigation'          => 'tabs',
                 'menu'                => array(
                     'slug'           => 'ead-settings',
+                    'first-path'     => 'options-general.php?page=ead-settings',
                     'account'        => false,
                     'contact'        => false,
                     'support'        => false,
+                    'parent'         => array(
+                        'slug' => 'options-general.php',
+                    ),
                 ),
                 // Development only.
                 'secret_key'       => $fs_secret_key,
