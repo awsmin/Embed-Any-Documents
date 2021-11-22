@@ -141,7 +141,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="mceActionPanel ead-action-panel">
 			<div style="float: right">
 				<input type="button" id="insert-doc" name="insert" data-txt="<?php esc_html_e( 'Insert', 'embed-any-document' ); ?>" data-loading="<?php esc_html_e( 'Loading...', 'embed-any-document' ); ?>" class="ead-btn button button-primary button-medium" value="<?php esc_html_e( 'Insert', 'embed-any-document' ); ?>" disabled/>
-			</div>
+			</div> 
 
 			<div style="float: left">
 				<input type="button" name="cancel" class="ead-btn button cancel-embed button-medium" value="<?php esc_html_e( 'Cancel', 'embed-any-document' ); ?>"/>

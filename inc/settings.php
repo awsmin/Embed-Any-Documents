@@ -95,14 +95,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 										<?php
 											$preloader = get_option( 'ead_preloader', 'file' );
 										?>
-										<ul class="ead-list-inline">
-											<li>
-												<label for="ead_gpicker_file_view">
-													<input type="checkbox" name="ead_preloader" id="ead_preloader_view" value="1" <?php checked(1, get_option('ead_preloader'), true); ?>><?php esc_html_e( 'Enable Preloader', 'embed-any-document' ); ?>
-												</label>
-											</li>
-										</ul>
-										<span class="note"><?php esc_html_e( 'Check for enabling preloader', 'embed-any-document' ); ?></span>
+										<input type="checkbox" name="ead_preloader" id="ead_preloader_view" value="1" <?php checked(1, get_option('ead_preloader'), true); ?>><?php esc_html_e( 'Enable Preloader', 'embed-any-document' ); ?>
+										
+										<div class="clear"></div>
+									    <span class="note"><?php esc_html_e( 'Check for enabling preloader', 'embed-any-document' ); ?></span>
 									</td>
 								</tr>
 								<?php
