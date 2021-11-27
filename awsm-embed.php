@@ -23,6 +23,7 @@ if ( ! defined( 'AWSM_EMBED_VERSION' ) ) {
 }
 
 require_once plugin_dir_path( __FILE__ ) . '/lib/fs-init.php';
+require_once plugin_dir_path(__FILE__).'/vendor/autoload.php';
 
 /**
  * Embed Any Document Main Class.
@@ -111,7 +112,70 @@ class Awsm_embed {
 		// Load plugin textdomain.
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 
+		/*add_filter( 'pre_get_posts', array( $this, 'pre_get_posts' ) );
+		add_filter( 'posts_search', array( $this, 'posts_search' ) );
+		add_filter( 'posts_where', array( $this, 'posts_where' ));
+		add_filter( 'posts_request', array( $this, 'posts_request' ) );*/
+
 		$this->adminfunctions();
+	}
+
+	public function pre_get_posts($query) {
+       if ($query->is_search() && $query->is_main_query()) {
+			$post_types = array('post', 'page', 'attachment');
+	        $query->set( 'post_type', $post_types );
+
+	        $post_statuses = array('inherit', 'publish');
+	        $query->set( 'post_status', $post_statuses );
+	        return;
+	    }
+	}
+
+	public function posts_search($search){ 
+		global $wpdb;
+
+		$search_terms = get_query_var('search_terms');
+		if (empty( $search_terms )) {
+			return $search;
+		}
+
+		$file_types = array('pdf','docx','odt');
+        $query_file_types = "'" . implode("','", $file_types) . "'"; 
+
+		$inject = "($wpdb->posts.id IN (
+							SELECT pm.post_id
+							FROM $wpdb->postmeta pm
+							WHERE 
+							    $wpdb->posts.ID = pm.post_id AND 
+							    pm.meta_key = '_wp_attached_file' AND
+							    SUBSTRING_INDEX(pm.meta_value, '.', -1) IN ($query_file_types) 
+							) AND
+							$wpdb->posts.id IN (
+								SELECT pm2.post_id 
+								FROM $wpdb->postmeta pm2
+								WHERE 
+								    $wpdb->posts.ID = pm2.post_id AND 
+								    pm2.meta_key = '_doc_content' AND  
+								    (1 = 0 ";
+
+	    foreach ( $search_terms as $term ) {
+		    $like = '%' . $wpdb->esc_like( $term ) . '%';
+		    $inject .= $wpdb->prepare( "OR (pm2.meta_value LIKE %s)", $like );
+	    }
+	
+	    $inject .= "))) OR ";
+		$search = substr_replace($search, $inject, 6, 0);
+
+		return $search;
+	}
+
+	public function posts_where($where) {
+		global $wpdb;
+		return $where;
+	}
+
+	public function posts_request($request) {
+		return $request;
 	}
 
 	/**
@@ -552,6 +616,15 @@ class Awsm_embed {
 			}
 		}
 
+		
+
+		/*$upload_dir = wp_upload_dir();
+		$base_name 	= wp_basename($url);
+
+		$filepath   = $upload_dir['basedir'] . DIRECTORY_SEPARATOR . '2021/07/'.$base_name; echo $filepath;die;*/
+
+		$this->parse_documents($url);
+
 		/**
 		 * Add the iframe src.
 		 *
@@ -636,6 +709,52 @@ class Awsm_embed {
 		$embed = apply_filters( 'awsm_ead_content', $embed, $shortcode_atts, $iframe_attrs );
 
 		return $embed;
+	}
+
+	public function parse_documents($url){ 
+		$file_content = file_get_contents($url); 
+		if($file_content === false){
+			return false;
+		} 
+		$mime_type  = wp_check_filetype(wp_basename($url)); 
+
+		$doc_content = "";
+		switch ($mime_type['type']) {
+			case 'application/pdf':
+				$doc_content = $this->pdf_parser($file_content);
+				break;
+
+			case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+				$doc_content = $this->docx_parser($file_content);
+				break;
+			
+			case 'application/vnd.oasis.opendocument.text':
+				$doc_content = 2;
+				break;
+
+			default:
+				break;
+		}
+
+        if($doc_content != ''){
+        	$post_id  = get_the_ID();
+        	$check    = add_post_meta($post_id, '_doc_content', $doc_content, true); 
+        }
+	}
+
+	public function pdf_parser($content){
+		$pdf  = new \Smalot\PdfParser\Parser();
+		$text = "";
+	  
+        $result = $pdf->parseContent($content);
+        $text   = $result->getText();
+        $text   = str_replace(["\n\n"], "", $text); 
+	   
+	    return $text;
+	}
+
+	public function docx_parser($content){ 
+          
 	}
 
 	/**

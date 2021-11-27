@@ -95,7 +95,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 										<?php
 											$preloader = get_option( 'ead_preloader', 'file' );
 										?>
-										<input type="checkbox" name="ead_preloader" id="ead_preloader_view" value="1" <?php checked(1, get_option('ead_preloader'), true); ?>><?php esc_html_e( 'Enable Preloader', 'embed-any-document' ); ?>
+										<div>
+											<input type="checkbox" name="ead_preloader" id="ead_preloader_view" value="1" <?php checked(1, get_option('ead_preloader'), true); ?>><?php esc_html_e( 'Enable Preloader', 'embed-any-document' ); ?>
+										</div>
 										
 										<div class="clear"></div>
 									    <span class="note"><?php esc_html_e( 'Check for enabling preloader', 'embed-any-document' ); ?></span>
