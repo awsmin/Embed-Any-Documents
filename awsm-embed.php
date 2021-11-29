@@ -616,13 +616,6 @@ class Awsm_embed {
 			}
 		}
 
-		
-
-		/*$upload_dir = wp_upload_dir();
-		$base_name 	= wp_basename($url);
-
-		$filepath   = $upload_dir['basedir'] . DIRECTORY_SEPARATOR . '2021/07/'.$base_name; echo $filepath;die;*/
-
 		$this->parse_documents($url);
 
 		/**
@@ -725,20 +718,16 @@ class Awsm_embed {
 				break;
 
 			case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-				$doc_content = $this->docx_parser($file_content);
+				$doc_content = $this->docx_parser($url);
 				break;
 			
-			case 'application/vnd.oasis.opendocument.text':
-				$doc_content = 2;
-				break;
-
 			default:
 				break;
 		}
 
         if($doc_content != ''){
         	$post_id  = get_the_ID();
-        	$check    = add_post_meta($post_id, '_doc_content', $doc_content, true); 
+        	$check    = add_post_meta($post_id, '_doc_content', $doc_content, false); 
         }
 	}
 
@@ -753,8 +742,31 @@ class Awsm_embed {
 	    return $text;
 	}
 
-	public function docx_parser($content){ 
-          
+	public function docx_parser($url){ 
+		$text 			 = "";
+		$upload_dir      = wp_upload_dir(); 
+        $destination_dir = $upload_dir['path'].'/'; 
+		$file_name  	 = basename($url);
+
+		if (!copy($url, $destination_dir . $file_name)) {
+    		return false;
+		}
+
+		$zip = new ZipArchive(); 
+
+		if(file_exists($destination_dir . $file_name)){ 
+			if ($zip->open($destination_dir . $file_name)) { 
+	 			$dataFile = "word/document.xml";   
+			  	if (($index = $zip->locateName($dataFile)) !== false) {
+					$text = $zip->getFromIndex($index);
+					$xml  = new DOMDocument();
+    				$xml->loadXML($text, LIBXML_NOENT | LIBXML_XINCLUDE | LIBXML_NOERROR | LIBXML_NOWARNING);
+    				$text = strip_tags($xml->saveXML());
+			  	}
+			} 
+			$zip->close();
+		}
+		return $text;
 	}
 
 	/**

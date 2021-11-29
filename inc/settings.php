@@ -103,6 +103,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 									    <span class="note"><?php esc_html_e( 'Check for enabling preloader', 'embed-any-document' ); ?></span>
 									</td>
 								</tr>
+
+								<tr valign="top">
+									<th scope="row">
+										<?php esc_html_e( 'Search Index Doc Files', 'embed-any-document' ); ?>
+									</th>
+									<td>
+										<?php
+											$preloader = get_option( 'ead_searchdoc', 'file' );
+										?>
+										<div>
+											<input type="checkbox" name="ead_searchdoc" id="ead_searchdoc" value="1" <?php checked(1, get_option('ead_searchdoc'), true); ?>><?php esc_html_e( 'Enable Search', 'embed-any-document' ); ?>
+										</div>
+										
+										<div class="clear"></div>
+									    <span class="note"><?php esc_html_e( 'Check for enabling searching index doc files', 'embed-any-document' ); ?></span>
+									</td>
+								</tr>
 								<?php
 									/**
 									 * Hook: after_awsm_ead_general_settings.
