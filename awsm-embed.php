@@ -135,40 +135,29 @@ class Awsm_embed {
 
 	public function posts_search($search){ 
 		global $wpdb;
+	    if(empty($search)) {
+	        return $search; 
+	    }
 
-		$search_terms = get_query_var('search_terms');
-		if (empty( $search_terms )) {
+	    $search_terms = get_query_var('search_terms'); 
+	    if (empty( $search_terms )) {
 			return $search;
 		}
 
-		$file_types = array('pdf','docx','odt');
-        $query_file_types = "'" . implode("','", $file_types) . "'"; 
-
-		$inject = "($wpdb->posts.id IN (
-							SELECT pm.post_id
-							FROM $wpdb->postmeta pm
-							WHERE 
-							    $wpdb->posts.ID = pm.post_id AND 
-							    pm.meta_key = '_wp_attached_file' AND
-							    SUBSTRING_INDEX(pm.meta_value, '.', -1) IN ($query_file_types) 
-							) AND
-							$wpdb->posts.id IN (
-								SELECT pm2.post_id 
-								FROM $wpdb->postmeta pm2
+	    $inject = "OR ($wpdb->posts.id IN (
+								SELECT pm.post_id 
+								FROM $wpdb->postmeta pm
 								WHERE 
-								    $wpdb->posts.ID = pm2.post_id AND 
-								    pm2.meta_key = '_doc_content' AND  
-								    (1 = 0 ";
+								    $wpdb->posts.ID = pm.post_id AND 
+								    pm.meta_key = '_doc_content' AND ";
 
-	    foreach ( $search_terms as $term ) {
-		    $like = '%' . $wpdb->esc_like( $term ) . '%'; 
-		    $inject .= $wpdb->prepare( "OR (pm2.meta_value LIKE %s)", $like ); 
-	    }
-	
-	    $inject .= "))) OR ";
-		$search = substr_replace($search, $inject, 6, 0);
+		foreach ( $search_terms as $term ) {
+			$like = '%' . $wpdb->esc_like( $term ) . '%';
+			$inject .= $wpdb->prepare( " (pm.meta_value LIKE %s)))", $like );
+		}
 
-		return $search;
+	    $search .=$inject;
+	    return $search;
 	}
 
 	public function posts_where($where) {
