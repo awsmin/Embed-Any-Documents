@@ -119,12 +119,10 @@ class Awsm_embed {
 	public function search_index(){
 		add_filter( 'pre_get_posts', array( $this, 'pre_get_posts' ) );
 		add_filter( 'posts_search', array( $this, 'posts_search' ) );
-		add_filter( 'posts_where', array( $this, 'posts_where' ));
-		add_filter( 'posts_request', array( $this, 'posts_request' ) );
 	}
 
 	public function pre_get_posts($query) {
-       if ($query->is_search() && $query->is_main_query()) {
+        if ($query->is_search() && $query->is_main_query()) {
 	        $post_types = array('post', 'page', 'attachment');
 	        $query->set( 'post_type', $post_types );
 
@@ -158,15 +156,6 @@ class Awsm_embed {
 
 	    $search .=$inject;
 	    return $search;
-	}
-
-	public function posts_where($where) {
-		global $wpdb;
-		return $where;
-	}
-
-	public function posts_request($request) {
-		return $request;
 	}
 
 	/**
