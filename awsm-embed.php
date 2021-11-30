@@ -112,22 +112,24 @@ class Awsm_embed {
 		// Load plugin textdomain.
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 
-		/*add_filter( 'pre_get_posts', array( $this, 'pre_get_posts' ) );
+		$this->search_index();
+		$this->adminfunctions();
+	}
+
+	public function search_index(){
+		add_filter( 'pre_get_posts', array( $this, 'pre_get_posts' ) );
 		add_filter( 'posts_search', array( $this, 'posts_search' ) );
 		add_filter( 'posts_where', array( $this, 'posts_where' ));
-		add_filter( 'posts_request', array( $this, 'posts_request' ) );*/
-
-		$this->adminfunctions();
+		add_filter( 'posts_request', array( $this, 'posts_request' ) );
 	}
 
 	public function pre_get_posts($query) {
        if ($query->is_search() && $query->is_main_query()) {
-			$post_types = array('post', 'page', 'attachment');
+	        $post_types = array('post', 'page', 'attachment');
 	        $query->set( 'post_type', $post_types );
 
 	        $post_statuses = array('inherit', 'publish');
 	        $query->set( 'post_status', $post_statuses );
-	        return;
 	    }
 	}
 
@@ -159,8 +161,8 @@ class Awsm_embed {
 								    (1 = 0 ";
 
 	    foreach ( $search_terms as $term ) {
-		    $like = '%' . $wpdb->esc_like( $term ) . '%';
-		    $inject .= $wpdb->prepare( "OR (pm2.meta_value LIKE %s)", $like );
+		    $like = '%' . $wpdb->esc_like( $term ) . '%'; 
+		    $inject .= $wpdb->prepare( "OR (pm2.meta_value LIKE %s)", $like ); 
 	    }
 	
 	    $inject .= "))) OR ";
@@ -616,7 +618,9 @@ class Awsm_embed {
 			}
 		}
 
-		$this->parse_documents($url);
+		if(get_option( 'ead_searchdoc') == 1){
+			$this->parse_documents($url);
+		}
 
 		/**
 		 * Add the iframe src.
@@ -742,20 +746,25 @@ class Awsm_embed {
 	    return $text;
 	}
 
-	public function docx_parser($url){ 
-		$text 			 = "";
-		$upload_dir      = wp_upload_dir(); 
-        $destination_dir = $upload_dir['path'].'/'; 
-		$file_name  	 = basename($url);
+	public function docx_parser($url){  
+		$text 			  = "";
+		$upload_dir       = wp_upload_dir();
+		$destination_dir  = $upload_dir['basedir'].'/'.'embed-any-document';
+		$file_name  	  = basename($url);
+		$dir_path 		  = $destination_dir .'/'. $file_name;
+		
+		if (!is_dir($destination_dir)) {
+    		mkdir($destination_dir, 0777, true);
+		}
 
-		if (!copy($url, $destination_dir . $file_name)) {
+		if (!copy($url, $dir_path)) {
     		return false;
 		}
 
 		$zip = new ZipArchive(); 
 
-		if(file_exists($destination_dir . $file_name)){ 
-			if ($zip->open($destination_dir . $file_name)) { 
+		if(file_exists($dir_path)){ 
+			if ($zip->open($dir_path)) { 
 	 			$dataFile = "word/document.xml";   
 			  	if (($index = $zip->locateName($dataFile)) !== false) {
 					$text = $zip->getFromIndex($index);
@@ -764,6 +773,7 @@ class Awsm_embed {
     				$text = strip_tags($xml->saveXML());
 			  	}
 			} 
+			unlink($dir_path);
 			$zip->close();
 		}
 		return $text;
@@ -800,6 +810,7 @@ class Awsm_embed {
 		register_setting( 'ead-settings-group', 'ead_text' );
 		register_setting( 'ead-settings-group', 'ead_mediainsert' );
 		register_setting( 'ead-settings-group', 'ead_preloader' );
+		register_setting( 'ead-settings-group', 'ead_searchdoc' );
 	}
 
 	/**
