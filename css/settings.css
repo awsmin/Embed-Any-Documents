@@ -297,6 +297,7 @@ div.awsm-updated p {
 
 .cloudform {
     margin: 0;
+    padding-top: 40px;
 }
 
 .cloudform > li {
@@ -305,7 +306,28 @@ div.awsm-updated p {
     margin-bottom: 20px;
     overflow: hidden;
 }
+.cloudform > li:last-child{
+    border-bottom: none;
+}
+.cloudform > li .form-table{
+    margin-bottom: 0;
+}
+.cloudform > li .form-table .form-table td,
+.cloudform > li .form-table .form-table th{
+    padding-top: 8px;
+    padding-bottom: 8px;
+    vertical-align: middle;
+}
 
+.cloudform > li h3{
+    margin-top: 0;
+}
+.cloudform > li input{
+    min-width: 50%;
+}
+.cloudform > li a{
+    text-decoration: underline;
+}
 /* .ead-cloud {
     float: left;
     padding: 0 5px;
