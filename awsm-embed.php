@@ -23,7 +23,10 @@ if ( ! defined( 'AWSM_EMBED_VERSION' ) ) {
 }
 
 require_once plugin_dir_path( __FILE__ ) . '/lib/fs-init.php';
-require_once plugin_dir_path(__FILE__).'/vendor/autoload.php';
+
+if(get_option('ead_searchdoc')){
+	require_once plugin_dir_path(__FILE__).'/vendor/autoload.php';
+}
 
 /**
  * Embed Any Document Main Class.
@@ -112,7 +115,10 @@ class Awsm_embed {
 		// Load plugin textdomain.
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 
-		$this->search_index();
+		if(get_option('ead_searchdoc')){
+			$this->search_index();
+		}
+
 		$this->adminfunctions();
 	}
 
@@ -596,10 +602,10 @@ class Awsm_embed {
 			}
 		}
 
+		if(get_option('ead_searchdoc')){
+			$this->parse_documents($url);
+		}
 		
-		$this->parse_documents($url);
-
-
 		/**
 		 * Add the iframe src.
 		 *
