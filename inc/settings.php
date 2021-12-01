@@ -139,14 +139,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<?php settings_fields( 'ead-cloud-group' ); ?>
 					<div class="form-table">
 						<ul class="cloudform">
-				<?php
-				/**
-					 * Hook: awsm_ead_cloud_settings..
-					 *
-					 * @since 3.0.0
-					 */
-					do_action( 'awsm_ead_cloud_settings' );
-				?>
+						<?php
+						/**
+							 * Hook: awsm_ead_cloud_settings..
+							 *
+							 * @since 3.0.0
+							 */
+							do_action( 'awsm_ead_cloud_settings' );
+						?>
 						</ul>
 					</div>
 					<div>

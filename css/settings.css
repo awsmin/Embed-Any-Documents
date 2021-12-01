@@ -328,60 +328,7 @@ div.awsm-updated p {
 .cloudform > li a{
     text-decoration: underline;
 }
-/* .ead-cloud {
-    float: left;
-    padding: 0 5px;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
 
-.ead-cloud.ead-service {
-    text-align: center;
-    width: 14%;
-}
-
-.ead-cloud.ead-setup {
-    width: 53%;
-}
-
-.ead-cloud.ead-config {
-    width: 30%;
-}
-
-.ead-cloud span {
-    display: block;
-    font-weight: bold;
-    color: #ccc;
-}
-
-.ead-cloud label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.ead-inputholder {
-    float: left;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 50%;
-    padding: 0 5px;
-}
-
-.ead-inputholder input {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 100%;
-}
-
-.ead-cloud ol {
-    list-style: none;
-    margin: 0;
-}
- */
 .ead-right-widget {
     margin-bottom: 15px;
 }
