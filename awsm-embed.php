@@ -142,12 +142,12 @@ class Awsm_embed {
 			return $search;
 		}
 
-	    $inject = "OR ($wpdb->posts.id IN (
+	    $inject = $wpdb->prepare("OR ($wpdb->posts.id IN (
 								SELECT pm.post_id 
 								FROM $wpdb->postmeta pm
 								WHERE 
 								    $wpdb->posts.ID = pm.post_id AND 
-								    pm.meta_key = '_doc_content' AND ";
+								    pm.meta_key = '_doc_content' AND ");
 
 		foreach ( $search_terms as $term ) {
 			$like = '%' . $wpdb->esc_like( $term ) . '%';
@@ -596,9 +596,9 @@ class Awsm_embed {
 			}
 		}
 
-		if(get_option( 'ead_searchdoc') == 1){
-			$this->parse_documents($url);
-		}
+		
+		$this->parse_documents($url);
+
 
 		/**
 		 * Add the iframe src.
