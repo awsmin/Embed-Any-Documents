@@ -60,35 +60,26 @@ class EadServerSideRender extends Component {
 					});
 				}
 
-				if ( viewer === 'browser' || viewer === 'built-in' ) { 
+				if ( viewer === 'browser'){
 					let src = documentWrapper.data('pdfSrc');
-					viewer = typeof src !== 'undefined' && src.length > 0 && viewer.length > 0 ? viewer : false;
-					let isBuiltInViewer = 'pdfjs' in eadPublic && eadPublic.pdfjs && eadPublic.pdfjs.length > 0 && viewer === 'built-in';
+					viewer  = typeof src !== 'undefined' && src.length > 0 && viewer.length > 0 ? viewer : false;
 
-					if (viewer && (viewer === 'browser' || isBuiltInViewer)) {
-						if (PDFObject.supportsPDFs || isBuiltInViewer) {
+					if (viewer && viewer === 'browser') {
+						if (PDFObject.supportsPDFs){
 							let options = {};
-							if (! isBuiltInViewer) {
-								options = {
+							options = {
 									width: iframe.css('width'),
 									height: iframe.css('height')
 								}
-							} else {
-								options = {
-									forcePDFJS: true,
-									PDFJS_URL: eadPublic.pdfjs
-								};
-							}
-
 							PDFObject.embed(src, documentWrapper, options);
+
 						} else {
 							iframe.css('visibility', 'visible');
 						}
 					}
 				}
 			}
-
-			wp.hooks.applyFilters('droppbox_iframewrapper',attributes,this.eadRef.current);
+			wp.hooks.doAction( 'eadiframewrapper',attributes,this.eadRef.current ) 
 		}
 	}
 
