@@ -1,5 +1,5 @@
 class EadHelper {
-	static getFileSource( url ) {
+	/*static getFileSource( url ) {
 		let source = 'internal';
 		let siteUrl = emebeder.site_url;
 		if ( url.indexOf( siteUrl ) === -1 ) {
@@ -8,6 +8,15 @@ class EadHelper {
 			} else {
 				source = 'external';
 			}
+		}
+		return source;
+	}*/
+
+	static getFileSource( url ) {
+		let source = 'internal';
+		let siteUrl = emebeder.site_url;
+		if ( url.indexOf( siteUrl ) === -1 ) {
+			source = 'external';
 		}
 		return source;
 	}

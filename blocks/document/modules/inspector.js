@@ -47,11 +47,12 @@ class EadInspector extends Component {
 			}
 
             let fileSrc = EadHelper.getFileSource( url );
-            if ( EadHelper.isPDF(url) && fileSrc !== 'dropbox' ) {
+
+            if ( EadHelper.isPDF(url)) {
                 viewerOptions.push({ value: 'browser', label: __( 'Browser Based', 'embed-any-document' ) });
             }
             
-            wp.hooks.applyFilters('eadvieweroption',viewerOptions,fileSrc);
+            viewerOptions = wp.hooks.applyFilters('eadvieweroption',viewerOptions,fileSrc,url);
 
 			downloadTextControl = <TextControl label={ __( 'Download Text', 'embed-any-document' ) } help={ __( 'Default download button text', 'embed-any-document' ) } value={ text } onChange={ text => setAttributes( { text } ) } />;
 

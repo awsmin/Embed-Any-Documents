@@ -583,16 +583,25 @@ var EadHelper = /*#__PURE__*/function () {
 
   _createClass(EadHelper, null, [{
     key: "getFileSource",
+
+    /*static getFileSource( url ) {
+    	let source = 'internal';
+    	let siteUrl = emebeder.site_url;
+    	if ( url.indexOf( siteUrl ) === -1 ) {
+    		if ( url.indexOf( 'dropbox.com' ) !== -1 ) {
+    			source = 'dropbox';
+    		} else {
+    			source = 'external';
+    		}
+    	}
+    	return source;
+    }*/
     value: function getFileSource(url) {
       var source = 'internal';
       var siteUrl = emebeder.site_url;
 
       if (url.indexOf(siteUrl) === -1) {
-        if (url.indexOf('dropbox.com') !== -1) {
-          source = 'dropbox';
-        } else {
-          source = 'external';
-        }
+        source = 'external';
       }
 
       return source;
@@ -823,14 +832,14 @@ var EadInspector = /*#__PURE__*/function (_Component) {
 
         var fileSrc = _helper__WEBPACK_IMPORTED_MODULE_0__["default"].getFileSource(url);
 
-        if (_helper__WEBPACK_IMPORTED_MODULE_0__["default"].isPDF(url) && fileSrc !== 'dropbox') {
+        if (_helper__WEBPACK_IMPORTED_MODULE_0__["default"].isPDF(url)) {
           viewerOptions.push({
             value: 'browser',
             label: __('Browser Based', 'embed-any-document')
           });
         }
 
-        wp.hooks.applyFilters('eadvieweroption', viewerOptions, fileSrc);
+        viewerOptions = wp.hooks.applyFilters('eadvieweroption', viewerOptions, fileSrc, url);
         downloadTextControl = wp.element.createElement(TextControl, {
           label: __('Download Text', 'embed-any-document'),
           help: __('Default download button text', 'embed-any-document'),
