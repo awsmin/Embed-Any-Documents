@@ -79,6 +79,9 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
 
+= V 2.7.1 - 2021-12-09 =
+* Fixed: Fatal error sometimes using Gutenberg blocks and PHP 8.
+
 = V 2.7.0 - 2021-08-02 =
 * Added: Improved Block Design.
 * Fixed: Conflict with Lazy loading feature added by some themes and plugins.
@@ -107,5 +110,5 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Upgrade Notice ==
 
-= 2.7.0 =
-New Features And Fixes.
+= 2.7.1 =
+Fixes.
