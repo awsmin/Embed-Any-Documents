@@ -115,6 +115,7 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 = V 2.7.1 - 2021-12-10 =
 * Fixed: Fatal error in some installations.
+* UI Improvements.
 
 = V 2.7.0 - 2021-08-02 =
 * Added: Improved Block Design.
@@ -143,4 +144,4 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 == Upgrade Notice ==
 
 = 2.7.1 =
-Fixes.
+Fixes and Improvements.
