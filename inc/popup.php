@@ -31,6 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<li><?php $this->providerlink( 'Drive' ); ?></li>
 						<li><?php $this->providerlink( 'Dropbox' ); ?></li>
 						<li><?php $this->providerlink( 'Box' ); ?></li>
+						<li><?php $this->providerlink( 'OneDrive' ); ?></li>
 					</ul>
 					<div class="ead-url-box addurl-box">
 						<label for="awsm-url"><?php esc_html_e( 'Enter document URL', 'embed-any-document' ); ?></label>

@@ -13,6 +13,7 @@ import icon from './modules/icon';
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
 const { Button } = wp.components;
+const { Fragment } = wp.element;
 const { MediaPlaceholder } = wp.blockEditor || wp.editor;
 const { isURL } = wp.url;
 
@@ -141,6 +142,7 @@ registerBlockType( 'embed-any-document/document', {
 		} else {
 			return (
 				<MediaPlaceholder className="ead-media-placeholder" onSelect={ onSelectDocument } onSelectURL={ onSelectURL } labels = { { title: __( 'Embed Any Document', 'embed-any-document' ), 'instructions':__( 'Upload a document, pick from your media library, or add from an external URL.', 'embed-any-document' ) } } icon={icon.block}  accept={validExtension.join(', ')} allowedTypes={ validTypes } OnError={ onUploadError }>
+					<Fragment>
 					<Button className="ead-button-dropbox disabled" onClick={ providerLink } value="click">{ __( 'Add from dropbox', 'embed-any-document' ) }
                         <span className="overlay">
                         	<span>{ __( 'Pro Feature', 'embed-any-document' ) }</span>
@@ -156,6 +158,12 @@ registerBlockType( 'embed-any-document/document', {
                         	<span>{ __( 'Pro Feature', 'embed-any-document' ) }</span>
                         </span>
 					</Button>
+					<Button  className="ead-button-onedrive disabled" onClick={ providerLink } value="click">{ __( 'Add from OneDrive', 'embed-any-document' ) }
+						<span className="overlay">
+                        	<span>{ __( 'Pro Feature', 'embed-any-document' ) }</span>
+                        </span>
+					</Button>
+					</Fragment>
 				</MediaPlaceholder>
 			);
 		}
