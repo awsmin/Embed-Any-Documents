@@ -947,9 +947,10 @@ class Awsm_embed {
 	public function selectbuilder( $name, $options, $selected = '', $class = '', $attr = '' ) {
 		if ( is_array( $options ) ) :
 			$select_html = '<select name="' . esc_attr( $name ) . '" id="' . esc_attr( $name ) . '" class="' . esc_attr( $class ) . '" ' . $attr . '>';
+			
 			foreach ( $options as $key => $option ) {
 				$selected_html = '';
-				if ( $key === $selected ) {
+				if ( $key == $selected ) {
 					$selected_html = ' selected="selected"';
 				}
 				$select_html .= '<option value="' . esc_attr( $key ) . '" ' . $selected_html . '>' . esc_html( $option ) . '</option>';
