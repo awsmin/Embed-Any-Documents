@@ -42,7 +42,7 @@ jQuery(document).ready(function($) {
     });
     
     //Update shortcode on change
-    $(".ead-usc").change(function() {
+    $(".ead-usc").change(function() { 
         newprovider = "";
         ead_updateshortcode($(this).attr('id'));
         ead_customize_popup();

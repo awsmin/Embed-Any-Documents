@@ -102,7 +102,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								}
 								?>
 							</div>
-
+						
 							<div class="f-left last" id="ead-pseudo" style="display:none">
 								<label><?php esc_html_e( 'Viewer', 'embed-any-document' ); ?></label>
 								<select name="ead-pseudo" disabled>
@@ -130,6 +130,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<?php esc_html_e( 'Do not cache this file (Affects performance)', 'embed-any-document' ); ?>
 							</label>
 						</li>
+
+						<?php
+							/**
+							 * Hook: awsm_ead_advanced_options.
+							 *
+							 * @since 3.0.0
+							 */
+							do_action( 'awsm_ead_advanced_options' );
+						?>
+
 						<li>
 							<label><?php esc_html_e( 'Shortcode Preview', 'embed-any-document' ); ?></label>
 							<textarea name="shortcode" style="width:100%" id="shortcode" readonly="readonly"></textarea>

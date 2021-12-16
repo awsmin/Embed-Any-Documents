@@ -492,7 +492,7 @@ class Awsm_embed {
 	 * @param array $atts The shortcode attributes.
 	 * @return string Shortcode output content.
 	 */
-	public function embed_shortcode( $atts ) {
+	public function embed_shortcode( $atts ) { 
 		$embed            = '';
 		$durl             = '';
 		$default_width    = $this->sanitize_dims( get_option( 'ead_width', '100%' ) );
@@ -687,6 +687,7 @@ class Awsm_embed {
 		 * @param array $iframe_attrs The iframe attributes.
 		 */
 		$iframe_attrs['durl'] = $durl;
+		$iframe_attrs['atts'] = $atts;
 		$embed = apply_filters( 'awsm_ead_content', $embed, $shortcode_atts, $iframe_attrs );
 
 		return $embed;
