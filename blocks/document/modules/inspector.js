@@ -34,8 +34,9 @@ class EadInspector extends Component {
     }
 
     render() {
-        const { attributes: { url, width, height, text, download, viewer, cache }, setAttributes } = this.props;
-        let viewerOptions = [];
+        const { attributes: { url, width, height, text, download, viewer, cache }, setAttributes } = this.props; 
+        let viewerOptions  = [];
+        let viewerSettings = [];
 		let downloadTextControl = null;
 		let enableViewerControl = viewer && jQuery.inArray( viewer, emebeder.viewers ) !== -1;
 
@@ -88,6 +89,10 @@ class EadInspector extends Component {
                 { ! this.state.cacheHidden && <PanelBody>
                     <ToggleControl label={ __( 'Cache', 'embed-any-document' ) } checked={ cache } onChange={ cache => setAttributes( { cache } ) } />
                 </PanelBody> }
+
+                { wp.hooks.doAction( 'awsm_ead_settings',viewerSettings,this.props) }
+                { viewerSettings }
+
             </InspectorControls>
         );
     }
