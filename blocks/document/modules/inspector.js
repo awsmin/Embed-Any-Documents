@@ -90,7 +90,7 @@ class EadInspector extends Component {
                     <ToggleControl label={ __( 'Cache', 'embed-any-document' ) } checked={ cache } onChange={ cache => setAttributes( { cache } ) } />
                 </PanelBody> }
 
-                { wp.hooks.doAction( 'awsm_ead_settings',viewerSettings,this.props) }
+                { wp.hooks.doAction( 'awsm_ead_settings',viewerSettings,viewer,this.props) }
                 { viewerSettings }
 
             </InspectorControls>

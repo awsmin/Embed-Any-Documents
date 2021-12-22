@@ -902,7 +902,7 @@ var EadInspector = /*#__PURE__*/function (_Component) {
             cache: cache
           });
         }
-      })), wp.hooks.doAction('awsm_ead_settings', viewerSettings, this.props), viewerSettings);
+      })), wp.hooks.doAction('awsm_ead_settings', viewerSettings, viewer, this.props), viewerSettings);
     }
   }]);
 

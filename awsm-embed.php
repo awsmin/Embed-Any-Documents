@@ -688,7 +688,8 @@ class Awsm_embed {
 		 */
 		$iframe_attrs['durl'] = $durl;
 		$iframe_attrs['atts'] = $atts;
-		$embed = apply_filters( 'awsm_ead_content', $embed, $shortcode_atts, $iframe_attrs ); 
+		$embed = apply_filters( 'awsm_ead_content', $embed, $shortcode_atts, $iframe_attrs );
+	
 		return $embed;
 	}
 
