@@ -8,11 +8,11 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
-} 
+}
 ?>
-
-<div id="embed-popup-wrap">
-    <script type="text/html" id="tmpl-embed-popup-template">
+<div id="embed-popup-wrap-template"></div>
+<script type="text/html" id="tmpl-embed-popup-template">
+    <div id="embed-popup-wrap">
     	<div id="embed-popup">
     		<button title="<?php esc_html_e( 'Close', 'embed-any-document' ); ?>" type="button" class="ead-close">×</button>
     		<div id="popup-header" class="ead-popup-header">
@@ -161,8 +161,5 @@ if ( ! defined( 'ABSPATH' ) ) {
     		</div>
 
     	</div>
-    </script>
-</div> 
-
-
-
+    </div> 
+</script>

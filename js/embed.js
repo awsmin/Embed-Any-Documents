@@ -17,6 +17,9 @@ jQuery(document).ready(function($) {
         ead_showmsg(msg);
     };
 
+    var template = wp.template('embed-popup-template');
+    $('#embed-popup-wrap-template').html(template);  
+
     var $embedurl = $('#awsm-url'),
         $shortcode = $('#shortcode'),
         $message = $('#embed-message p'),
@@ -31,17 +34,11 @@ jQuery(document).ready(function($) {
         $embed_popup = $('#embed-popup'),
         eadshortcode = '';
 
-    var template = wp.template('embed-popup-template');
-    $('#embed-popup-wrap').html(template);
-    
-
     //Opens Embed popup
     $('body').on('click', '.awsm-embed', function(e) { 
-        ead_reset();
         e.preventDefault();
-        
+        ead_reset();
         $('body').addClass('ead-popup-on');  
-
         tb_show("Embed Any Document", "#TB_inline?inlineId=embed-popup-wrap&amp;width=1030&amp;modal=true", null);
         ead_tb_position();
         $("#upload-doc").focus();
@@ -100,8 +97,8 @@ jQuery(document).ready(function($) {
                 text: emebeder.select_button
             }
         });
-        frame.on('select', function() {
-            var file = frame.state().get('selection').first().toJSON();
+        frame.on('select', function() { 
+            var file = frame.state().get('selection').first().toJSON(); 
             ead_updateprovider(file, uClass);
         });
         frame.open();
@@ -109,7 +106,7 @@ jQuery(document).ready(function($) {
     
 
     //update provider
-    function ead_updateprovider(file, uClass) {
+    function ead_updateprovider(file, uClass) { 
         fileurl = file.url;
         filedata = file; 
         ead_valid_viewer(file, uClass);
@@ -204,7 +201,7 @@ jQuery(document).ready(function($) {
             attrs += index+'="'+item+'" ';
         });
     
-        var embed_shortcode = '[embeddoc '+attrs +']';
+        var embed_shortcode = '[embeddoc '+attrs +']'; 
         return embed_shortcode;
     }
     // Checks with default setting value
@@ -220,7 +217,7 @@ jQuery(document).ready(function($) {
         return false;
     }
     //Print uploaded file details
-    function ead_uploaddetails(file, uClass) {
+    function ead_uploaddetails(file, uClass) { 
         $('#insert-doc').removeAttr('disabled');
         $('#ead-filename').html(file.filename);
         if (file.filesizeHumanReadable) {
@@ -229,7 +226,7 @@ jQuery(document).ready(function($) {
             $('#ead-filesize').html('&nbsp;');
         }
         $('.upload-success').fadeIn();
-        $container.hide();
+        $container.hide(); 
         ead_upload_class(uClass);
     }
    
