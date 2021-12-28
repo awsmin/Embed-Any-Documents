@@ -30,11 +30,18 @@ jQuery(document).ready(function($) {
         drextension = emebeder.drextension,
         $embed_popup = $('#embed-popup'),
         eadshortcode = '';
+
+    var template = wp.template('embed-popup-template');
+    $('#embed-popup-wrap').html(template);
+    
+
     //Opens Embed popup
     $('body').on('click', '.awsm-embed', function(e) { 
         ead_reset();
         e.preventDefault();
-        $('body').addClass('ead-popup-on');
+        
+        $('body').addClass('ead-popup-on');  
+
         tb_show("Embed Any Document", "#TB_inline?inlineId=embed-popup-wrap&amp;width=1030&amp;modal=true", null);
         ead_tb_position();
         $("#upload-doc").focus();
@@ -121,11 +128,11 @@ jQuery(document).ready(function($) {
         return dim;
     }
     //Thickbox Handler
-    function ead_tb_position() {
+    function ead_tb_position() { 
             var tbWindow = $('#TB_window');
             var width = $(window).width();
             var H = $(window).height();
-            var W = ( 1080 < width ) ? 1080 : width;
+            var W = ( 1080 < width ) ? 1080 : width; 
 
             if ( tbWindow.size() ) {
                 tbWindow.width( W - 50 ).height( H - 45 );
@@ -136,6 +143,7 @@ jQuery(document).ready(function($) {
                     tbWindow.css({'top':'20px','margin-top':'0'});
                 $('#TB_title').css({'background-color':'#fff','color':'#cfcfcf'});
             };
+
     };
     $(window).resize( function() { ead_tb_position() } );
     //to getshortcode

@@ -128,6 +128,7 @@ class Awsm_embed_Guten_blocks {
 		 * @param array $atts Attribute data array.
 		 */
 		$embed = apply_filters( 'awsm_ead_block_render_callback', $embed, $atts );
+		
 		return $embed;
 	}
 

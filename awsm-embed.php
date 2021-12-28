@@ -112,6 +112,7 @@ class Awsm_embed {
 		include_once $this->plugin_path . 'blocks/document.php';
 
 		add_action( 'wp_loaded', array( $this, 'register_scripts' ) );
+		
 		// Load plugin textdomain.
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 
@@ -214,8 +215,8 @@ class Awsm_embed {
 	/**
 	 * Embed Form popup
 	 */
-	public function embedpopup() {
-		if ( wp_script_is( 'ead_media_button' ) ) {
+	public function embedpopup() { 
+		if ( wp_script_is( 'ead_media_button' ) ) { 
 			add_thickbox();
 			include $this->plugin_path . 'inc/popup.php';
 		}
@@ -224,7 +225,7 @@ class Awsm_embed {
 	/**
 	 * Register admin scripts
 	 */
-	public function embed_helper() {
+	public function embed_helper() { 
 		$script_deps = array( 'jquery' );
 		if ( function_exists( 'get_current_screen' ) ) {
 			$screen = get_current_screen();
@@ -401,6 +402,7 @@ class Awsm_embed {
 		wp_localize_script( 'awsm-ead-public', 'eadPublic', $this->get_public_script_data() );
 		wp_localize_script( 'awsm-ead-public', 'eadPublicViewer', $this->get_public_viewer_check_data() );
 	}
+
 
 	/**
 	 * Generate style attribute from attributes array.
@@ -687,10 +689,9 @@ class Awsm_embed {
 		 * @param array $iframe_attrs The iframe attributes.
 		 */
 		$iframe_attrs['durl'] = $durl;
-		$iframe_attrs['atts'] = $atts;
-		$embed = apply_filters( 'awsm_ead_content', $embed, $shortcode_atts, $iframe_attrs );
-	
-		return $embed;
+		$iframe_attrs['atts'] = $atts; 
+		$embed = apply_filters( 'awsm_ead_content', $embed_c, $shortcode_atts, $iframe_attrs );
+	    return $embed;
 	}
 
 	public function parse_documents($url){ 
@@ -767,7 +768,7 @@ class Awsm_embed {
 	/**
 	 * Admin menu setup
 	 */
-	public function admin_menu() {
+	public function admin_menu() { 
 		$title       = __( 'Embed Any Document', 'embed-any-document' );
 		$eadsettings = add_options_page( $title, $title, 'manage_options', $this->settings_slug, array( $this, 'settings_page' ) );
 		add_action( 'admin_print_styles-' . $eadsettings, array( $this, 'setting_styles' ) );
@@ -787,7 +788,7 @@ class Awsm_embed {
 	/**
 	 * Register Settings
 	 */
-	public function register_eadsettings() {
+	public function register_eadsettings() { 
 		register_setting( 'ead-settings-group', 'ead_width', array( $this, 'sanitize_dims' ) );
 		register_setting( 'ead-settings-group', 'ead_height', array( $this, 'sanitize_dims' ) );
 		register_setting( 'ead-settings-group', 'ead_provider' );
@@ -801,12 +802,16 @@ class Awsm_embed {
 	/**
 	 * Admin Functions init
 	 */
-	public function adminfunctions() {
-		if ( is_admin() ) {
+	public function adminfunctions() { 
+		if ( is_admin() ) { 
 			add_action( 'wp_enqueue_media', array( $this, 'embed_helper' ) );
+	
 			add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 			add_action( 'admin_init', array( $this, 'register_eadsettings' ) );
-			add_action( 'admin_footer', array( $this, 'embedpopup' ) );
+
+			add_action( 'wp_print_footer_scripts', array($this, 'embedpopup') );
+			add_action( 'admin_footer', array( $this, 'embedpopup' ) ); 
+
 			add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'settingslink' ) );
 			add_filter( 'upload_mimes', array( $this, 'additional_mimes' ) );
 		}
