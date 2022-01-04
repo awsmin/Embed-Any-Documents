@@ -79,7 +79,7 @@ class Awsm_embed {
 	 *
 	 * @var string
 	 */
-	private $settings_slug;
+	public $settings_slug;
 
 	/**
 	 * Creates or returns an instance of this class.
