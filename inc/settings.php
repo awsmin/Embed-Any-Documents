@@ -38,6 +38,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</a>
 		<?php } ?>
 
+		<?php
+			/**
+			 * Hook: awsm_ead_settings_tabs_list.
+			 *
+			 * @since 3.0.0
+			 */
+			do_action( 'awsm_ead_settings_tabs_list', $settings_tab );
+		?>
 	</div>
 	<div class="row clearfix">
 		<div class="ead-left-wrap">
@@ -154,6 +162,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</div>
 				</form>
 				<?php endif; ?>
+				<?php 
+					/**
+					 * Hook: awsm_ead_settings_tabs_list.
+					 *
+					 * @since 3.0.0
+					 */
+					do_action( 'awsm_ead_settings_content',$settings_tab );
+				?>
 			</div>
 		</div>
 		

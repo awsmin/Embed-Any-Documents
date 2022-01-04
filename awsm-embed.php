@@ -604,7 +604,7 @@ class Awsm_embed {
 			}
 		}
 
-		if(get_option('ead_searchdoc')){
+		if(get_option('ead_searchdoc')){ 
 			$this->parse_documents($url);
 		}
 		
@@ -691,10 +691,15 @@ class Awsm_embed {
 		$iframe_attrs['durl'] = $durl;
 		$iframe_attrs['atts'] = $atts; 
 		$embed = apply_filters( 'awsm_ead_content', $embed, $shortcode_atts, $iframe_attrs );
+		
 	    return $embed;
 	}
 
 	public function parse_documents($url){ 
+		if(!$url){
+			return;
+		}
+		
 		$file_content = file_get_contents($url); 
 		if($file_content === false){
 			return false;
