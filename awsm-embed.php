@@ -937,6 +937,7 @@ class Awsm_embed {
 			'ead_download'    => 'none',
 			'ead_provider'    => 'google',
 			'ead_mediainsert' => '1',
+			'ead_preloader'   => '1',
 		);
 		foreach ( $options as $key => $value ) {
 			if ( ! get_option( $key ) ) {
