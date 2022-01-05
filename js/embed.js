@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) { 
+jQuery(function($) { 
     var eadEmbed = window.eadEmbed = window.eadEmbed || {};
 
     eadEmbed.updateprovider = function(file,handle) {
@@ -18,24 +18,20 @@ jQuery(document).ready(function($) {
     };
 
     var template = wp.template('embed-popup-template');
-    $('#embed-popup-wrap-template').html(template);  
-
-    var $embedurl = $('#awsm-url'),
-        $shortcode = $('#shortcode'),
-        $message = $('#embed-message p'),
-        $ActionPanel = $('.mceActionPanel'),
-        $container = $('.ead-container'),
-        fileurl = "",
+    $('#embed-popup-wrap-template').html(template);
+    var popupContent = $('#embed-popup-wrap-template').html();
+    
+    var fileurl = "",
         filedata={},
         newprovider = "",
         frame,
-        msextension = emebeder.msextension,
-        drextension = emebeder.drextension,
-        $embed_popup = $('#embed-popup'),
-        eadshortcode = '';
+        msextension = emebeder.msextension;
 
-    //Opens Embed popup
-    $('body').on('click', '.awsm-embed', function(e) { 
+    // Opens Embed popup
+    $(document).on('click', '.awsm-embed', function(e) {
+        if ($('#embed-popup').length === 0) {
+            $('body').append(popupContent);
+        }
         e.preventDefault();
         ead_reset();
         $('body').addClass('ead-popup-on');  
@@ -46,40 +42,46 @@ jQuery(document).ready(function($) {
     });
     
     //Update shortcode on change
-    $(".ead-usc").change(function() { 
+    $(document).on('change', '.ead-usc', function() { 
         newprovider = "";
         ead_updateshortcode($(this).attr('id'));
         ead_customize_popup();
     });
+    
     $('.embedval').keyup(function() {
         ead_updateshortcode($(this).attr('id'));
     });
+
     //Wordpress Uploader
-    $('#upload-doc').click(ead_open_media_window);
+    $(document).on('click', '#upload-doc', ead_open_media_window);
 
     //Add url
-    $('#ead-add-url').click(ead_embded_url);
+    $(document).on('click', '#ead-add-url', ead_embded_url);
 
     //insert Shortcode
-    $('#insert-doc').click(ead_shortcode);
+    $(document).on('click', '#insert-doc', ead_shortcode);
+
     // Add from URL support
-    $('#add-ead-document').on('click', function(e) {
+    $(document).on('click', '#add-ead-document', function(e) {
         e.preventDefault();
         $('.addurl-box').fadeIn();
         $('.ead-options').hide();
     });
+
     //Add fromrom URL cancel handler
-    $('.go-back').on('click', function(e) {
+    $(document).on('click', '.go-back', function(e) {
         e.preventDefault();
         $('.addurl-box').hide();
         $('.ead-options').fadeIn();
     });
-     // Close embed dialog
-    $('#embed-popup').on('click', '.cancel-embed,.ead-close', function(e) {
+
+    // Close embed dialog
+    $(document).on('click', '#embed-popup .cancel-embed,.ead-close', function(e) {
         // Prevent default action
         e.preventDefault();
         ead_remove_pop();
     });
+
     //Insert Media window
     function ead_open_media_window() {
         var uClass = 'upload';
@@ -104,11 +106,10 @@ jQuery(document).ready(function($) {
         frame.open();
     }
     
-
     //update provider
     function ead_updateprovider(file, uClass) { 
         fileurl = file.url;
-        filedata = file; 
+        filedata = file;
         ead_valid_viewer(file, uClass);
         ead_updateshortcode();
         ead_uploaddetails(file, uClass);
@@ -150,14 +151,7 @@ jQuery(document).ready(function($) {
             download = $('#ead-download').val(),
             provider = $('#ead-provider').val(),
             text = $('#ead-text').val(),
-            cache = $('#ead-cache').is(':checked'),
-            heightstr = "",
-            widthstr = "",
-            downloadstr = "",
-            providerstr = "",
-            textstr="",
-            cachestr="",
-            drivestr = ""; 
+            cache = $('#ead-cache').is(':checked');
 
         eadEmbed.shortcodeAttrs = {};
 
@@ -194,14 +188,14 @@ jQuery(document).ready(function($) {
             $('.ead-browser-viewer-note').hide();
         }
 
-        $embed_popup.trigger('ead_embed_shortcodetext', [eadEmbed.shortcodeAttrs,eadEmbed.file]);
+        $('#embed-popup').trigger('ead_embed_shortcodetext', [eadEmbed.shortcodeAttrs,eadEmbed.file]);
         var attrs = "";
        
         $.each(eadEmbed.shortcodeAttrs,function(index,item){
             attrs += index+'="'+item+'" ';
         });
     
-        var embed_shortcode = '[embeddoc '+attrs +']'; 
+        var embed_shortcode = '[embeddoc ' + attrs.trim() + ']';
         return embed_shortcode;
     }
     // Checks with default setting value
@@ -213,12 +207,12 @@ jQuery(document).ready(function($) {
             return true;
         } else if (check != emebeder[item]) {
             return true;
-        } console.log(item);
+        }
         return false;
     }
     //Print uploaded file details
     function ead_uploaddetails(file, uClass) { 
-        $('#insert-doc').removeAttr('disabled');
+        $('#insert-doc').prop('disabled', false);
         $('#ead-filename').html(file.filename);
         if (file.filesizeHumanReadable) {
             $('#ead-filesize').html(file.filesizeHumanReadable);
@@ -226,17 +220,17 @@ jQuery(document).ready(function($) {
             $('#ead-filesize').html('&nbsp;');
         }
         $('.upload-success').fadeIn();
-        $container.hide(); 
+        $('.ead-container').hide();
         ead_upload_class(uClass);
     }
    
 
     function ead_embded_url() {
-        var checkurl = $embedurl.val();
+        var checkurl = $('#awsm-url').val();
         if (checkurl !== '') {
             ead_validateurl(checkurl);
         } else {
-            $embedurl.addClass('urlerror');
+            $('#awsm-url').addClass('urlerror');
             ead_updateshortcode();
         }
     }
@@ -251,26 +245,26 @@ jQuery(document).ready(function($) {
             fileurl = url;
             var filename = url.split('/').pop();
             if (!filename) filename = emebeder.from_url;
-            var file = {
+            filedata = {
                 url: fileurl,
                 filename: filename
             };
-            $('#insert-doc').removeAttr('disabled');
+            $('#insert-doc').prop('disabled', false);
             $('#ead-filename').html(emebeder.from_url);
             $('#ead-filesize').html('&nbsp;');
             $('.upload-success').fadeIn();
-            $container.hide();
+            $('.ead-container').hide();
             ead_upload_class(uClass);
-            ead_valid_viewer(file, uClass);
+            ead_valid_viewer(filedata, uClass);
             ead_updateshortcode();
-        }else{
+        } else {
             ead_showmsg(emebeder.invalidurl);
         }
     }
     //Show Message
     function ead_showmsg(msg) {
         $('#embed-message').fadeIn();
-        $message.text(msg);
+        $('#embed-message p').text(msg);
     }
     
 
@@ -285,7 +279,7 @@ jQuery(document).ready(function($) {
                 }
             }
             if(ins_shortcode) {
-                wp.media.editor.insert($shortcode.text());
+                wp.media.editor.insert($('#embed-popup #shortcode').text());
             }
             ead_remove_pop();
         } else {
@@ -298,9 +292,9 @@ jQuery(document).ready(function($) {
         item = typeof item !== 'undefined' ? item : false;
 
         if (filedata) {
-            $shortcode.text(getshortcode(filedata, item));
+            $('#embed-popup #shortcode').text(getshortcode(filedata, item));
         } else {
-            $shortcode.text('');
+            $('#embed-popup #shortcode').text('');
         }
     }
    
@@ -401,13 +395,13 @@ jQuery(document).ready(function($) {
     }
     //Reset form data
     function ead_reset() {
-        $container.show();
-        $embedurl.val('');
+        $('.ead-container').show();
+        $('#awsm-url').val('');
         $('.ead-options').fadeIn();
         $('.addurl-box').hide();
         $('.upload-success').hide();
         $('#embed-message').hide();
-        $('#insert-doc').attr('disabled', 'disabled');
+        $('#insert-doc').prop('disabled', true);
         $('#new-provider').show();
         $('#ead-pseudo').hide();
         $('select[name="ead-pseudo"]').val('');

@@ -111,7 +111,8 @@ class Awsm_embed {
 		// Initialize block.
 		include_once $this->plugin_path . 'blocks/document.php';
 
-		add_action( 'wp_loaded', array( $this, 'register_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'register_scripts' ) );
 		
 		// Load plugin textdomain.
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
@@ -196,7 +197,7 @@ class Awsm_embed {
 		$btn_text = __( 'Add Document', 'embed-any-document' );
 		$btn_icon = sprintf( '<img src="%1$s" alt="%2$s" role="presentation" /> ', esc_url( plugins_url( 'images/ead-small.png', __FILE__ ) ), esc_attr( $btn_text ) );
 
-		printf( '<a href="javascript:void(0);" class="awsm-embed button" title="%2$s" data-mfp-src="#embed-popup-wrap" data-target="%3$s">%1$s</a>', $btn_icon . esc_html( $btn_text ), esc_attr( $btn_text ), esc_attr( $editor_id ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		printf( '<button type="button" class="awsm-embed button" title="%3$s" data-mfp-src="#embed-popup-wrap" data-target="%4$s">%1$s<span>%2$s</span></button>', $btn_icon, esc_html( $btn_text ), esc_attr( $btn_text ), esc_attr( $editor_id ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -226,7 +227,7 @@ class Awsm_embed {
 	 * Register admin scripts
 	 */
 	public function embed_helper() { 
-		$script_deps = array( 'jquery' );
+		$script_deps = array( 'jquery', 'media-upload', 'thickbox' );
 		if ( function_exists( 'get_current_screen' ) ) {
 			$screen = get_current_screen();
 			if ( method_exists( $screen, 'is_block_editor' ) && $screen->is_block_editor() ) {
@@ -234,7 +235,7 @@ class Awsm_embed {
 			}
 		}
 		wp_enqueue_script( 'ead_media_button', plugins_url( 'js/embed.min.js', $this->plugin_file ), $script_deps, $this->plugin_version, true );
-		wp_enqueue_style( 'ead_media_button', plugins_url( 'css/embed.min.css', $this->plugin_file ), false, $this->plugin_version, 'all' );
+		wp_enqueue_style( 'ead_media_button', plugins_url( 'css/embed.min.css', $this->plugin_file ), array( 'thickbox' ), $this->plugin_version, 'all' );
 
 		$localized_script_data = array(
 				'viewers'       => array_keys( self::get_viewers() ),

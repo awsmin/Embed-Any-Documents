@@ -4,6 +4,10 @@
     margin: 0 auto;
 }
 
+.awsm-embed img {
+    vertical-align: middle;
+}
+
 .ead-popup-on #TB_overlay {
     z-index: 200000 !important;
 }
@@ -481,4 +485,23 @@ div.awsm-updated p {
     .ead-options li {
         width: 100%;
     }
+}
+
+/* Third-party support */
+
+.elementor-control-type-wysiwyg .awsm-embed.button {
+    height: auto;
+    line-height: 24px;
+    font-size: 10px;
+    color: #6d7882;
+    border-color: #d5dadf;
+    background-color: #e6e9ec;
+    min-height: 0;
+    margin: 0px 0px 3px 2px;
+}
+
+body.et-db.et-fb:not(.et-bfb) #et-boc .et-l .et-fb-tinymce-media-buttons .awsm-embed.button {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 30px;
 }
