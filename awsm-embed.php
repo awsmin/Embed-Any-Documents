@@ -111,8 +111,17 @@ class Awsm_embed {
 		// Initialize block.
 		include_once $this->plugin_path . 'blocks/document.php';
 
-		add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'register_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'register_styles' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_styles' ), 9 );
+		add_action( 'wp_enqueue_media', array( $this, 'embed_helper' ) );
+		add_action( 'wp_footer', array($this, 'embedpopup') );
+		
+		// Elementor compatibility.
+		add_action( 'elementor/editor/before_enqueue_scripts', array( $this, 'register_scripts' ) );
+		add_action( 'elementor/editor/before_enqueue_styles', array( $this, 'register_styles' ) );
+		add_action( 'elementor/editor/footer', array($this, 'embedpopup') );
 		
 		// Load plugin textdomain.
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
@@ -217,7 +226,7 @@ class Awsm_embed {
 	 * Embed Form popup
 	 */
 	public function embedpopup() { 
-		if ( wp_script_is( 'ead_media_button' ) ) { 
+		if ( wp_script_is( 'ead_media_button' ) ) {
 			add_thickbox();
 			include $this->plugin_path . 'inc/popup.php';
 		}
@@ -227,7 +236,7 @@ class Awsm_embed {
 	 * Register admin scripts
 	 */
 	public function embed_helper() { 
-		$script_deps = array( 'jquery', 'media-upload', 'thickbox' );
+		$script_deps = array( 'jquery', 'awsm-ead-public', 'media-upload', 'thickbox' );
 		if ( function_exists( 'get_current_screen' ) ) {
 			$screen = get_current_screen();
 			if ( method_exists( $screen, 'is_block_editor' ) && $screen->is_block_editor() ) {
@@ -235,7 +244,7 @@ class Awsm_embed {
 			}
 		}
 		wp_enqueue_script( 'ead_media_button', plugins_url( 'js/embed.min.js', $this->plugin_file ), $script_deps, $this->plugin_version, true );
-		wp_enqueue_style( 'ead_media_button', plugins_url( 'css/embed.min.css', $this->plugin_file ), array( 'thickbox' ), $this->plugin_version, 'all' );
+		wp_enqueue_style( 'ead_media_button', plugins_url( 'css/embed.min.css', $this->plugin_file ), array( 'awsm-ead-public', 'thickbox' ), $this->plugin_version, 'all' );
 
 		$localized_script_data = array(
 				'viewers'       => array_keys( self::get_viewers() ),
@@ -395,8 +404,6 @@ class Awsm_embed {
 	 * Register scripts for both back-end and front-end use.
 	 */
 	public function register_scripts() {
-		wp_register_style( 'awsm-ead-public', plugins_url( 'css/embed-public.min.css', $this->plugin_file ), array(), $this->plugin_version, 'all' );
-
 		wp_register_script( 'awsm-ead-pdf-object', plugins_url( 'js/pdfobject.min.js', $this->plugin_file ), array(), $this->plugin_version, true );
 		wp_register_script( 'awsm-ead-public', plugins_url( 'js/embed-public.min.js', $this->plugin_file ), array( 'jquery', 'awsm-ead-pdf-object' ), $this->plugin_version, true );
 
@@ -404,6 +411,12 @@ class Awsm_embed {
 		wp_localize_script( 'awsm-ead-public', 'eadPublicViewer', $this->get_public_viewer_check_data() );
 	}
 
+	/**
+	 * Register styles for both back-end and front-end use.
+	 */
+	public function register_styles() {
+		wp_register_style( 'awsm-ead-public', plugins_url( 'css/embed-public.min.css', $this->plugin_file ), array(), $this->plugin_version, 'all' );
+	}
 
 	/**
 	 * Generate style attribute from attributes array.
@@ -808,10 +821,7 @@ class Awsm_embed {
 	/**
 	 * Admin Functions init
 	 */
-	public function adminfunctions() { 
-		add_action( 'wp_enqueue_media', array( $this, 'embed_helper' ) );
-		add_action( 'wp_print_footer_scripts', array($this, 'embedpopup') );
-		
+	public function adminfunctions() {
 		if ( is_admin() ) { 
 			add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 			add_action( 'admin_init', array( $this, 'register_eadsettings' ) );
