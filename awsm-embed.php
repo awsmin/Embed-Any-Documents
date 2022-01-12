@@ -534,7 +534,7 @@ class Awsm_embed {
 			'embeddoc'
 		);
 
-		$preloader = get_option( 'ead_preloader');
+		$preloader = get_option( 'ead_preloader'); 
 		
 		wp_enqueue_style( 'awsm-ead-public' );
 		wp_enqueue_script( 'awsm-ead-public' );
@@ -872,7 +872,7 @@ class Awsm_embed {
 		if ( $this->isprovider_api( $keys ) ) {
 			$link      = 'options-general.php?page='.$this->settings_slug. '&tab=cloud';;
 			$id        = '';
-			$configure = '';
+			$configure = sprintf( '<span class="overlay"><strong>%s</strong><i></i></span>', esc_html__( 'Configure', 'embed-any-document' ) );
 			$target    = 'target="_blank"';
 		}else{
 			$configure = '';
