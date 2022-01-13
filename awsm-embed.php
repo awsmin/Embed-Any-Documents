@@ -239,10 +239,11 @@ class Awsm_embed {
 		$script_deps = array( 'jquery', 'awsm-ead-public', 'media-upload', 'thickbox' );
 		if ( function_exists( 'get_current_screen' ) ) {
 			$screen = get_current_screen();
-			if ( method_exists( $screen, 'is_block_editor' ) && $screen->is_block_editor() ) {
+			if ( ! empty( $screen ) && method_exists( $screen, 'is_block_editor' ) && $screen->is_block_editor() ) {
 				$script_deps[] = 'wp-blocks';
 			}
 		}
+
 		wp_enqueue_script( 'ead_media_button', plugins_url( 'js/embed.min.js', $this->plugin_file ), $script_deps, $this->plugin_version, true );
 		wp_enqueue_style( 'ead_media_button', plugins_url( 'css/embed.min.css', $this->plugin_file ), array( 'awsm-ead-public', 'thickbox' ), $this->plugin_version, 'all' );
 
@@ -858,7 +859,7 @@ class Awsm_embed {
 		$configure = '<span class="overlay"><strong>' . esc_html__( 'Buy Pro Version', 'embed-any-document' ) . '</strong><i></i></span>';
 		$target    = 'target="_blank"';
 		/* translators: %1$s: Service provider */
-		echo '<a href="' . esc_url( $link ) . '" id="' . esc_attr( $id ) . '" ' . $target . '><span><img src="' . esc_url( $this->plugin_url ) . 'images/icon-' . esc_attr( strtolower( $provider ) ) . '.png" alt="' . esc_attr( sprintf( __( 'Add From %1$s', 'embed-any-document' ), $provider ) ) . '" />' . esc_html( sprintf( __( 'Add From %1$s', 'embed-any-document' ), $provider ) ) . $configure . '</span></a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<a href="' . esc_url( $link ) . '" id="' . esc_attr( $id ) . '" ' . $target . '><span><img src="' . esc_url( $this->plugin_url ) . 'images/icon-' . esc_attr( strtolower( $provider ) ) . '.svg" alt="' . esc_attr( sprintf( __( 'Add From %1$s', 'embed-any-document' ), $provider ) ) . '" />' . esc_html( sprintf( __( 'Add From %1$s', 'embed-any-document' ), $provider ) ) . $configure . '</span></a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
