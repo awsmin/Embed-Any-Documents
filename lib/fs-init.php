@@ -1,16 +1,16 @@
 <?php
-if ( ! function_exists( 'ead_fs' ) ) {
+if ( ! function_exists( 'awsm_ead_fs' ) ) {
     // Create a helper function for easy SDK access.
-    function ead_fs() {
-        global $ead_fs;
+    function awsm_ead_fs() {
+        global $awsm_ead_fs;
 
-        if ( ! isset( $ead_fs ) ) {
+        if ( ! isset( $awsm_ead_fs ) ) {
             // Include Freemius SDK.
             require_once dirname(__FILE__) . '/freemius/start.php';
 
             $fs_secret_key = defined( 'AWSM_EAD_FS_SECRET_KEY' ) ? AWSM_EAD_FS_SECRET_KEY : '';
 
-            $ead_fs = fs_dynamic_init( array(
+            $awsm_ead_fs = fs_dynamic_init( array(
                 'id'                  => '9010',
                 'slug'                => 'embed-any-document',
                 'type'                => 'plugin',
@@ -34,13 +34,13 @@ if ( ! function_exists( 'ead_fs' ) ) {
             ) );
         }
 
-        return $ead_fs;
+        return $awsm_ead_fs;
     }
 
     // Init Freemius.
-    ead_fs();
+    awsm_ead_fs();
     // Signal that SDK was initiated.
-    do_action( 'ead_fs_loaded' );
+    do_action( 'awsm_ead_fs_loaded' );
 }
 
 ?>
