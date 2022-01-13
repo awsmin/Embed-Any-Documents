@@ -103,11 +103,21 @@ class Awsm_embed_Guten_blocks {
 	 * @param array $atts Attributes array.
 	 * @return string
 	 */
-	public function block_render_callback( $atts ) { 
+	public function block_render_callback( $atts ) {  
 		$embed         = '';
 		$class_name    = isset( $atts['className'] ) ? $atts['className'] : '';
 		$shortcode     = isset( $atts['shortcode'] ) ? $atts['shortcode'] : '';
 		$atts['cache'] = isset( $atts['cache'] ) && $atts['cache'] == false ? 'off' : 'on';
+
+		/**
+		 * Customize the atts.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param array $atts Attribute data array.
+		 */
+		$atts = apply_filters( 'awsm_ead_block_atts', $atts ); 
+
 		if ( ! empty( $shortcode ) ) {
 			$parsed_atts = Awsm_embed::get_shortcode_attrs( $shortcode );
 			$atts['url'] = isset( $parsed_atts['url'] ) ? $parsed_atts['url'] : ''; // url remains static.
