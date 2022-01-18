@@ -1,8 +1,8 @@
-jQuery(function($) {
+jQuery(function($) { 
 	$('.ead-iframe-wrapper').each(function() { 
 		var $wrapper = $(this);
 		var $activeIframe = $wrapper.find('.ead-iframe');
-		var viewer = $wrapper.parent('.ead-document').data('viewer');
+		var viewer = $wrapper.parent('.ead-document').data('viewer'); 
 		var isNativeViewer = typeof viewer !== 'undefined' && viewer.length > 0 ? viewer : false;
 		if(isNativeViewer !== eadPublicViewer.viewer){ 
 			var lazyLoadSrc = $activeIframe.data('src');

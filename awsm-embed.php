@@ -362,6 +362,20 @@ class Awsm_embed {
 	}
 
 	/**
+	 * Get adobe embed data.
+	 *
+	 * @return array
+	 */
+
+	public function get_adobe_embed_data() {
+        $script_data = array(
+			'adobe_api_key' => get_option( 'ead_adobe_key')
+		);
+
+		return $script_data;
+	}
+
+	/**
 	 * Get public script data.
 	 *
 	 * @return array
@@ -407,7 +421,9 @@ class Awsm_embed {
 	public function register_scripts() {
 		wp_register_script( 'awsm-ead-pdf-object', plugins_url( 'js/pdfobject.min.js', $this->plugin_file ), array(), $this->plugin_version, true );
 		wp_register_script( 'awsm-ead-public', plugins_url( 'js/embed-public.min.js', $this->plugin_file ), array( 'jquery', 'awsm-ead-pdf-object' ), $this->plugin_version, true );
+		wp_register_script( 'awsm-ead-adobe-embed', plugins_url( 'js/adobe.min.js', $this->plugin_file ), array(), $this->plugin_version, true );
 
+        wp_localize_script( 'awsm-ead-adobe-embed', 'eadAdobe', $this->get_adobe_embed_data() );
 		wp_localize_script( 'awsm-ead-public', 'eadPublic', $this->get_public_script_data() );
 		wp_localize_script( 'awsm-ead-public', 'eadPublicViewer', $this->get_public_viewer_check_data() );
 	}
@@ -444,6 +460,7 @@ class Awsm_embed {
 			'google'    => __( 'Google Docs Viewer', 'embed-any-document' ),
 			'browser'   => __( 'Browser Based', 'embed-any-document' ),
 			'microsoft' => __( 'Microsoft Office Online', 'embed-any-document' ),
+			'adobe'     => __( 'Adobe Viewer', 'embed-any-document' ),
 		);
 		/**
 		 * Customize the supported viewers.
@@ -479,7 +496,7 @@ class Awsm_embed {
 	 * @return array
 	 */
 	public static function get_all_providers() {
-		$providers = array( 'google', 'microsoft', 'browser');
+		$providers = array( 'google', 'microsoft', 'browser','adobe');
 		/**
 		 * Customize the providers.
 		 *
@@ -567,6 +584,8 @@ class Awsm_embed {
 			}
 		}
 
+		$is_adobe_viewer = $shortcode_atts['viewer'] === 'adobe' ? true : false;
+
 
 		if ( $this->allowdownload( $shortcode_atts['viewer'] ) ) {
 			if ( $shortcode_atts['download'] === 'alluser' || $shortcode_atts['download'] === 'all' ) {
@@ -604,6 +623,7 @@ class Awsm_embed {
 		}
 		
 
+
 		$iframe_src = '';
 		if($is_shortcode_url){
 			switch ( $viewer ) {
@@ -636,8 +656,9 @@ class Awsm_embed {
 		$iframe_style_attrs = array();
 		$doc_style_attrs    = array(
 			'position' => 'relative',
+			'height'   => '500px',
 		);
-		if ( $this->check_responsive( $shortcode_atts['height'] ) && $this->check_responsive( $shortcode_atts['width'] ) && ! $is_browser_viewer ) {
+		if ( $this->check_responsive( $shortcode_atts['height'] ) && $this->check_responsive( $shortcode_atts['width'] ) && ! $is_browser_viewer  && $viewer !== 'adobe' ) {
 			$iframe_style_attrs = array(
 				'width'    => '100%',
 				'height'   => '100%',
@@ -656,6 +677,9 @@ class Awsm_embed {
 			);
 			if ( $this->in_percentage( $shortcode_atts['height'] ) ) {
 				$iframe_style_attrs['min-height'] = '500px';
+				if ( $viewer === 'adobe' ) {
+					$iframe_style_attrs['height'] = '500px';
+				}
 			}
 		}
 
@@ -683,7 +707,13 @@ class Awsm_embed {
 		$iframe_style_attrs = self::build_style_attr( $iframe_style_attrs );
 		$iframe_style       = apply_filters( 'awsm_ead_iframe_style_attrs', $iframe_style_attrs );
 
-		$iframe       = sprintf( '<iframe src="%s" title="%s" class="ead-iframe" %s></iframe>', esc_attr( $iframe_src ), esc_html__( 'Embedded Document', 'embed-any-document' ), $iframe_style );
+		if ( $viewer == 'adobe' ) { 
+			wp_enqueue_script( 'awsm-ead-adobe-embed' );
+
+			$iframe       = sprintf( '<div id="adobe-dc-view" data-pdf-src="%1$s" data-viewer="%2$s"></div>', esc_url( $shortcode_atts['url'] ), esc_attr( $shortcode_atts['viewer'] ) );
+		}else{
+			$iframe       = sprintf( '<iframe src="%s" title="%s" class="ead-iframe" %s></iframe>', esc_attr( $iframe_src ), esc_html__( 'Embedded Document', 'embed-any-document' ), $iframe_style );
+		}
 
 		if ( $enable_preloader ) {
 			$iframe = '<div class="ead-iframe-wrapper">' . $iframe . '</div>' . self::get_iframe_preloader( $shortcode_atts );
@@ -817,6 +847,7 @@ class Awsm_embed {
 		register_setting( 'ead-settings-group', 'ead_mediainsert' );
 		register_setting( 'ead-settings-group', 'ead_preloader' );
 		register_setting( 'ead-settings-group', 'ead_searchdoc' );
+		register_setting( 'ead-cloud-group', 'ead_adobe_key' );
 	}
 
 	/**
