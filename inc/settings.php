@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 *
 	 * @param array $settings_tabs Settings tabs.
 	 */
-	$settings_tabs = apply_filters( 'awsm_ead_settings_tabs', array( 'general','cloud') );
+	$settings_tabs = apply_filters( 'awsm_ead_settings_tabs', array( 'general', 'cloud' ) );
 
 	$settings_tab = isset( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'general';
 	if ( ! in_array( $settings_tab, $settings_tabs, true ) ) {
@@ -33,11 +33,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php esc_html_e( 'General Settings', 'embed-any-document' ); ?>
 		</a>
 
-		<?php //if ( in_array( 'cloud', $settings_tabs, true ) ) { ?>
-			<a class="nav-tab <?php echo esc_attr( $this->getactive_menu( $settings_tab, 'cloud' ) ); ?>" href="<?php echo esc_url( 'options-general.php?page=' . $this->settings_slug . '&tab=cloud' ); ?>" data-tab="ead-cloud">
-				<?php esc_html_e( 'Cloud Settings', 'embed-any-document' ); ?>
-			</a>
-		<?php //} ?>
+		<a class="nav-tab <?php echo esc_attr( $this->getactive_menu( $settings_tab, 'cloud' ) ); ?>" href="<?php echo esc_url( 'options-general.php?page=' . $this->settings_slug . '&tab=cloud' ); ?>" data-tab="ead-cloud">
+			<?php esc_html_e( 'Cloud Settings', 'embed-any-document' ); ?>
+		</a>
 
 		<?php
 			/**
@@ -153,16 +151,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<div class="form-table">
 						<ul class="cloudform">
 							<li>
-					   			<h3><?php esc_html_e( 'Adobe Embed Api Key', 'embed-any-document' ); ?></h3>
-						   		<table class="form-table">
-						   			<tbody>
-						   				<tr valign="top">
-						   					<th scope="row"><?php esc_html_e( 'API Key', 'embed-any-document' ); ?></th>
-						   					<td><input type="text" name="ead_adobe_key" value="<?php echo esc_attr( get_option( 'ead_adobe_key' ) ); ?>" /></td>
-						   				</tr>
-						   			</tbody>
-						   		</table>
-				   			</li>
+								   <h3><?php esc_html_e( 'Adobe Embed Api Key', 'embed-any-document' ); ?></h3>
+								   <table class="form-table">
+									   <tbody>
+										   <tr valign="top">
+											   <th scope="row"><?php esc_html_e( 'API Key', 'embed-any-document' ); ?></th>
+											   <td><input type="text" name="ead_adobe_key" value="<?php echo esc_attr( get_option( 'ead_adobe_key' ) ); ?>" /></td>
+										   </tr>
+									   </tbody>
+								   </table>
+							   </li>
 						<?php
 							/**
 							 * Hook: awsm_ead_cloud_settings..
