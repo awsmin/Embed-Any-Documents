@@ -41,7 +41,7 @@ class EadInspector extends Component {
 		let enableViewerControl = viewer && jQuery.inArray( viewer, emebeder.viewers ) !== -1;
 
 		if ( enableViewerControl ) {
-			viewerOptions = [{ value: 'google', label: __( 'Google Docs Viewer', 'embed-any-document' ) }];
+			viewerOptions = [{ value: 'google', label: __( 'Google Docs Viewer', 'embed-any-document' ) },{ value: 'adobe', label: __( 'Adobe Viewer', 'embed-any-document' ) }];
 
 			if( EadHelper.isValidMSExtension( url ) ) {
 				viewerOptions.push({ value: 'microsoft', label: __( 'Microsoft Office Online', 'embed-any-document' ) });

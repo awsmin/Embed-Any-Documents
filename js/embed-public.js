@@ -63,6 +63,24 @@ jQuery(function($) {
 		}
 	});
 
+
+    if($('#adobe-dc-view').length == 1){
+		var adobeapikey = eadPublic.adobe_api_key;
+	    if (!adobeapikey) {
+	        return;
+	    } 
+	    
+	    document.addEventListener("adobe_dc_view_sdk.ready", function () { 
+	        var adobeDCView = new AdobeDC.View({clientId: adobeapikey, divId: "adobe-dc-view"});
+	        adobeDCView.previewFile(
+	        {
+	          content:   {location: {url: $('#adobe-dc-view').data('pdfSrc')}},
+	          metaData: {fileName: "Nil"}
+	        });
+	    });
+    }
+	//var q = $('#adobe-dc-view').length(); 
+
     $(document).on('click', '.ead-reload-btn', function(e) {
         e.preventDefault();
         var $wrapper = $(this).parents('.ead-document');

@@ -822,6 +822,9 @@ var EadInspector = /*#__PURE__*/function (_Component) {
         viewerOptions = [{
           value: 'google',
           label: __('Google Docs Viewer', 'embed-any-document')
+        }, {
+          value: 'adobe',
+          label: __('Adobe Viewer', 'embed-any-document')
         }];
 
         if (_helper__WEBPACK_IMPORTED_MODULE_0__["default"].isValidMSExtension(url)) {
