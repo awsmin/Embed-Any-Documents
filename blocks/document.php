@@ -17,7 +17,7 @@ class Awsm_embed_Guten_blocks {
 	/**
 	 * The instance of the class.
 	 *
-	 * @var Awsm_embed_Guten_blocks
+	 * @var Awsm_embed_Guten_blocks|null
 	 */
 	private static $instance = null;
 
@@ -103,7 +103,7 @@ class Awsm_embed_Guten_blocks {
 	 * @param array $atts Attributes array.
 	 * @return string
 	 */
-	public function block_render_callback( $atts ) {  
+	public function block_render_callback( $atts ) {
 		$embed         = '';
 		$class_name    = isset( $atts['className'] ) ? $atts['className'] : '';
 		$shortcode     = isset( $atts['shortcode'] ) ? $atts['shortcode'] : '';
@@ -116,7 +116,7 @@ class Awsm_embed_Guten_blocks {
 		 *
 		 * @param array $atts Attribute data array.
 		 */
-		$atts = apply_filters( 'awsm_ead_block_atts', $atts ); 
+		$atts = apply_filters( 'awsm_ead_block_atts', $atts );
 
 		if ( ! empty( $shortcode ) ) {
 			$parsed_atts = Awsm_embed::get_shortcode_attrs( $shortcode );
@@ -138,7 +138,7 @@ class Awsm_embed_Guten_blocks {
 		 * @param array $atts Attribute data array.
 		 */
 		$embed = apply_filters( 'awsm_ead_block_render_callback', $embed, $atts );
-		
+
 		return $embed;
 	}
 

@@ -18,10 +18,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php
 	/**
 	 * Customize the settings tabs.
+	 *
 	 * @param array $settings_tabs Settings tabs.
 	 */
-	$settings_tabs = apply_filters( 'awsm_ead_settings_tabs', array( 'general') );
-	
+	$settings_tabs = apply_filters( 'awsm_ead_settings_tabs', array( 'general' ) );
+
 	$settings_tab = isset( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'general';
 	if ( ! in_array( $settings_tab, $settings_tabs, true ) ) {
 		$settings_tab = 'general';
@@ -100,15 +101,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 										<?php esc_html_e( 'Preloader for Viewer', 'embed-any-document' ); ?>
 									</th>
 									<td>
-										<?php
-											$preloader = get_option( 'ead_preloader', 'file' ); 
-										?>
 										<div>
-											<input type="checkbox" name="ead_preloader" id="ead_preloader_view" value="1" <?php checked(1, get_option('ead_preloader'), true); ?>><?php esc_html_e( 'Enable Preloader', 'embed-any-document' ); ?>
+											<fieldset>
+												<legend class="screen-reader-text">
+													<span><?php esc_html_e( 'Preloader for Viewer', 'embed-any-document' ); ?></span>
+												</legend>
+												<label for="ead_preloader_view"><input type="checkbox" name="ead_preloader" id="ead_preloader_view" value="enable" <?php checked( get_option( 'ead_preloader' ), 'enable', true ); ?> /> <?php esc_html_e( 'Enable Preloader', 'embed-any-document' ); ?></label>
+											</fieldset>
 										</div>
-										
+
 										<div class="clear"></div>
-									    <span class="note"><?php esc_html_e( 'Check for enabling preloader', 'embed-any-document' ); ?></span>
+										<span class="note"><?php esc_html_e( 'Check for enabling preloader', 'embed-any-document' ); ?></span>
 									</td>
 								</tr>
 
@@ -117,15 +120,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 										<?php esc_html_e( 'Search Index Doc Files', 'embed-any-document' ); ?>
 									</th>
 									<td>
-										<?php
-											$preloader = get_option( 'ead_searchdoc', 'file' );
-										?>
 										<div>
-											<input type="checkbox" name="ead_searchdoc" id="ead_searchdoc" value="1" <?php checked(1, get_option('ead_searchdoc'), true); ?>><?php esc_html_e( 'Enable Search', 'embed-any-document' ); ?>
+											<fieldset>
+												<legend class="screen-reader-text">
+													<span><?php esc_html_e( 'Search Index Doc Files', 'embed-any-document' ); ?></span>
+												</legend>
+												<label for="ead_searchdoc"><input type="checkbox" name="ead_searchdoc" id="ead_searchdoc" value="enable" <?php checked( get_option( 'ead_searchdoc' ), 'enable', true ); ?> /> <?php esc_html_e( 'Enable Search', 'embed-any-document' ); ?></label>
+											</fieldset>
 										</div>
-										
+
 										<div class="clear"></div>
-									    <span class="note"><?php esc_html_e( 'Check for enabling searching index doc files', 'embed-any-document' ); ?></span>
+										<span class="note"><?php esc_html_e( 'Check for enabling searching index doc files', 'embed-any-document' ); ?></span>
 									</td>
 								</tr>
 								<?php
@@ -148,7 +153,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<div class="form-table">
 						<ul class="cloudform">
 						<?php
-						/**
+							/**
 							 * Hook: awsm_ead_cloud_settings..
 							 *
 							 * @since 3.0.0
@@ -162,17 +167,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</div>
 				</form>
 				<?php endif; ?>
-				<?php 
+				<?php
 					/**
 					 * Hook: awsm_ead_settings_tabs_list.
 					 *
 					 * @since 3.0.0
 					 */
-					do_action( 'awsm_ead_settings_content',$settings_tab );
+					do_action( 'awsm_ead_settings_content', $settings_tab );
 				?>
 			</div>
 		</div>
-		
+
 	</div>
 	<!-- .row -->
 </div>
