@@ -4,14 +4,20 @@
     "type": "wordpress-plugin",
     "license": "GPL-3.0-or-later",
     "require": {
-        "squizlabs/php_codesniffer": "3.*",
-        "wp-coding-standards/wpcs": "^2.0",
-        "phpcompatibility/phpcompatibility-wp": "*",
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
         "smalot/pdfparser": "^2.0"
+    },
+    "require-dev": {
+		"squizlabs/php_codesniffer": "3.*",
+        "wp-coding-standards/wpcs": "^2.0",
+        "phpcompatibility/phpcompatibility-wp": "^2.0",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+        "szepeviktor/phpstan-wordpress": "^1.0"
     },
     "scripts": {
         "phpcs": "phpcs --colors -p -s",
-        "phpcbf": "phpcbf --colors -p -s"
+		"phpcs-l": "phpcs --colors -n -p -s",
+		"phpcbf": "phpcbf --colors -p -s",
+		"phpstan": "./vendor/bin/phpstan analyse",
+		"phpcbfx": "phpcbf --colors -p -s .; if [ $? -eq 1 ]; then exit 0; fi"
     }
 }
