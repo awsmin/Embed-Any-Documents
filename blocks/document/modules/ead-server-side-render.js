@@ -42,10 +42,10 @@ class EadServerSideRender extends Component {
 			this.fetch( this.props );
 		}
 
-		if ( this.state.response !== prevState.response && null !== this.eadRef.current ) { 
-			const { attributes = null } = this.props; 
+		if ( this.state.response !== prevState.response && null !== this.eadRef.current ) {
+			const { attributes = null } = this.props;
 
-			if ( ( attributes !== null && attributes ) && ( attributes.viewer === 'google' || attributes.viewer === 'browser' || attributes.viewer === 'built-in' ) ) { 
+			if ( ( attributes !== null && attributes ) && ( attributes.viewer === 'google' || attributes.viewer === 'browser' || attributes.viewer === 'built-in' || attributes.viewer === 'adobe' ) ) {
 				let viewer = attributes.viewer;
 				let currentRef = this.eadRef.current;
 				let documentWrapper = jQuery(currentRef).find('.ead-document');
@@ -60,7 +60,7 @@ class EadServerSideRender extends Component {
 					});
 				}
 
-				if ( viewer === 'browser'){
+				if ( viewer === 'browser' ) {
 					let src = documentWrapper.data('pdfSrc');
 					viewer  = typeof src !== 'undefined' && src.length > 0 && viewer.length > 0 ? viewer : false;
 
@@ -78,8 +78,18 @@ class EadServerSideRender extends Component {
 						}
 					}
 				}
+
+				if ( viewer === 'adobe' ) {
+					let validateAdobeDC = setInterval(() => {
+						if (typeof AdobeDC !== 'undefined') {
+							var $docElem = documentWrapper.find('.adobe-dc-view');
+							awsmEadMain.adobeViewer($docElem);
+							clearInterval(validateAdobeDC);
+						}
+					}, 250);
+				}
 			}
-			wp.hooks.doAction( 'eadiframewrapper',attributes,this.eadRef.current ) 
+			wp.hooks.doAction( 'eadiframewrapper',attributes,this.eadRef.current );
 		}
 	}
 

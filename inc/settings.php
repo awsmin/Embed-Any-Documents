@@ -151,7 +151,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<div class="form-table">
 						<ul class="cloudform">
 							<li>
-								   <h3><?php esc_html_e( 'Adobe Embed Api Key', 'embed-any-document' ); ?></h3>
+								   <h3><?php esc_html_e( 'Adobe PDF Embed API', 'embed-any-document' ); ?></h3>
 								   <table class="form-table">
 									   <tbody>
 										   <tr valign="top">

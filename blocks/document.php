@@ -54,6 +54,9 @@ class Awsm_embed_Guten_blocks {
 
 		$dynamic_block_data = array(
 			'attributes'      => array(
+				'uniqueId' => array(
+					'type' => 'string',
+				),
 				'className' => array(
 					'type' => 'string',
 				),
@@ -107,6 +110,7 @@ class Awsm_embed_Guten_blocks {
 		$embed         = '';
 		$class_name    = isset( $atts['className'] ) ? $atts['className'] : '';
 		$shortcode     = isset( $atts['shortcode'] ) ? $atts['shortcode'] : '';
+		$atts['uid']   = isset( $atts['uniqueId'] ) ? $atts['uniqueId'] : 1;
 		$atts['cache'] = isset( $atts['cache'] ) && $atts['cache'] == false ? 'off' : 'on';
 
 		/**

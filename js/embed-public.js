@@ -1,10 +1,12 @@
-jQuery(function($) { 
-	$('.ead-iframe-wrapper').each(function() { 
+var awsmEadMain = window.awsmEadMain = window.awsmEadMain || {};
+
+jQuery(function($) {
+	$('.ead-iframe-wrapper').each(function() {
 		var $wrapper = $(this);
 		var $activeIframe = $wrapper.find('.ead-iframe');
-		var viewer = $wrapper.parent('.ead-document').data('viewer'); 
+		var viewer = $wrapper.parent('.ead-document').data('viewer');
 		var isNativeViewer = typeof viewer !== 'undefined' && viewer.length > 0 ? viewer : false;
-		if(isNativeViewer !== eadPublicViewer.viewer){ 
+		if(isNativeViewer !== eadPublicViewer.viewer){
 			var lazyLoadSrc = $activeIframe.data('src');
 			var lazyLoadAttr = $activeIframe.attr('loading');
 			var isLazyLoaded = false;
@@ -32,7 +34,6 @@ jQuery(function($) {
 			}
 		}
 	});
-	
 
 	$('.ead-document[data-pdf-src]').each(function() {
 		var $elem = $(this);
@@ -63,28 +64,45 @@ jQuery(function($) {
 		}
 	});
 
-
-    if($('#adobe-dc-view').length == 1){
-		var adobeapikey = eadPublic.adobe_api_key;
-	    if (!adobeapikey) {
-	        return;
-	    } 
-	    
-	    document.addEventListener("adobe_dc_view_sdk.ready", function () { 
-	        var adobeDCView = new AdobeDC.View({clientId: adobeapikey, divId: "adobe-dc-view"});
-	        adobeDCView.previewFile(
-	        {
-	          content:   {location: {url: $('#adobe-dc-view').data('pdfSrc')}},
-	          metaData: {fileName: "Nil"}
-	        });
-	    });
-    }
-	//var q = $('#adobe-dc-view').length(); 
-
     $(document).on('click', '.ead-reload-btn', function(e) {
         e.preventDefault();
         var $wrapper = $(this).parents('.ead-document');
         var iframeSrc = $wrapper.find('.ead-iframe').attr('src');
         $wrapper.find('.ead-iframe').attr('src', iframeSrc);
     });
+});
+
+awsmEadMain.adobeViewer = function($docElem, adobeAPIKey) {
+	adobeAPIKey = typeof adobeAPIKey !== 'undefined' ? adobeAPIKey : eadPublic.adobe_api_key;
+	if (adobeAPIKey) {
+		var adobeDCView = new AdobeDC.View({
+			clientId: adobeAPIKey,
+			divId: $docElem.attr('id')
+		});
+		var fileURL = $docElem.data('pdfSrc');
+		var fileName = fileURL.split('#').shift().split('?').shift().split('/').pop();
+		adobeDCView.previewFile({
+			content:  {
+				location: {
+					url: $docElem.data('pdfSrc')
+				}
+			},
+			metaData: {
+				fileName: fileName
+			}
+		});
+	}
+};
+
+/**
+ * Adobe PDF Embed API
+ */
+document.addEventListener("adobe_dc_view_sdk.ready", function() {
+	var adobeAPIKey = eadPublic.adobe_api_key;
+	if (adobeAPIKey) {
+		jQuery('.ead-document .adobe-dc-view').each(function () {
+			var $docElem = jQuery(this);
+			awsmEadMain.adobeViewer($docElem, adobeAPIKey);
+		});
+	}
 });

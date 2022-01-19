@@ -40,6 +40,13 @@ class Awsm_embed {
 	private static $instance = null;
 
 	/**
+	 * Unique embed ID.
+	 *
+	 * @var integer
+	 */
+	protected $unique_embed_id = 1;
+
+	/**
 	 * Plugin path.
 	 *
 	 * @var string
@@ -356,19 +363,6 @@ class Awsm_embed {
 	}
 
 	/**
-	 * Get adobe embed data.
-	 *
-	 * @return array
-	 */
-	public function get_adobe_embed_data() {
-		$script_data = array(
-			'adobe_api_key' => get_option( 'ead_adobe_key' ),
-		);
-
-		return $script_data;
-	}
-
-	/**
 	 * Get public script data.
 	 *
 	 * @return array
@@ -381,10 +375,11 @@ class Awsm_embed {
 		 *
 		 * @param array $script_data The script data.
 		 */
-
 		$script_data = apply_filters(
 			'awsm_ead_public_script_data',
-			array( 'adobe_api_key' => get_option( 'ead_adobe_key' ) )
+			array(
+				'adobe_api_key' => get_option( 'ead_adobe_key' ),
+			)
 		);
 		return $script_data;
 	}
@@ -414,8 +409,13 @@ class Awsm_embed {
 	 */
 	public function register_scripts() {
 		wp_register_script( 'awsm-ead-pdf-object', plugins_url( 'js/pdfobject.min.js', $this->plugin_file ), array(), $this->plugin_version, true );
-		wp_register_script( 'awsm-ead-adobe-embed', '//documentcloud.adobe.com/view-sdk/main.js', array(), '1.0.0', true );
-		wp_register_script( 'awsm-ead-public', plugins_url( 'js/embed-public.min.js', $this->plugin_file ), array( 'jquery', 'awsm-ead-pdf-object' ), $this->plugin_version, true );
+		wp_register_script( 'awsm-ead-adobejs', 'https://documentcloud.adobe.com/view-sdk/main.js', array(), $this->plugin_version, false );
+		$public_deps = array( 'jquery', 'awsm-ead-pdf-object' );
+		$adobe_api_key = get_option( 'ead_adobe_key' );
+		if ( ! empty( $adobe_api_key ) ) {
+			$public_deps[] = 'awsm-ead-adobejs';
+		}
+		wp_register_script( 'awsm-ead-public', plugins_url( 'js/embed-public.min.js', $this->plugin_file ), $public_deps, $this->plugin_version, true );
 
 		wp_localize_script( 'awsm-ead-public', 'eadPublic', $this->get_public_script_data() );
 		wp_localize_script( 'awsm-ead-public', 'eadPublicViewer', $this->get_public_viewer_check_data() );
@@ -530,6 +530,7 @@ class Awsm_embed {
 		$is_shortcode_url = false;
 		$shortcode_atts   = shortcode_atts(
 			array(
+				'uid'      => $this->unique_embed_id,
 				'url'      => '',
 				'drive'    => '',
 				'width'    => $default_width,
@@ -544,9 +545,9 @@ class Awsm_embed {
 			'embeddoc'
 		);
 
-		$preloader = get_option( 'ead_preloader' );
+		$this->unique_embed_id++;
 
-		wp_enqueue_script( 'awsm-ead-adobe-embed' );
+		$preloader = get_option( 'ead_preloader' );
 
 		wp_enqueue_style( 'awsm-ead-public' );
 		wp_enqueue_script( 'awsm-ead-public' );
@@ -697,7 +698,7 @@ class Awsm_embed {
 		$iframe_style       = apply_filters( 'awsm_ead_iframe_style_attrs', $iframe_style_attrs );
 
 		if ( $viewer == 'adobe' ) {
-			$iframe = sprintf( '<div id="adobe-dc-view" data-pdf-src="%1$s" data-viewer="%2$s"></div>', esc_url( $shortcode_atts['url'] ), esc_attr( $shortcode_atts['viewer'] ) );
+			$iframe = sprintf( '<div class="adobe-dc-view" id="adobe-dc-view-%1$s" data-pdf-src="%2$s"></div>', esc_attr( $shortcode_atts['uid'] ), esc_url( $shortcode_atts['url'] ) );
 		} else {
 			$iframe = sprintf( '<iframe src="%s" title="%s" class="ead-iframe" %s></iframe>', esc_attr( $iframe_src ), esc_html__( 'Embedded Document', 'embed-any-document' ), $iframe_style );
 		}

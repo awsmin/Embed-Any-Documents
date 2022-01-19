@@ -37,16 +37,21 @@ registerBlockType( 'embed-any-document/document', {
 	 * The edit function describes the structure of the block in the context of the editor.
 	 * This represents what the editor will render when the block is used.
 	 */
-	edit: ( props ) => { 
-		const { attributes, setAttributes, noticeOperations} = props;
-		const { shortcode } = attributes;
+	edit: ( props ) => {
+		const { attributes, setAttributes, clientId, noticeOperations} = props;
+		const { uniqueId, shortcode } = attributes;
 
 		let viewerList = [];
 
         let blockProps = null;
 		let shortcodeText;
 		let embedurl;
-		
+
+		// Set an Unique Id for the block.
+		if (! uniqueId) {
+			setAttributes({ uniqueId: clientId });
+		}
+
 		const createNotice = (type, msg, id) =>{
 			wp.data.dispatch('core/notices').createNotice(
 				type, // Can be one of: success, info, warning, error.
@@ -58,7 +63,7 @@ registerBlockType( 'embed-any-document/document', {
 			);
 		}
 
-		const onSelectDocument = (media) => { 
+		const onSelectDocument = (media) => {
 			if ( ! media || ! media.url ) {
 				return;
 			}
@@ -69,7 +74,7 @@ registerBlockType( 'embed-any-document/document', {
  		    eadShortcode(embedurl);
 		}
 
-		const onSelectURL = (url) => { 
+		const onSelectURL = (url) => {
 			let fileType = '';
 
 			if ( ! url) {
@@ -78,7 +83,7 @@ registerBlockType( 'embed-any-document/document', {
 
 			if (isURL(url)) {
 		   	  	embedurl = url;
-				let filename = url.split('/').pop(); 
+				let filename = url.split('/').pop();
 				if (filename.indexOf('.') !== -1) {
 					filename = filename.split('.').pop();
 					fileType = '.' + filename;
@@ -100,19 +105,19 @@ registerBlockType( 'embed-any-document/document', {
 			}
 		}
 
-		const onUploadError = (message) => { 
+		const onUploadError = (message) => {
 			noticeOperations.removeAllNotices();
 			noticeOperations.createErrorNotice( message );
 		}
 
-		const eadShortcode = (embedurl) => { 
+		const eadShortcode = (embedurl) => {
 			blockProps = props;
 
 			if(embedurl) {
 		   	  shortcodeText = '[embeddoc url="'+embedurl+'"]';
-		    } 
+		    }
 
-		    let { url, width = emebeder.width, height = emebeder.height, download = emebeder.download, viewer = emebeder.provider, text = emebeder.text, cache = true } = EadHelper.parseShortcode(shortcodeText); 
+		    let { url, width = emebeder.width, height = emebeder.height, download = emebeder.download, viewer = emebeder.provider, text = emebeder.text, cache = true } = EadHelper.parseShortcode(shortcodeText);
 
 		    viewer = jQuery.inArray( viewer, emebeder.viewers ) !== -1 ? viewer : 'google';
 
@@ -142,9 +147,9 @@ registerBlockType( 'embed-any-document/document', {
 				/>
 			];
 		} else {
-			return ( 
+			return (
 				<MediaPlaceholder className="ead-media-placeholder" onSelect={ onSelectDocument } onSelectURL={ onSelectURL } labels = { { title: __( 'Embed Any Document', 'embed-any-document' ), 'instructions':__( 'Upload a document, pick from your media library, or add from an external URL.', 'embed-any-document' ) } } icon={icon.block}  accept={validExtension.join(', ')} allowedTypes={ validTypes } OnError={ onUploadError }>
-					
+
 					{ wp.hooks.doAction( 'before_awsm_ead_viewer_options' ) }
 
 					{ emebeder.addon_active.length === 0 && (
@@ -156,7 +161,7 @@ registerBlockType( 'embed-any-document/document', {
 				</MediaPlaceholder>
 			);
 		}
-	},   
+	},
 	/**
 	 * The save function defines the way in which the different attributes should be combined into the final markup, which is then serialized by Gutenberg into post_content.
 	 */
