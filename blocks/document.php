@@ -54,7 +54,7 @@ class Awsm_embed_Guten_blocks {
 
 		$dynamic_block_data = array(
 			'attributes'      => array(
-				'uniqueId' => array(
+				'uniqueId'  => array(
 					'type' => 'string',
 				),
 				'className' => array(
