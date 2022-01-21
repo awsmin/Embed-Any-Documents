@@ -3,12 +3,11 @@
 gulpfile.js export-ignore
 config.js export-ignore
 phpcs.xml export-ignore
+phpstan.neon.dist export-ignore
 README.md export-ignore
 CHANGELOG.md export-ignore
 package.json export-ignore
 package-lock.json export-ignore
-composer.json export-ignore
-composer.lock export-ignore
 .editorconfig export-ignore
 .prettierrc export-ignore
 *.map export-ignore

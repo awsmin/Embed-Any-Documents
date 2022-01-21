@@ -11,7 +11,7 @@ let webpackConfig = {
 	},
 	mode: mode,
 	devtool: devtool,
-	watch: true,
+	watch: mode !== "production",
 	module: {
 		rules: [
 			{
