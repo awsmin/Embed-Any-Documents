@@ -72,25 +72,49 @@ jQuery(function($) {
     });
 });
 
+awsmEadMain.getAdobeFileOptions = function($docElem) {
+	var fileURL = $docElem.data('pdfSrc');
+	var fileName = fileURL.split('#').shift().split('?').shift().split('/').pop();
+	return {
+		content:  {
+			location: {
+				url: $docElem.data('pdfSrc')
+			}
+		},
+		metaData: {
+			fileName: fileName
+		}
+	};
+};
+
+awsmEadMain.getAdobeViewerOptions = function($docElem) {
+	return {
+		showAnnotationTools: false,
+		showLeftHandPanel: false,
+		enableFormFilling: false,
+		showDownloadPDF: false,
+		showPrintPDF: false
+	};
+};
+
 awsmEadMain.adobeViewer = function($docElem, adobeAPIKey) {
 	adobeAPIKey = typeof adobeAPIKey !== 'undefined' ? adobeAPIKey : eadPublic.adobe_api_key;
 	if (adobeAPIKey) {
+		var docId = $docElem.attr('id');
 		var adobeDCView = new AdobeDC.View({
 			clientId: adobeAPIKey,
-			divId: $docElem.attr('id')
+			divId: docId
 		});
-		var fileURL = $docElem.data('pdfSrc');
-		var fileName = fileURL.split('#').shift().split('?').shift().split('/').pop();
-		adobeDCView.previewFile({
-			content:  {
-				location: {
-					url: $docElem.data('pdfSrc')
-				}
-			},
-			metaData: {
-				fileName: fileName
-			}
-		});
+		awsmEadMain.adobeFileOptions = awsmEadMain.adobeFileOptions || {};
+		awsmEadMain.adobeViewerOptions = awsmEadMain.adobeViewerOptions || {};
+
+		awsmEadMain.adobeFileOptions[ docId ] = awsmEadMain.getAdobeFileOptions($docElem);
+		awsmEadMain.adobeViewerOptions[ docId ] = awsmEadMain.getAdobeViewerOptions($docElem);
+		$docElem.trigger('awsm_ead_adobe_viewer_init');
+		adobeDCView.previewFile(
+			awsmEadMain.adobeFileOptions[ docId ],
+			awsmEadMain.adobeViewerOptions[ docId ]
+		);
 	}
 };
 
@@ -100,7 +124,8 @@ awsmEadMain.adobeViewer = function($docElem, adobeAPIKey) {
 document.addEventListener("adobe_dc_view_sdk.ready", function() {
 	var adobeAPIKey = eadPublic.adobe_api_key;
 	if (adobeAPIKey) {
-		jQuery('.ead-document .adobe-dc-view').each(function () {
+		jQuery(document).trigger('awsm_ead_adobe_sdk_loaded');
+		jQuery('.ead-document[data-viewer="adobe"]').each(function () {
 			var $docElem = jQuery(this);
 			awsmEadMain.adobeViewer($docElem, adobeAPIKey);
 		});

@@ -82,8 +82,7 @@ class EadServerSideRender extends Component {
 				if ( viewer === 'adobe' ) {
 					let validateAdobeDC = setInterval(() => {
 						if (typeof AdobeDC !== 'undefined') {
-							var $docElem = documentWrapper.find('.adobe-dc-view');
-							awsmEadMain.adobeViewer($docElem);
+							awsmEadMain.adobeViewer(documentWrapper);
 							clearInterval(validateAdobeDC);
 						}
 					}, 250);

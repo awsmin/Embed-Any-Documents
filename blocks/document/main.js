@@ -119,7 +119,13 @@ registerBlockType( 'embed-any-document/document', {
 
 		    let { url, width = emebeder.width, height = emebeder.height, download = emebeder.download, viewer = emebeder.provider, text = emebeder.text, cache = true } = EadHelper.parseShortcode(shortcodeText);
 
-		    viewer = jQuery.inArray( viewer, emebeder.viewers ) !== -1 ? viewer : 'google';
+			let defaultViewer = 'google';
+			if (typeof eadPublic !== 'undefined' && eadPublic.adobe_api_key && EadHelper.isPDF(url)) {
+				defaultViewer = 'adobe';
+			} else if (EadHelper.isValidMSExtension(url)) {
+				defaultViewer = 'microsoft';
+			}
+		    viewer = jQuery.inArray( viewer, emebeder.viewers ) !== -1 ? viewer : defaultViewer;
 
 		    blockProps.setAttributes({
 				shortcode: shortcodeText,

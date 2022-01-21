@@ -671,6 +671,9 @@ class Awsm_embed {
 
 		if ( $viewer === 'adobe' ) {
 			$doc_style_attrs['height'] = '500px';
+			if ( ! $this->in_percentage( $shortcode_atts['height'] ) ) {
+				$doc_style_attrs['height'] = $shortcode_atts['height'];
+			}
 		}
 
 		$enable_preloader = ( ! $is_amp ) && $viewer === 'google' && $preloader === 'enable';
@@ -680,11 +683,13 @@ class Awsm_embed {
 		}
 
 		$data_attr = '';
-		if ( $is_browser_viewer && $is_shortcode_url ) {
+		if ( ( $viewer == 'adobe' || $is_browser_viewer ) && $is_shortcode_url ) {
 			$data_attr = sprintf( ' data-pdf-src="%1$s" data-viewer="%2$s"', esc_url( $shortcode_atts['url'] ), esc_attr( $shortcode_atts['viewer'] ) );
 
-			$doc_style_attrs = array_merge( $doc_style_attrs, $iframe_style_attrs );
-			unset( $doc_style_attrs['visibility'] );
+			if ( $viewer !== 'adobe' ) {
+				$doc_style_attrs = array_merge( $doc_style_attrs, $iframe_style_attrs );
+				unset( $doc_style_attrs['visibility'] );
+			}
 		}
 
 		/**
@@ -697,9 +702,8 @@ class Awsm_embed {
 		$iframe_style_attrs = self::build_style_attr( $iframe_style_attrs );
 		$iframe_style       = apply_filters( 'awsm_ead_iframe_style_attrs', $iframe_style_attrs );
 
-		if ( $viewer == 'adobe' ) {
-			$iframe = sprintf( '<div class="adobe-dc-view" id="adobe-dc-view-%1$s" data-pdf-src="%2$s"></div>', esc_attr( $shortcode_atts['uid'] ), esc_url( $shortcode_atts['url'] ) );
-		} else {
+		$iframe = '';
+		if ( $viewer !== 'adobe' ) {
 			$iframe = sprintf( '<iframe src="%s" title="%s" class="ead-iframe" %s></iframe>', esc_attr( $iframe_src ), esc_html__( 'Embedded Document', 'embed-any-document' ), $iframe_style );
 		}
 
@@ -708,7 +712,7 @@ class Awsm_embed {
 		}
 
 		$doc_style = self::build_style_attr( $doc_style_attrs );
-		$embed     = sprintf( '<div class="ead-preview"><div class="ead-document" %3$s>%1$s</div>%2$s</div>', $iframe, $durl, $doc_style . $data_attr );
+		$embed     = sprintf( '<div class="ead-preview"><div class="ead-document" id="ead-document-%4$s" %3$s>%1$s</div>%2$s</div>', $iframe, $durl, $doc_style . $data_attr, esc_attr( $shortcode_atts['uid'] ) );
 
 		/**
 		 * Customize the embedded content.

@@ -1,4 +1,4 @@
-jQuery(function($) { 
+jQuery(function($) {
     var eadEmbed = window.eadEmbed = window.eadEmbed || {};
 
     eadEmbed.updateprovider = function(file,handle) {
@@ -20,12 +20,14 @@ jQuery(function($) {
     var template = wp.template('embed-popup-template');
     $('#embed-popup-wrap-template').html(template);
     var popupContent = $('#embed-popup-wrap-template').html();
-    
+
     var fileurl = "",
         filedata={},
         newprovider = "",
         frame,
         msextension = emebeder.msextension;
+
+	var isAdobeViewerEnabled = typeof eadPublic !== 'undefined' && eadPublic.adobe_api_key;
 
     // Opens Embed popup
     $(document).on('click', '.awsm-embed', function(e) {
@@ -34,20 +36,20 @@ jQuery(function($) {
         }
         e.preventDefault();
         ead_reset();
-        $('body').addClass('ead-popup-on');  
+        $('body').addClass('ead-popup-on');
         tb_show("Embed Any Document", "#TB_inline?inlineId=embed-popup-wrap&amp;width=1030&amp;modal=true", null);
         ead_tb_position();
         $("#upload-doc").focus();
         return;
     });
-    
+
     //Update shortcode on change
-    $(document).on('change', '.ead-usc', function() { 
+    $(document).on('change', '.ead-usc', function() {
         newprovider = "";
         ead_updateshortcode($(this).attr('id'));
         ead_customize_popup();
     });
-    
+
     $('.embedval').keyup(function() {
         ead_updateshortcode($(this).attr('id'));
     });
@@ -99,15 +101,15 @@ jQuery(function($) {
                 text: emebeder.select_button
             }
         });
-        frame.on('select', function() { 
-            var file = frame.state().get('selection').first().toJSON(); 
+        frame.on('select', function() {
+            var file = frame.state().get('selection').first().toJSON();
             ead_updateprovider(file, uClass);
         });
         frame.open();
     }
-    
+
     //update provider
-    function ead_updateprovider(file, uClass) { 
+    function ead_updateprovider(file, uClass) {
         fileurl = file.url;
         filedata = file;
         ead_valid_viewer(file, uClass);
@@ -126,11 +128,11 @@ jQuery(function($) {
         return dim;
     }
     //Thickbox Handler
-    function ead_tb_position() { 
+    function ead_tb_position() {
             var tbWindow = $('#TB_window');
             var width = $(window).width();
             var H = $(window).height();
-            var W = ( 1080 < width ) ? 1080 : width; 
+            var W = ( 1080 < width ) ? 1080 : width;
 
             if ( tbWindow.size() ) {
                 tbWindow.width( W - 50 ).height( H - 45 );
@@ -145,7 +147,7 @@ jQuery(function($) {
     };
     $(window).resize( function() { ead_tb_position() } );
     //to getshortcode
-    function getshortcode(filedata, item) { 
+    function getshortcode(filedata, item) {
         var height = ead_sanitize($('#ead-height').val()),
             width = ead_sanitize($('#ead-width').val()),
             download = $('#ead-download').val(),
@@ -168,10 +170,10 @@ jQuery(function($) {
         if (ead_itemcheck('download', item)) {
             eadEmbed.shortcodeAttrs.download = download;
         }
-        if (ead_itemcheck('provider', item)) { 
+        if (ead_itemcheck('provider', item)) {
             eadEmbed.shortcodeAttrs.viewer = provider;
-        } 
-       
+        }
+
         if (ead_itemcheck('text', item) && download!='none' ) {
             eadEmbed.shortcodeAttrs.text = text;
         }
@@ -190,19 +192,19 @@ jQuery(function($) {
 
         $('#embed-popup').trigger('ead_embed_shortcodetext', [eadEmbed.shortcodeAttrs,eadEmbed.file]);
         var attrs = "";
-       
+
         $.each(eadEmbed.shortcodeAttrs,function(index,item){
             attrs += index+'="'+item+'" ';
         });
-    
+
         var embed_shortcode = '[embeddoc ' + attrs.trim() + ']';
         return embed_shortcode;
     }
     // Checks with default setting value
-    function ead_itemcheck(item, dataitem) { 
-        var check = $('#ead-' + item).val(); 
+    function ead_itemcheck(item, dataitem) {
+        var check = $('#ead-' + item).val();
         if(!check) return false;
-        var datacheck = 'ead-' + item; 
+        var datacheck = 'ead-' + item;
         if (datacheck == dataitem) {
             return true;
         } else if (check != emebeder[item]) {
@@ -211,7 +213,7 @@ jQuery(function($) {
         return false;
     }
     //Print uploaded file details
-    function ead_uploaddetails(file, uClass) { 
+    function ead_uploaddetails(file, uClass) {
         $('#insert-doc').prop('disabled', false);
         $('#ead-filename').html(file.filename);
         if (file.filesizeHumanReadable) {
@@ -223,7 +225,7 @@ jQuery(function($) {
         $('.ead-container').hide();
         ead_upload_class(uClass);
     }
-   
+
 
     function ead_embded_url() {
         var checkurl = $('#awsm-url').val();
@@ -266,7 +268,7 @@ jQuery(function($) {
         $('#embed-message').fadeIn();
         $('#embed-message p').text(msg);
     }
-    
+
 
     function ead_shortcode() {
         if (filedata) {
@@ -286,7 +288,7 @@ jQuery(function($) {
             ead_showmsg(emebeder.nocontent);
         }
     }
-    
+
     //Update ShortCode
     function ead_updateshortcode(item) {
         item = typeof item !== 'undefined' ? item : false;
@@ -297,7 +299,7 @@ jQuery(function($) {
             $('#embed-popup #shortcode').text('');
         }
     }
-   
+
     //UploadClass
     function ead_upload_class(uPclass) {
         $(".uploaded-doccument").removeClass("ead-link ead-upload ead-dropbox ead-drive ead-box");
@@ -324,7 +326,7 @@ jQuery(function($) {
         return bytes.toFixed(1) + ' ' + units[u];
     }
     // Viewer Check
-     function ead_valid_viewer(file, provider) { 
+     function ead_valid_viewer(file, provider) {
         var cprovider = ["link", "upload"];
 
         var validext = msextension.split(',');
@@ -334,7 +336,7 @@ jQuery(function($) {
         }
         var ext = '.' + checkitem.split('.').pop();
 
-        var flexible_viewers = ['built-in', 'browser', 'microsoft'];
+        var flexible_viewers = ['adobe', 'built-in', 'browser', 'microsoft'];
         $.each(flexible_viewers, function(i, value) {
             $("#new-provider option[value='" + value + "']").attr({
                 'disabled': false,
@@ -343,17 +345,23 @@ jQuery(function($) {
         });
         $('.ead-browser-viewer-note').hide();
 
-        if ($.inArray(provider, cprovider) !== -1) { 
-
-            if ($.inArray(ext, validext) === -1) { 
-                newprovider = "google";
-                $("#new-provider option[value='google']").attr("selected", "selected");
+        if ($.inArray(provider, cprovider) !== -1) {
+            if ($.inArray(ext, validext) === -1) {
+                newprovider = 'google';
+				if (ext === '.pdf' && isAdobeViewerEnabled) {
+					newprovider = 'adobe';
+				} else {
+					$("#new-provider option[value='adobe']").attr({
+						'disabled': true,
+					});
+				}
+                $("#new-provider option[value='" + newprovider + "']").attr("selected", "selected");
                 $("#new-provider option[value='microsoft']").attr({
                     'disabled': true,
                     'hidden': true
                 });
 
-                $("#ead-provider").val($("#new-provider option[value='google']").val());
+                $("#ead-provider").val($("#new-provider option[value='" + newprovider + "']").val());
             } else {
                 newprovider = "microsoft";
                 $("#new-provider option[value='microsoft']").attr("selected", "selected");
@@ -363,6 +371,10 @@ jQuery(function($) {
             // Hide the Browser viewer and built-in viewer if the extension is not pdf and also if the provider is not in the supported providers list.
             if (ext !== '.pdf'){
                 $("#new-provider option[value='browser']").attr({
+                    'disabled': true,
+                    'hidden': true
+                });
+				$("#new-provider option[value='adobe']").attr({
                     'disabled': true,
                     'hidden': true
                 });
@@ -387,11 +399,10 @@ jQuery(function($) {
     //Download text show
     function ead_customize_popup(){
         if($('#ead-download').val()=="none"){
-            $('#ead-download-text').hide();    
+            $('#ead-download-text').hide();
         }else{
-            $('#ead-download-text').show();  
+            $('#ead-download-text').show();
         }
-        
     }
     //Reset form data
     function ead_reset() {
@@ -409,5 +420,5 @@ jQuery(function($) {
         $("#new-provider  option[value='microsoft']").attr('disabled', false);
         $('#ead-downloadc').show();
         ead_customize_popup();
-    }   
+    }
 });

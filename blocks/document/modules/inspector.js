@@ -34,14 +34,14 @@ class EadInspector extends Component {
     }
 
     render() {
-        const { attributes: { url, width, height, text, download, viewer, cache }, setAttributes } = this.props; 
+        const { attributes: { url, width, height, text, download, viewer, cache }, setAttributes } = this.props;
         let viewerOptions  = [];
         let viewerSettings = [];
 		let downloadTextControl = null;
 		let enableViewerControl = viewer && jQuery.inArray( viewer, emebeder.viewers ) !== -1;
 
 		if ( enableViewerControl ) {
-			viewerOptions = [{ value: 'google', label: __( 'Google Docs Viewer', 'embed-any-document' ) },{ value: 'adobe', label: __( 'Adobe Viewer', 'embed-any-document' ) }];
+			viewerOptions = [{ value: 'google', label: __( 'Google Docs Viewer', 'embed-any-document' ) }];
 
 			if( EadHelper.isValidMSExtension( url ) ) {
 				viewerOptions.push({ value: 'microsoft', label: __( 'Microsoft Office Online', 'embed-any-document' ) });
@@ -49,10 +49,11 @@ class EadInspector extends Component {
 
             let fileSrc = EadHelper.getFileSource( url );
 
-            if ( EadHelper.isPDF(url)) {
+            if (EadHelper.isPDF(url)) {
+				viewerOptions.push({ value: 'adobe', label: __( 'Adobe Viewer', 'embed-any-document' ) });
                 viewerOptions.push({ value: 'browser', label: __( 'Browser Based', 'embed-any-document' ) });
             }
-            
+
             viewerOptions = wp.hooks.applyFilters('eadvieweroption',viewerOptions,fileSrc,url);
 
 			downloadTextControl = <TextControl label={ __( 'Download Text', 'embed-any-document' ) } help={ __( 'Default download button text', 'embed-any-document' ) } value={ text } onChange={ text => setAttributes( { text } ) } />;
