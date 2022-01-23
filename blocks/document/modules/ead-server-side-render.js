@@ -88,7 +88,7 @@ class EadServerSideRender extends Component {
 					}, 250);
 				}
 			}
-			wp.hooks.doAction( 'eadiframewrapper',attributes,this.eadRef.current );
+			wp.hooks.doAction( 'awsm_ead_iframe_loaded',attributes,this.eadRef.current );
 		}
 	}
 

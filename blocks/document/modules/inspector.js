@@ -54,7 +54,7 @@ class EadInspector extends Component {
                 viewerOptions.push({ value: 'browser', label: __( 'Browser Based', 'embed-any-document' ) });
             }
 
-            viewerOptions = wp.hooks.applyFilters('eadvieweroption',viewerOptions,fileSrc,url);
+            viewerOptions = wp.hooks.applyFilters('awsm_ead_viewers',viewerOptions,fileSrc,url);
 
 			downloadTextControl = <TextControl label={ __( 'Download Text', 'embed-any-document' ) } help={ __( 'Default download button text', 'embed-any-document' ) } value={ text } onChange={ text => setAttributes( { text } ) } />;
 
@@ -65,6 +65,7 @@ class EadInspector extends Component {
 
         return (
             <InspectorControls>
+                { wp.hooks.doAction( 'awsm_ead_before_block_settings') }
                 <PanelBody>
                     <TextControl label={ __( 'Width', 'embed-any-document' ) } help={ __( 'Width of document either in px or in %', 'embed-any-document' ) } value={ width } onChange={ width => setAttributes( { width } ) } />
                  </PanelBody>
@@ -91,7 +92,7 @@ class EadInspector extends Component {
                     <ToggleControl label={ __( 'Cache', 'embed-any-document' ) } checked={ cache } onChange={ cache => setAttributes( { cache } ) } />
                 </PanelBody> }
 
-                { wp.hooks.doAction( 'awsm_ead_settings',viewerSettings,viewer,this.props) }
+                { wp.hooks.doAction( 'awsm_ead_after_block_settings',viewerSettings,viewer,this.props) }
                 { viewerSettings }
 
             </InspectorControls>

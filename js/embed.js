@@ -190,7 +190,7 @@ jQuery(function($) {
             $('.ead-browser-viewer-note').hide();
         }
 
-        $('#embed-popup').trigger('ead_embed_shortcodetext', [eadEmbed.shortcodeAttrs,eadEmbed.file]);
+        $('#embed-popup').trigger('awsm_ead_generate_embed_shortcode', [eadEmbed.shortcodeAttrs,eadEmbed.file]);
         var attrs = "";
 
         $.each(eadEmbed.shortcodeAttrs,function(index,item){
@@ -386,6 +386,9 @@ jQuery(function($) {
                     'hidden': true
                 });
             }
+
+            $('#new-provider').trigger('source_provider',[checkitem]);
+
         }
     }
 
