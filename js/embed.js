@@ -331,9 +331,13 @@ jQuery(function($) {
 
         var validext = msextension.split(',');
         var checkitem = file.filename;
+
+        $is_link = false;
         if (provider == 'link') {
+            $is_link = true;
             checkitem = file.url;
         }
+        
         var ext = '.' + checkitem.split('.').pop();
 
         var flexible_viewers = ['adobe', 'built-in', 'browser', 'microsoft'];
@@ -387,8 +391,9 @@ jQuery(function($) {
                 });
             }
 
-            $('#new-provider').trigger('source_provider',[checkitem]);
-
+            if($is_link){
+                $('#new-provider').trigger('awsm_ead_check_item',[checkitem]);
+            }
         }
     }
 
