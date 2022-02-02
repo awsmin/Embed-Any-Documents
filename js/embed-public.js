@@ -121,13 +121,20 @@ awsmEadMain.adobeViewer = function($docElem, adobeAPIKey) {
 /**
  * Adobe PDF Embed API
  */
-document.addEventListener("adobe_dc_view_sdk.ready", function() {
+document.addEventListener("DOMContentLoaded", function() { 
 	var adobeAPIKey = eadPublic.adobe_api_key;
 	if (adobeAPIKey) {
-		jQuery(document).trigger('awsm_ead_adobe_sdk_loaded');
-		jQuery('.ead-document[data-viewer="adobe"]').each(function () {
-			var $docElem = jQuery(this);
-			awsmEadMain.adobeViewer($docElem, adobeAPIKey);
-		});
+		let validateAdobeDC = setInterval(() => {
+			if (typeof AdobeDC !== 'undefined') {
+				jQuery(document).trigger('awsm_ead_adobe_sdk_loaded');
+				jQuery('.ead-document[data-viewer="adobe"]').each(function () {
+					var $docElem = jQuery(this);
+					awsmEadMain.adobeViewer($docElem, adobeAPIKey);
+					clearInterval(validateAdobeDC);
+				});
+			}
+		}, 250);
 	}
 });
+
+
