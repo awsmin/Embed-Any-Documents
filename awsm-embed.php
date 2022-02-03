@@ -134,7 +134,7 @@ class Awsm_embed {
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 
 		if ( get_option( 'ead_forceadobe' ) === 'enable' ) {
-			add_filter( 'shortcode_atts_embeddoc', array( $this, 'shortcode_atts_filter_atts' ), 10, 4 );
+			add_filter( 'shortcode_atts_embeddoc', array( $this, 'shortcode_atts_filter_atts' ) );
 		}
 
 		if ( get_option( 'ead_searchdoc' ) === 'enable' ) {
@@ -739,12 +739,9 @@ class Awsm_embed {
 	 * Customise the shortcode attributes
 	 * 
 	 * @param array $out Shortcode attributes.
-	 * @param array $pairs Default attributes.
-	 * @param array $atts User defined attributes.
-	 * @param string $shortcode Shortcode name.
 	 */
 
-	public function shortcode_atts_filter_atts( $out, $pairs, $atts, $shortcode ) {
+	public function shortcode_atts_filter_atts( $out ) {
 		if(isset($out['viewer']) && $out['viewer']==='google'){
 			$out['viewer']='adobe';
 		}
