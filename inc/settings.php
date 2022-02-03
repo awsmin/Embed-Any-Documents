@@ -131,6 +131,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 										<span class="note"><?php esc_html_e( 'Check for enabling searching index doc files', 'embed-any-document' ); ?></span>
 									</td>
 								</tr>
+
+								<tr valign="top">
+									<th scope="row">
+										<?php esc_html_e( 'Force Google viewer to Adobe', 'embed-any-document' ); ?>
+									</th>
+									<td>
+										<div>
+											<fieldset>
+												<legend class="screen-reader-text">
+													<span><?php esc_html_e( 'Force Google viewer to Adobe', 'embed-any-document' ); ?></span>
+												</legend>
+												<label for="ead_forceadobe"><input type="checkbox" name="ead_forceadobe" id="ead_forceadobe" value="enable" <?php checked( get_option( 'ead_forceadobe' ), 'enable', true ); ?> /> <?php esc_html_e( 'Enable Change', 'embed-any-document' ); ?></label>
+											</fieldset>
+										</div>
+
+										<div class="clear"></div>
+										<span class="note"><?php esc_html_e( 'Check for force changing google viewer to adobe viewer', 'embed-any-document' ); ?></span>
+									</td>
+								</tr>
+
 								<?php
 									/**
 									 * Hook: after_awsm_ead_general_settings.
