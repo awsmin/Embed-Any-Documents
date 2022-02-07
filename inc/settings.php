@@ -174,13 +174,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 								   <h3><?php esc_html_e( 'Adobe PDF Embed API', 'embed-any-document' ); ?></h3>
 								   <table class="form-table">
 									   <tbody>
-										   <tr valign="top">
+										    <tr valign="top">
 											   <th scope="row"><?php esc_html_e( 'API Key', 'embed-any-document' ); ?></th>
 											   <td><input type="text" name="ead_adobe_key" value="<?php echo esc_attr( get_option( 'ead_adobe_key' ) ); ?>" /></td>
-										   </tr>
+										    </tr>
+										    <tr valign="top">
+											   <th scope="row"></th>
+											   <td>
+												   <strong><?php esc_html_e( 'Help:', 'embed-any-document' ); ?></strong><a href="#" target="_blank"><?php esc_html_e( 'Guide to generate Adobe API Key', 'embed-any-document' ); ?></a>
+											   </td>
+							   				</tr>
 									   </tbody>
 								   </table>
 							   </li>
+
+
 						<?php
 							/**
 							 * Hook: awsm_ead_cloud_settings..
