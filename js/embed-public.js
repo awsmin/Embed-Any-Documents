@@ -93,7 +93,8 @@ awsmEadMain.getAdobeViewerOptions = function($docElem) {
 		showLeftHandPanel: false,
 		enableFormFilling: false,
 		showDownloadPDF: false,
-		showPrintPDF: false
+		showPrintPDF: false,
+		embedMode:'',
 	};
 };
 
