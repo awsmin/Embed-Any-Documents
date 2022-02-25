@@ -24,9 +24,9 @@ if ( ! defined( 'AWSM_EMBED_VERSION' ) ) {
 
 require_once plugin_dir_path( __FILE__ ) . '/lib/fs-init.php';
 
-if ( get_option( 'ead_searchdoc' ) === 'enable' ) {
+if ( get_option( 'ead_searchdoc' ) === 'enable' ) { 
 	require_once plugin_dir_path( __FILE__ ) . '/vendor/autoload.php';
-}
+} 
 
 /**
  * Embed Any Document Main Class.
@@ -103,7 +103,8 @@ class Awsm_embed {
 	/**
 	 * Initializes the plugin by setting localization, hooks, filters, and administrative functions.
 	 */
-	private function __construct() {
+	private function __construct() { 
+		
 		$this->plugin_path    = plugin_dir_path( __FILE__ );
 		$this->plugin_url     = plugin_dir_url( __FILE__ );
 		$this->plugin_base    = dirname( plugin_basename( __FILE__ ) );
