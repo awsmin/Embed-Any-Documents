@@ -50,7 +50,10 @@ class EadInspector extends Component {
             let fileSrc = EadHelper.getFileSource( url );
 
             if (EadHelper.isPDF(url)) {
-				viewerOptions.push({ value: 'adobe', label: __( 'Adobe Viewer', 'embed-any-document' ) });
+                if (typeof eadPublic !== 'undefined' && eadPublic.adobe_api_key){
+                    viewerOptions.push({ value: 'adobe', label: __( 'Adobe Viewer', 'embed-any-document' ) });
+                }
+				
                 viewerOptions.push({ value: 'browser', label: __( 'Browser Based', 'embed-any-document' ) });
             }
 
