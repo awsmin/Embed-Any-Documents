@@ -24,9 +24,9 @@ if ( ! defined( 'AWSM_EMBED_VERSION' ) ) {
 
 require_once plugin_dir_path( __FILE__ ) . '/lib/fs-init.php';
 
-if ( get_option( 'ead_searchdoc' ) === 'enable' ) { 
+if ( get_option( 'ead_searchdoc' ) === 'enable' ) {
 	require_once plugin_dir_path( __FILE__ ) . '/vendor/autoload.php';
-} 
+}
 
 /**
  * Embed Any Document Main Class.
@@ -103,8 +103,8 @@ class Awsm_embed {
 	/**
 	 * Initializes the plugin by setting localization, hooks, filters, and administrative functions.
 	 */
-	private function __construct() { 
-		
+	private function __construct() {
+
 		$this->plugin_path    = plugin_dir_path( __FILE__ );
 		$this->plugin_url     = plugin_dir_url( __FILE__ );
 		$this->plugin_base    = dirname( plugin_basename( __FILE__ ) );
@@ -523,7 +523,7 @@ class Awsm_embed {
 	 * @param array $atts The shortcode attributes.
 	 * @return string Shortcode output content.
 	 */
-	public function embed_shortcode( $atts ) { 
+	public function embed_shortcode( $atts ) {
 		$embed            = '';
 		$durl             = '';
 		$default_width    = $this->sanitize_dims( get_option( 'ead_width', '100%' ) );
@@ -736,15 +736,14 @@ class Awsm_embed {
 		return $embed;
 	}
 
-    /**
+	/**
 	 * Customise the shortcode attributes
-	 * 
+	 *
 	 * @param array $out Shortcode attributes.
 	 */
-
 	public function shortcode_atts_filter_atts( $out ) {
-		if(isset($out['viewer']) && $out['viewer']==='google'){
-			$out['viewer']='adobe';
+		if ( isset( $out['viewer'] ) && $out['viewer'] === 'google' ) {
+			$out['viewer'] = 'adobe';
 		}
 		return $out;
 	}

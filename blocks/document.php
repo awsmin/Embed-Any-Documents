@@ -120,7 +120,7 @@ class Awsm_embed_Guten_blocks {
 		 *
 		 * @param array $atts Attribute data array.
 		 */
-		$atts = apply_filters( 'awsm_ead_block_atts', $atts ); 
+		$atts = apply_filters( 'awsm_ead_block_atts', $atts );
 
 		if ( ! empty( $shortcode ) ) {
 			$parsed_atts = Awsm_embed::get_shortcode_attrs( $shortcode );
