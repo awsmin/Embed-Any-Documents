@@ -19,5 +19,10 @@
 		"phpcbf": "phpcbf --colors -p -s",
 		"phpstan": "./vendor/bin/phpstan analyse",
 		"phpcbfx": "phpcbf --colors -p -s .; if [ $? -eq 1 ]; then exit 0; fi"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
