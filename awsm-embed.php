@@ -871,7 +871,7 @@ class Awsm_embed {
 	/**
 	 * Register Settings
 	 */
-	public function register_eadsettings() {
+	public function register_eadsettings() { 
 		register_setting( 'ead-settings-group', 'ead_width', array( $this, 'sanitize_dims' ) );
 		register_setting( 'ead-settings-group', 'ead_height', array( $this, 'sanitize_dims' ) );
 		register_setting( 'ead-settings-group', 'ead_provider' );
@@ -879,7 +879,7 @@ class Awsm_embed {
 		register_setting( 'ead-settings-group', 'ead_text' );
 		register_setting( 'ead-settings-group', 'ead_preloader' );
 		register_setting( 'ead-settings-group', 'ead_searchdoc' );
-		register_setting( 'ead-settings-group', 'ead_forceadobe' );
+		register_setting( 'ead-settings-group', 'ead_forceadobe', array( $this, 'sanitize_force' ) ); 
 		register_setting( 'ead-cloud-group', 'ead_adobe_key' );
 	}
 
@@ -1061,12 +1061,28 @@ class Awsm_embed {
 	}
 
 	/**
+	 * Sanitize enable ( force google to adobe viewer ).
+	 *
+	 * @param string $value Value to be sanitized.
+	 * @return string|bool Value or false if condition fails.
+	 */
+	public function sanitize_force( $value ){
+		$adobe_api_key = get_option( 'ead_adobe_key' );
+		if( empty($adobe_api_key) ){
+			add_settings_error( 'ead_forceadobe','force-adobe',__('Please enter the Adobe PDF Embed API key as mentioned in the plugin documentation.', 'embed-any-document'),'error' );
+			return false;
+		}else{
+			return $value;
+		}
+	}
+
+	/**
 	 * Sanitize dimensions (width, height).
 	 *
 	 * @param string $dim Value to be sanitized.
 	 * @return string|bool Sanitized dimensions or false if value is invalid.
 	 */
-	public function sanitize_dims( $dim ) {
+	public function sanitize_dims( $dim ) { 
 		// remove any spacing junk.
 		$dim = trim( str_replace( ' ', '', $dim ) );
 		if ( ! $dim ) {
