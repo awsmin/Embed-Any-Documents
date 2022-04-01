@@ -753,19 +753,18 @@ class Awsm_embed {
 	 *
 	 * @param string $url The document absolute URL.
 	 */
-	public function parse_documents( $url ) {
+	public function parse_documents( $url ) { 
 		if ( ! $url ) {
 			return;
 		}
-
+		
 		$post_id            = get_the_ID();
 		$doc_stored_content = get_post_meta( $post_id, '_doc_content', true );
 		if ( ! empty( $doc_stored_content ) ) {
 			return;
 		}
-
-		$file_content = file_get_contents( $url );
-		if ( $file_content === false ) {
+		
+		if (($file_content = @file_get_contents( $url )) === false) {
 			return false;
 		}
 		$mime_type = wp_check_filetype( wp_basename( $url ) );
