@@ -74,7 +74,7 @@ registerBlockType( 'embed-any-document/document', {
  		    eadShortcode(embedurl);
 		}
 
-		const onSelectURL = (url) => {
+		const onSelectURL = (url) => { 
 			let fileType = '';
 
 			if ( ! url) {
@@ -140,7 +140,7 @@ registerBlockType( 'embed-any-document/document', {
 		}
 
 		const providerLink = () => {
-			let link = 'http://embedanydocument.com/plus-cc';
+			let link = emebeder.admin_url+'/options-general.php?page=ead-settings-addons';
 			window.open(link, '_blank');
 		}
 

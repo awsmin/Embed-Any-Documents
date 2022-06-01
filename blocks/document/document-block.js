@@ -275,7 +275,7 @@ registerBlockType('embed-any-document/document', {
     };
 
     var providerLink = function providerLink() {
-      var link = 'http://embedanydocument.com/plus-cc';
+      var link = emebeder.admin_url + '/options-general.php?page=ead-settings-addons';
       window.open(link, '_blank');
     };
 

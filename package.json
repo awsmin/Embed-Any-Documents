@@ -7,8 +7,8 @@
     "dev-blocks": "webpack",
     "build-blocks": "cross-env NODE_ENV=production webpack",
     "translate": "cross-env wp i18n make-pot . language/embed-any-document.pot --exclude=document-block.js --headers='{\"Language-Team\":\"Awsm Innovations <hello@awsm.in>\"}'",
-		"build": "cross-env npm run build-blocks && gulp build-scripts && npm run translate",
-		"zip": "cross-env npm run build && gulp build"
+    "build": "cross-env npm run build-blocks && gulp build-scripts && npm run translate",
+    "zip": "cross-env npm run build && gulp build"
   },
   "repository": {
     "type": "git",

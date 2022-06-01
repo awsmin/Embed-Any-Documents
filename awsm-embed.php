@@ -103,8 +103,7 @@ class Awsm_embed {
 	/**
 	 * Initializes the plugin by setting localization, hooks, filters, and administrative functions.
 	 */
-	private function __construct() {
-
+	private function __construct() { 
 		$this->plugin_path    = plugin_dir_path( __FILE__ );
 		$this->plugin_url     = plugin_dir_url( __FILE__ );
 		$this->plugin_base    = dirname( plugin_basename( __FILE__ ) );
@@ -133,8 +132,8 @@ class Awsm_embed {
 
 		// Load plugin textdomain.
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
-
-		if ( get_option( 'ead_forceadobe' ) === 'enable' ) {
+		
+		if ( get_option( 'ead_forceadobe' ) === 'enable' ) {  
 			add_filter( 'shortcode_atts_embeddoc', array( $this, 'shortcode_atts_filter_atts' ) );
 		}
 
@@ -523,7 +522,7 @@ class Awsm_embed {
 	 * @param array $atts The shortcode attributes.
 	 * @return string Shortcode output content.
 	 */
-	public function embed_shortcode( $atts ) {
+	public function embed_shortcode( $atts ) { 
 		$embed            = '';
 		$durl             = '';
 		$default_width    = $this->sanitize_dims( get_option( 'ead_width', '100%' ) );
@@ -741,7 +740,7 @@ class Awsm_embed {
 	 *
 	 * @param array $out Shortcode attributes.
 	 */
-	public function shortcode_atts_filter_atts( $out ) {
+	public function shortcode_atts_filter_atts( $out ) { 
 		if ( isset( $out['viewer'] ) && $out['viewer'] === 'google' ) {
 			$out['viewer'] = 'adobe';
 		}
