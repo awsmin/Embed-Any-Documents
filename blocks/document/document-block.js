@@ -844,9 +844,16 @@ var EadInspector = /*#__PURE__*/function (_Component) {
       var enableViewerControl = viewer && jQuery.inArray(viewer, emebeder.viewers) !== -1;
 
       if (enableViewerControl) {
+        var disableStatus = false;
+
+        if (emebeder.force_adobe === 'enable') {
+          disableStatus = true;
+        }
+
         viewerOptions = [{
           value: 'google',
-          label: __('Google Docs Viewer', 'embed-any-document')
+          label: __('Google Docs Viewer', 'embed-any-document'),
+          disabled: disableStatus
         }];
 
         if (_helper__WEBPACK_IMPORTED_MODULE_0__["default"].isValidMSExtension(url)) {
