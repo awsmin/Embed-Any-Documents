@@ -1294,8 +1294,6 @@ class Awsm_embed {
 	 * Notice in dashboard.
 	 *
 	 * @since 3.0.0
-	 * @param string $url Document url.
-	 * @return bool
 	 */
 	public function plugin_notice(){ ?>
 		<div class="notice notice-info">

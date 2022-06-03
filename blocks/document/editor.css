@@ -144,3 +144,7 @@ div[data-type="embed-any-document/document"] .components-placeholder__fieldset .
 div[data-type="embed-any-document/document"] .components-placeholder__fieldset .block-editor-media-placeholder__url-input-container .components-button::after {
 	content: "URL";
 }
+
+button.components-button.btn-disabled{
+	opacity: 0.4;
+}
