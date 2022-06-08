@@ -1,4 +1,4 @@
-jQuery(function($) {
+jQuery(function($) { 
     var eadEmbed = window.eadEmbed = window.eadEmbed || {};
 
     eadEmbed.updateprovider = function(file,handle) {
@@ -16,7 +16,7 @@ jQuery(function($) {
     eadEmbed.ead_showmsg = function(msg){
         ead_showmsg(msg);
     };
-
+    
     var template = wp.template('embed-popup-template');
     $('#embed-popup-wrap-template').html(template);
     var popupContent = $('#embed-popup-wrap-template').html();
@@ -28,7 +28,6 @@ jQuery(function($) {
         msextension = emebeder.msextension;
 
 	var isAdobeViewerEnabled = typeof eadPublic !== 'undefined' && eadPublic.adobe_api_key;
-
     // Opens Embed popup
     $(document).on('click', '.awsm-embed', function(e) {
         if ($('#embed-popup').length === 0) {
