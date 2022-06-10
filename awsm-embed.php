@@ -103,7 +103,7 @@ class Awsm_embed {
 	/**
 	 * Initializes the plugin by setting localization, hooks, filters, and administrative functions.
 	 */
-	private function __construct() { update_option( 'dismiss_adobe', 2 );
+	private function __construct() { 
 		$this->plugin_path    = plugin_dir_path( __FILE__ );
 		$this->plugin_url     = plugin_dir_url( __FILE__ );
 		$this->plugin_base    = dirname( plugin_basename( __FILE__ ) );
@@ -414,7 +414,8 @@ class Awsm_embed {
 	/**
 	 * Register scripts for both back-end and front-end use.
 	 */
-	public function register_scripts() {
+	public function register_scripts() { 
+
 		wp_register_script( 'awsm-ead-pdf-object', plugins_url( 'js/pdfobject.min.js', $this->plugin_file ), array(), $this->plugin_version, true );
 		wp_register_script( 'awsm-ead-adobejs', 'https://documentcloud.adobe.com/view-sdk/main.js', array(), $this->plugin_version, false );
 		$public_deps   = array( 'jquery', 'awsm-ead-pdf-object' );
@@ -427,7 +428,7 @@ class Awsm_embed {
 		wp_register_script( 'awsm-ead-admin-global', plugins_url( 'js/admin-global.min.js', $this->plugin_file ), array('jquery'), $this->plugin_version, true );
 
 		wp_enqueue_script( 'awsm-ead-admin-global' );
-	
+		
 		$admin_data = array(
 			'nonce'   => wp_create_nonce( 'ead-admin-nonce' ),
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
@@ -1310,7 +1311,9 @@ class Awsm_embed {
 		if(get_option('dismiss_adobe') != 1){
 			$content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the indust standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 
-			printf( '<div class="ead-adobe-notice notice notice-info"><p>%1$s</p><a href="#" class="notice-dismiss">%2$s</a></div>', esc_html__($content,'embed-any-document'),  esc_html__( 'Dismiss', 'embed-any-document' ) );
+			printf( '<div class="ead-adobe-notice notice notice-info is-dismissible"><p>%1$s</p></div>', esc_html__($content,'embed-any-document'));
+			?>
+			<?php
 		}
 	}
 
@@ -1328,7 +1331,7 @@ class Awsm_embed {
 		$generic_msg = esc_html__( 'Error in dismissing the notice. Please try again!', 'embed-any-document' );
 		if ( isset( $_POST['nonce'] ) && wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'ead-admin-nonce' ) ) {
 			$response['dismiss'] =true;
-			//update_option( 'dismiss_adobe', 1 ); 
+			update_option( 'dismiss_adobe', 1 ); 
 		} else {
 			$response['error'][] = $generic_msg;
 		}
