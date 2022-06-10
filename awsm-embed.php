@@ -415,8 +415,6 @@ class Awsm_embed {
 	 * Register scripts for both back-end and front-end use.
 	 */
 	public function register_scripts() {
-		$screen = get_current_screen();
-
 		wp_register_script( 'awsm-ead-pdf-object', plugins_url( 'js/pdfobject.min.js', $this->plugin_file ), array(), $this->plugin_version, true );
 		wp_register_script( 'awsm-ead-adobejs', 'https://documentcloud.adobe.com/view-sdk/main.js', array(), $this->plugin_version, false );
 		$public_deps   = array( 'jquery', 'awsm-ead-pdf-object' );
@@ -428,9 +426,8 @@ class Awsm_embed {
 
 		wp_register_script( 'awsm-ead-admin-global', plugins_url( 'js/admin-global.min.js', $this->plugin_file ), array('jquery'), $this->plugin_version, true );
 
-		if ( ! empty( $screen ) ) {
-			wp_enqueue_script( 'awsm-ead-admin-global' );
-		}
+		wp_enqueue_script( 'awsm-ead-admin-global' );
+	
 		$admin_data = array(
 			'nonce'   => wp_create_nonce( 'ead-admin-nonce' ),
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
