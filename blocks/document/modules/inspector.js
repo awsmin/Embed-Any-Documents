@@ -33,6 +33,14 @@ class EadInspector extends Component {
         this.props.setAttributes( { viewer } );
     }
 
+    componentDidMount(){
+        if (EadHelper.isPDF(this.props.attributes.url)) {
+            if (typeof eadPublic !== 'undefined' && eadPublic.adobe_api_key){
+                this.viewerControlHandle('adobe'); 
+            }
+        }
+    }
+
     render() {
         const { attributes: { url, width, height, text, download, viewer, cache }, setAttributes } = this.props;
         let viewerOptions  = [];
