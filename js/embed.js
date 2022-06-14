@@ -353,6 +353,12 @@ jQuery(function($) {
                 newprovider = 'google';
 				if (ext === '.pdf' && isAdobeViewerEnabled) {
 					newprovider = 'adobe';
+
+                    if(emebeder.force_adobe == "enable"){
+                        $("#new-provider option[value='google']").attr({
+                            'disabled': true,
+                        });
+                    }
 				} else {
 					$("#new-provider option[value='adobe']").attr({
 						'disabled': true,
