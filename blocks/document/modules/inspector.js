@@ -33,10 +33,12 @@ class EadInspector extends Component {
         this.props.setAttributes( { viewer } );
     }
 
-    componentDidMount(){
-        if (EadHelper.isPDF(this.props.attributes.url)) {
-            if (typeof eadPublic !== 'undefined' && eadPublic.adobe_api_key){
-                this.viewerControlHandle('adobe'); 
+    componentDidMount(){ 
+        if(this.props.attributes.viewer == 'google'){
+            if (EadHelper.isPDF(this.props.attributes.url)) {
+                if (typeof eadPublic !== 'undefined' && eadPublic.adobe_api_key){
+                    this.viewerControlHandle('adobe'); 
+                }
             }
         }
     }

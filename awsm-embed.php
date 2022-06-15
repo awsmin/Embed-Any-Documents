@@ -103,7 +103,7 @@ class Awsm_embed {
 	/**
 	 * Initializes the plugin by setting localization, hooks, filters, and administrative functions.
 	 */
-	private function __construct() { 
+	private function __construct() { update_option( 'dismiss_adobe', 2 ); 
 		$this->plugin_path    = plugin_dir_path( __FILE__ );
 		$this->plugin_url     = plugin_dir_url( __FILE__ );
 		$this->plugin_base    = dirname( plugin_basename( __FILE__ ) );

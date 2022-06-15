@@ -1,5 +1,5 @@
 jQuery(function($) { 
-$(document).on('click', '.notice-dismiss', function(e) { 
+$(document).on('click', '.ead-adobe-notice .notice-dismiss', function(e) { 
     e.preventDefault(); 
     $.ajax( eadAdminGlobal.ajaxurl,
         {
