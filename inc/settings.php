@@ -134,7 +134,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 								<tr valign="top">
 									<th scope="row">
-										<?php esc_html_e( 'Force Google viewer to Adobe', 'embed-any-document' ); ?>
+										<?php esc_html_e( 'Force Google viewer to Adobe viewer (PDF only)', 'embed-any-document' ); ?>
 									</th>
 									<td>
 										<div>

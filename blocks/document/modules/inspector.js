@@ -71,7 +71,7 @@ class EadInspector extends Component {
                 viewerOptions.push({ value: 'browser', label: __( 'Browser Based', 'embed-any-document' ) });
             }
 
-            viewerOptions = wp.hooks.applyFilters('awsm_ead_viewers',viewerOptions,fileSrc,url);
+            viewerOptions = wp.hooks.applyFilters('awsm_ead_viewer_options',viewerOptions,EadHelper.isPDF(url));
 
 			downloadTextControl = <TextControl label={ __( 'Download Text', 'embed-any-document' ) } help={ __( 'Default download button text', 'embed-any-document' ) } value={ text } onChange={ text => setAttributes( { text } ) } />;
 
