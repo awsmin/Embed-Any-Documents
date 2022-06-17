@@ -103,7 +103,7 @@ class Awsm_embed {
 	/**
 	 * Initializes the plugin by setting localization, hooks, filters, and administrative functions.
 	 */
-	private function __construct() { update_option( 'dismiss_adobe', 2 ); 
+	private function __construct() { 
 		$this->plugin_path    = plugin_dir_path( __FILE__ );
 		$this->plugin_url     = plugin_dir_url( __FILE__ );
 		$this->plugin_base    = dirname( plugin_basename( __FILE__ ) );
@@ -756,8 +756,13 @@ class Awsm_embed {
 	 */
 	public function shortcode_atts_filter_atts( $out ) { 
 		if ( isset( $out['viewer'] ) && $out['viewer'] === 'google' ) {
-			$out['viewer'] = 'adobe';
-		}
+			if( isset($out['url']) ){
+				$pathinfo = pathinfo( $out['url'] );
+				if( $pathinfo['extension'] == 'pdf' ){
+					$out['viewer'] = 'adobe';
+				}
+			}
+		} 
 		return $out;
 	}
 
