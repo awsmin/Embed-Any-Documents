@@ -857,7 +857,7 @@ var EadInspector = /*#__PURE__*/function (_Component) {
       if (enableViewerControl) {
         var disableStatus = false;
 
-        if (emebeder.force_adobe === 'enable') {
+        if (emebeder.force_adobe === 'enable' && _helper__WEBPACK_IMPORTED_MODULE_0__["default"].isPDF(url)) {
           disableStatus = true;
         }
 

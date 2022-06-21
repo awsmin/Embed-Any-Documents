@@ -75,7 +75,7 @@ div[data-type="embed-any-document/document"] .components-placeholder__fieldset .
 }
 
 div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button.ead-button-addon::after {
-	content: "Add More";
+	content: "Get Add-ons";
 }
 
 

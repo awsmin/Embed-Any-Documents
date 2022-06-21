@@ -52,7 +52,7 @@ class EadInspector extends Component {
 
 		if ( enableViewerControl ) {
             let disableStatus = false; 
-            if(emebeder.force_adobe === 'enable'){
+            if(emebeder.force_adobe === 'enable' && EadHelper.isPDF(url)){
                 disableStatus = true;
             } 
 			viewerOptions = [{ value: 'google', label: __( 'Google Docs Viewer', 'embed-any-document' ),disabled:disableStatus}];

@@ -1313,13 +1313,20 @@ class Awsm_embed {
 	 * @since 3.0.0
 	 */
 	public function plugin_notice(){  
-		if(get_option('dismiss_adobe') != 1){
-			$content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the indust standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
-
-			printf( '<div class="ead-adobe-notice notice notice-info is-dismissible"><p>%1$s</p></div>', esc_html__($content,'embed-any-document'));
-			?>
-			<?php
-		}
+		if(get_option('dismiss_adobe') != 1){ ?>
+			<div class="ead-adobe-notice notice notice-info is-dismissible">
+				<p>
+					<?php 
+					    $title   			= sprintf( '<h3>%s</h3>', esc_html__( '✨Embed Any Document 3.0 is introducing a brand new viewer to embed PDF files!', 'embed-any-document' ) );
+						$heading 			= sprintf( '<strong>%s</strong>', esc_html__( 'Adobe PDF Embed API', 'embed-any-document' ) );
+						$info_link   		= sprintf( '<a href="%1$s">%2$s</a>', esc_url( 'https://staging2.awsm.in/ead' ), esc_html( 'Learn More' ) );
+						$credential_link    = sprintf( '<a href="%1$s">%2$s</a>', esc_url( 'https://documentcloud.adobe.com/dc-integration-creation-app-cdn/main.html?api=pdf-embed-api' ), esc_html( 'Get Free Adobe PDF Embed API Credentials' ) );
+						
+						printf( esc_html__( '%1$s We are introducing %2$s integration with Embed Any Document 3.0, which is more reliable than any other PDF viewer options. It also works for localhost and intranet files. Please get your free credentials from Adobe.com and start making the best out of it!. %3$s  %4$s', 'embed-any-document' ), $title, $heading, '<br />'.$info_link, $credential_link);
+					?>
+				</p>
+			</div>
+		<?php }
 	}
 
 	/**
