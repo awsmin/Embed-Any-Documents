@@ -12,7 +12,7 @@ const {
 } = wp.components;
 
 class EadInspector extends Component {
-    constructor() {
+    constructor() { 
         super(...arguments);
         this.downloadControlhandle = this.downloadControlhandle.bind(this);
         this.viewerControlHandle = this.viewerControlHandle.bind(this);
@@ -23,24 +23,22 @@ class EadInspector extends Component {
         };
     }
 
+    componentDidMount(){ 
+        if (EadHelper.isPDF(this.props.attributes.url)) {
+            if (typeof eadPublic !== 'undefined' && eadPublic.adobe_api_key){
+                this.viewerControlHandle('adobe'); 
+            }
+        }  
+    }
+
     downloadControlhandle(download) {
         this.setState( { downloadDisabled: ( download === 'none' ) ? true : false } );
         this.props.setAttributes( { download } );
     }
 
-    viewerControlHandle(viewer) {
+    viewerControlHandle(viewer) { 
         this.setState( { cacheHidden: ( viewer === 'google' ) ? false : true } );
         this.props.setAttributes( { viewer } );
-    }
-
-    componentDidMount(){ 
-        if(this.props.attributes.viewer == 'google'){
-            if (EadHelper.isPDF(this.props.attributes.url)) {
-                if (typeof eadPublic !== 'undefined' && eadPublic.adobe_api_key){
-                    this.viewerControlHandle('adobe'); 
-                }
-            }
-        }
     }
 
     render() {

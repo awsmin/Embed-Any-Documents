@@ -25,7 +25,8 @@ class EadServerSideRender extends Component {
 		this.eadRef = createRef();
 	}
 
-	componentDidMount() {
+	componentDidMount() { 
+
 		this.isStillMounted = true;
 		this.fetch( this.props );
 		// Only debounce once the initial fetch occurs to ensure that the first
@@ -37,7 +38,7 @@ class EadServerSideRender extends Component {
 		this.isStillMounted = false;
 	}
 
-	componentDidUpdate( prevProps, prevState ) {
+	componentDidUpdate( prevProps, prevState ) { 
 		if ( ! isEqual( prevProps, this.props ) ) {
 			this.fetch( this.props );
 		}
@@ -45,7 +46,7 @@ class EadServerSideRender extends Component {
 		if ( this.state.response !== prevState.response && null !== this.eadRef.current ) {
 			const { attributes = null } = this.props;
 
-			if ( ( attributes !== null && attributes ) && ( attributes.viewer === 'google' || attributes.viewer === 'browser' || attributes.viewer === 'built-in' || attributes.viewer === 'adobe' ) ) {
+			if ( ( attributes !== null && attributes ) && ( attributes.viewer === 'google' || attributes.viewer === 'browser' || attributes.viewer === 'built-in' || attributes.viewer === 'adobe' ) ) { 
 				let viewer = attributes.viewer;
 				let currentRef = this.eadRef.current;
 				let documentWrapper = jQuery(currentRef).find('.ead-document');
@@ -79,11 +80,12 @@ class EadServerSideRender extends Component {
 					}
 				}
 
-				if ( viewer === 'adobe' ) {
-					let validateAdobeDC = setInterval(() => {
+				if ( viewer === 'adobe' ) {  
+					let validateAdobeDC;
+					validateAdobeDC = setInterval(() => {
 						if (typeof AdobeDC !== 'undefined') {
-							awsmEadMain.adobeViewer(documentWrapper);
 							clearInterval(validateAdobeDC);
+							awsmEadMain.adobeViewer(documentWrapper);
 						}
 					}, 250);
 				}

@@ -181,7 +181,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 											<tr valign="top">
 											   <th scope="row"></th>
 											   <td>
-												   <strong><?php esc_html_e( 'Help:', 'embed-any-document' ); ?></strong><a href="#" target="_blank"><?php esc_html_e( 'Guide to generate Adobe API Key', 'embed-any-document' ); ?></a>
+												   <strong><?php esc_html_e( 'Help:', 'embed-any-document' ); ?></strong><a href="<?php echo esc_url( 'https://app.gitbook.com/s/-MHtTXWNfmHdaZNKxVTP/~/changes/jPX7f5UR54ZkiIotwpju/configuring-cloud-apis/getting-adobe-api-key' ); ?>" target="_blank"><?php esc_html_e( 'Guide to generate Adobe API Key', 'embed-any-document' ); ?></a>
 											   </td>
 											   </tr>
 									   </tbody>

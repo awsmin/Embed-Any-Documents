@@ -425,14 +425,14 @@ class Awsm_embed {
 		}
 		wp_register_script( 'awsm-ead-public', plugins_url( 'js/embed-public.min.js', $this->plugin_file ), $public_deps, $this->plugin_version, true );
 
-		wp_register_script( 'awsm-ead-admin-global', plugins_url( 'js/admin-global.min.js', $this->plugin_file ), array('jquery'), $this->plugin_version, true );
+		 wp_register_script( 'awsm-ead-admin-global', plugins_url( 'js/admin-global.min.js', $this->plugin_file ), array('jquery'), $this->plugin_version, true );
 
 		wp_enqueue_script( 'awsm-ead-admin-global' );
 		
 		$admin_data = array(
 			'nonce'   => wp_create_nonce( 'ead-admin-nonce' ),
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
-		);
+		); 
 
 		wp_localize_script( 'awsm-ead-public', 'eadPublic', $this->get_public_script_data() );
 		wp_localize_script( 'awsm-ead-public', 'eadPublicViewer', $this->get_public_viewer_check_data() );
@@ -1319,10 +1319,10 @@ class Awsm_embed {
 					<?php 
 					    $title   			= sprintf( '<h3>%s</h3>', esc_html__( '✨Embed Any Document 3.0 is introducing a brand new viewer to embed PDF files!', 'embed-any-document' ) );
 						$heading 			= sprintf( '<strong>%s</strong>', esc_html__( 'Adobe PDF Embed API', 'embed-any-document' ) );
-						$info_link   		= sprintf( '<a href="%1$s">%2$s</a>', esc_url( 'https://staging2.awsm.in/ead' ), esc_html( 'Learn More' ) );
-						$credential_link    = sprintf( '<a href="%1$s">%2$s</a>', esc_url( 'https://documentcloud.adobe.com/dc-integration-creation-app-cdn/main.html?api=pdf-embed-api' ), esc_html( 'Get Free Adobe PDF Embed API Credentials' ) );
+						$info_link   		= sprintf( '<a href="%1$s" class="button button-secondary" target="_blank">%2$s</a>', esc_url( 'https://staging2.awsm.in/ead' ), esc_html( 'Learn More' ) );
+						$credential_link    = sprintf( '<a href="%1$s" class="button button-secondary" target="_blank">%2$s</a>', esc_url( 'https://documentcloud.adobe.com/dc-integration-creation-app-cdn/main.html?api=pdf-embed-api' ), esc_html( 'Get Free Adobe PDF Embed API Credentials' ) );
 						
-						printf( esc_html__( '%1$s We are introducing %2$s integration with Embed Any Document 3.0, which is more reliable than any other PDF viewer options. It also works for localhost and intranet files. Please get your free credentials from Adobe.com and start making the best out of it!. %3$s  %4$s', 'embed-any-document' ), $title, $heading, '<br />'.$info_link, $credential_link);
+						printf( esc_html__( '%1$s We are introducing %2$s integration with Embed Any Document 3.0, which is more reliable than any other PDF viewer options. It also works for localhost and intranet files. Please get your free credentials from Adobe.com and start making the best out of it!. %3$s  %4$s', 'embed-any-document' ), $title, $heading, '<br /><br />'.$info_link, $credential_link);
 					?>
 				</p>
 			</div>

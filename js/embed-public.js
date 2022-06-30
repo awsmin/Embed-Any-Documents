@@ -1,6 +1,6 @@
-var awsmEadMain = window.awsmEadMain = window.awsmEadMain || {};
+var awsmEadMain = window.awsmEadMain = window.awsmEadMain || {}; 
 
-jQuery(function($) {
+jQuery(function($) { 
 	$('.ead-iframe-wrapper').each(function() {
 		var $wrapper = $(this);
 		var $activeIframe = $wrapper.find('.ead-iframe');
@@ -72,7 +72,7 @@ jQuery(function($) {
     });
 });
 
-awsmEadMain.getAdobeFileOptions = function($docElem) {
+awsmEadMain.getAdobeFileOptions = function($docElem) { 
 	var fileURL = $docElem.data('pdfSrc');
 	var fileName = fileURL.split('#').shift().split('?').shift().split('/').pop();
 	return {
@@ -100,7 +100,7 @@ awsmEadMain.getAdobeViewerOptions = function($docElem) {
 	};
 };
 
-awsmEadMain.adobeViewer = function($docElem, adobeAPIKey) {
+awsmEadMain.adobeViewer = function($docElem, adobeAPIKey) { 
 	adobeAPIKey = typeof adobeAPIKey !== 'undefined' ? adobeAPIKey : eadPublic.adobe_api_key;
 	if (adobeAPIKey) {
 		var docId = $docElem.attr('id');
@@ -124,6 +124,7 @@ awsmEadMain.adobeViewer = function($docElem, adobeAPIKey) {
 /**
  * Adobe PDF Embed API
  */
+
 document.addEventListener("DOMContentLoaded", function() { 
 	var adobeAPIKey = eadPublic.adobe_api_key;
 	if (adobeAPIKey) {
