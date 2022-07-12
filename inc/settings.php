@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</a>
 
 		<a class="nav-tab <?php echo esc_attr( $this->getactive_menu( $settings_tab, 'cloud' ) ); ?>" href="<?php echo esc_url( 'options-general.php?page=' . $this->settings_slug . '&tab=cloud' ); ?>" data-tab="ead-cloud">
-			<?php esc_html_e( 'Cloud Settings', 'embed-any-document' ); ?>
+			<?php esc_html_e( 'APIs & Credentials', 'embed-any-document' ); ?>
 		</a>
 
 		<?php
@@ -62,7 +62,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									do_action( 'before_awsm_ead_general_settings' );
 								?>
 								<tr valign="top">
-									<th scope="row"><?php esc_html_e( 'Default Size', 'embed-any-document' ); ?></th>
+									<th scope="row"><?php esc_html_e( 'Default Embed Dimensions', 'embed-any-document' ); ?></th>
 									<td>
 										<div class="f-left ead-frame-width"><?php esc_html_e( 'Width', 'embed-any-document' ); ?>
 											<input type="text" class="small" name="ead_width" value="<?php echo esc_attr( get_option( 'ead_width', '100%' ) ); ?>"/>
@@ -115,39 +115,39 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 								<tr valign="top">
 									<th scope="row">
-										<?php esc_html_e( 'Search Index Doc Files', 'embed-any-document' ); ?>
+										<?php esc_html_e( 'Index Documents in Website Search', 'embed-any-document' ); ?>
 									</th>
 									<td>
 										<div>
 											<fieldset>
 												<legend class="screen-reader-text">
-													<span><?php esc_html_e( 'Search Index Doc Files', 'embed-any-document' ); ?></span>
+													<span><?php esc_html_e( 'Index Documents in Website Search', 'embed-any-document' ); ?></span>
 												</legend>
-												<label for="ead_searchdoc"><input type="checkbox" name="ead_searchdoc" id="ead_searchdoc" value="enable" <?php checked( get_option( 'ead_searchdoc' ), 'enable', true ); ?> /> <?php esc_html_e( 'Enable Search', 'embed-any-document' ); ?></label>
+												<label for="ead_searchdoc"><input type="checkbox" name="ead_searchdoc" id="ead_searchdoc" value="enable" <?php checked( get_option( 'ead_searchdoc' ), 'enable', true ); ?> /> <?php esc_html_e( 'Enable Indexing Documents in WordPress Native Search', 'embed-any-document' ); ?></label>
 											</fieldset>
 										</div>
 
 										<div class="clear"></div>
-										<span class="note"><?php esc_html_e( 'Check for enabling searching index doc files', 'embed-any-document' ); ?></span>
+										<span class="note"><?php esc_html_e( 'Check this option to index the documents in your website native search', 'embed-any-document' ); ?></span>
 									</td>
 								</tr>
 
 								<tr valign="top">
 									<th scope="row">
-										<?php esc_html_e( 'Force Google viewer to Adobe viewer (PDF only)', 'embed-any-document' ); ?>
+										<?php esc_html_e( 'Switch Google Viewer to Adobe Viewer', 'embed-any-document' ); ?>
 									</th>
 									<td>
 										<div>
 											<fieldset>
 												<legend class="screen-reader-text">
-													<span><?php esc_html_e( 'Force Google viewer to Adobe', 'embed-any-document' ); ?></span>
+													<span><?php esc_html_e( 'Switch Google Viewer to Adobe Viewer', 'embed-any-document' ); ?></span>
 												</legend>
-												<label for="ead_forceadobe"><input type="checkbox" name="ead_forceadobe" id="ead_forceadobe" value="enable" <?php checked( get_option( 'ead_forceadobe' ), 'enable', true ); ?> /> <?php esc_html_e( 'Enable Change', 'embed-any-document' ); ?></label>
+												<label for="ead_forceadobe"><input type="checkbox" name="ead_forceadobe" id="ead_forceadobe" value="enable" <?php checked( get_option( 'ead_forceadobe' ), 'enable', true ); ?> /> <?php esc_html_e( 'Force Switch Google Viewer to Adobe Viewer (PDF files only)', 'embed-any-document' ); ?></label>
 											</fieldset>
 										</div>
 
 										<div class="clear"></div>
-										<span class="note"><?php esc_html_e( 'Check for force changing google viewer to adobe viewer', 'embed-any-document' ); ?></span>
+										<span class="note"><?php esc_html_e( 'Check this option to forcibly load PDF files using Adobe Viewer for better experience', 'embed-any-document' ); ?></span>
 									</td>
 								</tr>
 
