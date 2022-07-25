@@ -39,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							</li>
 							<?php if ( empty( self::is_addon_active() ) ) : ?>
 							<li>
-								<a href="#" id="add-ead-document"><span><img src="<?php echo esc_url( $this->plugin_url ); ?>images/plus.png" alt="Add From URL"/><?php esc_html_e( 'Add More', 'embed-any-document' ); ?></span></a>
+								<a href="#" id="add-more"><span><img src="<?php echo esc_url( $this->plugin_url ); ?>images/plus.png" alt="Add More"/><?php esc_html_e( 'Add More', 'embed-any-document' ); ?></span></a>
 							</li>
 							<?php endif; ?>
 

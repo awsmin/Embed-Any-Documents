@@ -42,6 +42,11 @@ jQuery(function($) {
         return;
     });
 
+    $(document).on('click', '#add-more', function() {
+        var url = emebeder.admin_url+'/options-general.php?page=ead-settings-addons';
+        window.open(url, "_blank");
+    });
+
     //Update shortcode on change
     $(document).on('change', '.ead-usc', function() {
         newprovider = "";
