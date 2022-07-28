@@ -103,7 +103,7 @@ class Awsm_embed {
 	/**
 	 * Initializes the plugin by setting localization, hooks, filters, and administrative functions.
 	 */
-	private function __construct() { 
+	private function __construct() {
 		$this->plugin_path    = plugin_dir_path( __FILE__ );
 		$this->plugin_url     = plugin_dir_url( __FILE__ );
 		$this->plugin_base    = dirname( plugin_basename( __FILE__ ) );
@@ -782,10 +782,10 @@ class Awsm_embed {
 			return;
 		}
 
-		$file_content = wp_remote_get( $url );
-		if ( is_wp_error( $file_content ) ) {
+		if ( @file_get_contents( $url ) === false ) {
 			return false;
 		}
+		$file_content = @file_get_contents( $url );
 
 		$mime_type = wp_check_filetype( wp_basename( $url ) );
 
@@ -1315,7 +1315,7 @@ class Awsm_embed {
 	 * @since 3.0.0
 	 */
 	public function plugin_notice() {
-		if ( get_option( 'dismiss_adobe' ) !== 'dismiss' ) { 
+		if ( get_option( 'dismiss_adobe' ) !== 'dismiss' ) {
 			?>
 			<div class="ead-adobe-notice notice notice-info is-dismissible">
 				<p>
