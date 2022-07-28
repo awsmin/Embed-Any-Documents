@@ -134,8 +134,8 @@ class Awsm_embed {
 
 		// Load plugin textdomain.
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
-		
-		if ( get_option( 'ead_forceadobe' ) === 'enable' ) {  
+
+		if ( get_option( 'ead_forceadobe' ) === 'enable' ) {
 			add_filter( 'shortcode_atts_embeddoc', array( $this, 'shortcode_atts_filter_atts' ) );
 		}
 
@@ -414,7 +414,7 @@ class Awsm_embed {
 	/**
 	 * Register scripts for both back-end and front-end use.
 	 */
-	public function register_scripts() { 
+	public function register_scripts() {
 
 		wp_register_script( 'awsm-ead-pdf-object', plugins_url( 'js/pdfobject.min.js', $this->plugin_file ), array(), $this->plugin_version, true );
 		wp_register_script( 'awsm-ead-adobejs', 'https://documentcloud.adobe.com/view-sdk/main.js', array(), $this->plugin_version, false );
@@ -425,14 +425,14 @@ class Awsm_embed {
 		}
 		wp_register_script( 'awsm-ead-public', plugins_url( 'js/embed-public.min.js', $this->plugin_file ), $public_deps, $this->plugin_version, true );
 
-		 wp_register_script( 'awsm-ead-admin-global', plugins_url( 'js/admin-global.min.js', $this->plugin_file ), array('jquery'), $this->plugin_version, true );
+		 wp_register_script( 'awsm-ead-admin-global', plugins_url( 'js/admin-global.min.js', $this->plugin_file ), array( 'jquery' ), $this->plugin_version, true );
 
 		wp_enqueue_script( 'awsm-ead-admin-global' );
-		
+
 		$admin_data = array(
 			'nonce'   => wp_create_nonce( 'ead-admin-nonce' ),
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
-		); 
+		);
 
 		wp_localize_script( 'awsm-ead-public', 'eadPublic', $this->get_public_script_data() );
 		wp_localize_script( 'awsm-ead-public', 'eadPublicViewer', $this->get_public_viewer_check_data() );
@@ -536,7 +536,7 @@ class Awsm_embed {
 	 * @param array $atts The shortcode attributes.
 	 * @return string Shortcode output content.
 	 */
-	public function embed_shortcode( $atts ) { 
+	public function embed_shortcode( $atts ) {
 		$embed            = '';
 		$durl             = '';
 		$default_width    = $this->sanitize_dims( get_option( 'ead_width', '100%' ) );
@@ -701,7 +701,7 @@ class Awsm_embed {
 		}
 
 		$data_attr = '';
-		if ( ( $viewer == 'adobe' || $is_browser_viewer ) && $is_shortcode_url ) {
+		if ( ( $viewer === 'adobe' || $is_browser_viewer ) && $is_shortcode_url ) {
 			$data_attr = sprintf( ' data-pdf-src="%1$s" data-viewer="%2$s"', esc_url( $shortcode_atts['url'] ), esc_attr( $shortcode_atts['viewer'] ) );
 
 			if ( $viewer !== 'adobe' ) {
@@ -754,15 +754,15 @@ class Awsm_embed {
 	 *
 	 * @param array $out Shortcode attributes.
 	 */
-	public function shortcode_atts_filter_atts( $out ) { 
+	public function shortcode_atts_filter_atts( $out ) {
 		if ( isset( $out['viewer'] ) && $out['viewer'] === 'google' ) {
-			if( isset($out['url']) ){
+			if ( isset( $out['url'] ) ) {
 				$pathinfo = pathinfo( $out['url'] );
-				if( $pathinfo['extension'] == 'pdf' ){
+				if ( $pathinfo['extension'] === 'pdf' ) {
 					$out['viewer'] = 'adobe';
 				}
 			}
-		} 
+		}
 		return $out;
 	}
 
@@ -771,20 +771,22 @@ class Awsm_embed {
 	 *
 	 * @param string $url The document absolute URL.
 	 */
-	public function parse_documents( $url ) { 
+	public function parse_documents( $url ) {
 		if ( ! $url ) {
 			return;
 		}
-		
+
 		$post_id            = get_the_ID();
 		$doc_stored_content = get_post_meta( $post_id, '_doc_content', true );
 		if ( ! empty( $doc_stored_content ) ) {
 			return;
 		}
-		
-		if (($file_content = @file_get_contents( $url )) === false) {
+
+		$file_content = wp_remote_get( $url );
+		if ( is_wp_error( $file_content ) ) {
 			return false;
 		}
+
 		$mime_type = wp_check_filetype( wp_basename( $url ) );
 
 		$doc_content = '';
@@ -888,7 +890,7 @@ class Awsm_embed {
 	/**
 	 * Register Settings
 	 */
-	public function register_eadsettings() { 
+	public function register_eadsettings() {
 		register_setting( 'ead-settings-group', 'ead_width', array( $this, 'sanitize_dims' ) );
 		register_setting( 'ead-settings-group', 'ead_height', array( $this, 'sanitize_dims' ) );
 		register_setting( 'ead-settings-group', 'ead_provider' );
@@ -896,7 +898,7 @@ class Awsm_embed {
 		register_setting( 'ead-settings-group', 'ead_text' );
 		register_setting( 'ead-settings-group', 'ead_preloader' );
 		register_setting( 'ead-settings-group', 'ead_searchdoc' );
-		register_setting( 'ead-settings-group', 'ead_forceadobe', array( $this, 'sanitize_force' ) ); 
+		register_setting( 'ead-settings-group', 'ead_forceadobe', array( $this, 'sanitize_force' ) );
 		register_setting( 'ead-cloud-group', 'ead_adobe_key' );
 	}
 
@@ -1054,7 +1056,7 @@ class Awsm_embed {
 
 			foreach ( $options as $key => $option ) {
 				$selected_html = '';
-				if ( $key == $selected ) {
+				if ( $key === $selected ) {
 					$selected_html = ' selected="selected"';
 				}
 				$select_html .= '<option value="' . esc_attr( $key ) . '" ' . $selected_html . '>' . esc_html( $option ) . '</option>';
@@ -1083,12 +1085,12 @@ class Awsm_embed {
 	 * @param string $value Value to be sanitized.
 	 * @return string|bool Value or false if condition fails.
 	 */
-	public function sanitize_force( $value ){
+	public function sanitize_force( $value ) {
 		$adobe_api_key = get_option( 'ead_adobe_key' );
-		if( empty($adobe_api_key) ){
-			add_settings_error( 'ead_forceadobe','force-adobe',__('Please enter the Adobe PDF Embed API key as mentioned in the plugin documentation.', 'embed-any-document'),'error' );
+		if ( empty( $adobe_api_key ) ) {
+			add_settings_error( 'ead_forceadobe', 'force-adobe', __( 'Please enter the Adobe PDF Embed API key as mentioned in the plugin documentation.', 'embed-any-document' ), 'error' );
 			return false;
-		}else{
+		} else {
 			return $value;
 		}
 	}
@@ -1099,7 +1101,7 @@ class Awsm_embed {
 	 * @param string $dim Value to be sanitized.
 	 * @return string|bool Sanitized dimensions or false if value is invalid.
 	 */
-	public function sanitize_dims( $dim ) { 
+	public function sanitize_dims( $dim ) {
 		// remove any spacing junk.
 		$dim = trim( str_replace( ' ', '', $dim ) );
 		if ( ! $dim ) {
@@ -1312,21 +1314,24 @@ class Awsm_embed {
 	 *
 	 * @since 3.0.0
 	 */
-	public function plugin_notice(){  
-		if(get_option('dismiss_adobe') != 1){ ?>
+	public function plugin_notice() {
+		if ( get_option( 'dismiss_adobe' ) !== 'dismiss' ) { 
+			?>
 			<div class="ead-adobe-notice notice notice-info is-dismissible">
 				<p>
-					<?php 
-					    $title   			= sprintf( '<h3>%s</h3>', esc_html__( '✨Embed Any Document 3.0 is introducing a brand new viewer to embed PDF files!', 'embed-any-document' ) );
-						$heading 			= sprintf( '<strong>%s</strong>', esc_html__( 'Adobe PDF Embed API', 'embed-any-document' ) );
-						$info_link   		= sprintf( '<a href="%1$s" class="button button-secondary" target="_blank">%2$s</a>', esc_url( 'https://staging2.awsm.in/ead' ), esc_html( 'Learn More' ) );
-						$credential_link    = sprintf( '<a href="%1$s" class="button button-secondary" target="_blank">%2$s</a>', esc_url( 'https://documentcloud.adobe.com/dc-integration-creation-app-cdn/main.html?api=pdf-embed-api' ), esc_html( 'Get Free Adobe PDF Embed API Credentials' ) );
-						
-						printf( esc_html__( '%1$s We are introducing %2$s integration with Embed Any Document 3.0, which is more reliable than any other PDF viewer options. It also works for localhost and intranet files. Please get your free credentials from Adobe.com and start making the best out of it!. %3$s  %4$s', 'embed-any-document' ), $title, $heading, '<br /><br />'.$info_link, $credential_link);
+					<?php
+						$title           = sprintf( '<h3>%s</h3>', esc_html__( '✨Embed Any Document 3.0 is introducing a brand new viewer to embed PDF files!', 'embed-any-document' ) );
+						$heading         = sprintf( '<strong>%s</strong>', esc_html__( 'Adobe PDF Embed API', 'embed-any-document' ) );
+						$info_link       = sprintf( '<a href="%1$s" class="button button-secondary" target="_blank">%2$s</a>', esc_url( 'https://staging2.awsm.in/ead' ), esc_html( 'Learn More' ) );
+						$credential_link = sprintf( '<a href="%1$s" class="button button-secondary" target="_blank">%2$s</a>', esc_url( 'https://documentcloud.adobe.com/dc-integration-creation-app-cdn/main.html?api=pdf-embed-api' ), esc_html( 'Get Free Adobe PDF Embed API Credentials' ) );
+
+						/* translators: %1$s: Adobe Integration */
+						printf( esc_html__( '%1$s We are introducing %2$s integration with Embed Any Document 3.0, which is more reliable than any other PDF viewer options. It also works for localhost and intranet files. Please get your free credentials from Adobe.com and start making the best out of it!. %3$s  %4$s', 'embed-any-document' ), $title, $heading, '<br /><br />' . $info_link, $credential_link );// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					?>
 				</p>
 			</div>
-		<?php }
+			<?php
+		}
 	}
 
 	/**
@@ -1335,15 +1340,15 @@ class Awsm_embed {
 	 * @since 3.0.0
 	 */
 	public function dismissed_notice_handler() {
-		$response    = array(
+		$response = array(
 			'dismiss' => false,
 			'error'   => array(),
 		);
 
 		$generic_msg = esc_html__( 'Error in dismissing the notice. Please try again!', 'embed-any-document' );
 		if ( isset( $_POST['nonce'] ) && wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'ead-admin-nonce' ) ) {
-			$response['dismiss'] =true;
-			update_option( 'dismiss_adobe', 1 ); 
+			$response['dismiss'] = true;
+			update_option( 'dismiss_adobe', 'dismiss' );
 		} else {
 			$response['error'][] = $generic_msg;
 		}

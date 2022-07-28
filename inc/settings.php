@@ -23,6 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 */
 	$settings_tabs = apply_filters( 'awsm_ead_settings_tabs', array( 'general', 'cloud' ) );
 
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	$settings_tab = isset( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : 'general';
 	if ( ! in_array( $settings_tab, $settings_tabs, true ) ) {
 		$settings_tab = 'general';

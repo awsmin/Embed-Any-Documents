@@ -111,7 +111,7 @@ class Awsm_embed_Guten_blocks {
 		$class_name    = isset( $atts['className'] ) ? $atts['className'] : '';
 		$shortcode     = isset( $atts['shortcode'] ) ? $atts['shortcode'] : '';
 		$atts['uid']   = isset( $atts['uniqueId'] ) ? $atts['uniqueId'] : 1;
-		$atts['cache'] = isset( $atts['cache'] ) && $atts['cache'] == false ? 'off' : 'on';
+		$atts['cache'] = isset( $atts['cache'] ) && $atts['cache'] === false ? 'off' : 'on';
 
 		/**
 		 * Customize the atts.
