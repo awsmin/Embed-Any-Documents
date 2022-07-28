@@ -1325,7 +1325,7 @@ class Awsm_embed {
 						$info_link       = sprintf( '<a href="%1$s" class="button button-secondary" target="_blank">%2$s</a>', esc_url( 'https://staging2.awsm.in/ead' ), esc_html( 'Learn More' ) );
 						$credential_link = sprintf( '<a href="%1$s" class="button button-secondary" target="_blank">%2$s</a>', esc_url( 'https://documentcloud.adobe.com/dc-integration-creation-app-cdn/main.html?api=pdf-embed-api' ), esc_html( 'Get Free Adobe PDF Embed API Credentials' ) );
 
-						/* translators: %1$s: Adobe Integration */
+						/* translators: %1$s: notice title, %2$s: notice heading, %3$s: information link, %4$s: credential details,  */
 						printf( esc_html__( '%1$s We are introducing %2$s integration with Embed Any Document 3.0, which is more reliable than any other PDF viewer options. It also works for localhost and intranet files. Please get your free credentials from Adobe.com and start making the best out of it!. %3$s  %4$s', 'embed-any-document' ), $title, $heading, '<br /><br />' . $info_link, $credential_link );// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					?>
 				</p>
