@@ -1,17 +1,4 @@
 class EadHelper {
-	/*static getFileSource( url ) {
-		let source = 'internal';
-		let siteUrl = emebeder.site_url;
-		if ( url.indexOf( siteUrl ) === -1 ) {
-			if ( url.indexOf( 'dropbox.com' ) !== -1 ) {
-				source = 'dropbox';
-			} else {
-				source = 'external';
-			}
-		}
-		return source;
-	}*/
-
 	static getFileSource( url ) {
 		let source = 'internal';
 		let siteUrl = emebeder.site_url;

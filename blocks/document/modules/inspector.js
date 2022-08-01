@@ -24,11 +24,11 @@ class EadInspector extends Component {
     }
 
     componentDidMount(){ 
-        if (EadHelper.isPDF(this.props.attributes.url)) {
+        if (EadHelper.isPDF(this.props.attributes.url) && EadHelper.getFileSource(this.props.attributes.url) === 'internal') {
             if (typeof eadPublic !== 'undefined' && eadPublic.adobe_api_key){
                 this.viewerControlHandle('adobe'); 
             }
-        }  
+        }   
     }
 
     downloadControlhandle(download) {
@@ -69,7 +69,8 @@ class EadInspector extends Component {
                 viewerOptions.push({ value: 'browser', label: __( 'Browser Based', 'embed-any-document' ) });
             }
 
-            viewerOptions = wp.hooks.applyFilters('awsm_ead_viewer_options',viewerOptions,EadHelper.isPDF(url));
+           viewerOptions = wp.hooks.applyFilters('awsm_ead_viewer_options',viewerOptions,EadHelper.isPDF(url));
+          // viewerOptions = wp.hooks.applyFilters('awsm_ead_viewers',viewerOptions,fileSrc,url);
 
 			downloadTextControl = <TextControl label={ __( 'Download Text', 'embed-any-document' ) } help={ __( 'Default download button text', 'embed-any-document' ) } value={ text } onChange={ text => setAttributes( { text } ) } />;
 
