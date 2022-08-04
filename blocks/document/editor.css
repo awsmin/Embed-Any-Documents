@@ -6,6 +6,11 @@
 	margin: 14px 0px 0px;
 }
 
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset{
+	max-width: 100%;
+	justify-content: flex-start;
+}
+
 div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-form-file-upload, div[data-type="embed-any-document/document"] .components-placeholder__fieldset > .components-button, div[data-type="embed-any-document/document"] .components-placeholder__fieldset .block-editor-media-placeholder__url-input-container {
 	flex: 0 0 25%;
 	margin-bottom: 3%;
@@ -25,6 +30,12 @@ div[data-type="embed-any-document/document"] .components-placeholder__fieldset .
 	display: block;
 	transition: all 0.3s ease;
 	position: relative;
+	line-height: 0;
+}
+
+div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button svg {
+    display: none;
+    line-height: 0;
 }
 
 div[data-type="embed-any-document/document"] .components-placeholder__fieldset .components-button span.overlay{

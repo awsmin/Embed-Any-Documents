@@ -37,7 +37,7 @@ registerBlockType( 'embed-any-document/document', {
 	 * The edit function describes the structure of the block in the context of the editor.
 	 * This represents what the editor will render when the block is used.
 	 */
-	edit: ( props ) => {
+	edit: ( props ) => { 
 		const { attributes, setAttributes, clientId, noticeOperations} = props;
 		const { uniqueId, shortcode } = attributes;
 
@@ -45,7 +45,7 @@ registerBlockType( 'embed-any-document/document', {
 
         let blockProps = null;
 		let shortcodeText;
-		let embedurl;
+		let embedurl; 
 
 		// Set an Unique Id for the block.
 		if (! uniqueId) {

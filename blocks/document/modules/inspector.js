@@ -12,7 +12,7 @@ const {
 } = wp.components;
 
 class EadInspector extends Component {
-    constructor() { 
+    constructor() {
         super(...arguments);
         this.downloadControlhandle = this.downloadControlhandle.bind(this);
         this.viewerControlHandle = this.viewerControlHandle.bind(this);
@@ -69,9 +69,7 @@ class EadInspector extends Component {
                 viewerOptions.push({ value: 'browser', label: __( 'Browser Based', 'embed-any-document' ) });
             }
 
-           viewerOptions = wp.hooks.applyFilters('awsm_ead_viewer_options',viewerOptions,EadHelper.isPDF(url));
-          // viewerOptions = wp.hooks.applyFilters('awsm_ead_viewers',viewerOptions,fileSrc,url);
-
+            viewerOptions = wp.hooks.applyFilters('awsm_ead_viewer_options',viewerOptions,EadHelper.isPDF(url));
 			downloadTextControl = <TextControl label={ __( 'Download Text', 'embed-any-document' ) } help={ __( 'Default download button text', 'embed-any-document' ) } value={ text } onChange={ text => setAttributes( { text } ) } />;
 
 			if( this.state.downloadDisabled ) {

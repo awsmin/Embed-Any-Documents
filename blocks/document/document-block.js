@@ -876,8 +876,7 @@ var EadInspector = /*#__PURE__*/function (_Component) {
           });
         }
 
-        viewerOptions = wp.hooks.applyFilters('awsm_ead_viewer_options', viewerOptions, _helper__WEBPACK_IMPORTED_MODULE_0__["default"].isPDF(url)); // viewerOptions = wp.hooks.applyFilters('awsm_ead_viewers',viewerOptions,fileSrc,url);
-
+        viewerOptions = wp.hooks.applyFilters('awsm_ead_viewer_options', viewerOptions, _helper__WEBPACK_IMPORTED_MODULE_0__["default"].isPDF(url));
         downloadTextControl = wp.element.createElement(TextControl, {
           label: __('Download Text', 'embed-any-document'),
           help: __('Default download button text', 'embed-any-document'),
