@@ -417,7 +417,7 @@ class Awsm_embed {
 	public function register_scripts() {
 
 		wp_register_script( 'awsm-ead-pdf-object', plugins_url( 'js/pdfobject.min.js', $this->plugin_file ), array(), $this->plugin_version, true );
-		wp_register_script( 'awsm-ead-adobejs', 'https://documentcloud.adobe.com/view-sdk/main.js', array(), $this->plugin_version, false );
+		wp_register_script( 'awsm-ead-adobejs', 'https://documentcloud.adobe.com/view-sdk/main.js', array(), null, true );
 		$public_deps   = array( 'jquery', 'awsm-ead-pdf-object' );
 		$adobe_api_key = get_option( 'ead_adobe_key' );
 		if ( ! empty( $adobe_api_key ) ) {
@@ -425,7 +425,7 @@ class Awsm_embed {
 		}
 		wp_register_script( 'awsm-ead-public', plugins_url( 'js/embed-public.min.js', $this->plugin_file ), $public_deps, $this->plugin_version, true );
 
-		 wp_register_script( 'awsm-ead-admin-global', plugins_url( 'js/admin-global.min.js', $this->plugin_file ), array( 'jquery' ), $this->plugin_version, true );
+		wp_register_script( 'awsm-ead-admin-global', plugins_url( 'js/admin-global.min.js', $this->plugin_file ), array( 'jquery' ), $this->plugin_version, true );
 
 		wp_enqueue_script( 'awsm-ead-admin-global' );
 
@@ -1056,7 +1056,7 @@ class Awsm_embed {
 
 			foreach ( $options as $key => $option ) {
 				$selected_html = '';
-				if ( $key === $selected ) {
+				if ( $key == $selected ) {
 					$selected_html = ' selected="selected"';
 				}
 				$select_html .= '<option value="' . esc_attr( $key ) . '" ' . $selected_html . '>' . esc_html( $option ) . '</option>';

@@ -35,7 +35,7 @@ jQuery(function($) {
 		}
 	});
 
-	$('.ead-document[data-pdf-src]').each(function() {
+	$('.ead-document[data-pdf-src]').each(function() { 
 		var $elem = $(this);
 		var $iframe = $elem.find('.ead-iframe');
 		var src = $elem.data('pdfSrc');
@@ -95,8 +95,8 @@ awsmEadMain.getAdobeViewerOptions = function($docElem) {
 		showDownloadPDF: false,
 		showPrintPDF: false,
 		embedMode:'',
-		showPageControls: true,
-		dockPageControls: false,
+		showPageControls: false,
+		dockPageControls: true,
 	};
 };
 
@@ -124,12 +124,12 @@ awsmEadMain.adobeViewer = function($docElem, adobeAPIKey) {
 /**
  * Adobe PDF Embed API
  */
-
+ 
 document.addEventListener("DOMContentLoaded", function() { 
-	var adobeAPIKey = eadPublic.adobe_api_key;
-	if (adobeAPIKey) {
-		let validateAdobeDC = setInterval(() => {
-			if (typeof AdobeDC !== 'undefined') {
+	var adobeAPIKey = eadPublic.adobe_api_key; 
+	if (adobeAPIKey) { 
+		let validateAdobeDC = setInterval(() => { 
+			if (typeof AdobeDC !== 'undefined') { 
 				jQuery(document).trigger('awsm_ead_adobe_sdk_loaded');
 				jQuery('.ead-document[data-viewer="adobe"]').each(function () {
 					var $docElem = jQuery(this);
