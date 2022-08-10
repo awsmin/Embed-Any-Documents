@@ -96,7 +96,7 @@ awsmEadMain.getAdobeViewerOptions = function($docElem) {
 		showPrintPDF: false,
 		embedMode:'',
 		showPageControls: false,
-		dockPageControls: true,
+		dockPageControls: false,
 	};
 };
 
