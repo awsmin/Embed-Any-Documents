@@ -89,14 +89,14 @@ awsmEadMain.getAdobeFileOptions = function($docElem) {
 
 awsmEadMain.getAdobeViewerOptions = function($docElem) {
 	return {
-		showAnnotationTools: false,
-		showLeftHandPanel: false,
-		enableFormFilling: false,
-		showDownloadPDF: false,
-		showPrintPDF: false,
-		embedMode:'',
-		showPageControls: false,
-		dockPageControls: false,
+		embedMode: "FULL_WINDOW",
+        showDownloadPDF: false,
+        showPrintPDF: false,
+		showAnnotationTools:false,
+		defaultViewMode:"FIT_PAGE",
+		showThumbnails:false,
+		showBookmarks:false,
+		showZoomControl:false,
 	};
 };
 

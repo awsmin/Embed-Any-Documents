@@ -417,7 +417,7 @@ class Awsm_embed {
 	public function register_scripts() {
 
 		wp_register_script( 'awsm-ead-pdf-object', plugins_url( 'js/pdfobject.min.js', $this->plugin_file ), array(), $this->plugin_version, true );
-		wp_register_script( 'awsm-ead-adobejs', 'https://documentcloud.adobe.com/view-sdk/main.js', array(), null, true );
+		wp_register_script( 'awsm-ead-adobejs', 'https://documentcloud.adobe.com/view-sdk/viewer.js', array(), null, true );
 		$public_deps   = array( 'jquery', 'awsm-ead-pdf-object' );
 		$adobe_api_key = get_option( 'ead_adobe_key' );
 		if ( ! empty( $adobe_api_key ) ) {
