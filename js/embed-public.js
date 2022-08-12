@@ -95,7 +95,7 @@ awsmEadMain.getAdobeViewerOptions = function($docElem) {
 		showAnnotationTools:false,
 		defaultViewMode:"FIT_PAGE",
 		showThumbnails:false,
-		showBookmarks:false,
+		enableFormFilling: false,
 		showZoomControl:false,
 	};
 };
