@@ -93,7 +93,7 @@ awsmEadMain.getAdobeViewerOptions = function($docElem) {
         showDownloadPDF: false,
         showPrintPDF: false,
 		showAnnotationTools:false,
-		defaultViewMode:"FIT_PAGE",
+		defaultViewMode:"FIT_WIDTH",
 		showThumbnails:false,
 		enableFormFilling: false,
 		showZoomControl:false,
