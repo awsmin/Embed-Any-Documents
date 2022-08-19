@@ -1,0 +1,412 @@
+# Copyright (C) 2022 Awsm Innovations
+# This file is distributed under the GPL V3.
+msgid ""
+msgstr ""
+"Project-Id-Version: Embed Any Document 3.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/embed-any-document\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Awsm Innovations <hello@awsm.in>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2022-08-19T10:03:12+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0\n"
+"X-Domain: embed-any-document\n"
+
+#. Plugin Name of the plugin
+#: awsm-embed.php:875
+#: blocks/document/main.js:157
+msgid "Embed Any Document"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://embedanydocument.com"
+msgstr ""
+
+#. Description of the plugin
+msgid "Embed Any Document WordPress plugin lets you upload and embed your documents easily in your WordPress website without any additional browser plugins like Flash or Acrobat reader. The plugin lets you choose between Google Docs Viewer and Microsoft Office Online to display your documents."
+msgstr ""
+
+#. Author of the plugin
+msgid "Awsm Innovations"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://awsm.in"
+msgstr ""
+
+#: awsm-embed.php:213
+#: inc/popup.php:19
+msgid "Add Document"
+msgstr ""
+
+#: awsm-embed.php:226
+msgid "Settings"
+msgstr ""
+
+#: awsm-embed.php:262
+#: awsm-embed.php:547
+msgid "Download"
+msgstr ""
+
+#: awsm-embed.php:272
+msgid "Nothing to insert"
+msgstr ""
+
+#: awsm-embed.php:273
+msgid "Invalid URL"
+msgstr ""
+
+#: awsm-embed.php:274
+#: inc/popup.php:58
+msgid "Add URL"
+msgstr ""
+
+#: awsm-embed.php:275
+msgid "Verifying..."
+msgstr ""
+
+#: awsm-embed.php:276
+msgid "From URL"
+msgstr ""
+
+#: awsm-embed.php:277
+msgid "Select"
+msgstr ""
+
+#: awsm-embed.php:278
+msgid "The document you have chosen is a not public."
+msgstr ""
+
+#: awsm-embed.php:278
+msgid " Only the owner and explicitly shared collaborators will be able to view it."
+msgstr ""
+
+#: awsm-embed.php:338
+msgid "Loader"
+msgstr ""
+
+#: awsm-embed.php:339
+#: inc/popup.php:154
+msgid "Loading..."
+msgstr ""
+
+#: awsm-embed.php:344
+msgid "EAD Logo"
+msgstr ""
+
+#: awsm-embed.php:345
+msgid "Taking too long?"
+msgstr ""
+
+#: awsm-embed.php:349
+msgid "Reload"
+msgstr ""
+
+#: awsm-embed.php:349
+msgid "Reload document"
+msgstr ""
+
+#: awsm-embed.php:353
+msgid "Open"
+msgstr ""
+
+#: awsm-embed.php:353
+msgid "Open in new tab"
+msgstr ""
+
+#: awsm-embed.php:472
+#: blocks/document/modules/inspector.js:56
+msgid "Google Docs Viewer"
+msgstr ""
+
+#: awsm-embed.php:473
+#: blocks/document/modules/inspector.js:69
+msgid "Browser Based"
+msgstr ""
+
+#: awsm-embed.php:474
+#: blocks/document/modules/inspector.js:59
+msgid "Microsoft Office Online"
+msgstr ""
+
+#: awsm-embed.php:475
+#: blocks/document/modules/inspector.js:66
+msgid "Adobe Viewer"
+msgstr ""
+
+#: awsm-embed.php:726
+msgid "Embedded Document"
+msgstr ""
+
+#: awsm-embed.php:943
+msgid "Buy Pro Version"
+msgstr ""
+
+#. translators: %1$s: Service provider
+#: awsm-embed.php:946
+msgid "Add From %1$s"
+msgstr ""
+
+#: awsm-embed.php:961
+msgid "Configure"
+msgstr ""
+
+#. translators: %1$s: Service provider
+#: awsm-embed.php:972
+msgid "Add from %1$s"
+msgstr ""
+
+#: awsm-embed.php:1092
+msgid "Please enter the Adobe PDF Embed API key as mentioned in the plugin documentation."
+msgstr ""
+
+#: awsm-embed.php:1324
+msgid "✨Embed Any Document 3.0 is introducing a brand new viewer to embed PDF files!"
+msgstr ""
+
+#: awsm-embed.php:1325
+#: inc/settings.php:175
+msgid "Adobe PDF Embed API"
+msgstr ""
+
+#. translators: %1$s: notice title, %2$s: notice heading, %3$s: information link, %4$s: credential details,
+#: awsm-embed.php:1330
+msgid "%1$s We are introducing %2$s integration with Embed Any Document 3.0, which is more reliable than any other PDF viewer options. It also works for localhost and intranet files. Please get your free credentials from Adobe.com and start making the best out of it!. %3$s  %4$s"
+msgstr ""
+
+#: awsm-embed.php:1349
+msgid "Error in dismissing the notice. Please try again!"
+msgstr ""
+
+#: inc/popup.php:17
+msgid "Close"
+msgstr ""
+
+#: inc/popup.php:35
+msgid "Upload Document"
+msgstr ""
+
+#: inc/popup.php:38
+msgid "Add from URL"
+msgstr ""
+
+#: inc/popup.php:42
+msgid "Add More"
+msgstr ""
+
+#: inc/popup.php:56
+msgid "Enter document URL"
+msgstr ""
+
+#: inc/popup.php:60
+msgid "back"
+msgstr ""
+
+#: inc/popup.php:73
+msgid "Advanced Options"
+msgstr ""
+
+#: inc/popup.php:76
+#: inc/settings.php:68
+#: blocks/document/modules/inspector.js:84
+msgid "Width"
+msgstr ""
+
+#: inc/popup.php:79
+#: inc/settings.php:72
+#: blocks/document/modules/inspector.js:88
+msgid "Height"
+msgstr ""
+
+#: inc/popup.php:83
+#: inc/settings.php:80
+#: blocks/document/modules/inspector.js:93
+msgid "Show Download Link"
+msgstr ""
+
+#: inc/popup.php:86
+#: inc/settings.php:84
+#: blocks/document/modules/inspector.js:94
+msgid "For all users"
+msgstr ""
+
+#: inc/popup.php:87
+#: inc/settings.php:85
+#: blocks/document/modules/inspector.js:95
+msgid "For Logged-in users"
+msgstr ""
+
+#: inc/popup.php:88
+#: inc/settings.php:86
+#: blocks/document/modules/inspector.js:96
+msgid "No Download"
+msgstr ""
+
+#: inc/popup.php:95
+#: inc/settings.php:93
+#: blocks/document/modules/inspector.js:73
+msgid "Download Text"
+msgstr ""
+
+#: inc/popup.php:99
+#: inc/popup.php:108
+#: blocks/document/modules/inspector.js:101
+msgid "Viewer"
+msgstr ""
+
+#. translators: %1$s: strong opening tag, %2$s: strong closing tag
+#: inc/popup.php:124
+msgid "%1$s Note:%2$s Browser based PDF embedding feature is not supported by certain browsers and some external servers. Google viewer will be used as a fallback for the unsupported browsers."
+msgstr ""
+
+#: inc/popup.php:131
+msgid "Do not cache this file (Affects performance)"
+msgstr ""
+
+#: inc/popup.php:145
+msgid "Shortcode Preview"
+msgstr ""
+
+#: inc/popup.php:154
+msgid "Insert"
+msgstr ""
+
+#: inc/popup.php:158
+msgid "Cancel"
+msgstr ""
+
+#: inc/settings.php:16
+msgid "Embed Any Document by AWSM.in"
+msgstr ""
+
+#: inc/settings.php:34
+msgid "General Settings"
+msgstr ""
+
+#: inc/settings.php:38
+msgid "APIs & Credentials"
+msgstr ""
+
+#: inc/settings.php:66
+msgid "Default Embed Dimensions"
+msgstr ""
+
+#: inc/settings.php:76
+msgid "Enter values in pixels or percentage (Example: 500px or 100%)"
+msgstr ""
+
+#: inc/settings.php:100
+#: inc/settings.php:106
+msgid "Preloader for Viewer"
+msgstr ""
+
+#: inc/settings.php:108
+msgid "Enable Preloader"
+msgstr ""
+
+#: inc/settings.php:113
+msgid "Check for enabling preloader"
+msgstr ""
+
+#: inc/settings.php:119
+#: inc/settings.php:125
+msgid "Index Documents in Website Search"
+msgstr ""
+
+#: inc/settings.php:127
+msgid "Enable Indexing Documents in WordPress Native Search"
+msgstr ""
+
+#: inc/settings.php:132
+msgid "Check this option to index the documents in your website native search"
+msgstr ""
+
+#: inc/settings.php:138
+#: inc/settings.php:144
+msgid "Switch Google Viewer to Adobe Viewer"
+msgstr ""
+
+#: inc/settings.php:146
+msgid "Force Switch Google Viewer to Adobe Viewer (PDF files only)"
+msgstr ""
+
+#: inc/settings.php:151
+msgid "Check this option to forcibly load PDF files using Adobe Viewer for better experience"
+msgstr ""
+
+#: inc/settings.php:179
+msgid "API Key"
+msgstr ""
+
+#: inc/settings.php:185
+msgid "Help:"
+msgstr ""
+
+#: inc/settings.php:185
+msgid "Guide to generate Adobe API Key"
+msgstr ""
+
+#: blocks/document/main.js:31
+#: blocks/document/modules/ead-server-side-render.js:176
+#: blocks/document/modules/ead-server-side-render.js:187
+msgid "Document"
+msgstr ""
+
+#: blocks/document/main.js:32
+msgid "Upload and Embed your documents."
+msgstr ""
+
+#: blocks/document/main.js:35
+msgid "add document"
+msgstr ""
+
+#: blocks/document/main.js:35
+msgid "embed document"
+msgstr ""
+
+#: blocks/document/main.js:35
+msgid "embed any document"
+msgstr ""
+
+#: blocks/document/main.js:95
+msgid "File type is not supported!"
+msgstr ""
+
+#: blocks/document/main.js:99
+msgid "Unknown file type. This may cause issues with the document viewer."
+msgstr ""
+
+#: blocks/document/main.js:103
+msgid "Please enter a valid URL."
+msgstr ""
+
+#: blocks/document/main.js:157
+msgid "Upload a document, pick from your media library, or add from an external URL."
+msgstr ""
+
+#: blocks/document/modules/ead-server-side-render.js:177
+msgid "No document found!"
+msgstr ""
+
+#. translators: %s: error message describing the problem
+#: blocks/document/modules/ead-server-side-render.js:183
+msgid "Error loading the document: %s"
+msgstr ""
+
+#: blocks/document/modules/inspector.js:73
+msgid "Default download button text"
+msgstr ""
+
+#: blocks/document/modules/inspector.js:84
+msgid "Width of document either in px or in %"
+msgstr ""
+
+#: blocks/document/modules/inspector.js:88
+msgid "Height of document either in px or in %"
+msgstr ""
+
+#: blocks/document/modules/inspector.js:106
+msgid "Cache"
+msgstr ""

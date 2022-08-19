@@ -126,6 +126,7 @@ let copyBuildFiles = () => {
 			"!**/node_modules/**",
 			"!./vendor/**",
 			"!./build/**",
+			"!./tests/**",
 			"!**/Thumbs.db",
 			"!**/*.zip",
 			"!**/*.log",

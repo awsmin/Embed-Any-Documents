@@ -1323,7 +1323,7 @@ class Awsm_embed {
 					<?php
 						$title           = sprintf( '<h3>%s</h3>', esc_html__( '✨Embed Any Document 3.0 is introducing a brand new viewer to embed PDF files!', 'embed-any-document' ) );
 						$heading         = sprintf( '<strong>%s</strong>', esc_html__( 'Adobe PDF Embed API', 'embed-any-document' ) );
-						$info_link       = sprintf( '<a href="%1$s" class="button button-secondary" target="_blank">%2$s</a>', esc_url( 'https://staging2.awsm.in/ead' ), esc_html( 'Learn More' ) );
+						$info_link       = sprintf( '<a href="%1$s" class="button button-secondary" target="_blank">%2$s</a>', esc_url( 'https://embedanydocument.com' ), esc_html( 'Learn More' ) );
 						$credential_link = sprintf( '<a href="%1$s" class="button button-secondary" target="_blank">%2$s</a>', esc_url( 'https://documentcloud.adobe.com/dc-integration-creation-app-cdn/main.html?api=pdf-embed-api' ), esc_html( 'Get Free Adobe PDF Embed API Credentials' ) );
 
 						/* translators: %1$s: notice title, %2$s: notice heading, %3$s: information link, %4$s: credential details,  */
