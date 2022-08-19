@@ -261,7 +261,7 @@ class Awsm_embed {
 			'download'      => get_option( 'ead_download', 'none' ),
 			'text'          => get_option( 'ead_text', __( 'Download', 'embed-any-document' ) ),
 			'provider'      => get_option( 'ead_provider', 'google' ),
-			'force_adobe'   => get_option( 'ead_forceadobe', 'enable' ),
+			'force_adobe'   => get_option( 'ead_forceadobe', '' ),
 			'ajaxurl'       => admin_url( 'admin-ajax.php' ),
 			'admin_url'     => admin_url(),
 			'site_url'      => site_url( '/' ),
