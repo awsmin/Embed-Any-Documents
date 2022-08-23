@@ -112,9 +112,7 @@ class Awsm_embed {
 		$this->plugin_version = AWSM_EMBED_VERSION;
 
 		add_action( 'media_buttons', array( $this, 'embedbutton' ), 1000 );
-
 		add_shortcode( 'embeddoc', array( $this, 'embed_shortcode' ) );
-
 		// Initialize block.
 		include_once $this->plugin_path . 'blocks/document.php';
 
@@ -148,7 +146,7 @@ class Awsm_embed {
 
 	/**
 	 * Search the indexed documents.
-	 * 
+	 *
 	 * @since 3.0.0
 	 */
 	public function search_index() {
@@ -159,7 +157,9 @@ class Awsm_embed {
 	 * Handle search.
 	 *
 	 * @since 3.0.0
+	 *
 	 * @param string $search Search SQL for WHERE clause.
+	 * @return string search query
 	 */
 	public function posts_search( $search ) {
 		global $wpdb;
@@ -374,9 +374,6 @@ class Awsm_embed {
 
 	/**
 	 * Get public script data.
-	 *
-	 * @since 3.0.0
-	 * @return array
 	 */
 	public function get_public_script_data() {
 		/**
@@ -397,9 +394,6 @@ class Awsm_embed {
 
 	/**
 	 * Get public script data.
-	 *
-	 * @since 3.0.0
-	 * @return array
 	 */
 	public function get_public_viewer_check_data() {
 		/**
@@ -469,8 +463,6 @@ class Awsm_embed {
 
 	/**
 	 * Get the supported viewers.
-	 *
-	 * @return array
 	 */
 	public static function get_viewers() {
 		$viewers = array(
@@ -759,6 +751,7 @@ class Awsm_embed {
 	 * Customise the shortcode attributes
 	 *
 	 * @since 3.0.0
+	 *
 	 * @param array $out Shortcode attributes.
 	 */
 	public function shortcode_atts_filter_atts( $out ) {
@@ -777,6 +770,7 @@ class Awsm_embed {
 	 * Parse the document and store its data.
 	 *
 	 * @since 3.0.0
+	 *
 	 * @param string $url The document absolute URL.
 	 */
 	public function parse_documents( $url ) {
@@ -819,8 +813,9 @@ class Awsm_embed {
 	/**
 	 * Parse the PDF document.
 	 *
-	 * @param string $content Document content.
 	 * @since 3.0.0
+	 *
+	 * @param string $content Document content.
 	 * @return string
 	 */
 	public function pdf_parser( $content ) {
@@ -837,8 +832,9 @@ class Awsm_embed {
 	/**
 	 * Parse the Word document.
 	 *
-	 * @param string $url The document absolute URL.
+	 * @since 3.0.0
 	 *
+	 * @param string $url The document absolute URL.
 	 * @return string|boolean
 	 */
 	public function docx_parser( $url ) {
@@ -955,6 +951,8 @@ class Awsm_embed {
 
 	/**
 	 * To be used for addons.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param string|array $keys Option name.
 	 * @param string       $id 'id' attribute value for anchor tag.
