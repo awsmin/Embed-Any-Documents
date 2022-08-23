@@ -148,6 +148,8 @@ class Awsm_embed {
 
 	/**
 	 * Search the indexed documents.
+	 * 
+	 * @since 3.0.0
 	 */
 	public function search_index() {
 		add_filter( 'posts_search', array( $this, 'posts_search' ) );
@@ -156,6 +158,7 @@ class Awsm_embed {
 	/**
 	 * Handle search.
 	 *
+	 * @since 3.0.0
 	 * @param string $search Search SQL for WHERE clause.
 	 */
 	public function posts_search( $search ) {
@@ -372,13 +375,14 @@ class Awsm_embed {
 	/**
 	 * Get public script data.
 	 *
+	 * @since 3.0.0
 	 * @return array
 	 */
 	public function get_public_script_data() {
 		/**
 		 * Customize the public script data.
 		 *
-		 * @since 2.6.0
+		 * @since 3.0.0
 		 *
 		 * @param array $script_data The script data.
 		 */
@@ -394,6 +398,7 @@ class Awsm_embed {
 	/**
 	 * Get public script data.
 	 *
+	 * @since 3.0.0
 	 * @return array
 	 */
 	public function get_public_viewer_check_data() {
@@ -753,6 +758,7 @@ class Awsm_embed {
 	/**
 	 * Customise the shortcode attributes
 	 *
+	 * @since 3.0.0
 	 * @param array $out Shortcode attributes.
 	 */
 	public function shortcode_atts_filter_atts( $out ) {
@@ -770,6 +776,7 @@ class Awsm_embed {
 	/**
 	 * Parse the document and store its data.
 	 *
+	 * @since 3.0.0
 	 * @param string $url The document absolute URL.
 	 */
 	public function parse_documents( $url ) {
@@ -813,7 +820,7 @@ class Awsm_embed {
 	 * Parse the PDF document.
 	 *
 	 * @param string $content Document content.
-	 *
+	 * @since 3.0.0
 	 * @return string
 	 */
 	public function pdf_parser( $content ) {

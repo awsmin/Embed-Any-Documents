@@ -59,16 +59,20 @@ class EadInspector extends Component {
 				viewerOptions.push({ value: 'microsoft', label: __( 'Microsoft Office Online', 'embed-any-document' ) });
 			}
 
-            let fileSrc = EadHelper.getFileSource( url );
+            //let fileSrc = EadHelper.getFileSource( url );
 
             if (EadHelper.isPDF(url)) {
                 if (typeof eadPublic !== 'undefined' && eadPublic.adobe_api_key){
                     viewerOptions.push({ value: 'adobe', label: __( 'Adobe Viewer', 'embed-any-document' ) });
                 }
-				
                 viewerOptions.push({ value: 'browser', label: __( 'Browser Based', 'embed-any-document' ) });
             }
 
+            /**
+			 * Customise viewerOptions array.
+			 *
+			 * @since 3.0.0
+			 */
             viewerOptions = wp.hooks.applyFilters('awsm_ead_viewer_options',viewerOptions,EadHelper.isPDF(url));
 			downloadTextControl = <TextControl label={ __( 'Download Text', 'embed-any-document' ) } help={ __( 'Default download button text', 'embed-any-document' ) } value={ text } onChange={ text => setAttributes( { text } ) } />;
 
@@ -79,7 +83,14 @@ class EadInspector extends Component {
 
         return (
             <InspectorControls>
-                { wp.hooks.doAction( 'awsm_ead_before_block_settings') }
+                { 
+                 /**
+                 * Add content before the Block .
+                 *
+                 * @since 3.0.0
+                 */
+                wp.hooks.doAction( 'awsm_ead_before_block_settings') 
+                }
                 <PanelBody>
                     <TextControl label={ __( 'Width', 'embed-any-document' ) } help={ __( 'Width of document either in px or in %', 'embed-any-document' ) } value={ width } onChange={ width => setAttributes( { width } ) } />
                  </PanelBody>
@@ -106,7 +117,14 @@ class EadInspector extends Component {
                     <ToggleControl label={ __( 'Cache', 'embed-any-document' ) } checked={ cache } onChange={ cache => setAttributes( { cache } ) } />
                 </PanelBody> }
 
-                { wp.hooks.doAction( 'awsm_ead_after_block_settings',viewerSettings,viewer,this.props) }
+                { 
+                 /**
+                 * Add content after the Block .
+                 *
+                 * @since 3.0.0
+                 */
+                wp.hooks.doAction( 'awsm_ead_after_block_settings',viewerSettings,viewer,this.props)
+                }
                 { viewerSettings }
 
             </InspectorControls>

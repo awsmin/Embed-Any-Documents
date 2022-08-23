@@ -42,7 +42,6 @@ registerBlockType( 'embed-any-document/document', {
 		const { uniqueId, shortcode } = attributes;
 
 		let viewerList = [];
-
         let blockProps = null;
 		let shortcodeText;
 		let embedurl; 
@@ -156,13 +155,27 @@ registerBlockType( 'embed-any-document/document', {
 			return (
 				<MediaPlaceholder className="ead-media-placeholder" onSelect={ onSelectDocument } onSelectURL={ onSelectURL } labels = { { title: __( 'Embed Any Document', 'embed-any-document' ), 'instructions':__( 'Upload a document, pick from your media library, or add from an external URL.', 'embed-any-document' ) } } icon={icon.block}  accept={validExtension.join(', ')} allowedTypes={ validTypes } OnError={ onUploadError }>
 
-					{ wp.hooks.doAction( 'before_awsm_ead_viewer_options' ) }
+					{ 
+					 /**
+					 * Content before viewer options.
+					 *
+					 * @since 3.0.0
+					 */
+					wp.hooks.doAction( 'before_awsm_ead_viewer_options' )
+					}
 
 					{ emebeder.addon_active.length === 0 && (
 						<Button className="ead-button-addon" onClick={ providerLink } value="click"></Button>
 					)}
 
-					{ wp.hooks.doAction( 'after_awsm_ead_viewer_options',viewerList,props,EadHelper.parseShortcode ) }
+					{ 
+					 /**
+					 * Content after viewer options.
+					 *
+					 * @since 3.0.0
+					 */
+					wp.hooks.doAction( 'after_awsm_ead_viewer_options',viewerList,props,EadHelper.parseShortcode ) 
+					}
 					{ viewerList }
 				</MediaPlaceholder>
 			);

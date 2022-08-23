@@ -90,6 +90,11 @@ class EadServerSideRender extends Component {
 					}, 250);
 				}
 			}
+			/**
+			 * Customise the loaded iframe.
+			 *
+			 * @since 3.0.0
+			 */
 			wp.hooks.doAction( 'awsm_ead_iframe_loaded',attributes,this.eadRef.current );
 		}
 	}
