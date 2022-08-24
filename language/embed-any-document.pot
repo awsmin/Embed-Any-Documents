@@ -3,20 +3,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Embed Any Document 3.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/embed-any-document\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/Embed-Any-Documents\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Awsm Innovations <hello@awsm.in>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-08-19T10:03:12+00:00\n"
+"POT-Creation-Date: 2022-08-23T17:58:24+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.5.0\n"
+"X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: embed-any-document\n"
 
 #. Plugin Name of the plugin
-#: awsm-embed.php:875
-#: blocks/document/main.js:157
+#: awsm-embed.php:878
+#: blocks/document/main.js:156
 msgid "Embed Any Document"
 msgstr ""
 
@@ -36,147 +36,147 @@ msgstr ""
 msgid "https://awsm.in"
 msgstr ""
 
-#: awsm-embed.php:213
+#: awsm-embed.php:216
 #: inc/popup.php:19
 msgid "Add Document"
 msgstr ""
 
-#: awsm-embed.php:226
+#: awsm-embed.php:229
 msgid "Settings"
 msgstr ""
 
-#: awsm-embed.php:262
-#: awsm-embed.php:547
+#: awsm-embed.php:265
+#: awsm-embed.php:544
 msgid "Download"
 msgstr ""
 
-#: awsm-embed.php:272
+#: awsm-embed.php:275
 msgid "Nothing to insert"
 msgstr ""
 
-#: awsm-embed.php:273
+#: awsm-embed.php:276
 msgid "Invalid URL"
 msgstr ""
 
-#: awsm-embed.php:274
+#: awsm-embed.php:277
 #: inc/popup.php:58
 msgid "Add URL"
 msgstr ""
 
-#: awsm-embed.php:275
+#: awsm-embed.php:278
 msgid "Verifying..."
 msgstr ""
 
-#: awsm-embed.php:276
+#: awsm-embed.php:279
 msgid "From URL"
 msgstr ""
 
-#: awsm-embed.php:277
+#: awsm-embed.php:280
 msgid "Select"
 msgstr ""
 
-#: awsm-embed.php:278
+#: awsm-embed.php:281
 msgid "The document you have chosen is a not public."
 msgstr ""
 
-#: awsm-embed.php:278
+#: awsm-embed.php:281
 msgid " Only the owner and explicitly shared collaborators will be able to view it."
 msgstr ""
 
-#: awsm-embed.php:338
+#: awsm-embed.php:341
 msgid "Loader"
 msgstr ""
 
-#: awsm-embed.php:339
+#: awsm-embed.php:342
 #: inc/popup.php:154
 msgid "Loading..."
 msgstr ""
 
-#: awsm-embed.php:344
+#: awsm-embed.php:347
 msgid "EAD Logo"
 msgstr ""
 
-#: awsm-embed.php:345
+#: awsm-embed.php:348
 msgid "Taking too long?"
 msgstr ""
 
-#: awsm-embed.php:349
+#: awsm-embed.php:352
 msgid "Reload"
 msgstr ""
 
-#: awsm-embed.php:349
+#: awsm-embed.php:352
 msgid "Reload document"
 msgstr ""
 
-#: awsm-embed.php:353
+#: awsm-embed.php:356
 msgid "Open"
 msgstr ""
 
-#: awsm-embed.php:353
+#: awsm-embed.php:356
 msgid "Open in new tab"
 msgstr ""
 
-#: awsm-embed.php:472
+#: awsm-embed.php:469
 #: blocks/document/modules/inspector.js:56
 msgid "Google Docs Viewer"
 msgstr ""
 
-#: awsm-embed.php:473
-#: blocks/document/modules/inspector.js:69
+#: awsm-embed.php:470
+#: blocks/document/modules/inspector.js:68
 msgid "Browser Based"
 msgstr ""
 
-#: awsm-embed.php:474
+#: awsm-embed.php:471
 #: blocks/document/modules/inspector.js:59
 msgid "Microsoft Office Online"
 msgstr ""
 
-#: awsm-embed.php:475
+#: awsm-embed.php:472
 #: blocks/document/modules/inspector.js:66
 msgid "Adobe Viewer"
 msgstr ""
 
-#: awsm-embed.php:726
+#: awsm-embed.php:723
 msgid "Embedded Document"
 msgstr ""
 
-#: awsm-embed.php:943
+#: awsm-embed.php:946
 msgid "Buy Pro Version"
 msgstr ""
 
 #. translators: %1$s: Service provider
-#: awsm-embed.php:946
+#: awsm-embed.php:949
 msgid "Add From %1$s"
 msgstr ""
 
-#: awsm-embed.php:961
+#: awsm-embed.php:966
 msgid "Configure"
 msgstr ""
 
 #. translators: %1$s: Service provider
-#: awsm-embed.php:972
+#: awsm-embed.php:977
 msgid "Add from %1$s"
 msgstr ""
 
-#: awsm-embed.php:1092
+#: awsm-embed.php:1097
 msgid "Please enter the Adobe PDF Embed API key as mentioned in the plugin documentation."
 msgstr ""
 
-#: awsm-embed.php:1324
+#: awsm-embed.php:1329
 msgid "✨Embed Any Document 3.0 is introducing a brand new viewer to embed PDF files!"
 msgstr ""
 
-#: awsm-embed.php:1325
+#: awsm-embed.php:1330
 #: inc/settings.php:175
 msgid "Adobe PDF Embed API"
 msgstr ""
 
 #. translators: %1$s: notice title, %2$s: notice heading, %3$s: information link, %4$s: credential details,
-#: awsm-embed.php:1330
+#: awsm-embed.php:1335
 msgid "%1$s We are introducing %2$s integration with Embed Any Document 3.0, which is more reliable than any other PDF viewer options. It also works for localhost and intranet files. Please get your free credentials from Adobe.com and start making the best out of it!. %3$s  %4$s"
 msgstr ""
 
-#: awsm-embed.php:1349
+#: awsm-embed.php:1354
 msgid "Error in dismissing the notice. Please try again!"
 msgstr ""
 
@@ -210,49 +210,49 @@ msgstr ""
 
 #: inc/popup.php:76
 #: inc/settings.php:68
-#: blocks/document/modules/inspector.js:84
+#: blocks/document/modules/inspector.js:95
 msgid "Width"
 msgstr ""
 
 #: inc/popup.php:79
 #: inc/settings.php:72
-#: blocks/document/modules/inspector.js:88
+#: blocks/document/modules/inspector.js:99
 msgid "Height"
 msgstr ""
 
 #: inc/popup.php:83
 #: inc/settings.php:80
-#: blocks/document/modules/inspector.js:93
+#: blocks/document/modules/inspector.js:104
 msgid "Show Download Link"
 msgstr ""
 
 #: inc/popup.php:86
 #: inc/settings.php:84
-#: blocks/document/modules/inspector.js:94
+#: blocks/document/modules/inspector.js:105
 msgid "For all users"
 msgstr ""
 
 #: inc/popup.php:87
 #: inc/settings.php:85
-#: blocks/document/modules/inspector.js:95
+#: blocks/document/modules/inspector.js:106
 msgid "For Logged-in users"
 msgstr ""
 
 #: inc/popup.php:88
 #: inc/settings.php:86
-#: blocks/document/modules/inspector.js:96
+#: blocks/document/modules/inspector.js:107
 msgid "No Download"
 msgstr ""
 
 #: inc/popup.php:95
 #: inc/settings.php:93
-#: blocks/document/modules/inspector.js:73
+#: blocks/document/modules/inspector.js:77
 msgid "Download Text"
 msgstr ""
 
 #: inc/popup.php:99
 #: inc/popup.php:108
-#: blocks/document/modules/inspector.js:101
+#: blocks/document/modules/inspector.js:112
 msgid "Viewer"
 msgstr ""
 
@@ -349,8 +349,8 @@ msgid "Guide to generate Adobe API Key"
 msgstr ""
 
 #: blocks/document/main.js:31
-#: blocks/document/modules/ead-server-side-render.js:176
-#: blocks/document/modules/ead-server-side-render.js:187
+#: blocks/document/modules/ead-server-side-render.js:181
+#: blocks/document/modules/ead-server-side-render.js:192
 msgid "Document"
 msgstr ""
 
@@ -370,43 +370,43 @@ msgstr ""
 msgid "embed any document"
 msgstr ""
 
-#: blocks/document/main.js:95
+#: blocks/document/main.js:94
 msgid "File type is not supported!"
 msgstr ""
 
-#: blocks/document/main.js:99
+#: blocks/document/main.js:98
 msgid "Unknown file type. This may cause issues with the document viewer."
 msgstr ""
 
-#: blocks/document/main.js:103
+#: blocks/document/main.js:102
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: blocks/document/main.js:157
+#: blocks/document/main.js:156
 msgid "Upload a document, pick from your media library, or add from an external URL."
 msgstr ""
 
-#: blocks/document/modules/ead-server-side-render.js:177
+#: blocks/document/modules/ead-server-side-render.js:182
 msgid "No document found!"
 msgstr ""
 
 #. translators: %s: error message describing the problem
-#: blocks/document/modules/ead-server-side-render.js:183
+#: blocks/document/modules/ead-server-side-render.js:188
 msgid "Error loading the document: %s"
 msgstr ""
 
-#: blocks/document/modules/inspector.js:73
+#: blocks/document/modules/inspector.js:77
 msgid "Default download button text"
 msgstr ""
 
-#: blocks/document/modules/inspector.js:84
+#: blocks/document/modules/inspector.js:95
 msgid "Width of document either in px or in %"
 msgstr ""
 
-#: blocks/document/modules/inspector.js:88
+#: blocks/document/modules/inspector.js:99
 msgid "Height of document either in px or in %"
 msgstr ""
 
-#: blocks/document/modules/inspector.js:106
+#: blocks/document/modules/inspector.js:117
 msgid "Cache"
 msgstr ""
