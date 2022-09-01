@@ -959,6 +959,26 @@ var EadInspector = /*#__PURE__*/function (_Component) {
         options: viewerOptions,
         value: viewer,
         onChange: this.viewerControlHandle
+      }))], viewer == "adobe" && typeof emebeder.addon_active.pdf == 'undefined' && [wp.element.createElement(PanelBody, {
+        title: __('Viewer Options PRO Add-on', 'embed-any-document')
+      }, wp.element.createElement(ToggleControl, {
+        label: __('Show Download Button', 'embed-any-document')
+      }), wp.element.createElement(ToggleControl, {
+        label: __('Show Print', 'embed-any-document')
+      }), wp.element.createElement(ToggleControl, {
+        label: __('Show Annotation Tools', 'embed-any-document')
+      }), wp.element.createElement(ToggleControl, {
+        label: __('Show Thumbnails ', 'embed-any-document')
+      }), wp.element.createElement(ToggleControl, {
+        label: __('Show Formfilling', 'embed-any-document')
+      }), wp.element.createElement(ToggleControl, {
+        label: __('Show ZoomControl', 'embed-any-document')
+      }), wp.element.createElement(SelectControl, {
+        label: __('View Mode', 'ead-pdf-viewer'),
+        options: [{
+          value: 'FIT_WIDTH',
+          label: __('Fit Width', 'ead-pdf-viewer')
+        }]
       }))], !this.state.cacheHidden && wp.element.createElement(PanelBody, null, wp.element.createElement(ToggleControl, {
         label: __('Cache', 'embed-any-document'),
         checked: cache,

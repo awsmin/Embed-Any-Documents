@@ -41,7 +41,7 @@ class EadInspector extends Component {
         this.props.setAttributes( { viewer } );
     }
 
-    render() {
+    render() { 
         const { attributes: { url, width, height, text, download, viewer, cache }, setAttributes } = this.props;
         let viewerOptions  = [];
         let viewerSettings = [];
@@ -111,6 +111,19 @@ class EadInspector extends Component {
                    <PanelBody>
                     <SelectControl label={ __( 'Viewer', 'embed-any-document' ) } options={ viewerOptions } value={ viewer } onChange={ this.viewerControlHandle } />
                 </PanelBody>
+                ]}
+
+                { (viewer=="adobe" && typeof emebeder.addon_active.pdf == 'undefined') && [
+                    <PanelBody title={ __( 'Viewer Options PRO Add-on', 'embed-any-document' ) } >
+                        <ToggleControl label={ __( 'Show Download Button', 'embed-any-document' ) } />
+                        <ToggleControl label={ __( 'Show Print', 'embed-any-document' ) } />
+                        <ToggleControl label={ __( 'Show Annotation Tools', 'embed-any-document' ) } />
+                        <ToggleControl label={ __( 'Show Thumbnails ', 'embed-any-document' ) } />
+                        <ToggleControl label={ __( 'Show Formfilling', 'embed-any-document' ) } />
+                        <ToggleControl label={ __( 'Show ZoomControl', 'embed-any-document' ) } />
+                        <SelectControl label={ __( 'View Mode', 'ead-pdf-viewer' ) } options={[
+                        { value: 'FIT_WIDTH', label: __( 'Fit Width', 'ead-pdf-viewer' ) }]} />
+                    </PanelBody>
                 ]}
 
                 { ! this.state.cacheHidden && <PanelBody>
