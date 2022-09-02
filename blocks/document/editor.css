@@ -177,3 +177,13 @@ button.components-button.btn-disabled span::before {
 button.components-button.btn-disabled:hover span::before{
 	opacity: 1;
 }
+
+.components-form-toggle input.components-form-toggle__input[type=checkbox]:disabled ~ .components-form-toggle__track, .components-form-toggle input.components-form-toggle__input[type=checkbox]:disabled ~ .components-form-toggle__thumb{ opacity: 0.5}
+.components-panel__body-toggle.components-button span.adobe-pro-disabled{
+    background: #111;
+    padding: 5px 8px;
+    font-size: 0.875em;
+    color: #fff;
+    border-radius: 4px;
+    margin-left: 4px;
+}
