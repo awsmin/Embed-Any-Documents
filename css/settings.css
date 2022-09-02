@@ -301,26 +301,29 @@ div.awsm-updated p {
 }
 
 .cloudform > li {
-    border-bottom: 1px solid #c3c4c7;
-    padding-bottom: 20px;
+    padding: 20px;
     margin-bottom: 20px;
     overflow: hidden;
-}
-.cloudform > li:last-child{
-    border-bottom: none;
+    background: #fff;
+    border: 1px solid #e1e1e1;
 }
 .cloudform > li .form-table{
     margin-bottom: 0;
 }
-.cloudform > li .form-table .form-table td,
-.cloudform > li .form-table .form-table th{
+.cloudform > li .form-table td,
+.cloudform > li .form-table th{
     padding-top: 8px;
     padding-bottom: 8px;
     vertical-align: middle;
+    padding-left: 0;
 }
 
 .cloudform > li h3{
     margin-top: 0;
+    border-bottom: 1px solid #e1e1e1;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 0 20px 15px;
 }
 .cloudform > li input{
     min-width: 50%;
