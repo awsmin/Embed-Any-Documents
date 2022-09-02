@@ -880,13 +880,15 @@ var EadInspector = /*#__PURE__*/function (_Component) {
 
 
         if (_helper__WEBPACK_IMPORTED_MODULE_0__["default"].isPDF(url)) {
-          if (typeof eadPublic !== 'undefined' && eadPublic.adobe_api_key) {
-            viewerOptions.push({
-              value: 'adobe',
-              label: __('Adobe Viewer', 'embed-any-document')
-            });
+          if (typeof eadPublic !== 'undefined' && eadPublic.adobe_api_key == '') {
+            disableStatus = true;
           }
 
+          viewerOptions.push({
+            value: 'adobe',
+            label: __('Adobe Viewer', 'embed-any-document'),
+            disabled: disableStatus
+          });
           viewerOptions.push({
             value: 'browser',
             label: __('Browser Based', 'embed-any-document')
@@ -960,23 +962,37 @@ var EadInspector = /*#__PURE__*/function (_Component) {
         value: viewer,
         onChange: this.viewerControlHandle
       }))], viewer == "adobe" && typeof emebeder.addon_active.pdf == 'undefined' && [wp.element.createElement(PanelBody, {
-        title: __('Viewer Options PRO Add-on', 'embed-any-document')
-      }, wp.element.createElement(ToggleControl, {
+        title: __(wp.element.createElement("div", null, "Viewer Options ", wp.element.createElement("span", {
+          "class": "adobe-pro-disabled"
+        }, "Pro Add-on")), 'embed-any-document')
+      }, wp.element.createElement(SelectControl, {
+        disabled: true,
+        label: __('Mode', 'embed-any-document'),
+        options: [{
+          label: __('Full Window', 'embed-any-document')
+        }]
+      }), wp.element.createElement(ToggleControl, {
+        disabled: true,
         label: __('Show Download Button', 'embed-any-document')
       }), wp.element.createElement(ToggleControl, {
+        disabled: true,
         label: __('Show Print', 'embed-any-document')
       }), wp.element.createElement(ToggleControl, {
+        disabled: true,
         label: __('Show Annotation Tools', 'embed-any-document')
       }), wp.element.createElement(ToggleControl, {
+        disabled: true,
         label: __('Show Thumbnails ', 'embed-any-document')
       }), wp.element.createElement(ToggleControl, {
+        disabled: true,
         label: __('Show Formfilling', 'embed-any-document')
       }), wp.element.createElement(ToggleControl, {
+        disabled: true,
         label: __('Show ZoomControl', 'embed-any-document')
       }), wp.element.createElement(SelectControl, {
+        disabled: true,
         label: __('View Mode', 'ead-pdf-viewer'),
         options: [{
-          value: 'FIT_WIDTH',
           label: __('Fit Width', 'ead-pdf-viewer')
         }]
       }))], !this.state.cacheHidden && wp.element.createElement(PanelBody, null, wp.element.createElement(ToggleControl, {

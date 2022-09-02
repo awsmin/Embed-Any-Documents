@@ -62,9 +62,10 @@ class EadInspector extends Component {
             //let fileSrc = EadHelper.getFileSource( url );
 
             if (EadHelper.isPDF(url)) {
-                if (typeof eadPublic !== 'undefined' && eadPublic.adobe_api_key){
-                    viewerOptions.push({ value: 'adobe', label: __( 'Adobe Viewer', 'embed-any-document' ) });
+                if (typeof eadPublic !== 'undefined' && eadPublic.adobe_api_key == ''){
+                    disableStatus = true;
                 }
+                viewerOptions.push({ value: 'adobe', label: __( 'Adobe Viewer', 'embed-any-document' ),disabled:disableStatus});
                 viewerOptions.push({ value: 'browser', label: __( 'Browser Based', 'embed-any-document' ) });
             }
 
@@ -114,15 +115,17 @@ class EadInspector extends Component {
                 ]}
 
                 { (viewer=="adobe" && typeof emebeder.addon_active.pdf == 'undefined') && [
-                    <PanelBody title={ __( 'Viewer Options PRO Add-on', 'embed-any-document' ) } >
-                        <ToggleControl label={ __( 'Show Download Button', 'embed-any-document' ) } />
-                        <ToggleControl label={ __( 'Show Print', 'embed-any-document' ) } />
-                        <ToggleControl label={ __( 'Show Annotation Tools', 'embed-any-document' ) } />
-                        <ToggleControl label={ __( 'Show Thumbnails ', 'embed-any-document' ) } />
-                        <ToggleControl label={ __( 'Show Formfilling', 'embed-any-document' ) } />
-                        <ToggleControl label={ __( 'Show ZoomControl', 'embed-any-document' ) } />
-                        <SelectControl label={ __( 'View Mode', 'ead-pdf-viewer' ) } options={[
-                        { value: 'FIT_WIDTH', label: __( 'Fit Width', 'ead-pdf-viewer' ) }]} />
+                    <PanelBody title={ __( <div>Viewer Options <span class="adobe-pro-disabled">Pro Add-on</span></div>, 'embed-any-document' ) } >
+                        <SelectControl disabled={true} label={ __( 'Mode', 'embed-any-document' ) } options={[
+                        { label: __( 'Full Window', 'embed-any-document' ) }]} />
+                        <ToggleControl disabled={true} label={ __( 'Show Download Button', 'embed-any-document' ) } />
+                        <ToggleControl disabled={true} label={ __( 'Show Print', 'embed-any-document' ) } />
+                        <ToggleControl disabled={true} label={ __( 'Show Annotation Tools', 'embed-any-document' ) } />
+                        <ToggleControl disabled={true} label={ __( 'Show Thumbnails ', 'embed-any-document' ) } />
+                        <ToggleControl disabled={true} label={ __( 'Show Formfilling', 'embed-any-document' ) } />
+                        <ToggleControl disabled={true} label={ __( 'Show ZoomControl', 'embed-any-document' ) } />
+                        <SelectControl disabled={true} label={ __( 'View Mode', 'ead-pdf-viewer' ) } options={[
+                        { label: __( 'Fit Width', 'ead-pdf-viewer' ) }]} />
                     </PanelBody>
                 ]}
 

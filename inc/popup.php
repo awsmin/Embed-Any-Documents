@@ -141,6 +141,74 @@ if ( ! defined( 'ABSPATH' ) ) {
 								do_action( 'awsm_ead_advanced_options' );
 							?>
 
+							<li class="checkbox adobe-pro-popup-disabled">
+								<div><?php echo sprintf( esc_html__( 'Viewer Options  %s', 'embed-any-document' ), '<span class="adobe-pro-disabled">' . esc_html__( 'Pro Add-on', 'embed-any-document' ) . '</span>' ); ?></span>
+								</div>
+
+								<div class="f-left">
+									<label><?php esc_html_e( 'Mode', 'embed-any-document' ); ?></label>
+									<?php
+										$modeoptions = array(
+											'FULL_WINDOW' => __( 'Full Window', 'embed-any-document' ),
+										);
+										Awsm_embed::get_instance()->selectbuilder( '', $modeoptions );
+										?>
+								</div>
+
+								<div class="f-left">
+									<input type="checkbox">
+									<label>
+										<?php esc_html_e( 'Show Print PDF', 'embed-any-document' ); ?>
+									</label>
+								</div>
+
+								<div class="f-left">
+									<input type="checkbox">
+									<label>
+										<?php esc_html_e( 'Show Download PDF', 'embed-any-document' ); ?>
+									</label>
+								</div>
+
+								<div class="f-left">
+									<input type="checkbox">
+									<label>
+										<?php esc_html_e( 'Show Annotation Tools', 'embed-any-document' ); ?>
+									</label>
+								</div>
+
+								<div class="f-left">
+									<input type="checkbox">
+									<label>
+										<?php esc_html_e( 'Show Thumbnails', 'embed-any-document' ); ?>
+									</label>
+								</div>
+
+								<div class="f-left">
+									<input type="checkbox">
+									<label>
+										<?php esc_html_e( 'Show Zoomcontrol', 'embed-any-document' ); ?>
+									</label>
+								</div>
+
+								<div class="f-left">
+									<input type="checkbox">
+									<label>
+										<?php esc_html_e( 'Show Formfilling', 'embed-any-document' ); ?>
+									</label>
+								</div>
+
+								<div class="f-left">
+									<label><?php esc_html_e( 'View', 'embed-any-document' ); ?></label>
+									<?php
+										$modeoptions = array(
+											'FIT_WIDTH' => __( 'Fit Width', 'embed-any-document' ),
+										);
+										Awsm_embed::get_instance()->selectbuilder( '', $modeoptions );
+										?>
+								</div>
+
+							</li>
+
 							<li>
 								<label><?php esc_html_e( 'Shortcode Preview', 'embed-any-document' ); ?></label>
 								<textarea name="shortcode" style="width:100%" id="shortcode" readonly="readonly"></textarea>
