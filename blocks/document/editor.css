@@ -178,12 +178,20 @@ button.components-button.btn-disabled:hover span::before{
 	opacity: 1;
 }
 
-.components-form-toggle input.components-form-toggle__input[type=checkbox]:disabled ~ .components-form-toggle__track, .components-form-toggle input.components-form-toggle__input[type=checkbox]:disabled ~ .components-form-toggle__thumb{ opacity: 0.5}
-.components-panel__body-toggle.components-button span.adobe-pro-disabled{
-    background: #111;
-    padding: 5px 8px;
-    font-size: 0.875em;
-    color: #fff;
-    border-radius: 4px;
-    margin-left: 4px;
+.components-form-toggle input.components-form-toggle__input[type=checkbox]:disabled ~ .components-form-toggle__track, .components-form-toggle input.components-form-toggle__input[type=checkbox]:disabled ~ .components-form-toggle__thumb {
+	opacity: 0.5
+}
+
+.components-panel__body-toggle.components-button span.adobe-pro-disabled {
+	background: #111;
+	padding: 5px 8px;
+	font-size: 0.875em;
+	color: #fff;
+	border-radius: 4px;
+	margin-left: 4px;
+	transition: opacity 0.2s ease;
+	text-decoration: none;
+}
+.components-panel__body-toggle.components-button span.adobe-pro-disabled:hover{
+	opacity: 0.8;
 }

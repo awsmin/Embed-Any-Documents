@@ -379,13 +379,18 @@ div.awsm-updated p {
     box-sizing: border-box;
     padding: 0 8px;
 }
-.option-fields li h4 span{
+.option-fields li h4 .adobe-pro-disabled{
     background: #111;
     padding: 5px 8px;
     font-size: 0.875em;
     color: #fff;
     border-radius: 4px;
     margin-left: 4px;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+.option-fields li h4 .adobe-pro-disabled:hover{
+    opacity: 0.8;
 }
 .option-fields li ul{
     display: flex;
