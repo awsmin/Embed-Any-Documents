@@ -369,6 +369,91 @@ div.awsm-updated p {
     overflow: hidden;
     margin-bottom: 0;
 }
+.option-fields .adobe-pro-popup-disabled{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -8px;
+}
+.option-fields li h4 {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 8px;
+}
+.option-fields li h4 span{
+    background: #111;
+    padding: 5px 8px;
+    font-size: 0.875em;
+    color: #fff;
+    border-radius: 4px;
+    margin-left: 4px;
+}
+.option-fields li ul{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -8px 16px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 8px;
+}
+.option-fields li .ead-pa-opt{
+    width: 50%;
+    padding: 0 8px;
+    box-sizing: border-box;
+}
+.option-fields li .ead-pa-opt select {
+  width: 100%;
+}
+.option-fields li ul li{
+    width: 33.333%;
+    padding: 0 8px;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+}
+.option-fields li.checkbox{
+    line-height: 20px;
+}
+.option-fields li.checkbox label span{
+    position: relative;
+    padding-left: 46px;
+}
+.option-fields li.checkbox label input{
+    position: absolute;
+    opacity: 0;
+}
+.option-fields li.checkbox label span::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    background-color: #fff;
+    border: 1px solid #1e1e1e;
+    width: 36px;
+    height: 18px;
+    border-radius: 9px;
+    transition: background .2s ease;
+}
+.option-fields li.checkbox label span::after{
+    content: "";
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+    top: 3px;
+    left: 3px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transition: all .1s ease;
+    background-color: #1e1e1e;
+    border: 5px solid #1e1e1e;
+}
+.option-fields li.checkbox label input:disabled + span::before, .option-fields li.checkbox label input:disabled + span::after{
+    opacity: 0.6;
+}
+.option-fields li.checkbox label input:checked + span::after{
+    left: 21px;
+}
+
 
 .option-fields label {
     display: block;
