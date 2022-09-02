@@ -126,9 +126,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 								</div>
 							</li>
 							<li class="checkbox" id="eadcachemain">
-								<input type="checkbox" id="ead-cache" class="ead-usc" value="on">
 								<label for="ead-cache">
-									<?php esc_html_e( 'Do not cache this file (Affects performance)', 'embed-any-document' ); ?>
+									<input type="checkbox" id="ead-cache" class="ead-usc" value="on">
+									<span><?php esc_html_e( 'Do not cache this file (Affects performance)', 'embed-any-document' ); ?></span>							
 								</label>
 							</li>
 
@@ -140,74 +140,70 @@ if ( ! defined( 'ABSPATH' ) ) {
 								 */
 								do_action( 'awsm_ead_advanced_options' );
 							?>
-
-							<li class="checkbox adobe-pro-popup-disabled">
-								<div><?php echo sprintf( esc_html__( 'Viewer Options  %s', 'embed-any-document' ), '<span class="adobe-pro-disabled">' . esc_html__( 'Pro Add-on', 'embed-any-document' ) . '</span>' ); ?></span>
-								</div>
-
-								<div class="f-left">
-									<label><?php esc_html_e( 'Mode', 'embed-any-document' ); ?></label>
+							<?php
+								$viewers = Awsm_embed::is_addon_active();
+							if ( empty( $viewers['pdf'] ) ) {
+								?>
+							<li class="adobe-pro-popup-disabled">
+								<h4><?php echo sprintf( esc_html__( 'Viewer Options  %s', 'embed-any-document' ), '<span class="adobe-pro-disabled">' . esc_html__( 'Pro Add-on', 'embed-any-document' ) . '</span>' ); ?></h4>
+								<ul>
+									<li class="checkbox">
+										<label>
+											<input type="checkbox" disabled="disabled">
+											<span><?php esc_html_e( 'Show Download Button', 'embed-any-document' ); ?></span>
+										</label>
+									</li>
+									<li class="checkbox">
+										<label>
+											<input type="checkbox" disabled="disabled">
+											<span><?php esc_html_e( 'Show Print', 'embed-any-document' ); ?></span>
+										</label>
+									</li>
+									<li class="checkbox">
+										<label>
+											<input type="checkbox" disabled="disabled">
+											<span><?php esc_html_e( 'Show Annotation Tools', 'embed-any-document' ); ?></span>
+										</label>
+									</li>
+									<li class="checkbox">
+										<label>
+											<input type="checkbox" disabled="disabled">
+											<span><?php esc_html_e( 'Show Thumbnails', 'embed-any-document' ); ?></span>
+										</label>
+									</li>
+									<li class="checkbox">
+										<label>
+											<input type="checkbox" disabled="disabled">
+											<span><?php esc_html_e( 'Show Formfilling', 'embed-any-document' ); ?></span>
+										</label>
+									</li>
+									<li class="checkbox">
+										<label>
+											<input type="checkbox" disabled="disabled">
+											<span><?php esc_html_e( 'Show Zoomcontrol', 'embed-any-document' ); ?></span>
+										</label>
+									</li>
+								</ul>
+								<div class="ead-pa-opt">
+									<label>Mode</label>
 									<?php
-										$modeoptions = array(
-											'FULL_WINDOW' => __( 'Full Window', 'embed-any-document' ),
-										);
-										Awsm_embed::get_instance()->selectbuilder( '', $modeoptions );
-										?>
+									$modeoptions = array(
+										'FULL_WINDOW' => __( 'Full Window', 'embed-any-document' ),
+									);
+									Awsm_embed::get_instance()->selectbuilder( '', $modeoptions );
+									?>
 								</div>
-
-								<div class="f-left">
-									<input type="checkbox">
-									<label>
-										<?php esc_html_e( 'Show Print PDF', 'embed-any-document' ); ?>
-									</label>
-								</div>
-
-								<div class="f-left">
-									<input type="checkbox">
-									<label>
-										<?php esc_html_e( 'Show Download PDF', 'embed-any-document' ); ?>
-									</label>
-								</div>
-
-								<div class="f-left">
-									<input type="checkbox">
-									<label>
-										<?php esc_html_e( 'Show Annotation Tools', 'embed-any-document' ); ?>
-									</label>
-								</div>
-
-								<div class="f-left">
-									<input type="checkbox">
-									<label>
-										<?php esc_html_e( 'Show Thumbnails', 'embed-any-document' ); ?>
-									</label>
-								</div>
-
-								<div class="f-left">
-									<input type="checkbox">
-									<label>
-										<?php esc_html_e( 'Show Zoomcontrol', 'embed-any-document' ); ?>
-									</label>
-								</div>
-
-								<div class="f-left">
-									<input type="checkbox">
-									<label>
-										<?php esc_html_e( 'Show Formfilling', 'embed-any-document' ); ?>
-									</label>
-								</div>
-
-								<div class="f-left">
-									<label><?php esc_html_e( 'View', 'embed-any-document' ); ?></label>
+								<div class="ead-pa-opt">
+									<label><label><?php esc_html_e( 'View Mode', 'embed-any-document' ); ?></label></label>
 									<?php
-										$modeoptions = array(
-											'FIT_WIDTH' => __( 'Fit Width', 'embed-any-document' ),
-										);
-										Awsm_embed::get_instance()->selectbuilder( '', $modeoptions );
-										?>
+									$modeoptions = array(
+										'FIT_WIDTH' => __( 'Fit Width', 'embed-any-document' ),
+									);
+									Awsm_embed::get_instance()->selectbuilder( '', $modeoptions );
+									?>
 								</div>
-
 							</li>
+							<?php } ?>
 
 							<li>
 								<label><?php esc_html_e( 'Shortcode Preview', 'embed-any-document' ); ?></label>
