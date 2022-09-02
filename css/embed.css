@@ -448,7 +448,7 @@ div.awsm-updated p {
     border: 5px solid #1e1e1e;
 }
 .option-fields li.checkbox label input:disabled + span::before, .option-fields li.checkbox label input:disabled + span::after{
-    opacity: 0.6;
+    opacity: 0.5;
 }
 .option-fields li.checkbox label input:checked + span::after{
     left: 21px;
