@@ -124,8 +124,8 @@ class EadInspector extends Component {
                         <ToggleControl disabled={true} label={ __( 'Show Thumbnails ', 'embed-any-document' ) } />
                         <ToggleControl disabled={true} label={ __( 'Show Formfilling', 'embed-any-document' ) } />
                         <ToggleControl disabled={true} label={ __( 'Show ZoomControl', 'embed-any-document' ) } />
-                        <SelectControl disabled={true} label={ __( 'View Mode', 'ead-pdf-viewer' ) } options={[
-                        { label: __( 'Fit Width', 'ead-pdf-viewer' ) }]} />
+                        <SelectControl disabled={true} label={ __( 'View Mode', 'embed-any-document' ) } options={[
+                        { label: __( 'Fit Width', 'embed-any-document' ) }]} />
                     </PanelBody>
                 ]}
 

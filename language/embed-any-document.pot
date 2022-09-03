@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-09-02T09:50:14+00:00\n"
+"POT-Creation-Date: 2022-09-02T11:25:41+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: embed-any-document\n"
@@ -88,7 +88,7 @@ msgid "Loader"
 msgstr ""
 
 #: awsm-embed.php:342
-#: inc/popup.php:222
+#: inc/popup.php:218
 msgid "Loading..."
 msgstr ""
 
@@ -265,67 +265,64 @@ msgstr ""
 msgid "Do not cache this file (Affects performance)"
 msgstr ""
 
-#: inc/popup.php:145
+#: inc/popup.php:148
 msgid "Viewer Options  %s"
 msgstr ""
 
-#: inc/popup.php:145
+#: inc/popup.php:148
 msgid "Pro Add-on"
 msgstr ""
 
-#: inc/popup.php:149
-#: blocks/document/modules/inspector.js:119
-msgid "Mode"
+#: inc/popup.php:153
+#: blocks/document/modules/inspector.js:121
+msgid "Show Download Button"
 msgstr ""
 
-#: inc/popup.php:152
-#: blocks/document/modules/inspector.js:120
-msgid "Full Window"
+#: inc/popup.php:159
+#: blocks/document/modules/inspector.js:122
+msgid "Show Print"
 msgstr ""
 
-#: inc/popup.php:161
-msgid "Show Print PDF"
-msgstr ""
-
-#: inc/popup.php:168
-msgid "Show Download PDF"
-msgstr ""
-
-#: inc/popup.php:175
+#: inc/popup.php:165
 #: blocks/document/modules/inspector.js:123
 msgid "Show Annotation Tools"
 msgstr ""
 
-#: inc/popup.php:182
+#: inc/popup.php:171
 msgid "Show Thumbnails"
 msgstr ""
 
-#: inc/popup.php:189
-msgid "Show Zoomcontrol"
-msgstr ""
-
-#: inc/popup.php:196
+#: inc/popup.php:177
 #: blocks/document/modules/inspector.js:125
 msgid "Show Formfilling"
 msgstr ""
 
-#: inc/popup.php:201
-msgid "View"
+#: inc/popup.php:183
+msgid "Show Zoomcontrol"
 msgstr ""
 
-#: inc/popup.php:204
+#: inc/popup.php:191
+#: blocks/document/modules/inspector.js:120
+msgid "Full Window"
+msgstr ""
+
+#: inc/popup.php:197
+msgid "View Mode"
+msgstr ""
+
+#: inc/popup.php:200
 msgid "Fit Width"
 msgstr ""
 
-#: inc/popup.php:213
+#: inc/popup.php:209
 msgid "Shortcode Preview"
 msgstr ""
 
-#: inc/popup.php:222
+#: inc/popup.php:218
 msgid "Insert"
 msgstr ""
 
-#: inc/popup.php:226
+#: inc/popup.php:222
 msgid "Cancel"
 msgstr ""
 
@@ -459,12 +456,8 @@ msgstr ""
 msgid "Height of document either in px or in %"
 msgstr ""
 
-#: blocks/document/modules/inspector.js:121
-msgid "Show Download Button"
-msgstr ""
-
-#: blocks/document/modules/inspector.js:122
-msgid "Show Print"
+#: blocks/document/modules/inspector.js:119
+msgid "Mode"
 msgstr ""
 
 #: blocks/document/modules/inspector.js:124
