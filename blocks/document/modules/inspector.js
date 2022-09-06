@@ -119,7 +119,7 @@ class EadInspector extends Component {
                         <SelectControl disabled={true} label={ __( 'Mode', 'embed-any-document' ) } options={[
                         { label: __( 'Full Window', 'embed-any-document' ) }]} />
                         <ToggleControl disabled={true} label={ __( 'Show Download Button', 'embed-any-document' ) } />
-                        <ToggleControl disabled={true} label={ __( 'Show Print', 'embed-any-document' ) } />
+                        <ToggleControl disabled={true} label={ __( 'Show Print PDF', 'embed-any-document' ) } />
                         <ToggleControl disabled={true} label={ __( 'Show Annotation Tools', 'embed-any-document' ) } />
                         <ToggleControl disabled={true} label={ __( 'Show Thumbnails ', 'embed-any-document' ) } />
                         <ToggleControl disabled={true} label={ __( 'Show Formfilling', 'embed-any-document' ) } />

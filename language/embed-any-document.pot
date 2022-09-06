@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-09-02T11:25:41+00:00\n"
+"POT-Creation-Date: 2022-09-05T09:37:32+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: embed-any-document\n"
@@ -307,10 +307,12 @@ msgid "Full Window"
 msgstr ""
 
 #: inc/popup.php:197
+#: blocks/document/modules/inspector.js:127
 msgid "View Mode"
 msgstr ""
 
 #: inc/popup.php:200
+#: blocks/document/modules/inspector.js:128
 msgid "Fit Width"
 msgstr ""
 
