@@ -860,6 +860,7 @@ var EadInspector = /*#__PURE__*/function (_Component) {
 
       if (enableViewerControl) {
         var disableStatus = false;
+        var disableAdobe = false;
 
         if (emebeder.force_adobe === 'enable' && _helper__WEBPACK_IMPORTED_MODULE_0__["default"].isPDF(url)) {
           disableStatus = true;
@@ -881,13 +882,13 @@ var EadInspector = /*#__PURE__*/function (_Component) {
 
         if (_helper__WEBPACK_IMPORTED_MODULE_0__["default"].isPDF(url)) {
           if (typeof eadPublic !== 'undefined' && eadPublic.adobe_api_key == '') {
-            disableStatus = true;
+            disableAdobe = true;
           }
 
           viewerOptions.push({
             value: 'adobe',
             label: __('Adobe Viewer', 'embed-any-document'),
-            disabled: disableStatus
+            disabled: disableAdobe
           });
           viewerOptions.push({
             value: 'browser',

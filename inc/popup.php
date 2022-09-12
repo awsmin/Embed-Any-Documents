@@ -140,11 +140,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 								 */
 								do_action( 'awsm_ead_advanced_options' );
 							?>
-							<?php
-								$viewers = Awsm_embed::is_addon_active();
-							if ( empty( $viewers['pdf'] ) ) {
-								?>
-							<li class="adobe-pro-popup-disabled">
+							
+							<li class="adobe-pro-popup-disabled" id="adobe-pro-features">
 								<h4><?php echo sprintf( esc_html__( 'Viewer Options  %s', 'embed-any-document' ), '<span class="adobe-pro-disabled">' . esc_html__( 'Pro Add-on', 'embed-any-document' ) . '</span>' ); ?></h4>
 								<ul>
 									<li class="checkbox">
@@ -190,7 +187,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									$modeoptions = array(
 										'FULL_WINDOW' => __( 'Full Window', 'embed-any-document' ),
 									);
-									Awsm_embed::get_instance()->selectbuilder( '', $modeoptions );
+									Awsm_embed::get_instance()->selectbuilder( '', $modeoptions,'','','disabled=true');
 									?>
 								</div>
 								<div class="ead-pa-opt">
@@ -199,12 +196,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 									$modeoptions = array(
 										'FIT_WIDTH' => __( 'Fit Width', 'embed-any-document' ),
 									);
-									Awsm_embed::get_instance()->selectbuilder( '', $modeoptions );
+									Awsm_embed::get_instance()->selectbuilder( '', $modeoptions,'','','disabled=true' );
 									?>
 								</div>
 							</li>
-							<?php } ?>
-
+							
 							<li>
 								<label><?php esc_html_e( 'Shortcode Preview', 'embed-any-document' ); ?></label>
 								<textarea name="shortcode" style="width:100%" id="shortcode" readonly="readonly"></textarea>

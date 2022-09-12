@@ -182,8 +182,13 @@ jQuery(function($) {
             eadEmbed.shortcodeAttrs.text = text;
         }
 
-        eadEmbed.file = filedata;
-
+        eadEmbed.file = filedata; 
+        if (provider == 'adobe' && typeof emebeder.addon_active.pdf == 'undefined') {
+            $('#adobe-pro-features').show();
+        } else {
+            $('#adobe-pro-features').hide();
+        }
+        
         if (provider == 'google') {
             $('#eadcachemain').show();
             if (cache) {

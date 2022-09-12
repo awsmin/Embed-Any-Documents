@@ -50,6 +50,7 @@ class EadInspector extends Component {
 
 		if ( enableViewerControl ) {
             let disableStatus = false; 
+            let disableAdobe = false;
             if(emebeder.force_adobe === 'enable' && EadHelper.isPDF(url)){
                 disableStatus = true;
             } 
@@ -63,9 +64,9 @@ class EadInspector extends Component {
 
             if (EadHelper.isPDF(url)) {
                 if (typeof eadPublic !== 'undefined' && eadPublic.adobe_api_key == ''){
-                    disableStatus = true;
+                    disableAdobe = true;
                 }
-                viewerOptions.push({ value: 'adobe', label: __( 'Adobe Viewer', 'embed-any-document' ),disabled:disableStatus});
+                viewerOptions.push({ value: 'adobe', label: __( 'Adobe Viewer', 'embed-any-document' ),disabled:disableAdobe});
                 viewerOptions.push({ value: 'browser', label: __( 'Browser Based', 'embed-any-document' ) });
             }
 

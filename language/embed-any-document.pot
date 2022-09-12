@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-09-05T09:37:32+00:00\n"
+"POT-Creation-Date: 2022-09-12T09:37:26+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: embed-any-document\n"
@@ -88,7 +88,7 @@ msgid "Loader"
 msgstr ""
 
 #: awsm-embed.php:342
-#: inc/popup.php:218
+#: inc/popup.php:214
 msgid "Loading..."
 msgstr ""
 
@@ -265,66 +265,65 @@ msgstr ""
 msgid "Do not cache this file (Affects performance)"
 msgstr ""
 
-#: inc/popup.php:148
+#: inc/popup.php:145
 msgid "Viewer Options  %s"
 msgstr ""
 
-#: inc/popup.php:148
+#: inc/popup.php:145
 msgid "Pro Add-on"
 msgstr ""
 
-#: inc/popup.php:153
+#: inc/popup.php:150
 #: blocks/document/modules/inspector.js:121
 msgid "Show Download Button"
 msgstr ""
 
-#: inc/popup.php:159
-#: blocks/document/modules/inspector.js:122
+#: inc/popup.php:156
 msgid "Show Print"
 msgstr ""
 
-#: inc/popup.php:165
+#: inc/popup.php:162
 #: blocks/document/modules/inspector.js:123
 msgid "Show Annotation Tools"
 msgstr ""
 
-#: inc/popup.php:171
+#: inc/popup.php:168
 msgid "Show Thumbnails"
 msgstr ""
 
-#: inc/popup.php:177
+#: inc/popup.php:174
 #: blocks/document/modules/inspector.js:125
 msgid "Show Formfilling"
 msgstr ""
 
-#: inc/popup.php:183
+#: inc/popup.php:180
 msgid "Show Zoomcontrol"
 msgstr ""
 
-#: inc/popup.php:191
+#: inc/popup.php:188
 #: blocks/document/modules/inspector.js:120
 msgid "Full Window"
 msgstr ""
 
-#: inc/popup.php:197
+#: inc/popup.php:194
 #: blocks/document/modules/inspector.js:127
 msgid "View Mode"
 msgstr ""
 
-#: inc/popup.php:200
+#: inc/popup.php:197
 #: blocks/document/modules/inspector.js:128
 msgid "Fit Width"
 msgstr ""
 
-#: inc/popup.php:209
+#: inc/popup.php:205
 msgid "Shortcode Preview"
 msgstr ""
 
-#: inc/popup.php:218
+#: inc/popup.php:214
 msgid "Insert"
 msgstr ""
 
-#: inc/popup.php:222
+#: inc/popup.php:218
 msgid "Cancel"
 msgstr ""
 
@@ -460,6 +459,10 @@ msgstr ""
 
 #: blocks/document/modules/inspector.js:119
 msgid "Mode"
+msgstr ""
+
+#: blocks/document/modules/inspector.js:122
+msgid "Show Print PDF"
 msgstr ""
 
 #: blocks/document/modules/inspector.js:124
