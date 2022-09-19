@@ -159,7 +159,7 @@ jQuery(function($) {
             text = $('#ead-text').val(),
             cache = $('#ead-cache').is(':checked');
 
-        eadEmbed.shortcodeAttrs = {};
+        eadEmbed.shortcodeAttrs = {}; 
 
         if(filedata.url){
             eadEmbed.shortcodeAttrs.url = filedata.url;
@@ -183,19 +183,19 @@ jQuery(function($) {
         }
 
         eadEmbed.file = filedata; 
-        if (provider == 'adobe' && typeof emebeder.addon_active.pdf == 'undefined') {
-            $('#adobe-pro-features').show();
+        if (provider == 'adobe' && typeof emebeder.addon_active.pdf == 'undefined' && $('select[name="ead-pseudo"]').val() == null) {
+            $('#adobe-pro-features').show(); 
         } else {
             $('#adobe-pro-features').hide();
         }
         
         if (provider == 'google') {
-            $('#eadcachemain').show();
+            $('#eadcachemain').show(); 
             if (cache) {
                 eadEmbed.shortcodeAttrs.cache = "off";
             }
         } else {
-            $('#eadcachemain').hide();
+            $('#eadcachemain').hide(); 
             $('.ead-browser-viewer-note').hide();
         }
 
@@ -335,7 +335,7 @@ jQuery(function($) {
         return bytes.toFixed(1) + ' ' + units[u];
     }
     // Viewer Check
-     function ead_valid_viewer(file, provider) {
+     function ead_valid_viewer(file, provider) { 
         var cprovider = ["link", "upload"];
 
         var validext = msextension.split(',');
