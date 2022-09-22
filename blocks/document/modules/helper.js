@@ -1,5 +1,5 @@
-class EadHelper {
-	static getFileSource( url ) {
+class EadHelper { 
+	static getFileSource( url ) { 
 		let source = 'internal';
 		let siteUrl = emebeder.site_url;
 		if ( url.indexOf( siteUrl ) === -1 ) {
@@ -28,7 +28,7 @@ class EadHelper {
         return jQuery.inArray(this.getFileExtension( url ), validExt) !== -1;
 	}
 
-	static isPDF( url ) {
+	static isPDF( url ) { 
 		if ( this.getFileExtension( url ) === '.pdf' ) {
 			return true;
 		} else {

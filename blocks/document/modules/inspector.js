@@ -24,11 +24,13 @@ class EadInspector extends Component {
     }
 
     componentDidMount(){ 
-        if (EadHelper.isPDF(this.props.attributes.url) && EadHelper.getFileSource(this.props.attributes.url) === 'internal') {
-            if (typeof eadPublic !== 'undefined' && eadPublic.adobe_api_key){
-                this.viewerControlHandle('adobe'); 
-            }
-        }   
+        if( this.props.attributes.url ){
+            if (EadHelper.isPDF(this.props.attributes.url) && EadHelper.getFileSource(this.props.attributes.url) === 'internal') {
+                if (typeof eadPublic !== 'undefined' && eadPublic.adobe_api_key){
+                    this.viewerControlHandle('adobe'); 
+                }
+            }   
+        }
     }
 
     downloadControlhandle(download) {
@@ -48,7 +50,7 @@ class EadInspector extends Component {
 		let downloadTextControl = null;
 		let enableViewerControl = viewer && jQuery.inArray( viewer, emebeder.viewers ) !== -1;
 
-		if ( enableViewerControl ) {
+		if ( enableViewerControl ) { 
             let disableStatus = false; 
             let disableAdobe = false;
             if(emebeder.force_adobe === 'enable' && EadHelper.isPDF(url)){
@@ -62,7 +64,7 @@ class EadInspector extends Component {
 
             //let fileSrc = EadHelper.getFileSource( url );
 
-            if (EadHelper.isPDF(url)) {
+            if ( EadHelper.isPDF(url)) {
                 if (typeof eadPublic !== 'undefined' && eadPublic.adobe_api_key == ''){
                     disableAdobe = true;
                 }
