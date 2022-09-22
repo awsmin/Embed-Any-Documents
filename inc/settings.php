@@ -181,7 +181,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 											</tr>
 											<tr>
 											<td><input type="text" name="ead_adobe_key" value="<?php echo esc_attr( get_option( 'ead_adobe_key' ) ); ?>" /></td>
-											<td><a href="<?php echo esc_url( 'https://docs.embedanydocument.com/configuring-cloud-apis/getting-adobe-api-key' ); ?>" target="_blank"><?php esc_html_e( 'Guide to generate Adobe API Key', 'embed-any-document' ); ?></a><br/><a href="<?php echo esc_url( 'https://docs.embedanydocument.com/configuring-cloud-apis/getting-adobe-api-key' ); ?>" target="_blank"><?php esc_html_e( 'Guide to generate Adobe API Key', 'embed-any-document' ); ?></a></td>
+											<td><a href="<?php echo esc_url( 'https://docs.embedanydocument.com/configuring-cloud-apis/getting-adobe-api-key' ); ?>" target="_blank"><?php esc_html_e( 'Get your Adobe API Key', 'embed-any-document' ); ?></a><br/><a href="<?php echo esc_url( 'https://docs.embedanydocument.com/configuring-cloud-apis/getting-adobe-api-key' ); ?>" target="_blank"><?php esc_html_e( 'Guide to generate Adobe API Key', 'embed-any-document' ); ?></a></td>
 											</tr>
 									   </tbody>
 								   </table>

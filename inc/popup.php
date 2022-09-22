@@ -187,7 +187,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									$modeoptions = array(
 										'FULL_WINDOW' => __( 'Full Window', 'embed-any-document' ),
 									);
-									Awsm_embed::get_instance()->selectbuilder( '', $modeoptions,'','','disabled=true');
+									Awsm_embed::get_instance()->selectbuilder( '', $modeoptions, '', '', 'disabled=true' );
 									?>
 								</div>
 								<div class="ead-pa-opt">
@@ -196,7 +196,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									$modeoptions = array(
 										'FIT_WIDTH' => __( 'Fit Width', 'embed-any-document' ),
 									);
-									Awsm_embed::get_instance()->selectbuilder( '', $modeoptions,'','','disabled=true' );
+									Awsm_embed::get_instance()->selectbuilder( '', $modeoptions, '', '', 'disabled=true' );
 									?>
 								</div>
 							</li>
