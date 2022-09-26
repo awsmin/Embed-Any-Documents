@@ -341,7 +341,7 @@ div.awsm-updated p {
     min-width: 50%;
 }
 .cloudform > li a{
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .ead-right-widget {

@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-09-13T05:39:48+00:00\n"
+"POT-Creation-Date: 2022-09-23T05:04:17+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: embed-any-document\n"
@@ -117,22 +117,22 @@ msgid "Open in new tab"
 msgstr ""
 
 #: awsm-embed.php:469
-#: blocks/document/modules/inspector.js:57
+#: blocks/document/modules/inspector.js:59
 msgid "Google Docs Viewer"
 msgstr ""
 
 #: awsm-embed.php:470
-#: blocks/document/modules/inspector.js:70
+#: blocks/document/modules/inspector.js:72
 msgid "Browser Based"
 msgstr ""
 
 #: awsm-embed.php:471
-#: blocks/document/modules/inspector.js:60
+#: blocks/document/modules/inspector.js:62
 msgid "Microsoft Office Online"
 msgstr ""
 
 #: awsm-embed.php:472
-#: blocks/document/modules/inspector.js:69
+#: blocks/document/modules/inspector.js:71
 msgid "Adobe Viewer"
 msgstr ""
 
@@ -210,49 +210,49 @@ msgstr ""
 
 #: inc/popup.php:76
 #: inc/settings.php:68
-#: blocks/document/modules/inspector.js:97
+#: blocks/document/modules/inspector.js:99
 msgid "Width"
 msgstr ""
 
 #: inc/popup.php:79
 #: inc/settings.php:72
-#: blocks/document/modules/inspector.js:101
+#: blocks/document/modules/inspector.js:103
 msgid "Height"
 msgstr ""
 
 #: inc/popup.php:83
 #: inc/settings.php:80
-#: blocks/document/modules/inspector.js:106
+#: blocks/document/modules/inspector.js:108
 msgid "Show Download Link"
 msgstr ""
 
 #: inc/popup.php:86
 #: inc/settings.php:84
-#: blocks/document/modules/inspector.js:107
+#: blocks/document/modules/inspector.js:109
 msgid "For all users"
 msgstr ""
 
 #: inc/popup.php:87
 #: inc/settings.php:85
-#: blocks/document/modules/inspector.js:108
+#: blocks/document/modules/inspector.js:110
 msgid "For Logged-in users"
 msgstr ""
 
 #: inc/popup.php:88
 #: inc/settings.php:86
-#: blocks/document/modules/inspector.js:109
+#: blocks/document/modules/inspector.js:111
 msgid "No Download"
 msgstr ""
 
 #: inc/popup.php:95
 #: inc/settings.php:93
-#: blocks/document/modules/inspector.js:79
+#: blocks/document/modules/inspector.js:81
 msgid "Download Text"
 msgstr ""
 
 #: inc/popup.php:99
 #: inc/popup.php:108
-#: blocks/document/modules/inspector.js:114
+#: blocks/document/modules/inspector.js:116
 msgid "Viewer"
 msgstr ""
 
@@ -274,7 +274,7 @@ msgid "Pro Add-on"
 msgstr ""
 
 #: inc/popup.php:150
-#: blocks/document/modules/inspector.js:122
+#: blocks/document/modules/inspector.js:124
 msgid "Show Download Button"
 msgstr ""
 
@@ -283,7 +283,7 @@ msgid "Show Print"
 msgstr ""
 
 #: inc/popup.php:162
-#: blocks/document/modules/inspector.js:124
+#: blocks/document/modules/inspector.js:126
 msgid "Show Annotation Tools"
 msgstr ""
 
@@ -292,7 +292,7 @@ msgid "Show Thumbnails"
 msgstr ""
 
 #: inc/popup.php:174
-#: blocks/document/modules/inspector.js:126
+#: blocks/document/modules/inspector.js:128
 msgid "Show Formfilling"
 msgstr ""
 
@@ -301,17 +301,17 @@ msgid "Show Zoomcontrol"
 msgstr ""
 
 #: inc/popup.php:188
-#: blocks/document/modules/inspector.js:121
+#: blocks/document/modules/inspector.js:123
 msgid "Full Window"
 msgstr ""
 
 #: inc/popup.php:194
-#: blocks/document/modules/inspector.js:128
+#: blocks/document/modules/inspector.js:130
 msgid "View Mode"
 msgstr ""
 
 #: inc/popup.php:197
-#: blocks/document/modules/inspector.js:129
+#: blocks/document/modules/inspector.js:131
 msgid "Fit Width"
 msgstr ""
 
@@ -395,6 +395,10 @@ msgid "Help:"
 msgstr ""
 
 #: inc/settings.php:184
+msgid "Get your Adobe API Key"
+msgstr ""
+
+#: inc/settings.php:184
 msgid "Guide to generate Adobe API Key"
 msgstr ""
 
@@ -445,34 +449,34 @@ msgstr ""
 msgid "Error loading the document: %s"
 msgstr ""
 
-#: blocks/document/modules/inspector.js:79
+#: blocks/document/modules/inspector.js:81
 msgid "Default download button text"
 msgstr ""
 
-#: blocks/document/modules/inspector.js:97
+#: blocks/document/modules/inspector.js:99
 msgid "Width of document either in px or in %"
 msgstr ""
 
-#: blocks/document/modules/inspector.js:101
+#: blocks/document/modules/inspector.js:103
 msgid "Height of document either in px or in %"
 msgstr ""
 
-#: blocks/document/modules/inspector.js:120
+#: blocks/document/modules/inspector.js:122
 msgid "Mode"
 msgstr ""
 
-#: blocks/document/modules/inspector.js:123
+#: blocks/document/modules/inspector.js:125
 msgid "Show Print PDF"
 msgstr ""
 
-#: blocks/document/modules/inspector.js:125
+#: blocks/document/modules/inspector.js:127
 msgid "Show Thumbnails "
 msgstr ""
 
-#: blocks/document/modules/inspector.js:127
+#: blocks/document/modules/inspector.js:129
 msgid "Show ZoomControl"
 msgstr ""
 
-#: blocks/document/modules/inspector.js:134
+#: blocks/document/modules/inspector.js:136
 msgid "Cache"
 msgstr ""

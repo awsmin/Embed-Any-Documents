@@ -140,8 +140,21 @@ class Awsm_embed {
 		if ( get_option( 'ead_searchdoc' ) === 'enable' ) {
 			$this->search_index();
 		}
-
+		add_filter( 'emoji_svg_url', array( $this, 'modify_emoji_svg_url_defaults' ) );
 		$this->adminfunctions();
+	}
+
+	/**
+	 * svg format restructure.
+	 *
+	 * @since 3.0.0
+	 */
+	public function modify_emoji_svg_url_defaults() {
+		global $pagenow;
+
+		if ( $pagenow == 'options-general.php' && $_GET['page'] == 'ead-settings' ) { 
+			return false;
+		}
 	}
 
 	/**
