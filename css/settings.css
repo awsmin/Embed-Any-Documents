@@ -307,6 +307,9 @@ div.awsm-updated p {
     background: #fff;
     border: 1px solid #e1e1e1;
 }
+.cloudform > li a::after{
+    content: " ↗";
+}
 .cloudform > li .form-table{
     margin-bottom: 0;
 }
