@@ -116,14 +116,14 @@ class Awsm_embed {
 		// Initialize block.
 		include_once $this->plugin_path . 'blocks/document.php';
 
-		add_action( 'admin_enqueue_scripts', array( $this, 'register_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'register_styles' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_styles' ), 9 );
 		add_action( 'wp_enqueue_media', array( $this, 'embed_helper' ) );
 		add_action( 'wp_footer', array( $this, 'embedpopup' ) );
 		add_action( 'admin_notices', array( $this, 'plugin_notice' ) );
 		add_action( 'wp_ajax_dismissed_notice_handler', array( $this, 'dismissed_notice_handler' ) );
+		add_action( 'admin_head', array( $this, 'remove_submenu_pages' ) );
 
 		// Elementor compatibility.
 		add_action( 'elementor/editor/before_enqueue_scripts', array( $this, 'register_scripts' ) );
@@ -239,6 +239,14 @@ class Awsm_embed {
 			add_thickbox();
 			include $this->plugin_path . 'inc/popup.php';
 		}
+	}
+
+	/**
+	 * Remove submenu pages
+	 */
+	public function remove_submenu_pages() {
+		remove_submenu_page( 'ead-settings', 'ead-settings-addons' );
+		remove_submenu_page( 'options-general.php', 'ead-settings-addons' );
 	}
 
 	/**
@@ -443,6 +451,14 @@ class Awsm_embed {
 	 */
 	public function register_styles() {
 		wp_register_style( 'awsm-ead-public', plugins_url( 'css/embed-public.min.css', $this->plugin_file ), array(), $this->plugin_version, 'all' );
+	}
+
+	/**
+	 * Register styles and Register scripts for both back-end and front-end use.
+	 */
+	public function admin_enqueue() {
+		$this->register_scripts();
+		$this->register_styles();
 	}
 
 	/**
