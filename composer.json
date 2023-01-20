@@ -7,10 +7,15 @@
         "squizlabs/php_codesniffer": "3.*",
         "wp-coding-standards/wpcs": "^2.0",
         "phpcompatibility/phpcompatibility-wp": "*",
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0"
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0"
     },
     "scripts": {
         "phpcs": "phpcs --colors -p -s",
         "phpcbf": "phpcbf --colors -p -s"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
