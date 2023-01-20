@@ -26,7 +26,7 @@
     "babel-loader": "^8.1.0",
     "babel-plugin-add-module-exports": "^1.0.2",
     "babel-plugin-transform-react-jsx": "^6.24.1",
-    "browser-sync": "^2.26.7",
+    "browser-sync": "^2.27.11",
     "cross-env": "^5.2.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^5.0.0",
