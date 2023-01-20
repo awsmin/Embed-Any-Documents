@@ -29,7 +29,7 @@
     "browser-sync": "^2.26.7",
     "cross-env": "^5.2.1",
     "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^5.0.0",
+    "gulp-autoprefixer": "^8.0.0",
     "gulp-clean-css": "^3.10.0",
     "gulp-line-ending-corrector": "^1.0.3",
     "gulp-rename": "^1.4.0",
