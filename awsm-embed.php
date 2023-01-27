@@ -3,7 +3,7 @@
  * Plugin Name: Embed Any Document
  * Plugin URI: http://awsm.in/embed-any-documents
  * Description: Embed Any Document WordPress plugin lets you upload and embed your documents easily in your WordPress website without any additional browser plugins like Flash or Acrobat reader. The plugin lets you choose between Google Docs Viewer and Microsoft Office Online to display your documents.
- * Version: 2.7.1
+ * Version: 2.7.2
  * Author: Awsm Innovations
  * Author URI: https://awsm.in
  * License: GPL V3
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AWSM_EMBED_VERSION' ) ) {
-	define( 'AWSM_EMBED_VERSION', '2.7.1' );
+	define( 'AWSM_EMBED_VERSION', '2.7.2' );
 }
 
 /**
@@ -597,6 +597,7 @@ class Awsm_embed {
 			add_action( 'admin_footer', array( $this, 'embedpopup' ) );
 			add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'settingslink' ) );
 			add_filter( 'upload_mimes', array( $this, 'additional_mimes' ) );
+			add_filter( 'wp_handle_upload_prefilter', array( $this, 'wp_handle_upload_file_validation' ), 100, 2 );
 		}
 	}
 
@@ -607,13 +608,42 @@ class Awsm_embed {
 	 * @return array An array with additional mime types added.
 	 */
 	public function additional_mimes( $mimes ) {
-		return array_merge(
-			$mimes,
-			array(
-				'svg' => 'image/svg+xml',
-				'ai'  => 'application/postscript',
-			)
-		);
+		/**
+		 * Filter to enable additional mimes.
+		 *
+		 * @since 2.7.2
+		 *
+		 * @param bool $enable_additional_mimes Enable additional mimes or not.
+		 */
+		$enable_additional_mimes = apply_filters( 'awsm_ead_enable_additional_mimes', false );
+
+		if ( $enable_additional_mimes ) {
+			$mimes = array_merge(
+				$mimes,
+				array(
+					'svg' => 'image/svg+xml',
+					'ai'  => 'application/postscript',
+				)
+			);
+		}
+		return $mimes;
+	}
+
+	/**
+	 * Handle required file validation before upload.
+	 *
+	 * @param array $file Single element of $_FILES.
+	 *
+	 * @return array.
+	 */
+	public function wp_handle_upload_file_validation( $file ) {
+		if ( $file['type'] === 'image/svg+xml' ) {
+			$svg_file = file_get_contents( $file['tmp_name'] );
+			if ( strpos( $svg_file, '<script' ) !== false ) {
+				$file['error'] = esc_html__( 'Unsupported file content detected. Sorry, you are not allowed to upload this file.', 'embed-any-document' );
+			}
+		}
+		return $file;
 	}
 
 	/**
@@ -780,9 +810,16 @@ class Awsm_embed {
 			'ppsx'            => 'application/vnd.openxmlformats-officedocument.presentationml.slideshow',
 			// iWork formats.
 			'pages'           => 'application/vnd.apple.pages',
-			// Additional Mime Types.
-			'svg'             => 'image/svg+xml',
 		);
+
+		/**
+		 * Filter valid mime types.
+		 *
+		 * @since 2.7.2
+		 *
+		 * @param array $mimetypes Valid mime types.
+		 */
+		$mimetypes = apply_filters( 'awsm_ead_valid_mime_types', $mimetypes );
 
 		return $mimetypes;
 	}
@@ -826,8 +863,27 @@ class Awsm_embed {
 	 * @return string Comma-separated extenstions list.
 	 */
 	public function validextensions( $list = 'all' ) {
-		$extensions['all'] = array( '.css', '.js', '.pdf', '.ai', '.tif', '.tiff', '.doc', '.txt', '.asc', '.c', '.cc', '.h', '.pot', '.pps', '.ppt', '.xla', '.xls', '.xlt', '.xlw', '.docx', '.dotx', '.dotm', '.xlsx', '.xlsm', '.pptx', '.pages', '.svg', '.ppsx' );
-		$extensions['ms']  = array( '.doc', '.pot', '.pps', '.ppt', '.xla', '.xls', '.xlt', '.xlw', '.docx', '.dotx', '.dotm', '.xlsx', '.xlsm', '.pptx', '.ppsx' );
+		$all_valid_extensions = array( '.css', '.js', '.pdf', '.tif', '.tiff', '.doc', '.txt', '.asc', '.c', '.cc', '.h', '.pot', '.pps', '.ppt', '.xla', '.xls', '.xlt', '.xlw', '.docx', '.dotx', '.dotm', '.xlsx', '.xlsm', '.pptx', '.pages', '.ppsx' );
+		/**
+		 * Filter all allowed extensions.
+		 *
+		 * @since 2.7.2
+		 *
+		 * @param array $all_valid_extensions All allowed extensions.
+		 */
+		$all_valid_extensions = apply_filters( 'awsm_ead_all_allowed_extensions', $all_valid_extensions );
+		$extensions['all']    = $all_valid_extensions;
+
+		$ms_valid_extensions = array( '.doc', '.pot', '.pps', '.ppt', '.xla', '.xls', '.xlt', '.xlw', '.docx', '.dotx', '.dotm', '.xlsx', '.xlsm', '.pptx', '.ppsx' );
+		/**
+		 * Filter Microsoft allowed extensions.
+		 *
+		 * @since 2.7.2
+		 *
+		 * @param array $ms_valid_extensions Microsoft allowed extensions.
+		 */
+		$ms_valid_extensions = apply_filters( 'awsm_ead_ms_allowed_extensions', $ms_valid_extensions );
+		$extensions['ms']    = $ms_valid_extensions;
 
 		return implode( ',', $extensions[ $list ] );
 	}
