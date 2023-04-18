@@ -1,4 +1,4 @@
-# Copyright (C) 2022 Awsm Innovations
+# Copyright (C) 2023 Awsm Innovations
 # This file is distributed under the GPL V3.
 msgid ""
 msgstr ""
@@ -9,13 +9,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-10-18T06:34:55+00:00\n"
+"POT-Creation-Date: 2023-04-18T09:49:04+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: embed-any-document\n"
 
 #. Plugin Name of the plugin
-#: awsm-embed.php:877
+#: awsm-embed.php:893
 #: blocks/document/main.js:156
 msgid "Embed Any Document"
 msgstr ""
@@ -45,138 +45,138 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: awsm-embed.php:264
-#: awsm-embed.php:543
+#: awsm-embed.php:272
+#: awsm-embed.php:559
 msgid "Download"
 msgstr ""
 
-#: awsm-embed.php:274
+#: awsm-embed.php:282
 msgid "Nothing to insert"
 msgstr ""
 
-#: awsm-embed.php:275
+#: awsm-embed.php:283
 msgid "Invalid URL"
 msgstr ""
 
-#: awsm-embed.php:276
+#: awsm-embed.php:284
 #: inc/popup.php:58
 msgid "Add URL"
 msgstr ""
 
-#: awsm-embed.php:277
+#: awsm-embed.php:285
 msgid "Verifying..."
 msgstr ""
 
-#: awsm-embed.php:278
+#: awsm-embed.php:286
 msgid "From URL"
 msgstr ""
 
-#: awsm-embed.php:279
+#: awsm-embed.php:287
 msgid "Select"
 msgstr ""
 
-#: awsm-embed.php:280
+#: awsm-embed.php:288
 msgid "The document you have chosen is a not public."
 msgstr ""
 
-#: awsm-embed.php:280
+#: awsm-embed.php:288
 msgid " Only the owner and explicitly shared collaborators will be able to view it."
 msgstr ""
 
-#: awsm-embed.php:340
+#: awsm-embed.php:348
 msgid "Loader"
 msgstr ""
 
-#: awsm-embed.php:341
+#: awsm-embed.php:349
 #: inc/popup.php:214
 msgid "Loading..."
 msgstr ""
 
-#: awsm-embed.php:346
+#: awsm-embed.php:354
 msgid "EAD Logo"
 msgstr ""
 
-#: awsm-embed.php:347
+#: awsm-embed.php:355
 msgid "Taking too long?"
 msgstr ""
 
-#: awsm-embed.php:351
+#: awsm-embed.php:359
 msgid "Reload"
 msgstr ""
 
-#: awsm-embed.php:351
+#: awsm-embed.php:359
 msgid "Reload document"
 msgstr ""
 
-#: awsm-embed.php:355
+#: awsm-embed.php:363
 msgid "Open"
 msgstr ""
 
-#: awsm-embed.php:355
+#: awsm-embed.php:363
 msgid "Open in new tab"
 msgstr ""
 
-#: awsm-embed.php:468
+#: awsm-embed.php:484
 #: blocks/document/modules/inspector.js:59
 msgid "Google Docs Viewer"
 msgstr ""
 
-#: awsm-embed.php:469
+#: awsm-embed.php:485
 #: blocks/document/modules/inspector.js:72
 msgid "Browser Based"
 msgstr ""
 
-#: awsm-embed.php:470
+#: awsm-embed.php:486
 #: blocks/document/modules/inspector.js:62
 msgid "Microsoft Office Online"
 msgstr ""
 
-#: awsm-embed.php:471
+#: awsm-embed.php:487
 #: blocks/document/modules/inspector.js:71
 msgid "Adobe Viewer"
 msgstr ""
 
-#: awsm-embed.php:722
+#: awsm-embed.php:738
 msgid "Embedded Document"
 msgstr ""
 
-#: awsm-embed.php:945
+#: awsm-embed.php:961
 msgid "Buy Pro Version"
 msgstr ""
 
 #. translators: %1$s: Service provider
-#: awsm-embed.php:948
+#: awsm-embed.php:964
 msgid "Add From %1$s"
 msgstr ""
 
-#: awsm-embed.php:965
+#: awsm-embed.php:981
 msgid "Configure"
 msgstr ""
 
 #. translators: %1$s: Service provider
-#: awsm-embed.php:976
+#: awsm-embed.php:992
 msgid "Add from %1$s"
 msgstr ""
 
-#: awsm-embed.php:1096
+#: awsm-embed.php:1112
 msgid "Please enter the Adobe PDF Embed API key as mentioned in the plugin documentation."
 msgstr ""
 
-#: awsm-embed.php:1328
+#: awsm-embed.php:1344
 msgid "✨Embed Any Document 3.0 is introducing a brand new viewer to embed PDF files!"
 msgstr ""
 
-#: awsm-embed.php:1329
+#: awsm-embed.php:1345
 #: inc/settings.php:175
 msgid "Adobe PDF Embed API"
 msgstr ""
 
 #. translators: %1$s: notice title, %2$s: notice heading, %3$s: information link, %4$s: credential details,
-#: awsm-embed.php:1334
+#: awsm-embed.php:1350
 msgid "%1$s We are introducing %2$s integration with Embed Any Document 3.0, which is more reliable than any other PDF viewer options. It also works for localhost and intranet files. Please get your free credentials from Adobe.com and start making the best out of it!. %3$s  %4$s"
 msgstr ""
 
-#: awsm-embed.php:1353
+#: awsm-embed.php:1369
 msgid "Error in dismissing the notice. Please try again!"
 msgstr ""
 
