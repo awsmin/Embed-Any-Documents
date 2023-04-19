@@ -21,7 +21,7 @@ if ( ! function_exists( 'awsm_ead_fs' ) ) {
                 'navigation'          => 'tabs',
                 'menu'                => array(
                     'slug'           => 'ead-settings',
-                    'first-path'     => 'options-general.php?page=ead-settings',
+                   // 'first-path'     => 'options-general.php?page=ead-settings',
                     'account'        => false,
                     'contact'        => false,
                     'support'        => false,

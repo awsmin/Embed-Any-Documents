@@ -1393,7 +1393,7 @@ function awms_embed_activation() {
 function awms_embed__disable_self() {
 	if ( defined( 'EAD_PLUS' ) ) {
 		deactivate_plugins( plugin_basename( __FILE__ ) ); 
-		add_action( 'admin_notices', 'awsm_embed_disable_notice' );
+		//add_action( 'admin_notices', 'awsm_embed_disable_notice' );
 		$url = admin_url( 'plugins.php?deactivate=true' );
 		wp_redirect($url);
 		exit;
