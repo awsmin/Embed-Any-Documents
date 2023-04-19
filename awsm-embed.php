@@ -1380,29 +1380,6 @@ class Awsm_embed {
 	}
 }
 
-
-function awms_embed_activation() {
-	// Initialize the class.
-	$awsm_embed = Awsm_embed::get_instance();
-
-	// Register defaults.
-	register_activation_hook( __FILE__, array( $awsm_embed, 'defaults' ) );
-}
-
-/**
- * Disable the free plugin if PRO exists.
- */
-function awms_embed__disable_self() {
-	if ( defined( 'EAD_PLUS' ) ) {
-		deactivate_plugins( plugin_basename( __FILE__ ) ); 
-		add_action( 'admin_notices', 'awsm_embed_disable_notice' );
-		unset($_GET['activate']);
-		//$url = admin_url( 'plugins.php?deactivate=true' );
-		//wp_redirect($url);
-		//exit;
-	}
-}
-
 /**
  * Admin notice to show when PRO exists.
  */
@@ -1412,6 +1389,22 @@ function awsm_embed_disable_notice() {
 	printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) );
 }
 
-// Plugin activation hook.
-add_action( 'plugins_loaded', 'awms_embed_activation' );
-add_action( 'admin_init', 'awms_embed__disable_self' );
+if ( defined( 'EAD_PLUS' ) ) {
+	if ( ! function_exists( 'embed_doc_disable_self' ) ) {
+		/**
+		 * Deactivate free version if Plus version is available.
+		 */
+		function embed_doc_disable_self() {
+			deactivate_plugins( plugin_basename( __FILE__ ) );
+			add_action( 'admin_notices', 'awsm_embed_disable_notice' );
+			unset($_GET['activate']);
+		}
+		add_action( 'admin_init', 'embed_doc_disable_self' );
+	}
+} else {
+	// Initialize the class.
+	$awsm_embed = Awsm_embed::get_instance();
+
+	// Register defaults.
+	register_activation_hook( __FILE__, array( $awsm_embed, 'defaults' ) );
+}
