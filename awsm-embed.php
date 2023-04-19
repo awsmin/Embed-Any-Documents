@@ -22,7 +22,9 @@ if ( ! defined( 'AWSM_EMBED_VERSION' ) ) {
 	define( 'AWSM_EMBED_VERSION', '3.0.0' );
 }
 
-require_once plugin_dir_path( __FILE__ ) . '/lib/fs-init.php';
+if ( ! defined( 'EAD_PLUS' ) ) {
+	require_once plugin_dir_path( __FILE__ ) . '/lib/fs-init.php';
+}
 
 if ( get_option( 'ead_searchdoc' ) === 'enable' ) {
 	require_once plugin_dir_path( __FILE__ ) . '/vendor/autoload.php';
@@ -1393,10 +1395,11 @@ function awms_embed_activation() {
 function awms_embed__disable_self() {
 	if ( defined( 'EAD_PLUS' ) ) {
 		deactivate_plugins( plugin_basename( __FILE__ ) ); 
-		//add_action( 'admin_notices', 'awsm_embed_disable_notice' );
-		$url = admin_url( 'plugins.php?deactivate=true' );
-		wp_redirect($url);
-		exit;
+		add_action( 'admin_notices', 'awsm_embed_disable_notice' );
+		unset($_GET['activate']);
+		//$url = admin_url( 'plugins.php?deactivate=true' );
+		//wp_redirect($url);
+		//exit;
 	}
 }
 
