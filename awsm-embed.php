@@ -1383,6 +1383,14 @@ class Awsm_embed {
 /**
  * Admin notice to show when PRO exists.
  */
+
+ /**
+ * Admin Notice.
+ *
+ * @since 3.0.0
+ *
+ * Admin notice to show when PLUS exists.
+ */
 function awsm_embed_disable_notice() {
 	$class   = 'notice is-dismissible notice-warning';
 	$message = __( 'Embed Any Document Plus is already activated.You have to disable it to activate Embed Any Document.', 'embed-any-document' );
