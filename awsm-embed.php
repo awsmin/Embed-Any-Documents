@@ -637,8 +637,8 @@ class Awsm_embed {
 	 * @return array.
 	 */
 	public function wp_handle_upload_file_validation( $file ) {
-		$validate = wp_check_filetype_and_ext($file['tmp_name'],$file['name']); 
-		if ($validate['type'] === 'image/svg+xml' && $validate['ext'] === 'svg') { 
+		$validate = wp_check_filetype_and_ext( $file['tmp_name'], $file['name'] );
+		if ( $validate['type'] === 'image/svg+xml' && $validate['ext'] === 'svg' ) {
 			$svg_file = file_get_contents( $file['tmp_name'] );
 			if ( strpos( $svg_file, '<script' ) !== false ) {
 				$file['error'] = esc_html__( 'Unsupported file content detected. Sorry, you are not allowed to upload this file.', 'embed-any-document' );
