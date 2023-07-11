@@ -113,6 +113,9 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
 
+= V 2.7.3 - 2023-07-11 =
+* Fixed: Vulnerability fix with file uploading.
+
 = V 2.7.2 - 2022-01-30 =
 * Fixed: Security issue with file uploading.
 * Fixed: Document block style issues.
@@ -129,17 +132,9 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 = V 2.6.1 - 2020-06-04 =
 * Fixed: Fatal error during plugin updation in some installations.
 
-= V 2.6.0 - 2020-06-03 =
-* Added: Browser Based viewer.
-* Fixed: Document Block automatic reload issue in Gutenberg editor.
-* Fixed: Preloader for Google viewer not hiding in some installations when document is loaded.
-* Fixed: Cache 'off' setting not working when 'Google' viewer is selected.
-* Improved: AMP support.
-* Other bug fixes and improvements.
-
 [See changelog of previous versions](https://raw.githubusercontent.com/awsmin/Embed-Any-Documents/master/CHANGELOG.md)
 
 == Upgrade Notice ==
 
-= 2.7.2 =
+= 2.7.3 =
 Security fixes.
