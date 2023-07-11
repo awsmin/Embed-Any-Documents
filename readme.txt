@@ -137,4 +137,4 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 == Upgrade Notice ==
 
 = 2.7.3 =
-Security fixes.
+Vulnerability fixes.
