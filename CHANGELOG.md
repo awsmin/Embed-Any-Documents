@@ -1,4 +1,7 @@
 ## Changelog
+### V 2.7.3 - 2023-07-12
+* Improved security.
+* Code improvements.
 
 ### V 2.7.2 - 2022-01-30
 * Fixed: Security issue with file uploading.
