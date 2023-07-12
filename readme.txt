@@ -113,8 +113,8 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
 
-= V 2.7.3 - 2023-07-11 =
-* Fixed: Vulnerability fix with file uploading.
+= V 2.7.3 - 2023-07-12 =
+* Improved: Security fixes.
 
 = V 2.7.2 - 2022-01-30 =
 * Fixed: Security issue with file uploading.
@@ -137,4 +137,4 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 == Upgrade Notice ==
 
 = 2.7.3 =
-Vulnerability fixes.
+Improved security fixes.
