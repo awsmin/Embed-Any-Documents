@@ -109,6 +109,8 @@ class Awsm_embed {
 		// Load plugin textdomain.
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 
+		add_filter( 'wp_get_default_privacy_policy_content', array( $this, 'policy_content' ), 10, 2 );
+
 		$this->adminfunctions();
 	}
 
@@ -157,6 +159,15 @@ class Awsm_embed {
 		array_unshift( $links, $settings_link );
 
 		return $links;
+	}
+
+	/**
+	 * Cookie declaration in WP policy guide
+	 */
+	public function policy_content($content,$id){ 
+		$content.= __( '<h2>Embed Any Document Plugin Cookies Policy</h2><p><strong class="privacy-policy-tutorial">Suggested text: </strong>The third party tools we are using to display your documents easily may use cookies or similar technologies for technical purposes.These third-party services may set their own cookies on your device to provide additional functionality or integrate certain features.The use of third-party cookies is subject to the respective third party privacy and cookie policies.</p>', 'embed-any-document' );
+
+		return $content;
 	}
 
 	/**
