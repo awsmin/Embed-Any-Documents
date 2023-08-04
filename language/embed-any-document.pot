@@ -9,13 +9,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-08-03T06:39:52+00:00\n"
+"POT-Creation-Date: 2023-08-04T08:01:57+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: embed-any-document\n"
 
 #. Plugin Name of the plugin
-#: awsm-embed.php:572
+#: awsm-embed.php:561
 #: blocks/document/main.js:144
 msgid "Embed Any Document"
 msgstr ""
@@ -36,119 +36,115 @@ msgstr ""
 msgid "https://awsm.in"
 msgstr ""
 
-#: awsm-embed.php:145
+#: awsm-embed.php:143
 #: inc/popup.php:18
 msgid "Add Document"
 msgstr ""
 
-#: awsm-embed.php:158
+#: awsm-embed.php:156
 msgid "Settings"
 msgstr ""
 
-#: awsm-embed.php:168
-msgid "<h2>Embed Any Document Plugin Cookies Policy</h2><p><strong class=\"privacy-policy-tutorial\">Suggested text: </strong>The third party tools we are using to display your documents easily may use cookies or similar technologies for technical purposes.These third-party services may set their own cookies on your device to provide additional functionality or integrate certain features.The use of third-party cookies is subject to the respective third party privacy and cookie policies.</p>"
-msgstr ""
-
-#: awsm-embed.php:206
-#: awsm-embed.php:414
+#: awsm-embed.php:195
+#: awsm-embed.php:403
 msgid "Download"
 msgstr ""
 
-#: awsm-embed.php:213
+#: awsm-embed.php:202
 msgid "Nothing to insert"
 msgstr ""
 
-#: awsm-embed.php:214
+#: awsm-embed.php:203
 msgid "Invalid URL"
 msgstr ""
 
-#: awsm-embed.php:215
+#: awsm-embed.php:204
 #: inc/popup.php:39
 msgid "Add URL"
 msgstr ""
 
-#: awsm-embed.php:216
+#: awsm-embed.php:205
 msgid "Verifying..."
 msgstr ""
 
-#: awsm-embed.php:217
+#: awsm-embed.php:206
 msgid "From URL"
 msgstr ""
 
-#: awsm-embed.php:218
+#: awsm-embed.php:207
 msgid "Select"
 msgstr ""
 
-#: awsm-embed.php:268
+#: awsm-embed.php:257
 msgid "Loader"
 msgstr ""
 
-#: awsm-embed.php:269
+#: awsm-embed.php:258
 #: inc/popup.php:117
 msgid "Loading..."
 msgstr ""
 
-#: awsm-embed.php:274
+#: awsm-embed.php:263
 msgid "EAD Logo"
 msgstr ""
 
-#: awsm-embed.php:275
+#: awsm-embed.php:264
 msgid "Taking too long?"
 msgstr ""
 
-#: awsm-embed.php:279
+#: awsm-embed.php:268
 msgid "Reload"
 msgstr ""
 
-#: awsm-embed.php:279
+#: awsm-embed.php:268
 msgid "Reload document"
 msgstr ""
 
-#: awsm-embed.php:283
+#: awsm-embed.php:272
 msgid "Open"
 msgstr ""
 
-#: awsm-embed.php:283
+#: awsm-embed.php:272
 msgid "Open in new tab"
 msgstr ""
 
-#: awsm-embed.php:356
+#: awsm-embed.php:345
 #: blocks/document/modules/inspector.js:43
 msgid "Google Docs Viewer"
 msgstr ""
 
-#: awsm-embed.php:357
+#: awsm-embed.php:346
 #: blocks/document/modules/inspector.js:51
 msgid "Browser Based"
 msgstr ""
 
-#: awsm-embed.php:358
+#: awsm-embed.php:347
 #: blocks/document/modules/inspector.js:46
 msgid "Microsoft Office Online"
 msgstr ""
 
-#: awsm-embed.php:543
+#: awsm-embed.php:532
 msgid "Embedded Document"
 msgstr ""
 
-#: awsm-embed.php:552
+#: awsm-embed.php:541
 msgid "No Url Found"
 msgstr ""
 
-#: awsm-embed.php:608
+#: awsm-embed.php:597
 msgid "The third party tools we are using to display your documents easily may use cookies or similar technologies for technical purposes.These third-party services may set their own cookies on your device to provide additional functionality or integrate certain features.The use of third-party cookies is subject to the respective third party privacy and cookie policies."
 msgstr ""
 
-#: awsm-embed.php:679
+#: awsm-embed.php:668
 msgid "Unsupported file content detected. Sorry, you are not allowed to upload this file."
 msgstr ""
 
-#: awsm-embed.php:693
+#: awsm-embed.php:682
 msgid "Buy Pro Version"
 msgstr ""
 
 #. translators: %1$s: Service provider
-#: awsm-embed.php:696
+#: awsm-embed.php:685
 msgid "Add From %1$s"
 msgstr ""
 
