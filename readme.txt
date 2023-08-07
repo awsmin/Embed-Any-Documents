@@ -113,7 +113,7 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
 = V 2.7.4 - 2023-08-07 =
-* Cookie Policy section added.
+* Added: Cookie Policy section.
 * Code improvements.
 
 = V 2.7.3 - 2023-07-12 =
