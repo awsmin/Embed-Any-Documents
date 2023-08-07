@@ -1,6 +1,6 @@
 ## Changelog
-### V 2.7.4 - 2023-08-03
-* Cookie Policy section added.
+### V 2.7.4 - 2023-08-07
+* Added: Cookie Policy section.
 * Code improvements.
 
 ### V 2.7.2 - 2022-01-30
