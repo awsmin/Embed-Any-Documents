@@ -137,5 +137,5 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Upgrade Notice ==
 
-= 2.7.3 =
-Improved security.
+= 2.7.4 =
+Cookie Policy section added.
