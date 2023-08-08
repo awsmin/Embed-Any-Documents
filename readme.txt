@@ -112,6 +112,9 @@ The viewers (Google Docs Viewer and Microsoft Office Online) do not support loca
 Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
+= V 2.7.4 - 2023-08-07 =
+* Added: Cookie Policy section.
+* Code improvements.
 
 = V 2.7.3 - 2023-07-12 =
 * Improved security.
@@ -130,12 +133,9 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 * Fixed: Conflict with Lazy loading feature added by some themes and plugins.
 * Fixed: Browser viewer fallback for unsupported browsers not working.
 
-= V 2.6.1 - 2020-06-04 =
-* Fixed: Fatal error during plugin updation in some installations.
-
 [See changelog of previous versions](https://raw.githubusercontent.com/awsmin/Embed-Any-Documents/master/CHANGELOG.md)
 
 == Upgrade Notice ==
 
-= 2.7.3 =
-Improved security.
+= 2.7.4 =
+Cookie Policy section added.

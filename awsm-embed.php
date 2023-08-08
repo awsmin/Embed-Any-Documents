@@ -3,7 +3,7 @@
  * Plugin Name: Embed Any Document
  * Plugin URI: http://awsm.in/embed-any-documents
  * Description: Embed Any Document WordPress plugin lets you upload and embed your documents easily in your WordPress website without any additional browser plugins like Flash or Acrobat reader. The plugin lets you choose between Google Docs Viewer and Microsoft Office Online to display your documents.
- * Version: 2.7.3
+ * Version: 2.7.4
  * Author: Awsm Innovations
  * Author URI: https://awsm.in
  * License: GPL V3
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AWSM_EMBED_VERSION' ) ) {
-	define( 'AWSM_EMBED_VERSION', '2.7.3' );
+	define( 'AWSM_EMBED_VERSION', '2.7.4' );
 }
 
 /**
@@ -586,6 +586,30 @@ class Awsm_embed {
 		register_setting( 'ead-settings-group', 'ead_mediainsert' );
 	}
 
+    /**
+	 * Register Privacy Policy Content
+	 */
+	public function register_privacy_policy_content() {
+		if ( ! function_exists( 'wp_add_privacy_policy_content' ) ) {
+			return;
+		}
+
+		$content = __( 'The third party tools we are using to display your documents easily may use cookies or similar technologies for technical purposes.These third-party services may set their own cookies on your device to provide additional functionality or integrate certain features.The use of third-party cookies is subject to the respective third party privacy and cookie policies.', 'embed-any-document' );
+
+		wp_add_privacy_policy_content(
+			'Embed Any Document',
+			wp_kses_post( wpautop( $content, false ) )
+		);
+	}
+
+    /**
+	 * Admin init functions
+	 */
+	public function admin_init_functions(){
+		$this->register_eadsettings();
+		$this->register_privacy_policy_content();
+	}
+
 	/**
 	 * Admin Functions init
 	 */
@@ -593,7 +617,7 @@ class Awsm_embed {
 		if ( is_admin() ) {
 			add_action( 'wp_enqueue_media', array( $this, 'embed_helper' ) );
 			add_action( 'admin_menu', array( $this, 'admin_menu' ) );
-			add_action( 'admin_init', array( $this, 'register_eadsettings' ) );
+			add_action( 'admin_init', array( $this, 'admin_init_functions' ) );
 			add_action( 'admin_footer', array( $this, 'embedpopup' ) );
 			add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'settingslink' ) );
 			add_filter( 'upload_mimes', array( $this, 'additional_mimes' ) );
