@@ -586,7 +586,7 @@ class Awsm_embed {
 		register_setting( 'ead-settings-group', 'ead_mediainsert' );
 	}
 
-    /**
+	/**
 	 * Register Privacy Policy Content
 	 */
 	public function register_privacy_policy_content() {
@@ -602,10 +602,10 @@ class Awsm_embed {
 		);
 	}
 
-    /**
+	/**
 	 * Admin init functions
 	 */
-	public function admin_init_functions(){
+	public function admin_init_functions() {
 		$this->register_eadsettings();
 		$this->register_privacy_policy_content();
 	}
