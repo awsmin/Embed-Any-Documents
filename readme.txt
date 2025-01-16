@@ -113,7 +113,7 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
 = V 2.7.5 - 2025-01-16 =
-* Added: Security improvements.
+* Security fixes and code improvements.
 * Code improvements.
 
 = V 2.7.4 - 2023-08-07 =
@@ -137,4 +137,5 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 == Upgrade Notice ==
 
 = 2.7.5 =
-Security improvements added.
+Security fixes and code improvements.
+Code improvements.
