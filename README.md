@@ -4,7 +4,7 @@
 **Tags:** embed documents, upload pdf, embed ppt, document viewer, pdf viewer, pdf viewer plugin, display pdf, embed pdf, embed pdf in wordpress, word, word viewer, word document, embed word, word plugin, doc, doc viewer, docx, docx viewer, excel, excel plugin, xls, xlsx, spreadsheet, embed spreadsheet, powerpoint, powerpoint viewer, ppt, ppt viewer, pptx, image viewer  
 **Author URI:** http://awsm.in  
 **Requires at least:** 3.5  
-**Tested up to:** 5.4  
+**Tested up to:** 6.7.1  
 **Stable tag:** 2.5.0  
 **License:** GPLv2  
 
@@ -99,6 +99,27 @@ The viewers (Google Docs Viewer and Microsoft Office Online) do not support loca
 Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 ## Changelog
+
+**V 2.7.4 - 2023-08-07**
+* Added: Cookie Policy section.
+* Code improvements.
+
+**V 2.7.3 - 2023-07-12**
+* Improved security.
+* Code improvements.
+
+**V 2.7.2 - 2022-01-30**
+* Fixed: Security issue with file uploading.
+* Fixed: Document block style issues.
+
+**V 2.7.1 - 2021-12-10**
+* Fixed: Fatal error in some installations.
+* UI Improvements.
+
+**V 2.7.0 - 2021-08-02**
+* Added: Improved Block Design.
+* Fixed: Conflict with Lazy loading feature added by some themes and plugins.
+* Fixed: Browser viewer fallback for unsupported browsers not working.
 
 **V 2.5.0 - 2020-05-08**
 * Added: Pre-load screen for Google Docs viewer with reload and open in new tab options for better user experience.
