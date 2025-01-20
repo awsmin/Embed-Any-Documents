@@ -100,7 +100,7 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 ## Changelog
 
-**V 2.7.5 - 2025-01-17**
+**V 2.7.5 - 2025-01-20**
 * Security fixes and code improvements.
 * Code improvements.
 
