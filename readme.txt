@@ -137,4 +137,4 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 = 2.7.5 =
 Security fixes and code improvements.
-Code improvements.
+
