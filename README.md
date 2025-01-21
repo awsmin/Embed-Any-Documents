@@ -100,9 +100,8 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 ## Changelog
 
-**V 2.7.5 - 2025-01-20**
+**V 2.7.5 - 2025-01-21**
 * Security fixes and code improvements.
-* Code improvements.
 
 **V 2.7.4 - 2023-08-07**
 * Added: Cookie Policy section.

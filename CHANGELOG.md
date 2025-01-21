@@ -1,5 +1,5 @@
 ## Changelog
-### V 2.7.5 - 2025-01-20 
+### V 2.7.5 - 2025-01-21 
 * Added: Security improvements.
 * Code improvements.
 
