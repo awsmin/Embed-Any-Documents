@@ -453,7 +453,7 @@ class Awsm_embed {
 			}
 			$url = esc_url( $shortcode_atts['url'], array( 'http', 'https' ) );
 			if ( $show ) {
-				$filedata = wp_remote_head( $shortcode_atts['url'] );
+				$filedata = wp_safe_remote_head( $shortcode_atts['url'] );
 				$filesize = 0;
 				if ( ! is_wp_error( $filedata ) && isset( $filedata['headers']['content-length'] ) ) {
 					$filesize = $this->human_filesize( $filedata['headers']['content-length'] );
