@@ -1,15 +1,15 @@
-# Copyright (C) 2023 Awsm Innovations
+# Copyright (C) 2025 Awsm Innovations
 # This file is distributed under the GPL V3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Embed Any Document 2.7.4\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/Embed-Any-Documents\n"
+"Project-Id-Version: Embed Any Document 2.7.5\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/embed-any-document\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Awsm Innovations <hello@awsm.in>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-08-07T08:02:57+00:00\n"
+"POT-Creation-Date: 2025-01-21T05:19:40+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: embed-any-document\n"

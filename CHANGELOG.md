@@ -1,4 +1,8 @@
 ## Changelog
+### V 2.7.5 - 2025-01-21 
+* Added: Security improvements.
+* Code improvements.
+
 ### V 2.7.4 - 2023-08-07
 * Added: Cookie Policy section.
 * Code improvements.
