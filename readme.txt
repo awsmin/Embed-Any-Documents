@@ -112,7 +112,7 @@ The viewers (Google Docs Viewer and Microsoft Office Online) do not support loca
 Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
-= V 2.7.6 - 2025-02-13 =
+= V 2.7.6 - 2025-02-14 =
 * Improved security.
 * Code improvements.
 
