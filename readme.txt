@@ -136,5 +136,5 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 == Upgrade Notice ==
 
 = 2.7.6 =
-Security improvements.
+Improved security and code improvements.
 
