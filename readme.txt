@@ -112,6 +112,10 @@ The viewers (Google Docs Viewer and Microsoft Office Online) do not support loca
 Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
+= V 2.7.6 - 2025-02-14 =
+* Improved security.
+* Code improvements.
+
 = V 2.7.5 - 2025-01-21 =
 * Security fixes and code improvements.
 
@@ -127,14 +131,10 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 * Fixed: Security issue with file uploading.
 * Fixed: Document block style issues.
 
-= V 2.7.1 - 2021-12-10 =
-* Fixed: Fatal error in some installations.
-* UI Improvements.
-
 [See changelog of previous versions](https://raw.githubusercontent.com/awsmin/Embed-Any-Documents/master/CHANGELOG.md)
 
 == Upgrade Notice ==
 
-= 2.7.5 =
-Security fixes and code improvements.
+= 2.7.6 =
+Improved security and code improvements.
 
