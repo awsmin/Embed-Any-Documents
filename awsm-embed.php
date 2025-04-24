@@ -126,7 +126,9 @@ class Awsm_embed {
 	 * @since 2.2.3
 	 */
 	public function load_textdomain() {
-		load_plugin_textdomain( 'embed-any-document', false, $this->plugin_base . '/language/' );
+		if ( version_compare( get_bloginfo( 'version' ), '6.8', '<' ) ) {
+			load_plugin_textdomain( 'embed-any-document', false, $this->plugin_base . '/language/' );
+		}
 	}
 
 	/**
