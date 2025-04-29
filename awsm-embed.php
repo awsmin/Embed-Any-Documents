@@ -466,7 +466,11 @@ class Awsm_embed {
 				if ( $filesize ) {
 					$file_html = ' [' . $filesize . ']';
 				}
-				$durl = '<p class="embed_download"><a href="' . esc_url( $url ) . '" download >' . $shortcode_atts['text'] . $file_html . ' </a></p>';
+
+				$text = isset( $shortcode_atts['text'] ) ? sanitize_text_field( wp_strip_all_tags( $shortcode_atts['text'] ) ) : 'Download';
+
+				$durl = '<p class="embed_download"><a href="' . esc_url( $url ) . '" download>' . esc_html( $text ) . $file_html . ' </a></p>';
+
 			}
 
 			if ( $shortcode_atts['cache'] === 'off' && $viewer === 'google' ) {
@@ -584,7 +588,7 @@ class Awsm_embed {
 		register_setting( 'ead-settings-group', 'ead_height', array( $this, 'sanitize_dims' ) );
 		register_setting( 'ead-settings-group', 'ead_provider' );
 		register_setting( 'ead-settings-group', 'ead_download' );
-		register_setting( 'ead-settings-group', 'ead_text' );
+		register_setting( 'ead-settings-group', 'ead_text','sanitize_text_field' );
 		register_setting( 'ead-settings-group', 'ead_mediainsert' );
 	}
 
