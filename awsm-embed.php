@@ -109,7 +109,7 @@ class Awsm_embed {
 		// Load plugin textdomain.
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 
-		$this->adminfunctions();
+		$this->adminfunctions(); 
 	}
 
 	/**
@@ -588,10 +588,22 @@ class Awsm_embed {
 		register_setting( 'ead-settings-group', 'ead_height', array( $this, 'sanitize_dims' ) );
 		register_setting( 'ead-settings-group', 'ead_provider' );
 		register_setting( 'ead-settings-group', 'ead_download' );
-		register_setting( 'ead-settings-group', 'ead_text','sanitize_text_field' );
+		register_setting( 'ead-settings-group', 'ead_text', array( $this, 'ead_sanitize_strict_text' ) );
 		register_setting( 'ead-settings-group', 'ead_mediainsert' );
 	}
 
+	public function ead_sanitize_strict_text( $value ) {
+		$value = html_entity_decode( $value, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+		$value = preg_replace( '/<script\b[^>]*>(.*?)<\/script>/is', '', $value );
+		$value = preg_replace( '/<[^>]*>/', '', $value );
+		$value = preg_replace( '/on\w+\s*=\s*("[^"]*"|\'[^\']*\'|[^ >]*)/i', '', $value );
+		$value = preg_replace( '/javascript\s*:/i', '', $value );
+		$value = str_replace( ['<', '>', '"', "'"], '', $value );
+		$value = sanitize_text_field( $value );
+	
+		return $value;
+	}
+	
 	/**
 	 * Register Privacy Policy Content
 	 */
