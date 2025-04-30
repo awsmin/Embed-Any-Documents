@@ -588,7 +588,11 @@ class Awsm_embed {
 		register_setting( 'ead-settings-group', 'ead_height', array( $this, 'sanitize_dims' ) );
 		register_setting( 'ead-settings-group', 'ead_provider' );
 		register_setting( 'ead-settings-group', 'ead_download' );
-		register_setting( 'ead-settings-group', 'ead_text', array( $this, 'ead_sanitize_strict_text' ) );
+		register_setting( 'ead-settings-group', 'ead_text', array(
+			'sanitize_callback' => function( $value ) {
+				return sanitize_text_field( wp_unslash( $value ) );
+			}
+		) );
 		register_setting( 'ead-settings-group', 'ead_mediainsert' );
 	}
 
