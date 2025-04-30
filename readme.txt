@@ -115,6 +115,7 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 = V 2.7.7 - 2025-05-01 =
 * Vulnerbility fix.
+* Corrected load_plugin_textdomain() for compatibility with WP 6.8+.
 * Code improvements.
 
 = V 2.7.6 - 2025-02-14 =
