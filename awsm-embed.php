@@ -469,7 +469,7 @@ class Awsm_embed {
 
 				$text = isset( $shortcode_atts['text'] ) ? esc_attr( $shortcode_atts['text'] ) : 'Download';
 
-				$durl = '<p class="embed_download"><a href="' . esc_url( $url ) . '" download>' . esc_html( $text ) . $file_html . ' </a></p>';
+				$durl = '<p class="embed_download"><a href="' . esc_url( $url ) . '" download>' . $text . $file_html . ' </a></p>';
 
 			}
 
