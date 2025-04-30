@@ -109,7 +109,7 @@ class Awsm_embed {
 		// Load plugin textdomain.
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 
-		$this->adminfunctions(); 
+		$this->adminfunctions();
 	}
 
 	/**
@@ -598,12 +598,12 @@ class Awsm_embed {
 		$value = preg_replace( '/<[^>]*>/', '', $value );
 		$value = preg_replace( '/on\w+\s*=\s*("[^"]*"|\'[^\']*\'|[^ >]*)/i', '', $value );
 		$value = preg_replace( '/javascript\s*:/i', '', $value );
-		$value = str_replace( ['<', '>', '"', "'"], '', $value );
+		$value = str_replace( array( '<', '>', '"', "'" ), '', $value );
 		$value = sanitize_text_field( $value );
-	
+
 		return $value;
 	}
-	
+
 	/**
 	 * Register Privacy Policy Content
 	 */
