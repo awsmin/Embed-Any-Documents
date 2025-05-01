@@ -105,7 +105,7 @@ class Awsm_embed_Guten_blocks {
 		if ( isset( $atts['text'] ) ) {
 			$atts['text'] = sanitize_text_field( wp_unslash( $atts['text'] ) );
 		}
-		
+
 		if ( ! empty( $shortcode ) ) {
 			$parsed_atts = Awsm_embed::get_shortcode_attrs( $shortcode );
 			$atts['url'] = isset( $parsed_atts['url'] ) ? $parsed_atts['url'] : ''; // url remains static.
