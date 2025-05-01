@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-04-30T14:30:21+00:00\n"
+"POT-Creation-Date: 2025-05-01T14:49:11+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: embed-any-document\n"
@@ -131,20 +131,20 @@ msgstr ""
 msgid "No Url Found"
 msgstr ""
 
-#: awsm-embed.php:619
+#: awsm-embed.php:623
 msgid "The third party tools we are using to display your documents easily may use cookies or similar technologies for technical purposes.These third-party services may set their own cookies on your device to provide additional functionality or integrate certain features.The use of third-party cookies is subject to the respective third party privacy and cookie policies."
 msgstr ""
 
-#: awsm-embed.php:690
+#: awsm-embed.php:694
 msgid "Unsupported file content detected. Sorry, you are not allowed to upload this file."
 msgstr ""
 
-#: awsm-embed.php:704
+#: awsm-embed.php:708
 msgid "Buy Pro Version"
 msgstr ""
 
 #. translators: %1$s: Service provider
-#: awsm-embed.php:707
+#: awsm-embed.php:711
 msgid "Add From %1$s"
 msgstr ""
 
