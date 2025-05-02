@@ -1,9 +1,9 @@
 === Embed Any Document - Embed PDF, Word, PowerPoint and Excel Files  ===
 Contributors: awsmin
-Tags: embed documents, upload pdf, embed ppt, document viewer, pdf viewer, pdf viewer plugin, display pdf, embed pdf, embed pdf in wordpress, word, word viewer, word document, embed word, word plugin, doc, doc viewer, docx, docx viewer, excel, excel plugin, xls, xlsx, spreadsheet, embed spreadsheet, powerpoint, powerpoint viewer, ppt, ppt viewer, pptx, image viewer
+Tags: embed documents, embed ppt, document viewer, pdf viewer, word ppt
 Author URI: http://awsm.in
 Requires at least: 4.0
-Tested up to: 6.7.1
+Tested up to: 6.8.1
 Stable tag: trunk
 License: GPLv2 
 
