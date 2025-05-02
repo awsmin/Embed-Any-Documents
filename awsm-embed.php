@@ -3,7 +3,7 @@
  * Plugin Name: Embed Any Document
  * Plugin URI: http://awsm.in/embed-any-documents
  * Description: Embed Any Document WordPress plugin lets you upload and embed your documents easily in your WordPress website without any additional browser plugins like Flash or Acrobat reader. The plugin lets you choose between Google Docs Viewer and Microsoft Office Online to display your documents.
- * Version: 2.7.6
+ * Version: 2.7.7
  * Author: Awsm Innovations
  * Author URI: https://awsm.in
  * License: GPL V3
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AWSM_EMBED_VERSION' ) ) {
-	define( 'AWSM_EMBED_VERSION', '2.7.6' );
+	define( 'AWSM_EMBED_VERSION', '2.7.7' );
 }
 
 /**
@@ -126,7 +126,9 @@ class Awsm_embed {
 	 * @since 2.2.3
 	 */
 	public function load_textdomain() {
-		load_plugin_textdomain( 'embed-any-document', false, $this->plugin_base . '/language/' );
+		if ( version_compare( get_bloginfo( 'version' ), '6.8', '<' ) ) {
+			load_plugin_textdomain( 'embed-any-document', false, $this->plugin_base . '/language/' );
+		}
 	}
 
 	/**
@@ -464,7 +466,11 @@ class Awsm_embed {
 				if ( $filesize ) {
 					$file_html = ' [' . $filesize . ']';
 				}
-				$durl = '<p class="embed_download"><a href="' . esc_url( $url ) . '" download >' . $shortcode_atts['text'] . $file_html . ' </a></p>';
+
+				$text = isset( $shortcode_atts['text'] ) ? esc_attr( $shortcode_atts['text'] ) : 'Download';
+
+				$durl = '<p class="embed_download"><a href="' . esc_url( $url ) . '" download>' . $text . $file_html . ' </a></p>';
+
 			}
 
 			if ( $shortcode_atts['cache'] === 'off' && $viewer === 'google' ) {
@@ -582,8 +588,28 @@ class Awsm_embed {
 		register_setting( 'ead-settings-group', 'ead_height', array( $this, 'sanitize_dims' ) );
 		register_setting( 'ead-settings-group', 'ead_provider' );
 		register_setting( 'ead-settings-group', 'ead_download' );
-		register_setting( 'ead-settings-group', 'ead_text' );
+		register_setting(
+			'ead-settings-group',
+			'ead_text',
+			array(
+				'sanitize_callback' => function( $value ) {
+					return sanitize_text_field( wp_unslash( $value ) );
+				},
+			)
+		);
 		register_setting( 'ead-settings-group', 'ead_mediainsert' );
+	}
+
+	public function ead_sanitize_strict_text( $value ) {
+		$value = html_entity_decode( $value, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+		$value = preg_replace( '/<script\b[^>]*>(.*?)<\/script>/is', '', $value );
+		$value = preg_replace( '/<[^>]*>/', '', $value );
+		$value = preg_replace( '/on\w+\s*=\s*("[^"]*"|\'[^\']*\'|[^ >]*)/i', '', $value );
+		$value = preg_replace( '/javascript\s*:/i', '', $value );
+		$value = str_replace( array( '<', '>', '"', "'" ), '', $value );
+		$value = sanitize_text_field( $value );
+
+		return $value;
 	}
 
 	/**

@@ -101,6 +101,11 @@ class Awsm_embed_Guten_blocks {
 		$class_name    = isset( $atts['className'] ) ? $atts['className'] : '';
 		$shortcode     = isset( $atts['shortcode'] ) ? $atts['shortcode'] : '';
 		$atts['cache'] = isset( $atts['cache'] ) && $atts['cache'] == false ? 'off' : 'on';
+
+		if ( isset( $atts['text'] ) ) {
+			$atts['text'] = sanitize_text_field( wp_unslash( $atts['text'] ) );
+		}
+
 		if ( ! empty( $shortcode ) ) {
 			$parsed_atts = Awsm_embed::get_shortcode_attrs( $shortcode );
 			$atts['url'] = isset( $parsed_atts['url'] ) ? $parsed_atts['url'] : ''; // url remains static.
