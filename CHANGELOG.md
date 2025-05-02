@@ -1,5 +1,5 @@
 ## Changelog
-### V 2.7.7 - 2025-05-01
+### V 2.7.7 - 2025-05-02
 * Vulnerbility fix.
 * Corrected load_plugin_textdomain() for compatibility with WP 6.8+.
 * Code improvements.
