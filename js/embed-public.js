@@ -36,12 +36,18 @@ jQuery(function($) {
 		var $iframe = $elem.find('.ead-iframe');
 		var src = $elem.data('pdfSrc');
 		var viewer = $elem.data('viewer');
-		viewer = typeof viewer !== 'undefined' && src.length > 0 && viewer.length > 0 ? viewer : false;
+
+		if (typeof src !== 'string' || !/^https?:\/\//i.test(src)) {
+			return;
+		}
+
+		viewer = (typeof viewer !== 'undefined' && src.length > 0 && viewer.length > 0) ? viewer : false;
 		var isBuiltInViewer = 'pdfjs' in eadPublic && eadPublic.pdfjs.length > 0 && viewer === 'built-in';
+
 		if (viewer && (viewer === 'browser' || isBuiltInViewer)) {
 			if (PDFObject.supportsPDFs || isBuiltInViewer) {
 				var options = {};
-				if (! isBuiltInViewer) {
+				if (!isBuiltInViewer) {
 					options = {
 						width: $iframe.css('width'),
 						height: $iframe.css('height')
@@ -53,7 +59,11 @@ jQuery(function($) {
 					};
 				}
 
-				PDFObject.embed(src, $elem, options);
+				try {
+					PDFObject.embed(src, $elem[0], options);
+				} catch (e) {
+					console.error('PDFObject failed to embed:', e);
+				}
 			} else {
 				$iframe.css('visibility', 'visible');
 			}
