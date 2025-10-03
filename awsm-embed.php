@@ -3,7 +3,7 @@
  * Plugin Name: Embed Any Document
  * Plugin URI: http://awsm.in/embed-any-documents
  * Description: Embed Any Document WordPress plugin lets you upload and embed your documents easily in your WordPress website without any additional browser plugins like Flash or Acrobat reader. The plugin lets you choose between Google Docs Viewer and Microsoft Office Online to display your documents.
- * Version: 2.7.7
+ * Version: 2.7.8
  * Author: Awsm Innovations
  * Author URI: https://awsm.in
  * License: GPL V3
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AWSM_EMBED_VERSION' ) ) {
-	define( 'AWSM_EMBED_VERSION', '2.7.7' );
+	define( 'AWSM_EMBED_VERSION', '2.7.8' );
 }
 
 /**
@@ -101,6 +101,8 @@ class Awsm_embed {
 		add_action( 'media_buttons', array( $this, 'embedbutton' ), 1000 );
 
 		add_shortcode( 'embeddoc', array( $this, 'embed_shortcode' ) );
+
+		add_filter( 'the_content', array( $this, 'sanitize_pdf_src' ) );
 
 		// Initialize block.
 		include_once $this->plugin_path . 'blocks/document.php';
@@ -558,6 +560,31 @@ class Awsm_embed {
 		$embed = apply_filters( 'awsm_ead_content', $embed, $shortcode_atts );
 
 		return $embed;
+	}
+
+	public function sanitize_pdf_src( $content ) {
+		$pattern = '/(<div[^>]*class=["\']?ead-document[^>]*data-pdf-src=)(["\'])(.*?)\2([^>]*>)/i';
+
+		$content = preg_replace_callback(
+			$pattern,
+			function ( $matches ) {
+				$prefix = $matches[1];
+				$quote  = $matches[2];
+				$src    = $matches[3];
+				$suffix = $matches[4];
+
+				if ( ! preg_match( '#^https?://#i', $src ) ) {
+					$clean_src = '';
+				} else {
+					$clean_src = esc_url_raw( $src );
+				}
+
+				return $prefix . $quote . $clean_src . $quote . $suffix;
+			},
+			$content
+		);
+
+		return $content;
 	}
 
 	/**

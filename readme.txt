@@ -3,7 +3,7 @@ Contributors: awsmin
 Tags: embed documents, embed ppt, document viewer, pdf viewer, word ppt
 Author URI: http://awsm.in
 Requires at least: 4.0
-Tested up to: 6.8.1
+Tested up to: 6.8.2
 Stable tag: trunk
 License: GPLv2 
 
@@ -112,6 +112,9 @@ The viewers (Google Docs Viewer and Microsoft Office Online) do not support loca
 Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
+
+= V 2.7.8 - 2025-09-30 =
+* FIX: Security vulnerability in PDF embed sanitized.
 
 = V 2.7.7 - 2025-05-02 =
 * Vulnerbility fix.
