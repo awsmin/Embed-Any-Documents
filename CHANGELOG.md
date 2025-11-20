@@ -1,9 +1,13 @@
 ## Changelog
+### V 2.7.9 - 2025-11-20
+* Vulnerability fix.
+* Code improvements.
+
 ### V 2.7.8 - 2025-09-30
 * FIX: Security vulnerability in PDF embed sanitized.
 
 ### V 2.7.7 - 2025-05-02
-* Vulnerbility fix.
+* Vulnerability fix.
 * Corrected load_plugin_textdomain() for compatibility with WP 6.8+.
 * Code improvements.
 
