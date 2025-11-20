@@ -113,6 +113,9 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
 
+= V 2.7.9 - 2025-11-20 =
+* FIX: Vulnerability fix.
+
 = V 2.7.8 - 2025-09-30 =
 * FIX: Security vulnerability in PDF embed sanitized.
 
@@ -132,14 +135,10 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 * Added: Cookie Policy section.
 * Code improvements.
 
-= V 2.7.3 - 2023-07-12 =
-* Improved security.
-* Code improvements.
-
 [See changelog of previous versions](https://raw.githubusercontent.com/awsmin/Embed-Any-Documents/master/CHANGELOG.md)
 
 == Upgrade Notice ==
 
-= 2.7.6 =
-Improved security and code improvements.
+= 2.7.9  =
+Vulnerability fix and code improvements.
 

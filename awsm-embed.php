@@ -3,7 +3,7 @@
  * Plugin Name: Embed Any Document
  * Plugin URI: http://awsm.in/embed-any-documents
  * Description: Embed Any Document WordPress plugin lets you upload and embed your documents easily in your WordPress website without any additional browser plugins like Flash or Acrobat reader. The plugin lets you choose between Google Docs Viewer and Microsoft Office Online to display your documents.
- * Version: 2.7.8
+ * Version: 2.7.9
  * Author: Awsm Innovations
  * Author URI: https://awsm.in
  * License: GPL V3
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AWSM_EMBED_VERSION' ) ) {
-	define( 'AWSM_EMBED_VERSION', '2.7.8' );
+	define( 'AWSM_EMBED_VERSION', '2.7.9' );
 }
 
 /**
@@ -562,7 +562,7 @@ class Awsm_embed {
 		return $embed;
 	}
 
-	public function sanitize_pdf_src( $content ) {
+	/* public function sanitize_pdf_src( $content ) {
 		$pattern = '/(<div[^>]*class=["\']?ead-document[^>]*data-pdf-src=)(["\'])(.*?)\2([^>]*>)/i';
 
 		$content = preg_replace_callback(
@@ -585,6 +585,97 @@ class Awsm_embed {
 		);
 
 		return $content;
+	}  */
+
+	public function sanitize_pdf_src( $content ) {
+		// If no content, nothing to sanitize.
+		if ( empty( $content ) ) {
+			return $content;
+		}
+
+		libxml_use_internal_errors( true );
+
+		// Wrap content to ensure proper parsing.
+		$dom = new DOMDocument();
+		$loaded = $dom->loadHTML(
+			mb_convert_encoding( '<div id="__wrapper__">' . $content . '</div>', 'HTML-ENTITIES', 'UTF-8' ),
+			LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
+		);
+
+		if ( ! $loaded ) {
+			libxml_clear_errors();
+			return $content; // Fail-safe: return original content
+		}
+
+		$xpath = new DOMXPath( $dom );
+
+		// Target: <div class="ead-document">
+		$nodes = $xpath->query(
+			'//div[contains(concat(" ", normalize-space(@class), " "), " ead-document ")]'
+		);
+
+		foreach ( $nodes as $node ) {
+
+			// --- STEP 1: Sanitize data-pdf-src attribute ---
+			if ( $node->hasAttribute( 'data-pdf-src' ) ) {
+				$raw_src = trim( $node->getAttribute( 'data-pdf-src' ) );
+
+				// Only allow https/http URLs
+				if ( preg_match( '#^https?://#i', $raw_src ) ) {
+					$clean_src = esc_url_raw( $raw_src );
+					if ( empty( $clean_src ) ) {
+						$clean_src = '';
+					}
+				} else {
+					$clean_src = ''; // Drop invalid schemes
+				}
+
+				$node->setAttribute( 'data-pdf-src', $clean_src );
+			}
+
+			// --- STEP 2: Remove dangerous attributes (on*, javascript:, vbscript:, data:) ---
+			$attrs = [];
+			foreach ( iterator_to_array( $node->attributes ) as $attr ) {
+				$attrs[] = [ 'name' => $attr->name, 'value' => $attr->value ];
+			}
+
+			foreach ( $attrs as $attr ) {
+				$name  = strtolower( $attr['name'] );
+				$value = strtolower( trim( $attr['value'] ) );
+
+				// Remove JS event attributes like onclick, onerror, etc.
+				if ( strpos( $name, 'on' ) === 0 ) {
+					$node->removeAttribute( $attr['name'] );
+					continue;
+				}
+
+				// Remove JavaScript/VBScript/data URI payloads
+				if (
+					strpos( $value, 'javascript:' ) === 0 ||
+					strpos( $value, 'vbscript:' ) === 0 ||
+					strpos( $value, 'data:' ) === 0
+				) {
+					$node->removeAttribute( $attr['name'] );
+					continue;
+				}
+			}
+		}
+
+		// Extract inner HTML from the wrapper
+		$wrapper = $dom->getElementById( '__wrapper__' );
+
+		if ( ! $wrapper ) {
+			libxml_clear_errors();
+			return $content; // Fail-safe
+		}
+
+		$sanitized = '';
+		foreach ( $wrapper->childNodes as $child ) {
+			$sanitized .= $dom->saveHTML( $child );
+		}
+
+		libxml_clear_errors();
+		return $sanitized;
 	}
 
 	/**
