@@ -562,120 +562,100 @@ class Awsm_embed {
 		return $embed;
 	}
 
-	/* public function sanitize_pdf_src( $content ) {
-		$pattern = '/(<div[^>]*class=["\']?ead-document[^>]*data-pdf-src=)(["\'])(.*?)\2([^>]*>)/i';
+	private function get_allowed_html_tags() {
 
-		$content = preg_replace_callback(
-			$pattern,
-			function ( $matches ) {
-				$prefix = $matches[1];
-				$quote  = $matches[2];
-				$src    = $matches[3];
-				$suffix = $matches[4];
-
-				if ( ! preg_match( '#^https?://#i', $src ) ) {
-					$clean_src = '';
-				} else {
-					$clean_src = esc_url_raw( $src );
-				}
-
-				return $prefix . $quote . $clean_src . $quote . $suffix;
-			},
-			$content
+		$shortcode_keys = array(
+			'url',
+			'drive',
+			'id',
+			'width',
+			'height',
+			'language',
+			'text',
+			'viewer',
+			'download',
+			'cache',
+			'boxtheme',
 		);
 
-		return $content;
-	}  */
+		// Build data-* whitelist from shortcode attributes.
+		$data_attrs = array();
+		foreach ( $shortcode_keys as $key ) {
+			$data_attrs[ 'data-' . $key ] = true;
+		}
+
+		// For viewer URL.
+		$data_attrs['data-pdf-src'] = true;
+
+		return array(
+
+			'div' => array_merge(
+				array(
+					'class' => true,
+					'style' => true,
+					'id'    => true,
+				),
+				$data_attrs
+			),
+
+			'iframe' => array(
+				'src'    => true,
+				'style'  => true,
+				'width'  => true,
+				'height' => true,
+				'allow'  => true,
+				'title'  => true,
+				'class'  => true,
+			),
+
+			'a' => array(
+				'href'        => true,
+				'class'       => true,
+				'download'    => true,
+				'data-height' => true,
+				'data-width'  => true,
+			),
+
+			'span' => array(
+				'class' => true,
+				'style' => true,
+			),
+
+			'p' => array(
+				'class' => true,
+				'style' => true,
+			),
+		);
+	}
 
 	public function sanitize_pdf_src( $content ) {
-		// If no content, nothing to sanitize.
+
 		if ( empty( $content ) ) {
 			return $content;
 		}
 
-		libxml_use_internal_errors( true );
+		// Allowed HTML tags and attributes.
+		$allowed = $this->get_allowed_html_tags();
 
-		// Wrap content to ensure proper parsing.
-		$dom = new DOMDocument();
-		$loaded = $dom->loadHTML(
-			mb_convert_encoding( '<div id="__wrapper__">' . $content . '</div>', 'HTML-ENTITIES', 'UTF-8' ),
-			LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
+		// Clean HTML using kses rules.
+		$clean = wp_kses( $content, $allowed );
+
+		// Validate only the data-pdf-src attribute.
+		$clean = preg_replace_callback(
+			'/data-pdf-src=["\']([^"\']+)["\']/',
+			function ( $m ) {
+				$url = $m[1];
+
+				if ( preg_match( '#^https?://#i', $url ) ) {
+					return 'data-pdf-src="' . esc_url_raw( $url ) . '"';
+				}
+
+				return 'data-pdf-src=""';
+			},
+			$clean
 		);
 
-		if ( ! $loaded ) {
-			libxml_clear_errors();
-			return $content; // Fail-safe: return original content
-		}
-
-		$xpath = new DOMXPath( $dom );
-
-		// Target: <div class="ead-document">
-		$nodes = $xpath->query(
-			'//div[contains(concat(" ", normalize-space(@class), " "), " ead-document ")]'
-		);
-
-		foreach ( $nodes as $node ) {
-
-			// --- STEP 1: Sanitize data-pdf-src attribute ---
-			if ( $node->hasAttribute( 'data-pdf-src' ) ) {
-				$raw_src = trim( $node->getAttribute( 'data-pdf-src' ) );
-
-				// Only allow https/http URLs
-				if ( preg_match( '#^https?://#i', $raw_src ) ) {
-					$clean_src = esc_url_raw( $raw_src );
-					if ( empty( $clean_src ) ) {
-						$clean_src = '';
-					}
-				} else {
-					$clean_src = ''; // Drop invalid schemes
-				}
-
-				$node->setAttribute( 'data-pdf-src', $clean_src );
-			}
-
-			// --- STEP 2: Remove dangerous attributes (on*, javascript:, vbscript:, data:) ---
-			$attrs = [];
-			foreach ( iterator_to_array( $node->attributes ) as $attr ) {
-				$attrs[] = [ 'name' => $attr->name, 'value' => $attr->value ];
-			}
-
-			foreach ( $attrs as $attr ) {
-				$name  = strtolower( $attr['name'] );
-				$value = strtolower( trim( $attr['value'] ) );
-
-				// Remove JS event attributes like onclick, onerror, etc.
-				if ( strpos( $name, 'on' ) === 0 ) {
-					$node->removeAttribute( $attr['name'] );
-					continue;
-				}
-
-				// Remove JavaScript/VBScript/data URI payloads
-				if (
-					strpos( $value, 'javascript:' ) === 0 ||
-					strpos( $value, 'vbscript:' ) === 0 ||
-					strpos( $value, 'data:' ) === 0
-				) {
-					$node->removeAttribute( $attr['name'] );
-					continue;
-				}
-			}
-		}
-
-		// Extract inner HTML from the wrapper
-		$wrapper = $dom->getElementById( '__wrapper__' );
-
-		if ( ! $wrapper ) {
-			libxml_clear_errors();
-			return $content; // Fail-safe
-		}
-
-		$sanitized = '';
-		foreach ( $wrapper->childNodes as $child ) {
-			$sanitized .= $dom->saveHTML( $child );
-		}
-
-		libxml_clear_errors();
-		return $sanitized;
+		return $clean;
 	}
 
 	/**
