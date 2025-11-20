@@ -3,7 +3,7 @@ Contributors: awsmin
 Tags: embed documents, embed ppt, document viewer, pdf viewer, word ppt
 Author URI: http://awsm.in
 Requires at least: 4.0
-Tested up to: 6.8.2
+Tested up to: 6.8.3
 Stable tag: trunk
 License: GPLv2 
 
