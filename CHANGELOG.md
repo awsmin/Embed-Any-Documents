@@ -1,4 +1,7 @@
 ## Changelog
+### V 2.7.9 - 2025-11-20
+* FIX: Vulnerability fixes and code improvements.
+
 ### V 2.7.8 - 2025-09-30
 * FIX: Security vulnerability in PDF embed sanitized.
 
