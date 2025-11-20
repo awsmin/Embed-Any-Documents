@@ -562,6 +562,11 @@ class Awsm_embed {
 		return $embed;
 	}
 
+	/**
+	 * Returns allowed HTML tags and attributes.
+	 *
+	 * @return array
+	 */
 	private function get_allowed_html_tags() {
 
 		$shortcode_keys = array(
@@ -578,18 +583,18 @@ class Awsm_embed {
 			'boxtheme',
 		);
 
-		// Convert shortcode attributes to allowed data-* attributes
+		// Convert shortcode attributes to allowed data-* attributes.
 		$data_attrs = array();
 		foreach ( $shortcode_keys as $key ) {
 			$data_attrs[ 'data-' . $key ] = true;
 		}
 
-		// Special PDF attribute
+		// Special PDF attribute.
 		$data_attrs['data-pdf-src'] = true;
 
 		return array(
 
-			'div' => array_merge(
+			'div'    => array_merge(
 				array(
 					'class' => true,
 					'style' => true,
@@ -608,14 +613,14 @@ class Awsm_embed {
 				'class'  => true,
 			),
 
-			'embed' => array(
+			'embed'  => array(
 				'src'   => true,
 				'type'  => true,
 				'style' => true,
 				'class' => true,
 			),
 
-			'a' => array(
+			'a'      => array(
 				'href'        => true,
 				'class'       => true,
 				'download'    => true,
@@ -623,18 +628,24 @@ class Awsm_embed {
 				'data-width'  => true,
 			),
 
-			'span' => array(
+			'span'   => array(
 				'class' => true,
 				'style' => true,
 			),
 
-			'p' => array(
+			'p'      => array(
 				'class' => true,
 				'style' => true,
 			),
 		);
 	}
 
+	/**
+	 * Sanitizes the pdf-src URL.
+	 *
+	 * @param string $url
+	 * @return string
+	 */
 	public function sanitize_pdf_src( $content ) {
 
 		if ( empty( $content ) ) {
