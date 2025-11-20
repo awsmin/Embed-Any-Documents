@@ -578,13 +578,13 @@ class Awsm_embed {
 			'boxtheme',
 		);
 
-		// Build data-* whitelist from shortcode attributes.
+		// Convert shortcode attributes to allowed data-* attributes
 		$data_attrs = array();
 		foreach ( $shortcode_keys as $key ) {
 			$data_attrs[ 'data-' . $key ] = true;
 		}
 
-		// For viewer URL.
+		// Special PDF attribute
 		$data_attrs['data-pdf-src'] = true;
 
 		return array(
@@ -606,6 +606,13 @@ class Awsm_embed {
 				'allow'  => true,
 				'title'  => true,
 				'class'  => true,
+			),
+
+			'embed' => array(
+				'src'   => true,
+				'type'  => true,
+				'style' => true,
+				'class' => true,
 			),
 
 			'a' => array(
