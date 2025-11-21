@@ -3,7 +3,7 @@
  * Plugin Name: Embed Any Document
  * Plugin URI: http://awsm.in/embed-any-documents
  * Description: Embed Any Document WordPress plugin lets you upload and embed your documents easily in your WordPress website without any additional browser plugins like Flash or Acrobat reader. The plugin lets you choose between Google Docs Viewer and Microsoft Office Online to display your documents.
- * Version: 2.7.9
+ * Version: 2.7.8
  * Author: Awsm Innovations
  * Author URI: https://awsm.in
  * License: GPL V3
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AWSM_EMBED_VERSION' ) ) {
-	define( 'AWSM_EMBED_VERSION', '2.7.9' );
+	define( 'AWSM_EMBED_VERSION', '2.7.8' );
 }
 
 /**
@@ -562,119 +562,31 @@ class Awsm_embed {
 		return $embed;
 	}
 
-	/**
-	 * Returns allowed HTML tags and attributes.
-	 *
-	 * @return array
-	 */
-	private function get_allowed_html_tags() {
-
-		$shortcode_keys = array(
-			'url',
-			'drive',
-			'id',
-			'width',
-			'height',
-			'language',
-			'text',
-			'viewer',
-			'download',
-			'cache',
-			'boxtheme',
-		);
-
-		// Convert shortcode attributes to allowed data-* attributes.
-		$data_attrs = array();
-		foreach ( $shortcode_keys as $key ) {
-			$data_attrs[ 'data-' . $key ] = true;
-		}
-
-		// Special PDF attribute.
-		$data_attrs['data-pdf-src'] = true;
-
-		return array(
-
-			'div'    => array_merge(
-				array(
-					'class' => true,
-					'style' => true,
-					'id'    => true,
-				),
-				$data_attrs
-			),
-
-			'iframe' => array(
-				'src'    => true,
-				'style'  => true,
-				'width'  => true,
-				'height' => true,
-				'allow'  => true,
-				'title'  => true,
-				'class'  => true,
-			),
-
-			'embed'  => array(
-				'src'   => true,
-				'type'  => true,
-				'style' => true,
-				'class' => true,
-			),
-
-			'a'      => array(
-				'href'        => true,
-				'class'       => true,
-				'download'    => true,
-				'data-height' => true,
-				'data-width'  => true,
-			),
-
-			'span'   => array(
-				'class' => true,
-				'style' => true,
-			),
-
-			'p'      => array(
-				'class' => true,
-				'style' => true,
-			),
-		);
-	}
-
-	/**
-	 * Sanitizes the pdf-src URL.
-	 *
-	 * @param string $url
-	 * @return string
-	 */
 	public function sanitize_pdf_src( $content ) {
+		$pattern = '/(<div[^>]*class=["\']?ead-document[^>]*data-pdf-src=)(["\'])(.*?)\2([^>]*>)/i';
 
-		if ( empty( $content ) ) {
-			return $content;
-		}
+		$content = preg_replace_callback(
+			$pattern,
+			function ( $matches ) {
+				$prefix = $matches[1];
+				$quote  = $matches[2];
+				$src    = $matches[3];
+				$suffix = $matches[4];
 
-		// Allowed HTML tags and attributes.
-		$allowed = $this->get_allowed_html_tags();
-
-		// Clean HTML using kses rules.
-		$clean = wp_kses( $content, $allowed );
-
-		// Validate only the data-pdf-src attribute.
-		$clean = preg_replace_callback(
-			'/data-pdf-src=["\']([^"\']+)["\']/',
-			function ( $m ) {
-				$url = $m[1];
-
-				if ( preg_match( '#^https?://#i', $url ) ) {
-					return 'data-pdf-src="' . esc_url_raw( $url ) . '"';
+				if ( ! preg_match( '#^https?://#i', $src ) ) {
+					$clean_src = '';
+				} else {
+					$clean_src = esc_url_raw( $src );
 				}
 
-				return 'data-pdf-src=""';
+				return $prefix . $quote . $clean_src . $quote . $suffix;
 			},
-			$clean
+			$content
 		);
 
-		return $clean;
+		return $content;
 	}
+
 
 	/**
 	 * Admin menu setup
