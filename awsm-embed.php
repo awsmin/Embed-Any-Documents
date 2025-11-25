@@ -3,7 +3,7 @@
  * Plugin Name: Embed Any Document
  * Plugin URI: http://awsm.in/embed-any-documents
  * Description: Embed Any Document WordPress plugin lets you upload and embed your documents easily in your WordPress website without any additional browser plugins like Flash or Acrobat reader. The plugin lets you choose between Google Docs Viewer and Microsoft Office Online to display your documents.
- * Version: 2.7.8
+ * Version: 2.7.11
  * Author: Awsm Innovations
  * Author URI: https://awsm.in
  * License: GPL V3
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AWSM_EMBED_VERSION' ) ) {
-	define( 'AWSM_EMBED_VERSION', '2.7.8' );
+	define( 'AWSM_EMBED_VERSION', '2.7.11' );
 }
 
 /**
@@ -562,97 +562,78 @@ class Awsm_embed {
 		return $embed;
 	}
 
-	public function sanitize_pdf_src( $content ) {
+	public function sanitize_pdf_src( $content ) { 
+		$pattern = '/(<div[^>]*?class=["\']?ead-document[^>]*?data-pdf-src=)(["\'])(.*?)\2([^>]*>)/i';
 
-		// Skip if the EAD wrapper is not present
-		if ( strpos( $content, 'ead-document' ) === false ) {
-			return $content;
-		}
+		return preg_replace_callback(
+			$pattern,
+			function( $matches ) { 
 
-		// Match any <div ...> that contains class="...ead-document..."
-		$pattern = '/<div\b(?=[^>]*\bclass=["\'][^"\']*\bead-document\b[^"\']*["\'])[^>]*>/i';
+				$prefix = $matches[1];  
+				$quote  = $matches[2];
+				$src    = $matches[3];
+				$suffix = $matches[4];
 
-		return preg_replace_callback( $pattern, function( $matches ) {
-
-			$full_tag = $matches[0];
-
-			// Extract attributes only (remove <div  and >)
-			$attr_str = trim( substr( $full_tag, 4, -1 ) );
-
-			// Quick check to ensure class="...ead-document..." exists
-			if ( stripos( $attr_str, 'ead-document' ) === false ) {
-				return $full_tag;
-			}
-
-			// Parse attributes safely
-			$attributes = wp_kses_hair( $attr_str, wp_allowed_protocols() );
-
-			// Attribute block rules
-			$dangerous_patterns = array(
-				'/^on/i',        // onclick, onfocus, onload, etc.
-				'/^formaction$/i',
-				'/^action$/i',
-			);
-
-			$blocked_attrs = array(
-				'autofocus',
-				'autoplay',
-			);
-
-			$new_attr_str = '';
-
-			foreach ( $attributes as $name => $attr ) {
-
-				$name_lower = strtolower( $name );
-
-				// Block event handlers
-				$is_dangerous = false;
-				foreach ( $dangerous_patterns as $pattern ) {
-					if ( preg_match( $pattern, $name_lower ) ) {
-						$is_dangerous = true;
-						break;
-					}
-				}
-				if ( $is_dangerous ) {
-					continue;
-				}
-
-				// Block specific attributes
-				if ( in_array( $name_lower, $blocked_attrs, true ) ) {
-					continue;
-				}
-
-				$value = $attr['value'];
-
-				// SANITIZE data-pdf-src
-				if ( 'data-pdf-src' === $name_lower ) {
-
-					// Simple URL validation (http or https)
-					if ( ! preg_match( '#^https?://#i', $value ) ) {
-						// Invalid → remove the attribute
-						continue;
-					}
-
-					// Sanitize valid URL
-					$value = esc_url_raw( $value );
-				}
-
-				// Sanitize style attribute safely
-				if ( 'style' === $name_lower ) {
-					$value = safecss_filter_attr( $value );
-				}
-
-				// Rebuild attribute
-				if ( isset( $attr['vless'] ) && 'y' === $attr['vless'] ) {
-					$new_attr_str .= ' ' . $name_lower;
+				// ---------------------------------------------------
+				// 1) Sanitize data-pdf-src
+				// ---------------------------------------------------
+				if ( ! preg_match( '#^https?://#i', $src ) ) {
+					$clean_src = '';
 				} else {
-					$new_attr_str .= ' ' . $name_lower . '="' . esc_attr( $value ) . '"';
+					$clean_src = esc_url_raw( $src );
 				}
-			}
 
-			return '<div' . $new_attr_str . '>';
+				// ---------------------------------------------------
+				// Function to remove dangerous attributes
+				// ---------------------------------------------------
+				$clean_attr_block = function( $attr_block ) {
 
-		}, $content );
+					// remove on* js events (onclick, onload…)
+					$attr_block = preg_replace(
+						'/\s+on[a-z]+\s*=\s*(["\']).*?\1/i',
+						'',
+						$attr_block
+					);
+
+					// remove action / formaction
+					$attr_block = preg_replace(
+						'/\s+(action|formaction)\s*=\s*(["\']).*?\2/i',
+						'',
+						$attr_block
+					);
+
+					// remove dangerous boolean attributes
+					$attr_block = preg_replace(
+						'/\s+(autofocus|autoplay)(?=\s|>)/i',
+						'',
+						$attr_block
+					);
+
+					// sanitize style=""
+					$attr_block = preg_replace_callback(
+						'/\sstyle=(["\'])(.*?)\1/i',
+						function( $m ) {
+							return ' style="' . safecss_filter_attr( $m[2] ) . '"';
+						},
+						$attr_block
+					);
+
+					return $attr_block;
+				};
+
+				// ---------------------------------------------------
+				// 2) Sanitize both PREFIX + SUFFIX
+				// ---------------------------------------------------
+				$prefix = $clean_attr_block( $prefix );
+				$suffix = $clean_attr_block( $suffix );
+
+				// ---------------------------------------------------
+				// 3) Reconstruct safe output
+				// ---------------------------------------------------
+				return $prefix . $quote . $clean_src . $quote . $suffix;
+			},
+			$content
+		);
 	}
 
 	/**
