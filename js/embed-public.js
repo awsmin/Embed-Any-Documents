@@ -70,7 +70,7 @@ jQuery(function($) {
 		}
 	});
 
-    $(document).on('click', '.ead-reload-btn', function(e) {
+    $(document).on('click', '.ead-reload-btn', function(e) { 
         e.preventDefault();
         var $wrapper = $(this).parents('.ead-document');
         var iframeSrc = $wrapper.find('.ead-iframe').attr('src');
