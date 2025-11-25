@@ -563,6 +563,8 @@ class Awsm_embed {
 	}
 
 	public function sanitize_pdf_src( $content ) { 
+		if ( stripos( $content, 'ead-document' ) === false ) { return $content; }
+		
 		// Match any <div> with class containing 'ead-document'
 		$pattern = '/(<div\b[^>]*?\bclass\s*=\s*["\'][^"\']*\bead-document\b[^"\']*["\'][^>]*>)/is';
 
