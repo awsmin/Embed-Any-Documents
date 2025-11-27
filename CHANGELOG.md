@@ -1,5 +1,5 @@
 ## Changelog
-### V 2.7.11 - 2025-11-26
+### V 2.7.11 - 2025-11-27
 * FIX: Enhanced sanitization of document embed attributes to prevent XSS.
 * Code improvements.
 
