@@ -562,106 +562,124 @@ class Awsm_embed {
 		return $embed;
 	}
 
-	public function sanitize_pdf_src( $content ) { 
-		if ( stripos( $content, 'ead-document' ) === false ) { return $content; }
-		
-		// Match any <div> with class containing 'ead-document'
-		$pattern = '/(<div\b[^>]*?\bclass\s*=\s*["\'][^"\']*\bead-document\b[^"\']*["\'][^>]*>)/is';
+	/**
+	* Returns the allowed HTML tags and attributes for PDF/document embeds.
+	*/
+	protected function get_allowed_pdf_tags() {
+		return [
+			'div' => [
+				'class'           => true,
+				'id'              => true,
+				'style'           => true,
+				'data-pdf-src'    => true,
+				'data-embed-type' => true,
+				'data-viewer'     => true,
+				'role'            => true,
+			],
 
-		return preg_replace_callback(
-			$pattern,
-			function( $matches ) { 
-				$full_tag = $matches[1];
+			'iframe' => [
+				'src'             => true,
+				'width'           => true,
+				'height'          => true,
+				'frameborder'     => true,
+				'allowfullscreen' => true,
+				'allow'           => true,
+				'style'           => true,
+				'class'           => true,
+				'name'            => true,
+				'scrolling'       => true,
+				'marginwidth'     => true,
+				'marginheight'    => true,
+				'title'           => true,
+				'referrerpolicy'  => true,
+				'sandbox'         => true,
+				'loading'         => true,
+			],
 
-				// ---------------------------------------------------
-				// Remove on* js events (onclick, onload, onfocus, etc.)
-				// ---------------------------------------------------
-				$full_tag = preg_replace(
-					'/\s+on\w+\s*=\s*(["\'])[^"\']*\1/i',
-					'',
-					$full_tag
-				);
+			'embed' => [
+				'src'    => true,
+				'type'   => true,
+				'width'  => true,
+				'height' => true,
+				'class'  => true,
+				'style'  => true,
+			],
 
-				// ---------------------------------------------------
-				// Remove action / formaction
-				// ---------------------------------------------------
-				$full_tag = preg_replace(
-					'/\s+(action|formaction)\s*=\s*(["\'])[^"\']*\2/i',
-					'',
-					$full_tag
-				);
+			'p' => [
+				'class' => true,
+				'style' => true,
+			],
 
-				// ---------------------------------------------------
-				// Remove dangerous boolean attributes
-				// ---------------------------------------------------
-				$full_tag = preg_replace(
-					'/\s+(autofocus|autoplay|formnovalidate)(?=\s|>|\/)/i',
-					'',
-					$full_tag
-				);
+			'span' => [
+				'class' => true,
+				'style' => true,
+			],
 
-				// ---------------------------------------------------
-				// Remove tabindex that could be used with autofocus
-				// ---------------------------------------------------
-				$full_tag = preg_replace(
-					'/\s+tabindex\s*=\s*(["\'])[^"\']*\1/i',
-					'',
-					$full_tag
-				);
+			'img' => [
+				'src'      => true,
+				'alt'      => true,
+				'width'    => true,
+				'height'   => true,
+				'class'    => true,
+				'style'    => true,
+				'loading'  => true,
+				'decoding' => true,
+			],
 
-				// ---------------------------------------------------
-				// Sanitize style=""
-				// ---------------------------------------------------
-				$full_tag = preg_replace_callback(
-					'/\s+style\s*=\s*(["\'])([^"\']*)\1/i',
-					function( $m ) {
-						$clean_style = safecss_filter_attr( $m[2] );
-						return $clean_style ? ' style="' . $clean_style . '"' : '';
-					},
-					$full_tag
-				);
+			'a' => [
+				'href'     => true,
+				'class'    => true,
+				'style'    => true,
+				'title'    => true,
+				'target'   => true,
+				'rel'      => true,
+				'download' => true,
+			],
+		];
+	}
 
-				// ---------------------------------------------------
-				// Specifically sanitize data-pdf-src if present
-				// ---------------------------------------------------
-				$full_tag = preg_replace_callback(
-					'/(\s+data-pdf-src\s*=\s*)(["\'])([^"\']*)\2/i',
-					function( $m ) {
-						$prefix = $m[1];
-						$quote = $m[2];
-						$src = $m[3];
+	public function sanitize_pdf_src( $content ) {
+		// Only process if content contains a PDF/document embed
+		if ( stripos( $content, 'ead-document' ) === false ) {
+			return $content;
+		}
 
-						// Only allow http/https URLs
-						if ( ! preg_match( '#^https?://#i', $src ) ) {
-							$clean_src = '';
-						} else {
-							$clean_src = esc_url_raw( $src );
-						}
+		// -----------------------------------------------------------------
+		// Get allowed HTML tags and attributes
+		// -----------------------------------------------------------------
+		$allowed_tags = $this->get_allowed_pdf_tags();
 
-						return $prefix . $quote . $clean_src . $quote;
-					},
-					$full_tag
-				);
+		// -----------------------------------------------------------------
+		// Sanitize main content with wp_kses
+		// -----------------------------------------------------------------
+		$sanitized_content = wp_kses( $content, $allowed_tags );
 
-				// ---------------------------------------------------
-				// Remove any malformed attributes (like class="ead-document=a")
-				// ---------------------------------------------------
-				$full_tag = preg_replace_callback(
-					'/\bclass\s*=\s*(["\'])([^"\']*=+[^"\']*)\1/i',
-					function( $m ) {
-						$quote = $m[1];
-						// Keep only the part before any '=' character
-						$class_value = preg_replace('/=.*$/', '', $m[2]);
-						$class_value = trim( $class_value );
-						return $class_value ? 'class=' . $quote . esc_attr( $class_value ) . $quote : '';
-					},
-					$full_tag
-				);
-
-				return $full_tag;
+		// -----------------------------------------------------------------
+		// Sanitize data-pdf-src specifically (allow only http/https)
+		// -----------------------------------------------------------------
+		$sanitized_content = preg_replace_callback(
+			'/\bdata-pdf-src\s*=\s*["\']([^"\']+)["\']/i',
+			function( $matches ) {
+				$url = $matches[1];
+				$clean_url = preg_match( '#^https?://#i', $url ) ? esc_url_raw( $url ) : '';
+				return 'data-pdf-src="' . $clean_url . '"';
 			},
-			$content
+			$sanitized_content
 		);
+
+		// -----------------------------------------------------------------
+		// Sanitize inline style attributes using safecss_filter_attr
+		// -----------------------------------------------------------------
+		$sanitized_content = preg_replace_callback(
+			'/\bstyle\s*=\s*["\']([^"\']*)["\']/i',
+			function( $matches ) {
+				$clean_style = safecss_filter_attr( $matches[1] );
+				return $clean_style ? 'style="' . $clean_style . '"' : '';
+			},
+			$sanitized_content
+		);
+
+		return $sanitized_content;
 	}
 
 	/**
