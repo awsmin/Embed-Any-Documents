@@ -392,7 +392,10 @@ class Awsm_embed {
 	}
 
 	/**
-	 * Sanitizes the ead-document wrapper to remove unsafe attributes and prevent XSS. 
+	 * Shortcode Functionality.
+	 *
+	 * @param array $atts The shortcode attributes.
+	 * @return string Shortcode output content.
 	 */
 	public function embed_shortcode( $atts ) {
 		$embed            = '';
@@ -560,10 +563,7 @@ class Awsm_embed {
 	}
 
 	/**
-	 * Shortcode Functionality.
-	 *
-	 * @param array $atts The shortcode attributes.
-	 * @return string Shortcode output content.
+	 * Sanitizes the ead-document wrapper to remove unsafe attributes and prevent XSS. 
 	 */
 	public function sanitize_pdf_src( $content ) { 
 		if ( stripos( $content, 'ead-document' ) === false ) { return $content; }
