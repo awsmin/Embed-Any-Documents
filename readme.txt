@@ -136,6 +136,6 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Upgrade Notice ==
 
-= 2.7.9  =
-Vulnerability fix and code improvements.
+= 2.7.11  =
+Enhanced sanitization of document embed attributes to prevent XSS and code improvements.
 

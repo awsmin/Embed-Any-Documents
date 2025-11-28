@@ -563,17 +563,21 @@ class Awsm_embed {
 	}
 
 	/**
-	 * Sanitizes the ead-document wrapper to remove unsafe attributes and prevent XSS. 
+	 * Sanitizes the ead-document wrapper to remove unsafe attributes and prevent XSS.
+	 *
+	 * @param string $content The post content being filtered.
+	 * @return string The sanitized post content.
 	 */
-	public function sanitize_pdf_src( $content ) { 
-		if ( stripos( $content, 'ead-document' ) === false ) { return $content; }
-		
-		// Match any <div> with class containing 'ead-document'
+	public function sanitize_pdf_src( $content ) {
+		if ( stripos( $content, 'ead-document' ) === false ) {
+			return $content; }
+
+		// Match any <div> with class containing 'ead-document'.
 		$pattern = '/(<div\b[^>]*?\bclass\s*=\s*["\'][^"\']*\bead-document\b[^"\']*["\'][^>]*>)/is';
 
 		return preg_replace_callback(
 			$pattern,
-			function( $matches ) { 
+			function( $matches ) {
 				$full_tag = $matches[1];
 
 				// ---------------------------------------------------
@@ -631,10 +635,10 @@ class Awsm_embed {
 					'/(\s+data-pdf-src\s*=\s*)(["\'])([^"\']*)\2/i',
 					function( $m ) {
 						$prefix = $m[1];
-						$quote = $m[2];
-						$src = $m[3];
+						$quote  = $m[2];
+						$src    = $m[3];
 
-						// Only allow http/https URLs
+						// Only allow http/https URLs.
 						if ( ! preg_match( '#^https?://#i', $src ) ) {
 							$clean_src = '';
 						} else {
@@ -653,8 +657,8 @@ class Awsm_embed {
 					'/\bclass\s*=\s*(["\'])([^"\']*=+[^"\']*)\1/i',
 					function( $m ) {
 						$quote = $m[1];
-						// Keep only the part before any '=' character
-						$class_value = preg_replace('/=.*$/', '', $m[2]);
+						// Keep only the part before any '=' character.
+						$class_value = preg_replace( '/=.*$/', '', $m[2] );
 						$class_value = trim( $class_value );
 						return $class_value ? 'class=' . $quote . esc_attr( $class_value ) . $quote : '';
 					},
