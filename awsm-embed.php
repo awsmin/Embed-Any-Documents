@@ -3,7 +3,7 @@
  * Plugin Name: Embed Any Document
  * Plugin URI: http://awsm.in/embed-any-documents
  * Description: Embed Any Document WordPress plugin lets you upload and embed your documents easily in your WordPress website without any additional browser plugins like Flash or Acrobat reader. The plugin lets you choose between Google Docs Viewer and Microsoft Office Online to display your documents.
- * Version: 2.7.8
+ * Version: 2.7.11
  * Author: Awsm Innovations
  * Author URI: https://awsm.in
  * License: GPL V3
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'AWSM_EMBED_VERSION' ) ) {
-	define( 'AWSM_EMBED_VERSION', '2.7.8' );
+	define( 'AWSM_EMBED_VERSION', '2.7.11' );
 }
 
 /**
@@ -562,31 +562,114 @@ class Awsm_embed {
 		return $embed;
 	}
 
+	/**
+	 * Sanitizes the ead-document wrapper to remove unsafe attributes and prevent XSS.
+	 *
+	 * @param string $content The post content being filtered.
+	 * @return string The sanitized post content.
+	 */
 	public function sanitize_pdf_src( $content ) {
-		$pattern = '/(<div[^>]*class=["\']?ead-document[^>]*data-pdf-src=)(["\'])(.*?)\2([^>]*>)/i';
+		if ( stripos( $content, 'ead-document' ) === false ) {
+			return $content; }
 
-		$content = preg_replace_callback(
+		// Match any <div> with class containing 'ead-document'.
+		$pattern = '/(<div\b[^>]*?\bclass\s*=\s*["\'][^"\']*\bead-document\b[^"\']*["\'][^>]*>)/is';
+
+		return preg_replace_callback(
 			$pattern,
-			function ( $matches ) {
-				$prefix = $matches[1];
-				$quote  = $matches[2];
-				$src    = $matches[3];
-				$suffix = $matches[4];
+			function( $matches ) {
+				$full_tag = $matches[1];
 
-				if ( ! preg_match( '#^https?://#i', $src ) ) {
-					$clean_src = '';
-				} else {
-					$clean_src = esc_url_raw( $src );
-				}
+				// ---------------------------------------------------
+				// Remove on* js events (onclick, onload, onfocus, etc.)
+				// ---------------------------------------------------
+				$full_tag = preg_replace(
+					'/\s+on\w+\s*=\s*(["\'])[^"\']*\1/i',
+					'',
+					$full_tag
+				);
 
-				return $prefix . $quote . $clean_src . $quote . $suffix;
+				// ---------------------------------------------------
+				// Remove action / formaction
+				// ---------------------------------------------------
+				$full_tag = preg_replace(
+					'/\s+(action|formaction)\s*=\s*(["\'])[^"\']*\2/i',
+					'',
+					$full_tag
+				);
+
+				// ---------------------------------------------------
+				// Remove dangerous boolean attributes
+				// ---------------------------------------------------
+				$full_tag = preg_replace(
+					'/\s+(autofocus|autoplay|formnovalidate)(?=\s|>|\/)/i',
+					'',
+					$full_tag
+				);
+
+				// ---------------------------------------------------
+				// Remove tabindex that could be used with autofocus
+				// ---------------------------------------------------
+				$full_tag = preg_replace(
+					'/\s+tabindex\s*=\s*(["\'])[^"\']*\1/i',
+					'',
+					$full_tag
+				);
+
+				// ---------------------------------------------------
+				// Sanitize style=""
+				// ---------------------------------------------------
+				$full_tag = preg_replace_callback(
+					'/\s+style\s*=\s*(["\'])([^"\']*)\1/i',
+					function( $m ) {
+						$clean_style = safecss_filter_attr( $m[2] );
+						return $clean_style ? ' style="' . $clean_style . '"' : '';
+					},
+					$full_tag
+				);
+
+				// ---------------------------------------------------
+				// Specifically sanitize data-pdf-src if present
+				// ---------------------------------------------------
+				$full_tag = preg_replace_callback(
+					'/(\s+data-pdf-src\s*=\s*)(["\'])([^"\']*)\2/i',
+					function( $m ) {
+						$prefix = $m[1];
+						$quote  = $m[2];
+						$src    = $m[3];
+
+						// Only allow http/https URLs.
+						if ( ! preg_match( '#^https?://#i', $src ) ) {
+							$clean_src = '';
+						} else {
+							$clean_src = esc_url_raw( $src );
+						}
+
+						return $prefix . $quote . $clean_src . $quote;
+					},
+					$full_tag
+				);
+
+				// ---------------------------------------------------
+				// Remove any malformed attributes (like class="ead-document=a")
+				// ---------------------------------------------------
+				$full_tag = preg_replace_callback(
+					'/\bclass\s*=\s*(["\'])([^"\']*=+[^"\']*)\1/i',
+					function( $m ) {
+						$quote = $m[1];
+						// Keep only the part before any '=' character.
+						$class_value = preg_replace( '/=.*$/', '', $m[2] );
+						$class_value = trim( $class_value );
+						return $class_value ? 'class=' . $quote . esc_attr( $class_value ) . $quote : '';
+					},
+					$full_tag
+				);
+
+				return $full_tag;
 			},
 			$content
 		);
-
-		return $content;
 	}
-
 
 	/**
 	 * Admin menu setup

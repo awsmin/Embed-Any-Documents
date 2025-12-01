@@ -1,6 +1,6 @@
 ## Changelog
-### V 2.7.9 - 2025-11-20
-* Vulnerability fix.
+### V 2.7.11 - 2025-11-28
+* FIX: Enhanced sanitization of document embed attributes to prevent XSS.
 * Code improvements.
 
 ### V 2.7.8 - 2025-09-30
