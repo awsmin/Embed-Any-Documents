@@ -100,6 +100,10 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 ## Changelog
 
+**V 2.7.12 - 2025-12-02**
+* Tested and updated to latest version.
+* Code improvements.
+
 **V 2.7.11 - 2025-11-28**
 * FIX: Enhanced sanitization of document embed attributes to prevent XSS.
 * Code improvements.
