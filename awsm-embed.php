@@ -6,7 +6,7 @@
  * Version: 2.7.11
  * Author: Awsm Innovations
  * Author URI: https://awsm.in
- * License: GPL V3
+ * License: GPLv2
  * Text Domain: embed-any-document
  * Domain Path: /language
  *
