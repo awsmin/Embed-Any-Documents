@@ -3,9 +3,9 @@ Contributors: awsmin
 Tags: embed documents, embed ppt, document viewer, pdf viewer, word ppt
 Author URI: http://awsm.in
 Requires at least: 4.0
-Tested up to: 6.8.3
-Stable tag: trunk
-License: GPLv2 
+Tested up to: 6.9
+Stable tag: 2.7.11
+License: GPLv3 
 
 Embed PDF, DOC, PPT and XLS documents easily on your WordPress website with the help of Google Docs Viewer or Microsoft Office Online. 
 

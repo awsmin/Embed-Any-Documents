@@ -650,21 +650,6 @@ class Awsm_embed {
 					$full_tag
 				);
 
-				// ---------------------------------------------------
-				// Remove any malformed attributes (like class="ead-document=a")
-				// ---------------------------------------------------
-				$full_tag = preg_replace_callback(
-					'/\bclass\s*=\s*(["\'])([^"\']*=+[^"\']*)\1/i',
-					function( $m ) {
-						$quote = $m[1];
-						// Keep only the part before any '=' character.
-						$class_value = preg_replace( '/=.*$/', '', $m[2] );
-						$class_value = trim( $class_value );
-						return $class_value ? 'class=' . $quote . esc_attr( $class_value ) . $quote : '';
-					},
-					$full_tag
-				);
-
 				return $full_tag;
 			},
 			$content
@@ -711,6 +696,12 @@ class Awsm_embed {
 		register_setting( 'ead-settings-group', 'ead_mediainsert' );
 	}
 
+	/**
+	 * Santize text strictly to avoid XSS
+	 *
+	 * @param mixed $value The value to sanitize.
+	 * @return mixed The sanitized value.
+	 */
 	public function ead_sanitize_strict_text( $value ) {
 		$value = html_entity_decode( $value, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
 		$value = preg_replace( '/<script\b[^>]*>(.*?)<\/script>/is', '', $value );
