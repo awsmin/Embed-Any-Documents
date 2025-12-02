@@ -112,6 +112,9 @@ The viewers (Google Docs Viewer and Microsoft Office Online) do not support loca
 Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
+= V 2.7.13 - 2025-12-02 =
+* Tested and updated to latest version.
+* Code improvements.
 
 = V 2.7.11 - 2025-11-28 =
 * FIX: Enhanced sanitization of document embed attributes to prevent XSS.
@@ -136,6 +139,6 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Upgrade Notice ==
 
-= 2.7.11  =
-Enhanced sanitization of document embed attributes to prevent XSS and code improvements.
+= 2.7.13  =
+Tested and updated to latest version and code improvements.
 
