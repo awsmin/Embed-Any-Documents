@@ -136,6 +136,6 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Upgrade Notice ==
 
-= 2.7.13  =
-Tested and updated to latest version and code improvements.
+= 2.7.12  =
+Tested with WordPress 6.9 and code improvements.
 
