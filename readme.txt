@@ -3,9 +3,9 @@ Contributors: awsmin
 Tags: embed documents, embed ppt, document viewer, pdf viewer, word ppt
 Author URI: http://awsm.in
 Requires at least: 4.0
-Tested up to: 6.8.3
+Tested up to: 6.9
 Stable tag: trunk
-License: GPLv2 
+License: GPLv2
 
 Embed PDF, DOC, PPT and XLS documents easily on your WordPress website with the help of Google Docs Viewer or Microsoft Office Online. 
 
@@ -112,6 +112,8 @@ The viewers (Google Docs Viewer and Microsoft Office Online) do not support loca
 Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
+= V 2.7.12 - 2025-12-04 =
+* Code improvements.
 
 = V 2.7.11 - 2025-11-28 =
 * FIX: Enhanced sanitization of document embed attributes to prevent XSS.
@@ -129,13 +131,10 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 * Improved security.
 * Code improvements.
 
-= V 2.7.5 - 2025-01-21 =
-* Security fixes and code improvements.
-
 [See changelog of previous versions](https://raw.githubusercontent.com/awsmin/Embed-Any-Documents/master/CHANGELOG.md)
 
 == Upgrade Notice ==
 
-= 2.7.11  =
-Enhanced sanitization of document embed attributes to prevent XSS and code improvements.
+= 2.7.12  =
+Code improvements.
 
