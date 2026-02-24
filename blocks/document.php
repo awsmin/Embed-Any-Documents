@@ -55,6 +55,7 @@ class Awsm_embed_Guten_blocks {
 		register_block_type(
 			'embed-any-document/document',
 			array(
+				'api_version'     => 3,
 				'attributes'      => array(
 					'className' => array(
 						'type' => 'string',
@@ -125,6 +126,17 @@ class Awsm_embed_Guten_blocks {
 	public function block_assets() {
 		wp_enqueue_style( 'awsm-ead-public' );
 		wp_enqueue_script( 'awsm-ead-public' );
+
+		// In the iframe editor (apiVersion 3), block canvas styles must be loaded via block assets.
+		if ( is_admin() ) {
+			wp_enqueue_style(
+				'ead-block-editor-css',
+				plugins_url( 'blocks/document/editor.css', dirname( __FILE__ ) ),
+				array( 'ead_media_button' ),
+				AWSM_EMBED_VERSION,
+				'all'
+			);
+		}
 	}
 
 	/**
@@ -135,19 +147,11 @@ class Awsm_embed_Guten_blocks {
 	 * `wp-i18n`: To internationalize the block's text.
 	 */
 	public function block_editor_assets() {
-		// Styles.
-		wp_enqueue_style(
-			'ead-block-editor-css',
-			plugins_url( 'blocks/document/editor.css', dirname( __FILE__ ) ),
-			array( 'ead_media_button' ),
-			AWSM_EMBED_VERSION,
-			'all'
-		);
 		// Scripts.
 		wp_enqueue_script(
 			'ead-block-editor-js',
 			plugins_url( 'blocks/document/document-block.js', dirname( __FILE__ ) ),
-			array( 'wp-blocks', 'wp-components', 'wp-editor', 'wp-element', 'wp-i18n', 'wp-url', 'wp-api-fetch', 'lodash', 'ead_media_button', 'awsm-ead-pdf-object' ),
+			array( 'wp-blocks', 'wp-components', 'wp-block-editor', 'wp-element', 'wp-i18n', 'wp-url', 'wp-api-fetch', 'lodash', 'ead_media_button', 'awsm-ead-pdf-object' ),
 			AWSM_EMBED_VERSION,
 			true
 		);
