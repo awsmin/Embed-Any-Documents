@@ -52,6 +52,16 @@ class Awsm_embed_Guten_blocks {
 			return;
 		}
 
+		// Register the editor stylesheet early so it can be referenced via editor_style_handles.
+		// This ensures the style is injected into the iframe editor used by API version 3.
+		wp_register_style(
+			'ead-block-editor-css',
+			plugins_url( 'blocks/document/editor.css', dirname( __FILE__ ) ),
+			array(),
+			AWSM_EMBED_VERSION,
+			'all'
+		);
+
 		register_block_type(
 			'embed-any-document/document',
 			array(
@@ -85,7 +95,8 @@ class Awsm_embed_Guten_blocks {
 						'type' => 'string',
 					),
 				),
-				'render_callback' => array( $this, 'block_render_callback' ),
+				'editor_style_handles' => array( 'ead-block-editor-css' ),
+				'render_callback'      => array( $this, 'block_render_callback' ),
 			)
 		);
 	}
@@ -135,14 +146,8 @@ class Awsm_embed_Guten_blocks {
 	 * `wp-i18n`: To internationalize the block's text.
 	 */
 	public function block_editor_assets() {
-		// Styles.
-		wp_enqueue_style(
-			'ead-block-editor-css',
-			plugins_url( 'blocks/document/editor.css', dirname( __FILE__ ) ),
-			array( 'ead_media_button' ),
-			AWSM_EMBED_VERSION,
-			'all'
-		);
+		// Styles. The handle is already registered on init; just enqueue it for the main editor page.
+		wp_enqueue_style( 'ead-block-editor-css' );
 		// Scripts.
 		wp_enqueue_script(
 			'ead-block-editor-js',
