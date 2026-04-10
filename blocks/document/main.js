@@ -14,7 +14,7 @@ const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
 const { Button } = wp.components;
 const { Fragment } = wp.element;
-const { MediaPlaceholder } = wp.blockEditor || wp.editor;
+const { MediaPlaceholder, useBlockProps } = wp.blockEditor || wp.editor;
 const { isURL } = wp.url;
 
 const validTypes = ['application/pdf','application/postscript','image/tiff','application/msword','application/vnd.ms-powerpoint','application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/vnd.openxmlformats-officedocument.wordprocessingml.template','application/vnd.ms-word.template.macroEnabled.12','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','application/vnd.ms-excel.sheet.macroEnabled.12','application/vnd.openxmlformats-officedocument.presentationml.presentation','application/vnd.openxmlformats-officedocument.presentationml.slideshow','application/vnd.apple.pages'];
@@ -28,6 +28,7 @@ const validExtension = [ '.pdf', '.tif', '.tiff', '.doc', '.pps', '.ppt', '.xla'
  *                             registered; otherwise `undefined`.
  */
 registerBlockType( 'embed-any-document/document', {
+	apiVersion: 3,
 	title: __( 'Document', 'embed-any-document' ), // Block title.
 	description: __( 'Upload and Embed your documents.', 'embed-any-document' ), // Block description
 	icon: icon.block, // Block icon
@@ -40,8 +41,8 @@ registerBlockType( 'embed-any-document/document', {
 	edit: ( props ) => {
 		const { attributes, setAttributes, noticeOperations} = props;
 		const { shortcode } = attributes;
+		const blockProps = useBlockProps();
 
-        let blockProps = null;
 		let shortcodeText;
 		let embedurl;
 		
@@ -103,18 +104,16 @@ registerBlockType( 'embed-any-document/document', {
 			noticeOperations.createErrorNotice( message );
 		}
 
-		const eadShortcode = (embedurl) => { 
-			blockProps = props;
-
+		const eadShortcode = (embedurl) => {
 			if(embedurl) {
 		   	  shortcodeText = '[embeddoc url="'+embedurl+'"]';
-		    } 
+		    }
 
-		    let { url, width = emebeder.width, height = emebeder.height, download = emebeder.download, viewer = emebeder.provider, text = emebeder.text, cache = true } = EadHelper.parseShortcode(shortcodeText); 
+		    let { url, width = emebeder.width, height = emebeder.height, download = emebeder.download, viewer = emebeder.provider, text = emebeder.text, cache = true } = EadHelper.parseShortcode(shortcodeText);
 
 		    viewer = jQuery.inArray( viewer, emebeder.viewers ) !== -1 ? viewer : 'google';
 
-		    blockProps.setAttributes({
+		    setAttributes({
 				shortcode: shortcodeText,
 				url: url,
 				width: width,
@@ -132,47 +131,60 @@ registerBlockType( 'embed-any-document/document', {
 		}
 
 		if( typeof shortcode !== 'undefined' ) {
-			return [
-				<EadInspector { ...{ setAttributes, ...props } } />,
-				<EadServerSideRender
-					block="embed-any-document/document"
-					attributes={ attributes }
-				/>
-			];
+			return (
+				<div { ...blockProps }>
+					<EadInspector { ...{ setAttributes, ...props } } />
+					<EadServerSideRender
+						block="embed-any-document/document"
+						attributes={ attributes }
+					/>
+				</div>
+			);
 		} else {
 			return (
-				<MediaPlaceholder className="ead-media-placeholder" onSelect={ onSelectDocument } onSelectURL={ onSelectURL } labels = { { title: __( 'Embed Any Document', 'embed-any-document' ), 'instructions':__( 'Upload a document, pick from your media library, or add from an external URL.', 'embed-any-document' ) } } icon={icon.block}  accept={validExtension.join(', ')} allowedTypes={ validTypes } OnError={ onUploadError }>
-					<Fragment>
-					<Button className="ead-button-dropbox disabled" onClick={ providerLink } value="click">{ __( 'Add from dropbox', 'embed-any-document' ) }
-                        <span className="overlay">
-                        	<span>{ __( 'Pro Feature', 'embed-any-document' ) }</span>
-                        </span>
-					</Button>
-					<Button  className="ead-button-drive disabled" onClick={ providerLink } value="click">{ __( 'Add from drive', 'embed-any-document' ) }
- 						<span className="overlay">
-                        	<span>{ __( 'Pro Feature', 'embed-any-document' ) }</span>
-                        </span>
-					</Button>
-					<Button  className="ead-button-box disabled" onClick={ providerLink } value="click">{ __( 'Add from box', 'embed-any-document' ) }
-						<span className="overlay">
-                        	<span>{ __( 'Pro Feature', 'embed-any-document' ) }</span>
-                        </span>
-					</Button>
-					<Button  className="ead-button-onedrive disabled" onClick={ providerLink } value="click">{ __( 'Add from OneDrive', 'embed-any-document' ) }
-						<span className="overlay">
-                        	<span>{ __( 'Pro Feature', 'embed-any-document' ) }</span>
-                        </span>
-					</Button>
-					</Fragment>
-				</MediaPlaceholder>
+				<div { ...blockProps }>
+					<MediaPlaceholder className="ead-media-placeholder" onSelect={ onSelectDocument } onSelectURL={ onSelectURL } labels = { { title: __( 'Embed Any Document', 'embed-any-document' ), 'instructions':__( 'Upload a document, pick from your media library, or add from an external URL.', 'embed-any-document' ) } } icon={icon.block}  accept={validExtension.join(', ')} allowedTypes={ validTypes } OnError={ onUploadError }>
+						<Fragment>
+						<Button className="ead-button-dropbox disabled" onClick={ providerLink } value="click">{ __( 'Add from dropbox', 'embed-any-document' ) }
+	                        <span className="overlay">
+	                        	<span>{ __( 'Pro Feature', 'embed-any-document' ) }</span>
+	                        </span>
+						</Button>
+						<Button  className="ead-button-drive disabled" onClick={ providerLink } value="click">{ __( 'Add from drive', 'embed-any-document' ) }
+	 						<span className="overlay">
+	                        	<span>{ __( 'Pro Feature', 'embed-any-document' ) }</span>
+	                        </span>
+						</Button>
+						<Button  className="ead-button-box disabled" onClick={ providerLink } value="click">{ __( 'Add from box', 'embed-any-document' ) }
+							<span className="overlay">
+	                        	<span>{ __( 'Pro Feature', 'embed-any-document' ) }</span>
+	                        </span>
+						</Button>
+						<Button  className="ead-button-onedrive disabled" onClick={ providerLink } value="click">{ __( 'Add from OneDrive', 'embed-any-document' ) }
+							<span className="overlay">
+	                        	<span>{ __( 'Pro Feature', 'embed-any-document' ) }</span>
+	                        </span>
+						</Button>
+						</Fragment>
+					</MediaPlaceholder>
+				</div>
 			);
 		}
 	},   
 	/**
-	 * The save function defines the way in which the different attributes should be combined into the final markup, which is then serialized by Gutenberg into post_content.
+	 * The save function returns null because this is a dynamic block rendered server-side via render_callback.
 	 */
-	save: ( props ) => {
-		const { attributes: { shortcode } } = props;
-		return shortcode;
-	},
+	save: () => null,
+	/**
+	 * Deprecated: prior version saved the raw shortcode string.
+	 * This entry allows WordPress to validate and migrate existing blocks.
+	 */
+	deprecated: [
+		{
+			save: ( props ) => {
+				const { attributes: { shortcode } } = props;
+				return shortcode;
+			},
+		},
+	],
 } );
