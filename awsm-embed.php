@@ -1107,20 +1107,29 @@ class Awsm_embed {
 	}
 }
 
-if ( defined( 'EAD_PLUS' ) ) {
-	if ( ! function_exists( 'embed_doc_disable_self' ) ) {
-		/**
-		 * Deactivate free version if Plus version is available.
-		 */
-		function embed_doc_disable_self() {
-			deactivate_plugins( plugin_basename( __FILE__ ) );
-		}
-		add_action( 'admin_init', 'embed_doc_disable_self' );
+register_activation_hook(
+	__FILE__,
+	function() {
+		Awsm_embed::get_instance()->defaults();
 	}
-} else {
-	// Initialize the class.
-	$awsm_embed = Awsm_embed::get_instance();
+);
 
-	// Register defaults.
-	register_activation_hook( __FILE__, array( $awsm_embed, 'defaults' ) );
-}
+add_action(
+	'plugins_loaded',
+	function() {
+		if ( defined( 'EAD_PLUS' ) ) {
+			if ( ! function_exists( 'embed_doc_disable_self' ) ) {
+				/**
+				 * Deactivate free version if Plus version is available.
+				 */
+				function embed_doc_disable_self() {
+					deactivate_plugins( plugin_basename( __FILE__ ) );
+				}
+				add_action( 'admin_init', 'embed_doc_disable_self' );
+			}
+		} else {
+			// Initialize the class.
+			Awsm_embed::get_instance();
+		}
+	}
+);
