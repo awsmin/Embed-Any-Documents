@@ -171,20 +171,8 @@ registerBlockType( 'embed-any-document/document', {
 			);
 		}
 	},   
-	/**
-	 * The save function returns null because this is a dynamic block rendered server-side via render_callback.
-	 */
-	save: () => null,
-	/**
-	 * Deprecated: prior version saved the raw shortcode string.
-	 * This entry allows WordPress to validate and migrate existing blocks.
-	 */
-	deprecated: [
-		{
-			save: ( props ) => {
-				const { attributes: { shortcode } } = props;
-				return shortcode;
-			},
-		},
-	],
+	save: ( props ) => {
+		const { attributes: { shortcode } } = props;
+		return shortcode;
+	},
 } );
