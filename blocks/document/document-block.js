@@ -290,22 +290,10 @@ registerBlockType('embed-any-document/document', {
       }, wp.element.createElement("span", null, __('Pro Feature', 'embed-any-document')))))));
     }
   },
-  /**
-   * The save function returns null because this is a dynamic block rendered server-side via render_callback.
-   */
-  save: function save() {
-    return null;
-  },
-  /**
-   * Deprecated: prior version saved the raw shortcode string.
-   * This entry allows WordPress to validate and migrate existing blocks.
-   */
-  deprecated: [{
-    save: function save(props) {
-      var shortcode = props.attributes.shortcode;
-      return shortcode;
-    }
-  }]
+  save: function save(props) {
+    var shortcode = props.attributes.shortcode;
+    return shortcode;
+  }
 });
 
 /***/ }),
