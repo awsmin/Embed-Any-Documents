@@ -456,6 +456,9 @@ class Awsm_embed {
 				}
 			}
 			$url = esc_url( $shortcode_atts['url'], array( 'http', 'https' ) );
+			if ( empty( $url ) ) {
+				return esc_html__( 'No Url Found', 'embed-any-document' );
+			}
 			if ( $show ) {
 				$filedata = wp_safe_remote_head( $shortcode_atts['url'] );
 				$filesize = 0;
