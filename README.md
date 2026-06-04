@@ -4,8 +4,8 @@
 **Tags:** embed documents, upload pdf, embed ppt, document viewer, pdf viewer, pdf viewer plugin, display pdf, embed pdf, embed pdf in wordpress, word, word viewer, word document, embed word, word plugin, doc, doc viewer, docx, docx viewer, excel, excel plugin, xls, xlsx, spreadsheet, embed spreadsheet, powerpoint, powerpoint viewer, ppt, ppt viewer, pptx, image viewer  
 **Author URI:** http://awsm.in  
 **Requires at least:** 4.0  
-**Tested up to:** 6.8.3  
-**Stable tag:** 2.5.0  
+**Tested up to:** 7.0.0  
+**Stable tag:** 2.7.13
 **License:** GPLv2  
 
 Easiest way to upload and display PDF, MS Office and more documents on your WordPress website using Google Docs Viewer or Microsoft Office Online.
@@ -99,6 +99,11 @@ The viewers (Google Docs Viewer and Microsoft Office Online) do not support loca
 Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 ## Changelog
+
+**V 2.7.13 - 2026-06-04**
+* IMPROVED: Updated Block API version to 3.
+* FIX: Google Drive upload issue with new API keys.
+* Code improvements.
 
 **V 2.7.12 - 2025-12-04**
 * Code improvements.
