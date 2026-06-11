@@ -1,35 +1,39 @@
 jQuery(function($) {
-	$('.ead-iframe-wrapper').each(function() {
-		var $wrapper = $(this);
-		var $activeIframe = $wrapper.find('.ead-iframe');
-		var viewer = $wrapper.parent('.ead-document').data('viewer');
-		var isNativeViewer = typeof viewer !== 'undefined' && viewer.length > 0 ? viewer : false;
-		var lazyLoadSrc = $activeIframe.data('src');
-		var lazyLoadAttr = $activeIframe.attr('loading');
-		var isLazyLoaded = false;
-		if ((typeof lazyLoadSrc !== 'undefined' && lazyLoadSrc.length > 0) || (typeof lazyLoadAttr !== 'undefined' && lazyLoadAttr === 'lazy')) {
-			isLazyLoaded = true;
-		}
-		var $iframe = $activeIframe;
-		if (!isLazyLoaded) {
-			$iframe = $('<iframe class="ead-iframe"></iframe>');
-			$iframe.attr({
-				'src': $activeIframe.attr('src'),
-				'style': $activeIframe.attr('style'),
-				'title': $activeIframe.attr('title')
-			});
-		}
-		if (! isNativeViewer) {
-			$iframe.css('visibility', 'visible');
-		}
-		$iframe.on('load', function() {
-			$(this).parents('.ead-document').find('.ead-document-loading').css('display', 'none');
-		});
+	var isEditor = typeof eadPublic !== 'undefined' && eadPublic.isEditor;
 
-		if (!isLazyLoaded) {
-			$wrapper.html($iframe);
-		}
-	});
+	if (!isEditor) {
+		$('.ead-iframe-wrapper').each(function() {
+			var $wrapper = $(this);
+			var $activeIframe = $wrapper.find('.ead-iframe');
+			var viewer = $wrapper.parent('.ead-document').data('viewer');
+			var isNativeViewer = typeof viewer !== 'undefined' && viewer.length > 0 ? viewer : false;
+			var lazyLoadSrc = $activeIframe.data('src');
+			var lazyLoadAttr = $activeIframe.attr('loading');
+			var isLazyLoaded = false;
+			if ((typeof lazyLoadSrc !== 'undefined' && lazyLoadSrc.length > 0) || (typeof lazyLoadAttr !== 'undefined' && lazyLoadAttr === 'lazy')) {
+				isLazyLoaded = true;
+			}
+			var $iframe = $activeIframe;
+			if (!isLazyLoaded) {
+				$iframe = $('<iframe class="ead-iframe"></iframe>');
+				$iframe.attr({
+					'src': $activeIframe.attr('src'),
+					'style': $activeIframe.attr('style'),
+					'title': $activeIframe.attr('title')
+				});
+			}
+			if (! isNativeViewer) {
+				$iframe.css('visibility', 'visible');
+			}
+			$iframe.on('load', function() {
+				$(this).parents('.ead-document').find('.ead-document-loading').css('display', 'none');
+			});
+
+			if (!isLazyLoaded) {
+				$wrapper.html($iframe);
+			}
+		});
+	}
 
 	$('.ead-document[data-pdf-src]').each(function() {
 		var $elem = $(this);
@@ -43,7 +47,6 @@ jQuery(function($) {
 
 		viewer = (typeof viewer !== 'undefined' && src.length > 0 && viewer.length > 0) ? viewer : false;
 		var isBuiltInViewer = 'pdfjs' in eadPublic && eadPublic.pdfjs.length > 0 && viewer === 'built-in';
-		var isEditor = typeof eadPublic !== 'undefined' && eadPublic.isEditor;
 
 		if (!isEditor && viewer && (viewer === 'browser' || isBuiltInViewer)) {
 			if (PDFObject.supportsPDFs || isBuiltInViewer) {
@@ -71,7 +74,7 @@ jQuery(function($) {
 		}
 	});
 
-    $(document).on('click', '.ead-reload-btn', function(e) { 
+    $(document).on('click', '.ead-reload-btn', function(e) {
         e.preventDefault();
         var $wrapper = $(this).parents('.ead-document');
         var iframeSrc = $wrapper.find('.ead-iframe').attr('src');
