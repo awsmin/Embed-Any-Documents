@@ -7,17 +7,14 @@ jQuery(function($) {
 			var $activeIframe = $wrapper.find('.ead-iframe');
 			var viewer = $wrapper.parent('.ead-document').data('viewer');
 			var isNativeViewer = typeof viewer !== 'undefined' && viewer.length > 0 ? viewer : false;
-			var lazyLoadSrc = $activeIframe.data('src');
+			var iframeSrc = $activeIframe.data('src') || $activeIframe.attr('src');
 			var lazyLoadAttr = $activeIframe.attr('loading');
-			var isLazyLoaded = false;
-			if ((typeof lazyLoadSrc !== 'undefined' && lazyLoadSrc.length > 0) || (typeof lazyLoadAttr !== 'undefined' && lazyLoadAttr === 'lazy')) {
-				isLazyLoaded = true;
-			}
+			var isLazyLoaded = typeof lazyLoadAttr !== 'undefined' && lazyLoadAttr === 'lazy';
 			var $iframe = $activeIframe;
 			if (!isLazyLoaded) {
 				$iframe = $('<iframe class="ead-iframe"></iframe>');
 				$iframe.attr({
-					'src': $activeIframe.attr('src'),
+					'src': iframeSrc,
 					'style': $activeIframe.attr('style'),
 					'title': $activeIframe.attr('title')
 				});
