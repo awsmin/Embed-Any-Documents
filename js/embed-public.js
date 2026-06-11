@@ -43,8 +43,9 @@ jQuery(function($) {
 
 		viewer = (typeof viewer !== 'undefined' && src.length > 0 && viewer.length > 0) ? viewer : false;
 		var isBuiltInViewer = 'pdfjs' in eadPublic && eadPublic.pdfjs.length > 0 && viewer === 'built-in';
+		var isEditor = typeof eadPublic !== 'undefined' && eadPublic.isEditor;
 
-		if (viewer && (viewer === 'browser' || isBuiltInViewer)) {
+		if (!isEditor && viewer && (viewer === 'browser' || isBuiltInViewer)) {
 			if (PDFObject.supportsPDFs || isBuiltInViewer) {
 				var options = {};
 				if (!isBuiltInViewer) {

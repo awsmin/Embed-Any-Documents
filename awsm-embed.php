@@ -305,9 +305,13 @@ class Awsm_embed {
 		 *
 		 * @param array $script_data The script data.
 		 */
+		$script_data = array();
+		if ( is_admin() ) {
+			$script_data['isEditor'] = true;
+		}
 		$script_data = apply_filters(
 			'awsm_ead_public_script_data',
-			array()
+			$script_data
 		);
 		return $script_data;
 	}
