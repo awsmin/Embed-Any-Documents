@@ -247,7 +247,7 @@ class Awsm_embed {
 			if ( self::is_browser_viewable_type( $shortcode_atts['url'] ) ) {
 				$document_url = $shortcode_atts['url'];
 			} else {
-				$src          = 'https://docs.google.com/viewer?url=%1$s&hl=%2$s';
+				$src          = 'https://docs.google.com/gview?url=%1$s&hl=%2$s';
 				$document_url = sprintf( $src, rawurlencode( $shortcode_atts['url'] ), esc_attr( $shortcode_atts['language'] ) );
 			}
 		}
@@ -489,7 +489,7 @@ class Awsm_embed {
 			$iframe_src = '';
 			switch ( $viewer ) {
 				case 'google':
-					$embedsrc   = '//docs.google.com/viewer?url=%1$s&embedded=true&hl=%2$s';
+					$embedsrc   = '//docs.google.com/gview?url=%1$s&embedded=true&hl=%2$s';
 					$iframe_src = sprintf( $embedsrc, rawurlencode( $url ), esc_attr( $shortcode_atts['language'] ) );
 					break;
 
