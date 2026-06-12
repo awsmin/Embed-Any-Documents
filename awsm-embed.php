@@ -546,8 +546,7 @@ class Awsm_embed {
 			$iframe_style = self::build_style_attr( $iframe_style_attrs );
 
 			if ( $enable_preloader ) {
-				// Use data-src so the iframe does not auto-load; JS sets src on the frontend.
-				$iframe = sprintf( '<iframe data-src="%s" title="%s" class="ead-iframe" %s></iframe>', esc_attr( $iframe_src ), esc_html__( 'Embedded Document', 'embed-any-document' ), $iframe_style );
+				$iframe = sprintf( '<iframe data-src="%s" data-file-url="%s" title="%s" class="ead-iframe" %s></iframe>', esc_attr( $iframe_src ), esc_attr( $shortcode_atts['url'] ), esc_html__( 'Embedded Document', 'embed-any-document' ), $iframe_style );
 				$iframe = '<div class="ead-iframe-wrapper">' . $iframe . '</div>' . self::get_iframe_preloader( $shortcode_atts );
 			} else {
 				$iframe = sprintf( '<iframe src="%s" title="%s" class="ead-iframe" %s></iframe>', esc_attr( $iframe_src ), esc_html__( 'Embedded Document', 'embed-any-document' ), $iframe_style );
