@@ -69,25 +69,17 @@ class EadServerSideRender extends Component {
 							iframe.closest('.ead-iframe-wrapper').html('<p class="ead-no-preview" style="padding:1em;text-align:center;">' + __( 'No preview available.', 'embed-any-document' ) + '</p>');
 						};
 
-						if (dataSrc && fileUrl) {
-							let isSameOrigin = false;
+						const googleCanAccess = (url) => {
 							try {
-								isSameOrigin = new URL(fileUrl).origin === window.location.origin;
-							} catch(e) {}
+								const hostname = new URL(url).hostname;
+								return hostname !== 'localhost' &&
+									!/\.local$/.test(hostname) &&
+									!/^127\./.test(hostname);
+							} catch(e) { return false; }
+						};
 
-							if (isSameOrigin) {
-								fetch(fileUrl, { method: 'HEAD' })
-									.then(response => {
-										if (response.ok) {
-											activateIframe();
-										} else {
-											showNoPreview();
-										}
-									})
-									.catch(() => showNoPreview());
-							} else {
-								activateIframe();
-							}
+						if (dataSrc && fileUrl) {
+							googleCanAccess(fileUrl) ? activateIframe() : showNoPreview();
 						} else {
 							iframe.css('visibility', 'visible');
 							iframe.on('load', function() {

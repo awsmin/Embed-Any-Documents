@@ -38,28 +38,21 @@ jQuery(function($) {
 			$wrapper.html('<p class="ead-no-preview" style="padding:1em;text-align:center;">' + msg + '</p>');
 		};
 
-		if (typeof dataSrc !== 'undefined' && dataSrc.length > 0 && typeof fileUrl !== 'undefined' && fileUrl.length > 0) {
-			var isSameOrigin = false;
+		var googleCanAccess = function(url) {
 			try {
-				isSameOrigin = new URL(fileUrl).origin === window.location.origin;
-			} catch(e) {}
+				var hostname = new URL(url).hostname;
+				return hostname !== 'localhost' &&
+					!/\.local$/.test(hostname) &&
+					!/^127\./.test(hostname);
+			} catch(e) { return false; }
+		};
 
-			if (isSameOrigin) {
-				fetch(fileUrl, { method: 'HEAD' })
-					.then(function(response) {
-						if (response.ok) {
-							activateIframe($iframe, dataSrc);
-							if (!isLazyLoaded) { $wrapper.html($iframe); }
-						} else {
-							showNoPreview();
-						}
-					})
-					.catch(function() {
-						showNoPreview();
-					});
-			} else {
-				activateIframe($iframe, dataSrc);
+		if (typeof dataSrc !== 'undefined' && dataSrc.length > 0 && typeof fileUrl !== 'undefined' && fileUrl.length > 0) {
+			if (googleCanAccess(fileUrl)) {
 				if (!isLazyLoaded) { $wrapper.html($iframe); }
+				activateIframe($iframe, dataSrc);
+			} else {
+				showNoPreview();
 			}
 		} else {
 			if (! isNativeViewer) {
