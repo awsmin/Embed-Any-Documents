@@ -53,11 +53,52 @@ class EadServerSideRender extends Component {
 
 				if ( viewer === 'google' || viewer === 'browser' ) {
 					if ( viewer === 'google' ) {
-						iframe.css('visibility', 'visible');
+						const dataSrc = iframe.data('src');
+						const fileUrl = iframe.attr('data-file-url');
+
+						const activateIframe = () => {
+							iframe.attr('src', dataSrc);
+							iframe.css('visibility', 'visible');
+							iframe.on('load', function() {
+								jQuery(this).parents('.ead-document').find('.ead-document-loading').css('display', 'none');
+							});
+						};
+
+						const showNoPreview = () => {
+							documentWrapper.find('.ead-document-loading').css('display', 'none');
+							iframe.closest('.ead-iframe-wrapper').html('<p class="ead-no-preview" style="padding:1em;text-align:center;">' + __( 'No preview available.', 'embed-any-document' ) + '</p>');
+						};
+
+						if (dataSrc && fileUrl) {
+							let isSameOrigin = false;
+							try {
+								isSameOrigin = new URL(fileUrl).origin === window.location.origin;
+							} catch(e) {}
+
+							if (isSameOrigin) {
+								fetch(fileUrl, { method: 'HEAD' })
+									.then(response => {
+										if (response.ok) {
+											activateIframe();
+										} else {
+											showNoPreview();
+										}
+									})
+									.catch(() => showNoPreview());
+							} else {
+								activateIframe();
+							}
+						} else {
+							iframe.css('visibility', 'visible');
+							iframe.on('load', function() {
+								jQuery(this).parents('.ead-document').find('.ead-document-loading').css('display', 'none');
+							});
+						}
+					} else {
+						iframe.on('load', function() {
+							jQuery(this).parents('.ead-document').find('.ead-document-loading').css('display', 'none');
+						});
 					}
-					iframe.on('load', function() {
-						jQuery(this).parents('.ead-document').find('.ead-document-loading').css('display', 'none');
-					});
 				}
 
 				if ( viewer === 'browser' || viewer === 'built-in' ) {

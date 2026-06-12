@@ -307,7 +307,9 @@ class Awsm_embed {
 		 */
 		$script_data = apply_filters(
 			'awsm_ead_public_script_data',
-			array()
+			array(
+				'noPreviewMsg' => __( 'No preview available.', 'embed-any-document' ),
+			)
 		);
 		return $script_data;
 	}
@@ -540,10 +542,12 @@ class Awsm_embed {
 			}
 
 			$iframe_style = self::build_style_attr( $iframe_style_attrs );
-			$iframe       = sprintf( '<iframe src="%s" title="%s" class="ead-iframe" %s></iframe>', esc_attr( $iframe_src ), esc_html__( 'Embedded Document', 'embed-any-document' ), $iframe_style );
 
 			if ( $enable_preloader ) {
+				$iframe = sprintf( '<iframe data-src="%s" data-file-url="%s" title="%s" class="ead-iframe" %s></iframe>', esc_attr( $iframe_src ), esc_url( $shortcode_atts['url'] ), esc_html__( 'Embedded Document', 'embed-any-document' ), $iframe_style );
 				$iframe = '<div class="ead-iframe-wrapper">' . $iframe . '</div>' . self::get_iframe_preloader( $shortcode_atts );
+			} else {
+				$iframe = sprintf( '<iframe src="%s" title="%s" class="ead-iframe" %s></iframe>', esc_attr( $iframe_src ), esc_html__( 'Embedded Document', 'embed-any-document' ), $iframe_style );
 			}
 
 			$doc_style = self::build_style_attr( $doc_style_attrs );

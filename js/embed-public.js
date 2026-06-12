@@ -2,12 +2,14 @@ jQuery(function($) {
 	$('.ead-iframe-wrapper').each(function() {
 		var $wrapper = $(this);
 		var $activeIframe = $wrapper.find('.ead-iframe');
-		var viewer = $wrapper.parent('.ead-document').data('viewer');
+		var $document = $wrapper.parent('.ead-document');
+		var viewer = $document.data('viewer');
 		var isNativeViewer = typeof viewer !== 'undefined' && viewer.length > 0 ? viewer : false;
-		var lazyLoadSrc = $activeIframe.data('src');
+		var dataSrc = $activeIframe.data('src');
+		var fileUrl = $activeIframe.attr('data-file-url');
 		var lazyLoadAttr = $activeIframe.attr('loading');
 		var isLazyLoaded = false;
-		if ((typeof lazyLoadSrc !== 'undefined' && lazyLoadSrc.length > 0) || (typeof lazyLoadAttr !== 'undefined' && lazyLoadAttr === 'lazy')) {
+		if ((typeof dataSrc !== 'undefined' && dataSrc.length > 0) || (typeof lazyLoadAttr !== 'undefined' && lazyLoadAttr === 'lazy')) {
 			isLazyLoaded = true;
 		}
 		var $iframe = $activeIframe;
@@ -19,15 +21,56 @@ jQuery(function($) {
 				'title': $activeIframe.attr('title')
 			});
 		}
-		if (! isNativeViewer) {
-			$iframe.css('visibility', 'visible');
-		}
-		$iframe.on('load', function() {
-			$(this).parents('.ead-document').find('.ead-document-loading').css('display', 'none');
-		});
 
-		if (!isLazyLoaded) {
-			$wrapper.html($iframe);
+		var activateIframe = function($el, src) {
+			$el.attr('src', src);
+			if (!isNativeViewer) {
+				$el.css('visibility', 'visible');
+			}
+			$el.on('load', function() {
+				$(this).parents('.ead-document').find('.ead-document-loading').css('display', 'none');
+			});
+		};
+
+		var showNoPreview = function() {
+			$document.find('.ead-document-loading').css('display', 'none');
+			var msg = (typeof eadPublic !== 'undefined' && eadPublic.noPreviewMsg) ? eadPublic.noPreviewMsg : 'No preview available.';
+			$wrapper.html('<p class="ead-no-preview" style="padding:1em;text-align:center;">' + msg + '</p>');
+		};
+
+		if (typeof dataSrc !== 'undefined' && dataSrc.length > 0 && typeof fileUrl !== 'undefined' && fileUrl.length > 0) {
+			var isSameOrigin = false;
+			try {
+				isSameOrigin = new URL(fileUrl).origin === window.location.origin;
+			} catch(e) {}
+
+			if (isSameOrigin) {
+				fetch(fileUrl, { method: 'HEAD' })
+					.then(function(response) {
+						if (response.ok) {
+							activateIframe($iframe, dataSrc);
+							if (!isLazyLoaded) { $wrapper.html($iframe); }
+						} else {
+							showNoPreview();
+						}
+					})
+					.catch(function() {
+						showNoPreview();
+					});
+			} else {
+				activateIframe($iframe, dataSrc);
+				if (!isLazyLoaded) { $wrapper.html($iframe); }
+			}
+		} else {
+			if (! isNativeViewer) {
+				$iframe.css('visibility', 'visible');
+			}
+			$iframe.on('load', function() {
+				$(this).parents('.ead-document').find('.ead-document-loading').css('display', 'none');
+			});
+			if (!isLazyLoaded) {
+				$wrapper.html($iframe);
+			}
 		}
 	});
 
