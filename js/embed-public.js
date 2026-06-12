@@ -31,9 +31,11 @@ jQuery(function($) {
 						if (response.ok) {
 							activateIframe($activeIframe, viewerSrc, isNativeViewer);
 						}
+						// response not ok (404, 403, etc.) — file missing, stay hidden
 					})
 					.catch(function() {
-						// File not reachable — stay hidden, no Chrome download
+						// Network/fetch error — can't determine, load viewer anyway
+						activateIframe($activeIframe, viewerSrc, isNativeViewer);
 					});
 			} else {
 				activateIframe($activeIframe, viewerSrc, isNativeViewer);
