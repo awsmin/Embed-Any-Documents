@@ -88,7 +88,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</div>
 					<!-- .col-2 -->
 					<div class="col-2">
-						<a href="http://awsm.in/support" target="_blank">
+						<a href="https://support.awsm.in" target="_blank">
 				   <img src="<?php echo esc_url( $this->plugin_url ); ?>images/ticket.gif"><?php esc_html_e( 'Need Help?', 'embed-any-document' ); ?><br/><?php esc_html_e( 'Open a Ticket', 'embed-any-document' ); ?>
 				   </a>
 					</div>
@@ -114,7 +114,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							</a>
 						</li>
 						<li>
-							<a href="http://awsm.in/support" target="_blank" title="<?php esc_html_e( 'FAQs', 'embed-any-document' ); ?>">
+							<a href="https://support.awsm.in" target="_blank" title="<?php esc_html_e( 'FAQs', 'embed-any-document' ); ?>">
 								<?php esc_html_e( 'FAQs', 'embed-any-document' ); ?>
 							</a>
 						</li>
