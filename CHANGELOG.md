@@ -1,5 +1,5 @@
 ## Changelog
-### V 2.7.13 - 2026-07-13
+### V 2.7.13 - 2026-07-15
 * IMPROVED: Updated Block API version to 3.
 * FIX: Google Drive upload issue with new API keys.
 * Code improvements.

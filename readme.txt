@@ -2,7 +2,7 @@
 Contributors: awsmin
 Tags: embed documents, embed ppt, document viewer, pdf viewer, word ppt
 Author URI: http://awsm.in
-Requires at least: 4.0
+Requires at least: 6.0
 Tested up to: 7.0.1
 Stable tag: 2.7.13
 License: GPLv2
@@ -140,6 +140,6 @@ Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Upgrade Notice ==
 
-= 2.7.12  =
+= 2.7.13  =
 Code improvements.
 
