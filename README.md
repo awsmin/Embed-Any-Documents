@@ -3,7 +3,7 @@
 **Contributors:** awsmin  
 **Tags:** embed documents, upload pdf, embed ppt, document viewer, pdf viewer, pdf viewer plugin, display pdf, embed pdf, embed pdf in wordpress, word, word viewer, word document, embed word, word plugin, doc, doc viewer, docx, docx viewer, excel, excel plugin, xls, xlsx, spreadsheet, embed spreadsheet, powerpoint, powerpoint viewer, ppt, ppt viewer, pptx, image viewer  
 **Author URI:** http://awsm.in  
-**Requires at least:** 4.0  
+**Requires at least:** 6.0
 **Tested up to:** 7.0.1
 **Stable tag:** 2.7.13
 **License:** GPLv2  
