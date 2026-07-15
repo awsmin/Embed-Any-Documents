@@ -112,7 +112,7 @@ The viewers (Google Docs Viewer and Microsoft Office Online) do not support loca
 Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
-= V 2.7.13 - 2026-07-13 =
+= V 2.7.13 - 2026-07-15 =
 * IMPROVED: Updated Block API version to 3.
 * FIX: Google Drive upload issue with new API keys.
 * Code improvements.
