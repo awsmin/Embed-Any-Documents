@@ -22,7 +22,7 @@
 * Corrected load_plugin_textdomain() for compatibility with WP 6.8+.
 * Code improvements.
 
-### V 2.7.6 - 2025-02-13
+### V 2.7.6 - 2025-02-14
 * Improved security.
 * Code improvements.
 
