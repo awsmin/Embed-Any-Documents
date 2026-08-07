@@ -112,7 +112,7 @@ The viewers (Google Docs Viewer and Microsoft Office Online) do not support loca
 Great. Send it to ead@awsm.in. We will answer it as soon as we can.
 
 == Changelog ==
-= V 2.7.14 - 2026-08-03 =
+= V 2.7.14 - 2026-08-07 =
 * FIX: Stored XSS vulnerability in the bundled PDFObject library via the 'embeddoc' shortcode (Browser viewer).
 
 = V 2.7.13 - 2026-07-15 =
