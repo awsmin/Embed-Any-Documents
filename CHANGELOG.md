@@ -1,6 +1,6 @@
 ## Changelog
 ### V 2.7.14 - 2026-08-07
-* FIX: Stored XSS vulnerability in the bundled PDFObject library via the 'embeddoc' shortcode (Browser viewer).
+* FIX: Stored XSS vulnerability in the bundled PDFObject library.
 
 ### V 2.7.13 - 2026-07-15
 * IMPROVED: Updated Block API version to 3.
