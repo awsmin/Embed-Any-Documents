@@ -8,6 +8,10 @@
  *  Copyright (c) 2008-2018 Philip Hutchison
  *  MIT-style license: http://pipwerks.mit-license.org/
  *  UMD module pattern from https://github.com/umdjs/umd/blob/master/templates/returnExports.js
+ *
+ *  Locally patched: generateEmbedElement/generateIframeElement/generatePDFJSiframe
+ *  now build elements via createElement/setAttribute instead of innerHTML string
+ *  concatenation, to prevent DOM XSS from unsanitized URLs reaching this library.
  */
 
 (function (root, factory) {
@@ -68,6 +72,7 @@
         embed,
         getTargetElement,
         appendTargetClassName,
+        escapeHTMLAttribute,
         generatePDFJSiframe,
         generateEmbedElement,
         generateIframeElement;
@@ -192,6 +197,17 @@
 
     };
 
+    //Escapes a value before it is substituted into a static HTML template string,
+    //so an attacker-controlled URL cannot break out of the surrounding markup/attribute.
+    escapeHTMLAttribute = function (str){
+        return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;");
+    };
+
     appendTargetClassName = function (targetNode) {
         // Use classList if we don't need IE9 support
         var classToAppend = "pdfobject-container";
@@ -206,12 +222,25 @@
 
         var fullURL = PDFJS_URL + "?file=" + encodeURIComponent(url) + pdfOpenFragment;
         var scrollfix = (isIOS) ? "-webkit-overflow-scrolling: touch; overflow-y: scroll; " : "overflow: hidden; ";
-        var iframe = "<div style='" + scrollfix + "position: absolute; top: 0; right: 0; bottom: 0; left: 0;'><iframe  " + id + " src='" + fullURL + "' style='border: none; width: 100%; height: 100%;' frameborder='0'></iframe></div>";
+
+        var wrapper = document.createElement("div");
+        wrapper.style.cssText = scrollfix + "position: absolute; top: 0; right: 0; bottom: 0; left: 0;";
+
+        var iframe = document.createElement("iframe");
+        iframe.setAttribute("src", fullURL);
+        iframe.setAttribute("frameborder", "0");
+        iframe.style.cssText = "border: none; width: 100%; height: 100%;";
+        if(id){ iframe.id = id; }
+
+        wrapper.appendChild(iframe);
+
         appendTargetClassName(targetNode);
         targetNode.style.position = "relative";
         targetNode.style.overflow = "auto";
-        targetNode.innerHTML = iframe;
-        return targetNode.getElementsByTagName("iframe")[0];
+        targetNode.innerHTML = "";
+        targetNode.appendChild(wrapper);
+
+        return iframe;
 
     };
 
@@ -226,9 +255,18 @@
         }
 
         appendTargetClassName(targetNode);
-        targetNode.innerHTML = "<embed " + id + " class='pdfobject' src='" + url + pdfOpenFragment + "' type='application/pdf' style='overflow: auto; " + style + "'/>";
 
-        return targetNode.getElementsByTagName("embed")[0];
+        var embedEl = document.createElement("embed");
+        embedEl.setAttribute("class", "pdfobject");
+        embedEl.setAttribute("src", url + pdfOpenFragment);
+        embedEl.setAttribute("type", "application/pdf");
+        embedEl.style.cssText = "overflow: auto; " + style;
+        if(id){ embedEl.id = id; }
+
+        targetNode.innerHTML = "";
+        targetNode.appendChild(embedEl);
+
+        return embedEl;
 
     };
 
@@ -243,9 +281,18 @@
         }
 
         targetNode.className += " pdfobject-container";
-        targetNode.innerHTML = "<iframe " + id + " class='pdfobject' src='" + url + pdfOpenFragment + "' type='application/pdf' style='border: none; " + style + "'/>";
 
-        return targetNode.getElementsByTagName("iframe")[0];
+        var iframeEl = document.createElement("iframe");
+        iframeEl.setAttribute("class", "pdfobject");
+        iframeEl.setAttribute("src", url + pdfOpenFragment);
+        iframeEl.setAttribute("type", "application/pdf");
+        iframeEl.style.cssText = "border: none; " + style;
+        if(id){ iframeEl.id = id; }
+
+        targetNode.innerHTML = "";
+        targetNode.appendChild(iframeEl);
+
+        return iframeEl;
 
     };
 
@@ -261,7 +308,7 @@
         options = (typeof options !== "undefined") ? options : {};
 
         //Get passed options, or set reasonable defaults
-        var id = (options.id && typeof options.id === "string") ? "id='" + options.id + "'" : "",
+        var id = (options.id && typeof options.id === "string") ? options.id : "",
             page = (options.page) ? options.page : false,
             pdfOpenParams = (options.pdfOpenParams) ? options.pdfOpenParams : {},
             fallbackLink = (typeof options.fallbackLink !== "undefined") ? options.fallbackLink : true,
@@ -316,7 +363,7 @@
             if(fallbackLink){
 
                 fallbackHTML = (typeof fallbackLink === "string") ? fallbackLink : fallbackHTML_default;
-                targetNode.innerHTML = fallbackHTML.replace(/\[url\]/g, url);
+                targetNode.innerHTML = fallbackHTML.replace(/\[url\]/g, escapeHTMLAttribute(url));
 
             }
 

@@ -1,4 +1,7 @@
 ## Changelog
+### V 2.7.14 - 2026-08-07
+* FIX: Stored XSS vulnerability in the bundled PDFObject library.
+
 ### V 2.7.13 - 2026-07-15
 * IMPROVED: Updated Block API version to 3.
 * FIX: Google Drive upload issue with new API keys.
@@ -19,7 +22,7 @@
 * Corrected load_plugin_textdomain() for compatibility with WP 6.8+.
 * Code improvements.
 
-### V 2.7.6 - 2025-02-13
+### V 2.7.6 - 2025-02-14
 * Improved security.
 * Code improvements.
 
