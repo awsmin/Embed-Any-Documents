@@ -22,7 +22,14 @@ jQuery(function($) {
 		if (! isNativeViewer) {
 			$iframe.css('visibility', 'visible');
 		}
+
+		// fix so sometimes google doc viewer return 204 no content
+	    	timerId = setInterval(function () {
+	      		$("iframe.ead-iframe").attr("src", $activeIframe.attr("src"));
+	    	}, 5000);
+		
 		$iframe.on('load', function() {
+			clearInterval(timerId);
 			$(this).parents('.ead-document').find('.ead-document-loading').css('display', 'none');
 		});
 
