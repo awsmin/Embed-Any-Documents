@@ -4,10 +4,10 @@
     "type": "wordpress-plugin",
     "license": "GPL-3.0-or-later",
     "require": {
-        "squizlabs/php_codesniffer": "3.*",
-        "wp-coding-standards/wpcs": "^2.0",
-        "phpcompatibility/phpcompatibility-wp": "*",
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0"
+        "squizlabs/php_codesniffer": "^3.13.6",
+        "wp-coding-standards/wpcs": "^3.4.1",
+        "phpcompatibility/phpcompatibility-wp": "^2.1",
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0"
     },
     "scripts": {
         "phpcs": "phpcs --colors -p -s",
