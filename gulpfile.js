@@ -16,7 +16,8 @@ const gulp = require('gulp'),
 
 /* --- Dependencies: css --- */
 const cleanCSS = require('gulp-clean-css'), // Minify CSS
-	autoprefixer = require('gulp-autoprefixer');
+	postcss = require('gulp-postcss'),
+	autoprefixer = require('autoprefixer');
 
 /* --- Dependencies: js --- */
 const uglify = require('gulp-uglify'); // Minify JavaScript
@@ -53,7 +54,7 @@ gulp.task('browser-sync', browserSync);
 let styleTask = () => {
 	return gulp
 		.src([ './css/*.css', '!./css/*.min.css' ])
-		.pipe(autoprefixer())
+		.pipe(postcss([ autoprefixer() ]))
 		.pipe(cleanCSS({ compatibility: 'ie9' }))
 		.pipe(rename({ suffix: '.min' }))
 		.pipe(lineEC())
